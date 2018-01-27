@@ -2,27 +2,34 @@ You may be familiar with the [onUpgrade(SQLiteDatabase, int, int)](https://devel
 
 It is a good practice to upgrade your sqlite database in the following manner:
 
-`@Override
+```java
+@Override
 public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+```
 
-    switch(oldVersion) {
+```java
+switch(oldVersion) {
+```
 
-        case 1:
-            //upgrade logic from version 1 to 2
-        case 2:
-            //upgrade logic from version 2 to 3
-        case 3:
-            //upgrade logic from version 3 to 4
-            break;
-    }
-}`
-
+```java
+    case 1:
+        //upgrade logic from version 1 to 2
+    case 2:
+        //upgrade logic from version 2 to 3
+    case 3:
+        //upgrade logic from version 3 to 4
+        break;
+	}
+}
+```
 The new version of the database specified in the constructor of the Database helper class every time you want to make changes to the database.
 
-`public DbManager(Context context) {
+```
+public DbManager(Context context) {
    super(context, DatabaseName, null, version);
    // TODO Auto-generated constructor stub
-}`
+}
+```
 
 **Here comes the tip:**
 
