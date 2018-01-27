@@ -12,7 +12,7 @@ locale                   : "en-US"
 title                    : "The Mindful Blog"
 title_separator          : "-"
 name                     : "Arshad Mehmood"
-description              : "An amazing website."
+description              : "Personal Blog."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -85,7 +85,7 @@ analytics:
 # Site Author
 author:
   name             : "Arshad Mehmood"
-  avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g. 
   bio              : "Masters Business Informatics student in University of Mannheim. Software developer for web and mobile."
   location         : "Mannheim, Germany"
   email            : 
@@ -97,7 +97,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "https://github.com/arshad115"
+  github           : "arshad115"
   gitlab           :
   google_plus      :
   keybase          :
