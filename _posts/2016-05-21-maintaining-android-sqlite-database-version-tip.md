@@ -5,13 +5,7 @@ It is a good practice to upgrade your sqlite database in the following manner:
 ```java
 @Override
 public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-```
-
-```java
-switch(oldVersion) {
-```
-
-```java
+  switch(oldVersion) {
     case 1:
         //upgrade logic from version 1 to 2
     case 2:
@@ -24,7 +18,7 @@ switch(oldVersion) {
 ```
 The new version of the database specified in the constructor of the Database helper class every time you want to make changes to the database.
 
-```
+```java
 public DbManager(Context context) {
    super(context, DatabaseName, null, version);
    // TODO Auto-generated constructor stub
