@@ -1,3 +1,9 @@
+---
+layout: post
+category: Dev
+tags: [android, sqlite, database]
+---
+
 You may be familiar with the [onUpgrade(SQLiteDatabase, int, int)](https://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html#onUpgrade(android.database.sqlite.SQLiteDatabase, int, int)) method of the [SQLiteOpenHelper](https://developer.android.com/reference/android/database/sqlite/SQLiteOpenHelper.html) class, which is called in your database helper class whenever your database version changes to a higher version.
 
 It is a good practice to upgrade your sqlite database in the following manner:
