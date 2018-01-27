@@ -29,7 +29,9 @@ public DbManager(Context context) {
 
 To avoid changing the database version every single time, you can have a static variable with the Build Version Code.
 
-`private static int version = BuildConfig.VERSION_CODE;`
+```java
+private static int version = BuildConfig.VERSION_CODE;
+```
 
 The Android build system provides the build version of your current app in this system variable BuildConfig.VERSION_CODE. Build version is the version code you set in your AndroidManifest.xml file or Module Gradle file in Android Studio.
 
