@@ -12,3 +12,6 @@ example/_site
 Gemfile.lock
 node_modules
 npm-debug.log*
+/_pages/projects.mustache
+/_pages/generate.py
+/_pages/repos.json
