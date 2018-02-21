@@ -1,6 +1,6 @@
 ---
 category: Development
-tags: Bot Nodejs Microsoft Botframework
+tags: Bots Nodejs Microsoft Botframework
 header:
   image: /assets/images/android_database.png
   teaser: /assets/images/android_database_teaser.png  
@@ -8,7 +8,7 @@ header:
 
 Since, I am living in Germany. __I have to learn the German language.__ Somewhow, I came up with this idea of translating text messages of whatever you type into the chat, I thought it would make my life easier. You can get the translation, without having to leave the app. This way you could easily talk with your friends and also learn the language.
 
-Well I had been keeping track of bots and I am sure they would replace most of the customer support after sometime. On Sep 15th, 2017 I also participated in a Hackathon at local company "LivePerson" in Mannheim, Germany. There, I had created a bot for Food recipes which works by either recipe name or based on ingredients.
+Well I had been keeping track of bots and I am sure they would replace most of the customer support after sometime. On Sep 15th, 2017 I also participated in a <a href="https://www.hackathon.com/event/hackathon-make-bots-great-again-35958760621">Hackathon</a> at local company <a href="https://www.liveperson.com/de">"LivePerson"</a> in Mannheim, Germany. There, I had created a bot for Food recipes which works by either recipe name or based on ingredients.
 
 Langur is a language assistant made using Node.js and Microsoft Bot Framework. It supports multiple languages translation but they are limited to 4, for now. Right now the bot has limited channels, Facebook messenger and kik. I am planning to integrate Whatsapp as a channel, as it is the most widely used chat app these days.
 
