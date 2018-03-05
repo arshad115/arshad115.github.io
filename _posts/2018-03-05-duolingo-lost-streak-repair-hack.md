@@ -2,7 +2,7 @@
 category: Hacks
 tags: Duolingo LanguageLearning
 header:
-  image: /assets/images/duolingo.jpg
+  image: /assets/images/duolingo.png
   teaser: /assets/images/duolingo_teaser.png  
 ---
 
