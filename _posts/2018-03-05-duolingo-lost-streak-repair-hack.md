@@ -22,7 +22,7 @@ Duolingo has an offline feature also and they allow you to complete a couple of 
 
 I knew from before that you can only complete a couple of lessons offline and you cannot do practice lessons. So, I went to Duolingo's website and updated my daily goal settings from 50xp to 10xp. 
 
-![Alt text](..\assets\images\posts\coach2.png?raw=true "Daily goal settings")
+![Alt text](..\..\assets\images\posts\coach2.png?raw=true "Daily goal settings")
 
 
 
