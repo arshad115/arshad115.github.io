@@ -1,18 +1,18 @@
 ---
 category: Hacks
-tags: Duolingo LanguageLearning
+tags: Duolingo Languagelearning
 header:
   image: /assets/images/duolingo.png
   teaser: /assets/images/duolingo_teaser.png  
 ---
 
-You had a streak of 100 days or even more and you just lost it! Shit happens! I understand your sadness of losing a streak. It also happened to me, once I lost a streak of 83 days and Duolingo ask you for money to repair it. 
+You had a streak of 100 days or even more and you just lost it! Shit happens! I understand your sadness of losing a streak. It also happened to me, once I lost a streak of 83 days and then to make matters even worse, Duolingo asks you for money to repair it. 
 
 
 ![Streak lost]({{ "/assets/images/posts/lost.png" | absolute_url }})
 
 
-I love Duolingo and I love learning a new language. I woudn't have any problem with it if the money was insignificant (3.49€ is a lot for a student :D) . It's not just the money, when you lose a streak, you also lose the motivation to continue learning the language on Duolingo. If there was an another option to pay with lingots, I would of course pay with them. Or may be if they had an option to repair your streak by watching a video ad. But, unfortunately, there is no such option.
+I love Duolingo and I love learning a new language. I woudn't have any problem with it if the money was insignificant (3.49€ is a lot for a student :D) . It's not just the money, when you lose a streak, you also lose the motivation to continue learning the language on Duolingo. If there was an another option to pay with like, lingots, I would of course pay with them. Or may be if they had an option to repair your streak by watching a video ad. But, unfortunately, there is no such option.
 
 Recently, I started my language learning again after a long time and lost my streak by just 20 minutes. Then, I decided to think of ways how you could repair a streak, of course without hacking Duolingo's server. Shortly, I had my eureka moment and decided to test my hypothesis. 
 
@@ -28,7 +28,7 @@ I knew from before that you can only complete a couple of lessons offline and yo
 
 
 
-After that, I simply opened Duolingo and completed one lesson on my tablet; make sure you are not connected to the internet. After completing the lesson, I turned on the WiFi. As expected, the app uploaded the progress report and I go my streak back!
+After that, I simply opened Duolingo and completed one lesson on my tablet; make sure you are not connected to the internet. After completing the lesson, I turned on the WiFi. As expected, the app uploaded the progress report and I got my streak back! Yaay!
 
 
 Before:
@@ -48,7 +48,7 @@ A word of advice: Although, it works, I would strongly advise you to not use thi
 
 Happy language learning Duolinguists! :D
 
-P.S. Follow me on Duolingo here: https://www.duolingo.com/ArshadMehm1
+P.S. Follow me on Duolingo here: [https://www.duolingo.com/ArshadMehm1](https://www.duolingo.com/ArshadMehm1])
 
 TLDR;
 1. Make sure Duolingo was installed on a device which is offline.
