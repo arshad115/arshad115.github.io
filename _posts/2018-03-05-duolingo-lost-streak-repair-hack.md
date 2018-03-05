@@ -48,7 +48,7 @@ A word of advice: Although, it works, I would strongly advise you to not use thi
 
 Happy language learning Duolinguists! :D
 
-P.S. Follow me on Duolingo here: [https://www.duolingo.com/ArshadMehm1](https://www.duolingo.com/ArshadMehm1])
+P.S. Follow me on Duolingo here: <a href="https://www.duolingo.com/ArshadMehm1" target="_blank">https://www.duolingo.com/ArshadMehm1</a>
 
 TLDR;
 1. Make sure Duolingo was installed on a device which is offline.
