@@ -4,6 +4,7 @@ tags: Duolingo Languagelearning
 header:
   image: /assets/images/duolingo.png
   teaser: /assets/images/duolingo_teaser.png  
+comments: true
 ---
 
 You had a streak of 100 days or even more and you just lost it! Shit happens! I understand your sadness of losing a streak. It also happened to me, once I lost a streak of 83 days and then to make matters even worse, Duolingo asks you for money to repair it. 

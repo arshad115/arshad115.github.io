@@ -1,3 +1,10 @@
+---
+comments: true
+header:
+  image: /assets/images/helloworld.png
+  teaser: /assets/images/helloworld_teaser.png  
+---
+
 Hello World. The first letters you usually type when you begin some new program, to test it is working properly. 
 
 Earlier I had thought of posting only software development related stuff here on my blog but now, I have decided to post anything here, since it is my personal blog. It would be like my "go to space" for letting my mind speak.

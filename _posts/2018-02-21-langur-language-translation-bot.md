@@ -4,6 +4,7 @@ tags: Bots Nodejs Microsoft Botframework
 header:
   image: /assets/images/android_database.png
   teaser: /assets/images/android_database_teaser.png  
+comments: true
 ---
 
 Since, I am living in Germany. __I have to learn the German language.__ Somewhow, I came up with this idea of translating text messages of whatever you type into the chat, I thought it would make my life easier. You can get the translation, without having to leave the app. This way you could easily talk with your friends and also learn the language.
