@@ -2,8 +2,8 @@
 category: Development
 tags: Bots Nodejs Botframework
 header:
-  image: /assets/images/langur.jpg
-  teaser: /assets/images/langur_teaser.png  
+  image: /assets/images/langur_teaser.png
+  teaser: /assets/images/langur.jpg  
 comments: true
 ---
 
