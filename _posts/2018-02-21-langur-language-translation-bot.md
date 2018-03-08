@@ -1,9 +1,9 @@
 ---
 category: Development
-tags: Bots Nodejs Microsoft Botframework
+tags: Bots Nodejs Botframework
 header:
-  image: /assets/images/android_database.png
-  teaser: /assets/images/android_database_teaser.png  
+  image: /assets/images/langur.jpg
+  teaser: /assets/images/langur_teaser.png  
 comments: true
 ---
 
