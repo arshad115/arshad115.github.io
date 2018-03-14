@@ -1,6 +1,6 @@
 ---
 category: Hacks
-tags: ledger nano crytpocurrency tip
+tags: Ledger Nano Firmware Crytpocurrency Tip Bitcoin
 title: "Ledger Nano S solution for stuck on 'Update' while updating to firmware 1.4.1"
 header:
   image: /assets/images/ledger-wallet.png
