@@ -32,3 +32,5 @@ On Windows:
 If it doesn't work, then disconnect your Ledger Nano S and close Ledger Manager. Start Ledger Manager and insert Ledger device to a USB 2.0 port while pressing the button close to the usb port on the device.
 
 Goodluck!
+
+If it helped you, buy me a cup of coffee with ETH: 0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A
