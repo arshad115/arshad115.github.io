@@ -33,4 +33,4 @@ If it doesn't work, then disconnect your Ledger Nano S and close Ledger Manager.
 
 Goodluck!
 
-If it helped you, buy me a cup of coffee with ETH: 0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A
+Buy me a cup of coffee with ETH: 0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A
