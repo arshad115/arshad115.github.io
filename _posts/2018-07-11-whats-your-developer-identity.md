@@ -1,6 +1,5 @@
 ---
 title: Whats your identity?
-category: Hacks
 tags: Developer Identity
 header:
   image: /assets/images/leadtears.jpg
