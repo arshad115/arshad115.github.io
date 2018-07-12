@@ -2,8 +2,8 @@
 title: Whats your identity?
 tags: Developer Identity
 header:
-  image: /assets/images/leadtears.jpg
-  caption: "Photo credit: [**vigilantcitizen.com**](https://vigilantcitizen.com/musicbusiness/ariana-grandes-no-tears-left-to-cry-blatant-monarch-mind-control-symbolism/)"
+  image: /assets/images/ariana.jpg
+  caption: "Photo credit: [**Vevo/Ariana Grande**](https://www.youtube.com/watch?v=ffxKSjUwKdU)"
 comments: true
 ---
 
