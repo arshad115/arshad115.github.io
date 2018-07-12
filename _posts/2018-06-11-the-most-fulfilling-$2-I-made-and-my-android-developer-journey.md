@@ -1,4 +1,7 @@
 ---
+tags: Money
+header:
+  image: /assets/images/us2.jpg
 comments: true
 ---
 
