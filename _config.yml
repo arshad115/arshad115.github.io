@@ -9,10 +9,10 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
-title                    : "The Mindful Blog"
+title                    : "Arshad Mehmood"
 title_separator          : "-"
 name                     : "Arshad Mehmood"
-description              : "Arshad Mehmood's Personal Blog. Software Developer. Master Business Informatics."
+description              : "Personal Blog. Software Engineer. Android Developer. Master Business Informatics, University of Mannheim. Arshadmehmood.com"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "arshad115/arshad115.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -102,7 +102,7 @@ author:
   google_plus      :
   google_play	   : "7044232667654327190"
   keybase          :
-  instagram        :
+  instagram        : "arshad115"
   lastfm           :
   linkedin         : "arshadmehmood115/" #(the last part of your profile url, e.g. https://www.linkedin.com/in/john-doe-12345678)
   pinterest        :
@@ -113,7 +113,7 @@ author:
   twitter          : "arshad115"
   vine             :
   weibo            :
-  xing             :
+  xing             : "Arshad_Mehmood8"
   youtube          : # "https://youtube.com/c/MichaelRoseDesign"
 
 
