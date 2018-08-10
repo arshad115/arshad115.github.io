@@ -2,7 +2,7 @@
 title: "Configuration"
 permalink: /docs/configuration/
 excerpt: "Settings for configuring and customizing the theme."
-last_modified_at: 2018-02-01T14:40:00-05:00
+last_modified_at: 2018-03-20T15:59:26-04:00
 toc: true
 ---
 
@@ -130,7 +130,7 @@ minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 _Example:_ `locale: "en-US"` sets the `lang` attribute for the site to the _United States_ flavor of English, while `en-GB` would be for the `United Kingdom` style of English. Country codes are optional and the shorter variation `locale: "en"` is also acceptable. To find your language and country codes check this [reference table](<https://msdn.microsoft.com/en-us/library/ee825488(v=cs.20).aspx>).
 
-Properly setting the locale is important for associating localized text found in the [**UI Text**]({{ "/docs/ui-text/" | absolute_url }}) data file. An improper match will cause parts of the UI to disappear (eg. button labels, section headings, etc).
+Properly setting the locale is important for associating localized text found in the [**UI Text**]({{ "/docs/ui-text/" | relative_url }}) data file. An improper match will cause parts of the UI to disappear (eg. button labels, section headings, etc).
 
 **Note:** The theme comes with localized text in English (`en`, `en-US`, `en-GB`). If you change `locale` in `_config.yml` to something else, most of the UI text will go blank. Be sure to add the corresponding locale key and translated text to `_data/ui-text.yml` to avoid this.
 {: .notice--warning}
@@ -233,7 +233,7 @@ header:
 ```
 
 <figure>
-  <img src="{{ '/assets/images/mm-teaser-images-example.jpg' | absolute_url }}" alt="teaser image example">
+  <img src="{{ '/assets/images/mm-teaser-images-example.jpg' | relative_url }}" alt="teaser image example">
   <figcaption>Example of teaser images found in the related posts module.</figcaption>
 </figure>
 
@@ -244,19 +244,19 @@ Enable breadcrumb links to help visitors better navigate deep sites. Because of 
 1. Use a category based permalink structure e.g. `permalink: /:categories/:title/`
 2. Manually create pages for each category or use a plugin like [jekyll-archives][jekyll-archives] to auto-generate them. If these pages don't exist breadcrumb links to them will be broken.
 
-![breadcrumb navigation example]({{ "/assets/images/mm-breadcrumbs-example.jpg" | absolute_url }})
+![breadcrumb navigation example]({{ "/assets/images/mm-breadcrumbs-example.jpg" | relative_url }})
 
 ```yaml
 breadcrumbs: true  # disabled by default
 ```
 
-Breadcrumb start link text and separator character can both be changed in the [UI Text data file]({{ "/docs/ui-text/" | absolute_url }}).
+Breadcrumb start link text and separator character can both be changed in the [UI Text data file]({{ "/docs/ui-text/" | relative_url }}).
 
 ### Reading Time
 
 Enable estimated reading time snippets with `read_time: true` in YAML Front Matter. `200` has been set as the default words per minute value --- which can be changed by adjusting `words_per_minute:` in `_config.yml`.
 
-![reading time example]({{ "/assets/images/mm-read-time-example.jpg" | absolute_url }})
+![reading time example]({{ "/assets/images/mm-read-time-example.jpg" | relative_url }})
 
 Instead of adding `read_time: true` to each post, apply as a default in `_config.yml` like so:
 
@@ -367,7 +367,7 @@ Default settings have been provided in [`staticman.yml`](https://github.com/mmis
 comments:
   allowedFields      : ["name", "email", "url", "message"]
   branch             : "master"
-  commitMessage      : "New comment"
+  commitMessage      : "New comment by {fields.name}"
   filename           : "comment-{@timestamp}"
   format             : "yaml"
   generatedFields:
@@ -376,7 +376,7 @@ comments:
       options:
         format       : "iso8601"
   moderation         : true
-  path               : "/_data/comments/{options.slug}" (default)
+  path               : "_data/comments/{options.slug}"
   requiredFields     : ["name", "email", "message"]
   transforms:
     email            : md5
@@ -410,7 +410,7 @@ comments:
 staticman:
   allowedFields          : ['name', 'email', 'url', 'message']
   branch                 : "master"
-  commitMessage          : "New comment."
+  commitMessage          : "New comment by {fields.name}"
   filename               : comment-{@timestamp}
   format                 : "yml"
   moderation             : true
@@ -434,7 +434,7 @@ To skip this moderation step simply set `moderation: false`.
 **ProTip:** Create a GitHub webhook that sends a `POST` request to the following payload URL `https://api.staticman.net/v2/webhook` and triggers a "Pull request" event to delete Staticman branches on merge.
 {: .notice--info}
 
-![pull-request webhook]({{ "/assets/images/mm-staticman-pr-webhook.jpg" | absolute_url }})
+![pull-request webhook]({{ "/assets/images/mm-staticman-pr-webhook.jpg" | relative_url }})
 
 ###### reCAPTCHA Support (v2 only)
 
@@ -468,22 +468,92 @@ atom_feed:
 
 ### Site Search
 
-Enable basic site search powered by [Lunr](https://lunrjs.com/) by adding the following to `_config.yml`:
+To enable site-wide search add `search: true` to your `_config.yml`.
 
-```yaml
-search: true
-```
+![masthead search example]({{ "/assets/images/masthead-search.gif" | relative_url }})
 
-![masthead search example]({{ "/assets/images/masthead-search.gif" | absolute_url }})
+#### Lunr (default)
 
-To index the full content of your documents set `search_full_content` to `true` in `_config.yml`:
+The default search uses [**Lunr**](https://lunrjs.com/) to build a search index of all your documents. This method is 100% compatible with sites hosted on GitHub Pages.
 
-```yaml
-search_full_content: true
-```
-
-**Note:** Large amounts of posts will increase the size of the search index, impacting page load performance. Setting `search_full_content` to `false` (the default) restricts indexing to the first 50 words of body content.
+**Note:** Only the first 50 words of a post or page's body content is added to the Lunr search index. Setting `search_full_content` to `true` in your `_config.yml` will override this and could impact page load performance.
 {: .notice--warning}
+
+#### Algolia
+
+For faster and more relevant search ([see demo](https://mmistakes.github.io/minimal-mistakes-algolia-search/)):
+
+1. Add the [`jekyll-algolia`](https://github.com/algolia/jekyll-algolia) gem to your `Gemfile`, in the `:jekyll_plugins` section.
+
+   ```ruby
+   group :jekyll_plugins do
+     gem "jekyll-feed"
+     gem "jekyll-seo-tag"
+     gem "jekyll-sitemap"
+     gem "jekyll-paginate"
+     gem "jekyll-algolia"
+   end
+   ```
+
+   Once this is done, download all dependencies by running `bundle install`.
+
+2. Switch search providers from `lunr` to `algolia` in your `_config.yml` file:
+
+   ```yaml
+   search_provider: algolia
+   ```
+
+3. Add the following Algolia credentials to your `_config.yml` file. *If you don't have an Algolia account, you can open a free [Community plan](https://www.algolia.com/users/sign_up/hacker). Once signed in, you can grab your credentials from [your dashboard](https://www.algolia.com/licensing).*
+
+   ```yaml
+   algolia:
+     application_id: # YOUR_APPLICATION_ID
+     index_name: # YOUR_INDEX_NAME
+     search_only_api_key: # YOUR_SEARCH_ONLY_API_KEY
+     powered_by: # true (default), false
+   ```
+
+4. Once your credentials are setup, you can run the indexing with the following command:
+
+   ```
+   ALGOLIA_API_KEY=your_admin_api_key bundle exec jekyll algolia
+   ```
+
+   For Windows users you will have to use `set` to assigned the `ALGOLIA_API_KEY` environment variable.
+
+   ```
+   set ALGOLIA_API_KEY=your_admin_api_key
+   bundle exec jekyll algolia
+   ```
+
+   Note that `ALGOLIA_API_KEY` should be set to your admin API key.
+
+To use the Algolia search with GitHub Pages hosted sites follow [this deployment guide](https://community.algolia.com/jekyll-algolia/github-pages.html). Or this guide for [deploying on Netlify](https://community.algolia.com/jekyll-algolia/netlify.html).
+
+**Note:** The Jekyll Algolia plugin can be configured in several ways. Be sure to check out [their full documentation](https://community.algolia.com/jekyll-algolia/options.html "Algolia configuration") on how to exclude files and other valuable settings.
+{: .notice--info}
+
+#### Google Custom Search Engine
+
+Add a Google search box to your site.
+
+1. Create a **New search engine** in [Google Custom Search Engine](https://cse.google.com/cse/all), give it an appropriate name and setup "Sites to search" to your liking.
+
+2. Under **Look and feel** choose the "Results only" layout and a theme (*Minimalist* is a good choice to match the default look of the Minimal Mistakes).
+   
+   ![Google Custom Search Engine layout]({{ '/assets/images/google-custom-search-engine-layout.png' | relative_url }})
+
+3. Select "Save & Get Code" and grab your search engine ID from the line that begins with `var cx = 'YOUR_SEARCH_ENGINE_ID'`.
+
+4. Add your search engine ID to `_config.yml` like so:
+   
+   ```yaml
+   google:
+     search_engine_id: YOUR_SEARCH_ENGINE_ID
+   ```
+
+**Note:** If your site is new and hasn't been indexed by Google yet, search will be incomplete and won't provide accurate results.
+{: .notice--info}
 
 ### SEO, Social Sharing, and Analytics Settings
 
@@ -591,19 +661,19 @@ og_image: /assets/images/site-logo.png
 ```
 
 <figure>
-  <img src="{{ '/assets/images/mm-twitter-card-summary-image.jpg' | absolute_url }}" alt="Twitter Card summary example">
+  <img src="{{ '/assets/images/mm-twitter-card-summary-image.jpg' | relative_url }}" alt="Twitter Card summary example">
   <figcaption>Example of a image placed in a Summary Card.</figcaption>
 </figure>
 
 Documents who have a `header.image` assigned in their YAML Front Matter will appear like this when shared on Twitter and Facebook.
 
 <figure>
-  <img src="{{ '/assets/images/mm-twitter-card-summary-large.jpg' | absolute_url }}" alt="page shared on Twitter">
+  <img src="{{ '/assets/images/mm-twitter-card-summary-large.jpg' | relative_url }}" alt="page shared on Twitter">
   <figcaption>Shared page on Twitter with header image assigned.</figcaption>
 </figure>
 
 <figure>
-  <img src="{{ '/assets/images/facebook-share-example.jpg' | absolute_url }}" alt="page shared on Facebook">
+  <img src="{{ '/assets/images/facebook-share-example.jpg' | relative_url }}" alt="page shared on Facebook">
   <figcaption>Shared page on Facebook with header image assigned.</figcaption>
 </figure>
 
@@ -631,15 +701,17 @@ Analytics is disabled by default. To enable globally select one of the following
 | -------------------- | --------------------------------------------------------------- |
 | **google**           | [Google Standard Analytics](https://www.google.com/analytics/)  |
 | **google-universal** | [Google Universal Analytics](https://www.google.com/analytics/) |
+| **google-gtag**      | [Google Analytics Global Site Tag)](https://www.google.com/analytics/) |
 | **custom**           | Other analytics providers                                       |
 
 For Google Analytics add your Tracking Code:
 
 ```yaml
 analytics:
-  provider: "google-universal"
+  provider: "google-gtag"
   google:
     tracking_id: "UA-1234567-8"
+    anonymize_ip: false # default
 ```
 
 To use another provider not included with the theme set `provider: "custom"` then add their embed code to `_includes/analytics-providers/custom.html`.
@@ -652,7 +724,7 @@ To use another provider not included with the theme set `provider: "custom"` the
 
 Used as the defaults for defining what appears in the author sidebar.
 
-![author sidebar example]({{ "/assets/images/mm-author-sidebar-example.jpg" | absolute_url }})
+![author sidebar example]({{ "/assets/images/mm-author-sidebar-example.jpg" | relative_url }})
 
 **Note:** For sites with multiple authors these values can be overridden post by post with custom YAML Front Matter and a data file. For more information on how that works see below.
 {: .notice--info}
@@ -669,7 +741,7 @@ author:
 
 Social media links are all optional, include the ones you want visible. In most cases you just need to add the username. If you're unsure double check `_includes/author-profile.html` to see how the URL is constructed.
 
-To add social media links not included with the theme or customize the author sidebar further, read the full [layout documentation]({{ "/docs/layouts/#author-profile" | absolute_url }}).
+To add social media links not included with the theme or customize the author sidebar further, read the full [layout documentation]({{ "/docs/layouts/#author-profile" | relative_url }}).
 
 ## Reading Files
 
@@ -741,7 +813,7 @@ If [using pagination](https://github.com/jekyll/jekyll-paginate) on the homepage
 paginate: 5
 ```
 
-You'll also need to include some Liquid and HTML to properly use the paginator, which you can find in the **Layouts** section under [Home Page]({{ "/docs/layouts/#home-page" | absolute_url }}).
+You'll also need to include some Liquid and HTML to properly use the paginator, which you can find in the **Layouts** section under [Home Page]({{ "/docs/layouts/#home-page" | relative_url }}).
 
 The paginator only works on files with name `index.html`. To use pagination in a subfolder --- for example `/recent/`, create `/recent/index.html` and set the `paginate_path` in `_config.yml` to this:
 
@@ -802,10 +874,10 @@ tag_archive:
 
 Which would create category and tag links in the breadcrumbs and page meta like: `/categories/#foo` and `/tags/#foo`.
 
-**Note:** these are simply hash (fragment) links into the full taxonomy index pages. For them to resolve properly, the category and tag index pages need to exist at [`/categories/index.html`](https://github.com/{{ site.repository }}/blob/master/docs/\_pages/category-archive.html) (copy to `_pages/category-archive.html`) and [`/tags/index.html`](https://github.com/{{ site.repository }}/blob/master/docs/\_pages/tag-archive.html) (copy to `_pages/tag-archive.html`).
+**Note:** these are simply hash (fragment) links into the full taxonomy index pages. For them to resolve properly, the category and tag index pages need to exist at [`/categories/index.html`](https://github.com/{{ site.repository }}/blob/master/docs/_pages/category-archive.md) (copy to `_pages/category-archive.md`) and [`/tags/index.html`](https://github.com/{{ site.repository }}/blob/master/docs/_pages/tag-archive.md) (copy to `_pages/tag-archive.md`).
 {: .notice--warning}
 
-If you have the luxury of using Jekyll Plugins, then [**jekyll-archives**][jekyll-archives] will create a better experience as discrete taxonomy pages would be generated, and their corresponding links would be "real" (not just hash/fragment links into a larger index). However, the plugin will not generate the taxonomy index pages (`category-archive.html` and `_pages/tag-archive.html`) so you'd still need to manually create them if you'd like to have them (see note above).
+If you have the luxury of using Jekyll Plugins, then [**jekyll-archives**][jekyll-archives] will create a better experience as discrete taxonomy pages would be generated, and their corresponding links would be "real" (not just hash/fragment links into a larger index). However, the plugin will not generate the taxonomy index pages (`category-archive.md` and `tag-archive.md`) so you'd still need to manually create them if you'd like to have them (see note above).
 
 First, you'll need to make sure that the `jekyll-archives` plugin is installed. Either run `gem install jekyll-archives` or add the following to your `Gemfile`:
 
