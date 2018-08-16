@@ -1,0 +1,3 @@
+[submodule "today-i-learned"]
+	path = today-i-learned
+	url = https://github.com/arshad115/today-i-learned

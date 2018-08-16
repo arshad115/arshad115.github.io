@@ -10,5 +10,7 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+   - title: "Today I Learned"
+     url: /today-i-learned/
    - title: "Projects"
      url: /projects/
