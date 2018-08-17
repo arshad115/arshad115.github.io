@@ -34,7 +34,11 @@ layout: default
             {% endunless %}
 
             <section class="page__content" itemprop="text">
-                {{ content }}
+                {% for post in site.pages %}
+                {% if post.readme %}
+                {{ post.content | markdownify }}
+                {% endif %}
+                {% endfor %}
             </section>
 
             {% if page.share %}{% include social-share.html %}{% endif %}

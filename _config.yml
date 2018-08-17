@@ -280,4 +280,23 @@ defaults:
       author_profile: true
       share: true
       comments: true
+  # _recipes
+  - scope:
+      path: ""
+      type: recipes
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
+
+# Collections
+collections:
+  recipes:
+    output: true
+    permalink: /:collection/:path/
+  today-i-learned:
+    output: true
+    permalink: /:collection/:path/
+
 github: [metadata]
