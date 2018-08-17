@@ -271,5 +271,13 @@ defaults:
       comments: # true
       share: true
       related: true
-
+  # today-i-learned
+  - scope:
+      path: "today-i-learned"
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      share: true
+      comments: true
 github: [metadata]
