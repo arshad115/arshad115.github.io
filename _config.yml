@@ -268,35 +268,34 @@ defaults:
       layout: single
       author_profile: true
       read_time: true
-      comments: # true
+      comments: true
       share: true
       related: true
-  # today-i-learned
-  - scope:
-      path: "today-i-learned"
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
-  # _recipes
+  # _pages
   - scope:
       path: ""
-      type: recipes
+      type: pages
     values:
       layout: single
       author_profile: true
-      share: true
+      read_time: true
       comments: true
+      share: true
+      related: true
+  # _recipes
+#  - scope:
+#      path: ""
+#      type: recipes
+#    values:
+#      layout: single
+#      author_profile: true
+#      share: true
+#      comments: true
 
 # Collections
-collections:
-  recipes:
-    output: true
-    permalink: /:collection/:path/
-  today-i-learned:
-    output: true
-    permalink: /:collection/:path/
+#collections:
+#  recipes:
+#    output: true
+#    permalink: /:collection/:path/
 
 github: [metadata]
