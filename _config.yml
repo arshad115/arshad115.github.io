@@ -282,20 +282,5 @@ defaults:
       comments: true
       share: true
       related: true
-  # _recipes
-#  - scope:
-#      path: ""
-#      type: recipes
-#    values:
-#      layout: single
-#      author_profile: true
-#      share: true
-#      comments: true
-
-# Collections
-#collections:
-#  recipes:
-#    output: true
-#    permalink: /:collection/:path/
 
 github: [metadata]
