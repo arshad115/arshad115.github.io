@@ -271,6 +271,7 @@ defaults:
       comments: true
       share: true
       related: true
+      visible: true
   # _pages
   - scope:
       path: ""
@@ -282,5 +283,6 @@ defaults:
       comments: true
       share: true
       related: true
+      visible: true
 
 github: [metadata]
