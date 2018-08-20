@@ -1,9 +1,13 @@
 > Deploy Angular app to Firebase hosting
 
- Hosting an angular app on firebase is really easy. To deploy and app:
+ Hosting an angular app on firebase is really easy. 
+ 
 ### Prerequisites:
   Node and angular-cli.
-
+  
+### Steps:
+  To deploy and app:
+  
 1. Create Angular App, or use already created Angular App.
 2. Create project in [Firebase console](https://console.firebase.google.com/).
     Your app's url name will be: `<project-id>.firebase-app.com`
@@ -64,4 +68,4 @@
     ```
     If everything went well, then your application will be deployed and you will see its url on the console.
     
-    
+    Buy me a cup of coffee with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 
