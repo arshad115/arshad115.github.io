@@ -271,7 +271,7 @@ defaults:
       share: true
       related: true
       visible: true
-  # _pages
+  # _pages - til
   - scope:
       path: ""
       type: pages
@@ -283,5 +283,8 @@ defaults:
       share: true
       related: true
       visible: true
+      header:
+        image: /assets/images/til.png
+        teaser: /assets/images/til_header.jpg
 
 github: [metadata]
