@@ -24,20 +24,18 @@ Create a new angular app or use an existing project.
     ```
     firebase login
     ```
-       This will open a browser tab, where you can login. Once you login, you will also see a token on the command prompt, copy this token as we will use it on Gitlab.  It will look something like this:
+    This will open a browser tab, where you can login. Once you login, you will also see a token on the command prompt, copy this token as we will use it on Gitlab.  It will look something like this:
 
     ```
     1/qX11M4Y413rn4Ezlj-q9LhtLaI13S4R400_J1y1BdQXDiE4NTvp
     ```
-
-    
 
 3. Initiliaze Firebase in your project.
     Go to your project folder and run this command:
      ```
      firebase init
      ```
-     Follwo the steps: 
+     Follow these steps: 
       1. Are you ready to proceed? **Yes**
       2. Which Firebase CLI features? **Hosting** (In the future, use whatever you need! Press space to select.)
       3. Select a default Firebase project? (Choose whatever app you created in the earlier steps)
@@ -45,7 +43,7 @@ Create a new angular app or use an existing project.
       5. Configure as a single-page app? **Yes**
 
      Once you initilize the app, two files will be created in the folder:
-     ##### .firebaserc 
+     #### .firebaserc 
      ```json
      {
         "projects": {
@@ -54,7 +52,7 @@ Create a new angular app or use an existing project.
      }
      ```
 
-     ##### .firebase.json
+     #### .firebase.json
      ```json
      {
     "hosting": {
@@ -75,7 +73,6 @@ Our Gitlab repository will host the code of our application and also the `.gitla
 1. [Create a new git repository/project on Gitlab](https://gitlab.com/projects/new).
 2. Go to setting of the project and then to [CI/CD](https://gitlab.com/arshad115/RecipeApis/settings/ci_cd).
 3. There you will see a section named Variables. Click on Expand.
-    ![Variables]({{ "/assets/images/posts/variables.PNG" | absolute_url }})
 4. Enter your Firebase Token from the previous steps. Name the token as `FIREBASE_DEPLOY_KEY` and paste the value. 
 5. Set as protected. 
 
