@@ -18,7 +18,7 @@ As with any type of currency or asset, you would always want to keep it in a saf
 
 ### Paper wallets
 
-[![alt text]({{ "/assets/images/posts/paper-wallet.jpg" | absolute_url }})]
+![alt text]({{ "/assets/images/posts/paper-wallet.jpg" | absolute_url }})
 
 Paper wallets are wallets which you can create online and then transfer your cyrpto onto them They are called paper wallets, because they can be printed and stored on paper. When you create a paper wallet, you are given a private key or password for the wallet, which should be kept safe in order to use the wallet. You can read more about them [here](https://en.bitcoin.it/wiki/Paper_wallet). 
 
@@ -26,7 +26,7 @@ Paper wallets are wallets which you can create online and then transfer your cyr
 
 While paper wallets safe, they are not exactly user friendly. Going through the hassle of creating a wallet and storing them all safely offline is no easy job. The hardware wallets, solve that problem. Hardware wallets are basically a usb stick with strong encryption which stores your private key or passcode for a variety of cryptocurrency wallets. The private key never leaves the wallet and you always have to authorize payments on the wallet before executing them. They are secure, portable and easy to use. There are plenty of options available, two of the most popular ones are [Ledger](https://www.ledger.com?r=febd7201637a) and [Trezor](https://trezor.io/). My favorite is a [Ledger Nano S](https://www.ledger.com?r=febd7201637a). It has plenty of support for various cryptocurrencies. It comes with a strong encryption. It's pretty much uncrackable(to my knowledge, till this day). It has a very good support available online and an open source community which adds new coins features. If there is a security vulnerability found, it is immediately fixed. It is always worth it to spend $100 or 100€ than to lose $500. I also own one and you can buy yourself a [Ledger Nano S here](https://www.ledger.com?r=febd7201637a):
 
-<a href="https://www.ledger.com?r=febd7201637a"><img width=850 height=420 alt="Ledger Nano S - The secure hardware wallet" src="https://www.ledgerwallet.com/images/promo/nano-s/ledger_nano-s_8-5-0x4-2-0.jpg"></a>
+<div><a href="https://www.ledger.com?r=febd7201637a"><img width=850 height=420 alt="Ledger Nano S - The secure hardware wallet" src="https://www.ledgerwallet.com/images/promo/nano-s/ledger_nano-s_8-5-0x4-2-0.jpg"></a></div>
 
 
 
