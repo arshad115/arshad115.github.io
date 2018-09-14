@@ -107,7 +107,7 @@ author:
   location         : "Mannheim, Germany"
   email            :
   uri              :
-  home             : # null (default), "absolute or relative url to link to author home"
+  home             : "https://arshadmehmood.com/" # null (default), "absolute or relative url to link to author home"
   bitbucket        :
   codepen          :
   dribbble         :
