@@ -22,10 +22,9 @@ It's very easy to use and you can delete or reset your app in just two lines of 
    ```
 
 2. Reset repo using:
-
-  ```javascript
-  heroku repo:reset -a appname
-  ```
+   ```javascript
+   heroku repo:reset -a appname
+   ```
 
 Now your [Heroku](https://www.heroku.com/) will be just as new. Push your code and it will be like, you just pushed some code to a new app. Cheers!
 
