@@ -10,18 +10,13 @@
   @include clearfix;
   margin: 0 auto;
   max-width: 100%;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
   font-family: $sans-serif;
   -webkit-animation: $intro-transition;
   animation: $intro-transition;
   -webkit-animation-delay: 0.3s;
   animation-delay: 0.3s;
-
-  @include breakpoint($large) {
-    padding-left: 1em;
-    padding-right: 1em;
-  }
 
   @include breakpoint($x-large) {
     max-width: $x-large;
@@ -34,11 +29,11 @@
 
     @include breakpoint($large) {
       float: right;
-      width: span(10 of 12);
+      width: calc(100% - #{$right-sidebar-width-narrow});
     }
 
     @include breakpoint($x-large) {
-      padding-left: gutter(0.5 of 12);
+      width: calc(100% - #{$right-sidebar-width});
     }
   }
 
@@ -340,7 +335,7 @@
     display: none;
   }
 
-  @include breakpoint(max-width($large - 1px)) {
+  @include breakpoint(max-width $large - 1px) {
     label {
       position: relative;
       display: inline-block;
@@ -446,7 +441,7 @@
     font-weight: bold;
   }
 
-  @include breakpoint(max-width($large - 1px)) {
+  @include breakpoint(max-width $large - 1px) {
     position: relative;
     max-height: 0;
     opacity: 0%;
@@ -460,7 +455,7 @@
   }
 }
 
-@include breakpoint(max-width($large - 1px)) {
+@include breakpoint(max-width $large - 1px) {
   .nav__list input:checked ~ .nav__items {
     -webkit-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
@@ -476,7 +471,7 @@
 
 .nav__title {
   margin: 0;
-  padding: 0.5rem 1rem;
+  padding: 0.25rem 0.75rem;
   font-family: $sans-serif-narrow;
   font-size: $type-size-5;
   font-weight: bold;
@@ -485,7 +480,7 @@
 .nav__sub-title {
   display: block;
   margin: 0.5rem 0;
-  padding: 0.5rem 0;
+  padding: 0.25rem 0;
   font-family: $sans-serif-narrow;
   font-size: $type-size-6;
   font-weight: bold;
@@ -520,11 +515,15 @@
   padding: 0;
   width: 100%;
   list-style: none;
-  font-size: $type-size-7;
+  font-size: $type-size-6;
+
+  @include breakpoint($large) {
+    font-size: $type-size-7;
+  }
 
   a {
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 0.25rem 0.75rem;
     color: $muted-text-color;
     font-weight: bold;
     line-height: 1.5;
@@ -536,16 +535,23 @@
   }
 
   li ul > li a {
-    padding-left: 1.75rem;
+    padding-left: 1.25rem;
     font-weight: normal;
   }
 
-  /* hide sub sub links on small screens*/
-  li > ul li {
-    display: none;
+  li ul li ul > li a {
+    padding-left: 1.75rem;
+  }
 
-    @include breakpoint($medium) {
-      display: block;
-    }
+  li ul li ul li ul > li a {
+    padding-left: 2.25rem;
+  }
+
+  li ul li ul li ul li ul > li a {
+    padding-left: 2.75rem;
+  }
+
+  li ul li ul li ul li ul li ul > li a {
+    padding-left: 3.25rem
   }
 }
