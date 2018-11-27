@@ -148,7 +148,6 @@ footer:
       icon: "fab fa-fw fa-instagram"
       url: "https://instagram.com/arshad115"
 
-
 # Reading Files
 include:
   - .htaccess
