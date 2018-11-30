@@ -317,5 +317,6 @@ defaults:
       layout: single
       author_profile: true
       share: true
+      visible: true
 
 github: [metadata]
