@@ -309,6 +309,13 @@ defaults:
       header:
         image: /assets/images/til.png
         teaser: /assets/images/til_header.jpg
-
+  # _portfolio
+  - scope:
+      path: ""
+      type: projects
+    values:
+      layout: single
+      author_profile: true
+      share: true
 
 github: [metadata]
