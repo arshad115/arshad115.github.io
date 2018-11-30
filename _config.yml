@@ -277,9 +277,10 @@ compress_html:
     envs: development
 collections:
   projects:
+    permalink: /:collection/:path/
     output: true
     visible: true
-
+    
 # Defaults
 defaults:
   # _posts
@@ -309,7 +310,7 @@ defaults:
       header:
         image: /assets/images/til.png
         teaser: /assets/images/til_header.jpg
-  # _portfolio
+  # _projects
   - scope:
       path: ""
       type: projects
