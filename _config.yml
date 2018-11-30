@@ -278,7 +278,7 @@ compress_html:
 collections:
   projects:
     output: true
-    permalink: /:collection/:path/
+    visible: true
 
 # Defaults
 defaults:
