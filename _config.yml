@@ -106,6 +106,7 @@ author:
   bio              : "Masters Business Informatics student in University of Mannheim. Software developer for web and mobile."
   location         : "Mannheim, Germany"
   email            :
+  home             : "https://arshadmehmood.com/"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
