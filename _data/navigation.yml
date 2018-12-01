@@ -12,5 +12,5 @@ main:
   #   url: /sitemap/
    - title: "Today I Learned"
      url: /today-i-learned/
-   - title: "Projects"
-     url: /projects/
+   - title: "Portfolio"
+     url: /portfolio/

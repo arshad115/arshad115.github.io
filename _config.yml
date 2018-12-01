@@ -276,10 +276,9 @@ compress_html:
   ignore:
     envs: development
 collections:
-  projects:
-    permalink: /:collection/:path/
+  portfolio:
     output: true
-    visible: true
+    permalink: /:collection/:path/
     
 # Defaults
 defaults:
@@ -310,14 +309,13 @@ defaults:
       header:
         image: /assets/images/til.png
         teaser: /assets/images/til_header.jpg
-  # _projects
+  # _portfolio
   - scope:
       path: ""
-      type: projects
+      type: portfolio
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: true
-      visible: true
 
 github: [metadata]
