@@ -4,6 +4,7 @@ title: "Contact"
 last_modified_at: 2018-12-03T18:32:42-05:00
 excerpt: "Preferred methods of sending your questions, inquires, messages, and love letters to me."
 share: false
+read_time: false
 ---
 
 Have questions about me, this website, or writing code or making mobile apps?
