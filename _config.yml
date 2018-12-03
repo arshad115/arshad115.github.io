@@ -285,7 +285,9 @@ collections:
   portfolio:
     output: true
     permalink: /:collection/:path/
-    
+  today-i-learned:
+    output: true
+    permalink: /:collection/:path/
 # Defaults
 defaults:
   # _posts
@@ -312,16 +314,13 @@ defaults:
       share: true
       related: true
       visible: true
-      header:
-        image: /assets/images/til.png
-        teaser: /assets/images/til_header.jpg
   # _portfolio
   - scope:
       path: ""
       type: portfolio
     values:
       layout: single
-      author_profile: false
+      author_profile: true
       share: true
 
 github: [metadata]
