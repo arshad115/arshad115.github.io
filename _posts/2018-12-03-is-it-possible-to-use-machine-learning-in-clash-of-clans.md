@@ -25,7 +25,7 @@ Yes! Definitely! It is possible, but *(there's always a but)*, it won't be easy 
 
 Some years ago, I also saw this video of AI playing a single level of mario:
 
-<iframe width="640" height="360" src="https://www.youtube.com/watch?v=qv6UVOQ0F44?controls=0&showinfo=0" frameborder="0" allowfullscreen></iframe> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qv6UVOQ0F44" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> 
 
 So, its definitely possible, but somewhat difficult. There are some frameworks also, so far, I found this framework called [universe](https://github.com/openai/universe) which is no longer maintained. I will comeback to this after my exams. Let me know if there is any other framework available or how would you solve this problem?
 
