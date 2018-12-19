@@ -15,7 +15,7 @@ I will show you a method to download/save [WhatsApp](https://www.whatsapp.com/) 
 
 ### How to save photos and videos?
 
-1. Go to https://web.whatsapp.com/ on your computer and connect your phone on which whatsApp is installed.
+1. Go to [https://web.whatsapp.com/](https://web.whatsapp.com/) on your computer and connect your phone on which [WhatsApp](https://www.whatsapp.com/) is installed.
 
    ![WhatsApp web](\assets\images\posts\whatsappweb.PNG)
 
