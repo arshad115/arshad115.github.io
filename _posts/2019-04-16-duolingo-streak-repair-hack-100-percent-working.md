@@ -27,13 +27,13 @@ I have tried and tested this method on iPhone and I am sure, it work work the sa
 I will guide you step by step on how to do this:
 
 Lets say, one day you open the app and you have lost your very long streak and are presented with this screen:
-![Lost streak]({{ "/assets/images/posts/dou-12.png" | absolute_url }})
+![Lost streak]({{ "/assets/images/posts/duo-12.png" | absolute_url }})
 
 Worry no more, just go to your device's date and time settings and change the date manually to the past date when you missed the lesson:
-![Lost streak]({{ "/assets/images/posts/dou-16.png" | absolute_url }})
+![Change date]({{ "/assets/images/posts/duo-16.png" | absolute_url }})
 
 Open the Duolingo app again, just complete any lesson or practice till your daily goal limit. Once you are done, your data will be sent for that day. If you have multiple missing days, repeat the same process for all of the date on which you were not able to complete a lesson. I have tried it for even one whole week.
-![Lost streak]({{ "/assets/images/posts/dou-15.png" | absolute_url }})
+![Streak repaired]({{ "/assets/images/posts/duo-15.png" | absolute_url }})
 
 After completing all the lessons, change the date back to the real date, complete the lesson, and voila! your streak is repaired!
 
