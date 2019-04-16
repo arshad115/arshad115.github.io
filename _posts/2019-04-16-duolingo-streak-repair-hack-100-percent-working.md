@@ -43,4 +43,4 @@ Instead, here is a suggestion for you: Let users, repair streaks by watching an 
 
 Happy language learning Duolinguists! :D
 
-P.S. Follow me on Duolingo here: https://www.duolingo.com/ArshadMehm1
+P.S. Follow me on Duolingo [here](https://www.duolingo.com/ArshadMehm1)
