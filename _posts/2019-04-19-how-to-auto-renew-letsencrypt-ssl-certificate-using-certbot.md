@@ -7,7 +7,7 @@ tags:
   - Linux
   - Nginx
 header:
-  image: https://rogertakemiya.com.br/wp-content/uploads/2018/02/certificado-lets-encrypt-gratuito.png
+  image: https://cdn-images-1.medium.com/max/1600/1*Cd2NBjQD8Luwbu1Z23n5QQ.png
   teaser: https://letsencrypt.org/images/le-logo-twitter.png
 comments: true
 ---
