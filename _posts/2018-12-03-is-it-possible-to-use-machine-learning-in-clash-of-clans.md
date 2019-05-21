@@ -8,7 +8,7 @@ tags:
   - Neural Networks
   - Gaming
 header:
-  image: https://scontent-frx5-1.xx.fbcdn.net/v/t1.0-9/10403183_819785948045730_6653951710323521456_n.png?_nc_cat=104&_nc_ht=scontent-frx5-1.xx&oh=fb6270e30eadfa0e151986a7e09a0508&oe=5C9DA7CB
+  image: https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwi43avrtaziAhUNyaQKHQJ8BFAQjRx6BAgBEAU&url=https%3A%2F%2Fmedium.com%2Ftradecraft-traction%2Fthe-secrets-behind-a-5m-per-day-mobile-game-clash-of-clans-24d45cd39019&psig=AOvVaw05DJoxSlXGBXNZq7M7PR3C&ust=1558521099658975
   teaser: https://yt3.ggpht.com/a-/AN66SAxf2g4A2F_v2klgv4V05TV2KYBlRhIg21qj6Q=s900-mo-c-c0xffffffff-rj-k-no
 comments: true
 ---
