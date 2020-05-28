@@ -88,12 +88,19 @@ For Connection Method, select **Standard TCP/IP over SSH**
 Under the Parameters Tab, enter the following information:
 
 **SSH Hostname:** 123.456.789.123:22
+
 **SSH Username:** {your SSH username}
+
 **SSH Password:** leave blank/click “Clear” to be safe
+
 **SSH Keyfile:** path to openssh_key.ppk we just created
+
 **MySQL Hostname:** 123.456.789.123
+
 **MySQL Port:** 3306
+
 **Username:** your database username
+
 **Password:** your database password
 
 ![ ]({{ "/assets/images/posts/mysqlwork.PNG" | absolute_url }})
