@@ -4,7 +4,7 @@ category: HowTo
 tags: mysql ssh remote workbench droplet ubuntu
 header:
   image: "https://www.it-daily.net/images/Aufmacher-2019/Remote_Access_shutterstock_434600221_700.jpg"
-  caption: "Photo credit: [**it-daily.net**](https://www.it-daily.net/images/Aufmacher-2019/Remote_Access_shutterstock_434600221_700.jpg"
+  caption: "Photo credit: [it-daily.net](https://www.it-daily.net/images/Aufmacher-2019/Remote_Access_shutterstock_434600221_700.jpg"
 comments: true
 ---
 
@@ -31,9 +31,10 @@ Replace all the **quotes(')** parts and db.table with your relevant informatio
 
 If you want the user to be able to create new databases and modify permissions, then use:
 
-```*GRANT ALL PRIVILEGES ON \***.\***TO '**username**'@'**123.456.789.123**' IDENTIFIED BY '**password**' WITH GRANT OPTION;* 
-GRANT ALL PRIVILEGES ON *.*TO 'username'@'123.456.789.123' IDENTIFIED BY 'password' WITH GRANT OPTION;
 ```
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'123.456.789.123' IDENTIFIED BY 'password' WITH GRANT OPTION;
+```
+
 Save changes:
 
 ```
@@ -77,8 +78,6 @@ MySQL Workbench accepts SSH key in OpenSSH Format, so to covert your private ssh
 - Insert your **passphrase**
 
 - Export **the key** (Conversions > Export OpenSSH Key [openssh_key.ppk])
-
-  
 
 Once the key is setup, we can configure the MySQL Workbench Connection.
 
