@@ -274,6 +274,7 @@ tag_archive:
 #     tag: /tags/:name/
 
 
+
 # HTML Compression
 # - http://jch.penibelst.de/
 compress_html:
