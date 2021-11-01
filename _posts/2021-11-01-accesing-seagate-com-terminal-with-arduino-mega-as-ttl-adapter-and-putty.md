@@ -1,5 +1,5 @@
 ---
-title: "How to access Seagate COM Terminal with Arduino mega as a USB TTL Adapter and PUTTY"
+title: "How to access Seagate COM Terminal with Arduino mega as a USB TTL Adapter and PuTTY"
 category: Hardware
 tags: arduino mega usb ttl seagate com terminal putty hdd
 header:
@@ -10,7 +10,7 @@ comments: true
 
 ### Accessing Seagate Hardrive Recovery/Diagnostics Ports:
 
-The porst are shown here:
+The ports are shown here:
 
 ![https://sudonull.com/post/145870-Resurrect-HDD](https://habrastorage.org/storage2/471/e3b/097/471e3b097546725b54e9ef7e6c0d5dd7.png)
 
@@ -24,7 +24,7 @@ These ports need to be connected to a *USB to TTL* Adapter. In my previous post 
 
 After turning on the **Arduino**, find out the **COM** port from the device manager. 
 
-Enter the following settings in [**PUTTY**](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html):
+Enter the following settings in [**PuTTY**](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html):
 
 ![ ]({{ "/assets/images/posts/putty_com1.PNG" | absolute_url }})
 
