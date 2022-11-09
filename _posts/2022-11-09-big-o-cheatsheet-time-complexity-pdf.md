@@ -10,7 +10,7 @@ tags:
 header:
   image: /assets/images/bigo.png
   teaser: /assets/images/bigo.png
-  caption: "Photo credit: [**[arduino.cc](https://www.bigocheatsheet.com/)"
+  caption: "Photo credit: [**[Big-O cheat sheet](https://www.bigocheatsheet.com/)"
 comments: true
 ---
 
