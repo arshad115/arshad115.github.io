@@ -7,6 +7,8 @@ header:
 comments: true
 ---
 
+**Update: [I have posted an updated and easy method for the hack here](https://arshadmehmood.com/hacks/duolingo-streak-repair-hack-100-percent-working/)**
+
 You had a streak of 100 days or even more and you just lost it! Shit happens! I understand your sadness of losing a streak. It also happened to me, once I lost a streak of 83 days and then to make matters even worse, Duolingo asks you for money to repair it. 
 
 
