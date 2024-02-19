@@ -30,7 +30,7 @@ feature_row:
   - image_path: /assets/images/unsplash-gallery-image-3-th.jpg
     title: "Placeholder 3"
     excerpt: "This is some sample content that goes here with **Markdown** formatting."
-last_modified_at: 2018-06-11T07:56:49-04:00
+last_modified_at: 2020-05-01T10:22:56-04:00
 toc: true
 toc_label: "Helpers"
 toc_icon: "cogs"
@@ -38,7 +38,7 @@ toc_icon: "cogs"
 
 You can think of these Jekyll helpers as little shortcuts. Since GitHub Pages doesn't allow most plugins --- [custom tags](https://jekyllrb.com/docs/plugins/#tags) are out. Instead the theme leverages [**includes**](https://jekyllrb.com/docs/templates/#includes) to do something similar.
 
-## Group by Array
+## Group by array
 
 [Jekyll Group-By-Array](https://github.com/mushishi78/jekyll-group-by-array) by Max White.
 
@@ -120,7 +120,7 @@ And then drop-in the gallery include in the body where you'd like it to appear.
 **More Gallery Goodness:** A few more examples and [source code](https://github.com/{{ site.repository }}/blob/master/docs/\_posts/2010-09-09-post-gallery.md) can be seen in [this sample gallery post]({{ "" | relative_url }}{% post_url 2010-09-09-post-gallery %}).
 {: .notice--info}
 
-## Feature Row
+## Feature row
 
 Designed to compliment the [`splash`]({{ "/docs/layouts/#splash-page-layout" | relative_url }}) page layout as a way of arranging and aligning "feature blocks" containing text or image.
 
@@ -129,7 +129,7 @@ To add a feature row containing three content blocks with text and image, add th
 | Name              | Required     | Description                                                                                          | Default                            |
 | ----------------- | ------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | **image_path**    | **Required** | Full path to image eg: `/assets/images/filename.jpg`. Use absolute URLS for those hosted externally. |                                    |
-| **image_caption** | Optional     | Caption for image, Markdown is supported eg: `"Image from [Unsplash](https://unsplash.com)"          |
+| **image_caption** | Optional     | Caption for image, Markdown is supported eg: `"Image from [Unsplash](https://unsplash.com)"`         |
 | **alt**           | Optional     | Alternate text for image.                                                                            |                                    |
 | **title**         | Optional     | Content block title.                                                                                 |                                    |
 | **excerpt**       | Optional     | Content block excerpt text. Markdown is allowed.                                                     |                                    |
@@ -171,14 +171,15 @@ And then drop-in the feature row include in the body where you'd like it to appe
 **More Feature Row Goodness:** A [few more examples]({{ "/splash-page/" | relative_url }}) and [source code](https://github.com/{{ site.repository }}/blob/master/docs/\_pages/splash-page.md) can be seen in the demo site.
 {: .notice--info}
 
-## Responsive Video Embed
+## Responsive video embed
 
-Embed a video from YouTube or Vimeo that responsively sizes to fit the width of its parent.
+Embed a video from YouTube, Vimeo, Google Drive, or bilibili that responsively sizes to fit the width of its parent. To help with GDPR compliance, the theme is using the privacy enhanced version of YouTube and Vimeo providers out of the box.
 
 | Parameter  | Required     | Description                                                |
 | ---------- | ------------ | ---------------------------------------------------------- |
 | `id`       | **Required** | ID of the video                                            |
-| `provider` | **Required** | Hosting provider of the video, either `youtube` or `vimeo` |
+| `provider` | **Required** | Hosting provider of the video: `youtube`, `vimeo`, `google-drive`, or `bilibili` |
+| `danmaku`  | Optional     | Bilibili only, [details below](#Bilibili)                  |
 
 ### YouTube
 
@@ -199,6 +200,9 @@ header:
     provider: youtube
 ```
 
+**Tip:** if you'd like to start the video at a particular timestamp, you can append `?start=110` (for instance) to the video `id` in order to have the video start at 1:50.
+{: .notice--info }
+
 ### Vimeo
 
 To embed the following Vimeo video at url `https://vimeo.com/212731897` into a post or page's main content you'd use:
@@ -218,7 +222,50 @@ header:
     provider: vimeo
 ```
 
-## Table of Contents
+### Google Drive
+
+To embed the following Google Drive video at url `https://drive.google.com/file/d/1u41lIbMLbV53PvMbyYc9HzvBug5lNWaO/preview` into a post or page's main content you'd use:
+
+```liquid
+{% raw %}{% include video id="1u41lIbMLbV53PvMbyYc9HzvBug5lNWaO" provider="google-drive" %}{% endraw %}
+```
+
+{% include video id="1u41lIbMLbV53PvMbyYc9HzvBug5lNWaO" provider="google-drive" %}
+
+To embed it as a video header you'd use the following YAML Front Matter
+
+```yaml
+header:
+  video:
+    id: 212731897
+    provider: google-drive
+```
+
+### Bilibili
+
+To embed the following Bilibili video at url `https://www.bilibili.com/video/BV1E7411e7hC` into a post or page's main content you'd use:
+
+```liquid
+{% raw %}{% include video id="BV1E7411e7hC" provider="bilibili" %}{% endraw %}
+```
+
+If you want to enable danmaku (弹幕) for the embedded video, which is disabled by default, you can supply an additional parameter `danmaku="1"` as shown below:
+
+```liquid
+{% raw %}{% include video id="BV1E7411e7hC" provider="bilibili" danmaku="1" %}{% endraw %}
+```
+
+To embed it as a video header you'd use the following YAML Front Matter:
+
+```yaml
+header:
+  video:
+    id: BV1E7411e7hC
+    provider: bilibili
+    danmaku: 1
+```
+
+## Table of contents
 
 Auto-generated table of contents list for your posts and pages can be enabled using two methods.
 
@@ -232,7 +279,7 @@ Add `toc: true` to the YAML Front Matter of any post or page.
 | -------------- | -------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **toc**        | Optional | Show table of contents. (boolean)                           | `false`                                                                                                                                                       |
 | **toc_label**  | Optional | Table of contents title. (string)                           | `toc_label` in UI Text data file.                                                                                                                             |
-| **toc_icon**   | Optional | Table of contents icon, displays before the title. (string) | [Font Awesome](https://fontawesome.com/icons?d=gallery&s=solid&m=free) <i class="fas fa-file-alt"></i> **file-alt** icon. Other FA icons can be used instead. |
+| **toc_icon**   | Optional | Table of contents icon, displays before the title. (string) | [Font Awesome](https://fontawesome.com/v5/search?s=solid&m=free) <i class="fas fa-file-alt"></i> **file-alt** icon. Other FA icons can be used instead. |
 | **toc_sticky** | Optional | Stick table of contents to top of screen.                   | `false`                                                                                                                                                       |
 
 **TOC example with custom title and icon**
@@ -247,6 +294,31 @@ toc_icon: "cog"
 
 **Note:** using both methods will have unintended results. Be sure to remove `{% raw %}{% include toc %}{% endraw %}` placed table of contents from your content when using `toc: true`.
 {: .notice--warning }
+
+{% capture notice-text %}
+**Note:** You need to use contiguous levels of headings for the TOC to generate properly. For example:
+
+```markdown
+Good headings:
+
+# Heading
+## Heading
+### Heading
+### Heading
+# Heading
+## Heading
+
+Bad headings:
+
+# Heading
+### Heading (skipped H2)
+##### Heading (skipped H4)
+```
+{% endcapture %}
+
+<div class="notice--warning">
+  {{ notice-text | markdownify }}
+</div>
 
 ### Enabled via `toc` include (deprecated)
 
@@ -265,7 +337,7 @@ To include a Kramdown [auto-generated table of contents](https://kramdown.gettal
 | Parameter | Required | Description                                                 | Default                                                                                                                                                       |
 | --------- | -------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **title** | Optional | Table of contents title. (string)                           | `toc_label` in UI Text data file.                                                                                                                             |
-| **icon**  | Optional | Table of contents icon, displays before the title. (string) | [Font Awesome](https://fontawesome.com/icons?d=gallery&s=solid&m=free) <i class="fas fa-file-alt"></i> **file-alt** icon. Other FA icons can be used instead. |
+| **icon**  | Optional | Table of contents icon, displays before the title. (string) | [Font Awesome](https://fontawesome.com/v5/search?s=solid&m=free) <i class="fas fa-file-alt"></i> **file-alt** icon. Other FA icons can be used instead. |
 
 **TOC example with custom title and icon**
 
@@ -273,7 +345,7 @@ To include a Kramdown [auto-generated table of contents](https://kramdown.gettal
 {% raw %}{% include toc icon="cog" title="My Table of Contents" %}{% endraw %}
 ```
 
-## Navigation List
+## Navigation list
 
 Include an unordered list of links to be used as sidebar navigation with the `nav_list` helper.
 
