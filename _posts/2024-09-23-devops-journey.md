@@ -73,6 +73,6 @@ Using Docker compose we can have a single Docker file which can start all the ri
 
 We want everything to be monitored, so it would be a good idea to set up Prometheus and Grafana first.
 
-Check out this post on [Setting up Prometheus & Grafana in Docker](/setup-prometheus-grafana-docker/)
+Check out this post on [Setting up Prometheus & Grafana in Docker](/software/setup-prometheus-grafana-docker/)
 
 

@@ -9,7 +9,7 @@ tags:
   - Docker
 header:
   image: /assets/images/docker-prometheus-grafana.png
-  caption: "Docker - Prometheus & Grafana"
+  teaser: /assets/images/docker-prometheus-grafana.png
 comments: true
 ---
 
