@@ -8,8 +8,8 @@ tags:
   - Grafana
   - Docker
 header:
-  image: /assets/images/docker-prometheus-grafana.png
-  teaser: /assets/images/docker-prometheus-grafana.png
+  image: /assets/images/posts/docker-prometheus-grafana.png
+  teaser: /assets/images/posts/docker-prometheus-grafana.png
 comments: true
 ---
 
