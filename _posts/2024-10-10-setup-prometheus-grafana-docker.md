@@ -12,6 +12,7 @@ header:
   teaser: /assets/images/posts/docker-prometheus-grafana.png
 comments: true
 ---
+_**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 
 There are probably thousands of tutorials on setting up Prometheus & Grafana out there; This is probably the most basic one, with one-liners to get you started.
 
@@ -35,6 +36,6 @@ More detailed info can be found [here](https://prometheus.io/docs/prometheus/lat
 
 ##### Add the Prometheus Data Source
 
-![Positive energy]({{ "/assets/images/posts/grafana-prometheus-ds.webp" | absolute_url }})
+![Prometheus Data Source]({{ "/assets/images/posts/grafana-prometheus-ds.webp" | absolute_url }})
 
 The good thing about Grafana is that there are numerous Dashboards which can be easily [imported](https://grafana.com/docs/grafana/latest/dashboards/build-dashboards/import-dashboards/) and used right away.
