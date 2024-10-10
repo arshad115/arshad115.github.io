@@ -59,3 +59,20 @@ My Github project is suposed to have multiple branches and I want a build to run
 
 The first steps it seems would be to setup Jenkins, Github project and then the individual tools for code quality, testing and logging.
 
+#### Docker exploded! - 26.09.2024
+
+While developing, I had set up many of the tools mentioned above as Docker containers. Everything was running fine and the next day Docker Desktop decided not to work anymore. It just wouldn't start, I had to reinstall it and ended up losing all of my images and containers. Lesson learned early on!
+
+I've been thinking, instead of spinning up the individual Docker containers, it would be nice to spin all of them together and we need to have persistent volume storage for the Docker containers. 
+
+I found this [Multi Containers App](https://github.com/docker/multi-container-app) from Docker Desktop itself. Moreover volumes tag can be used to specify a persistent volume.
+
+Using Docker compose we can have a single Docker file which can start all the right containers with a single yaml file.
+
+#### First container
+
+We want everything to be monitored, so it would be a good idea to set up Prometheus and Grafana first.
+
+Check out this post on [Setting up Prometheus & Grafana in Docker]()
+
+
