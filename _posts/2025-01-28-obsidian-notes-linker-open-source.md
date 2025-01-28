@@ -43,6 +43,7 @@ To use the tool, simply run the following command in your terminal:
 ```bash
 python obsidianlinker.py /path/to/vault/
 ```
+![Usage]({{ "/assets/images/posts/ol-usage.png" | absolute_url }})
 
 This will scan your notes and add links where appropriate.
 
