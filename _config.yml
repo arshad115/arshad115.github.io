@@ -335,3 +335,7 @@ defaults:
       share: true
 
 github: [metadata]
+
+# Footer scripts to ensure copy button functionality
+after_footer_scripts:
+  - /assets/js/copy-code-button.js
