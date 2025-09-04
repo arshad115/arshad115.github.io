@@ -64,14 +64,6 @@
         </li>
       {% endif %}
 
-	  {% if author.google_play %}
-        <li>
-          <a href="https://play.google.com/store/apps/dev?id={{ author.google_play }}" itemprop="sameAs">
-            <i class="fab fa-fw fa-google-play" aria-hidden="true"></i> Google Play Store
-          </a>
-        </li>
-      {% endif %}
-	  
       {% if author.twitter %}
         <li>
           <a href="https://twitter.com/{{ author.twitter }}" itemprop="sameAs" rel="nofollow noopener noreferrer me">
@@ -87,7 +79,7 @@
           </a>
         </li>
       {% endif %}
-	  
+
       {% if author.linkedin %}
         <li>
           <a href="https://www.linkedin.com/in/{{ author.linkedin }}" itemprop="sameAs" rel="nofollow noopener noreferrer me">
