@@ -1,0 +1,39 @@
+name: Update Today I Learned Submodule
+
+on:
+  schedule:
+    # Run daily at 9 AM UTC
+    - cron: '0 9 * * *'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodule
+        run: |
+          git submodule update --remote today-i-learned
+          
+      - name: Check for changes
+        id: changes
+        run: |
+          if git diff --quiet HEAD -- today-i-learned; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Commit and push if changed
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add today-i-learned
+          git commit -m "Auto-update today-i-learned submodule"
+          git push
