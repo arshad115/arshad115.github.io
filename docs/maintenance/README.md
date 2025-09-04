@@ -6,7 +6,7 @@ This directory contains documentation for maintaining and updating the blog.
 
 - **update_strategy.md** - Step-by-step process for future upstream updates
 - **update_history_*.md** - Historical records of past updates
-- **files_to_preserve.txt** - List of custom files to preserve during updates (located in root)
+- **files_to_preserve.txt** - List of custom files to preserve during updates
 
 ## Usage:
 

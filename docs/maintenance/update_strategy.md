@@ -1,5 +1,9 @@
 # Minimal Mistakes Update Strategy
 
+## Before You Start
+
+**Important**: Review `files_to_preserve.txt` in this directory for the complete list of custom files to preserve during updates.
+
 ## Phase 1: Backup and Prepare
 
 1. **Create a backup branch:**
