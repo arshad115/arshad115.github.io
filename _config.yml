@@ -19,18 +19,20 @@ locale                   : "en-US"
 rtl                      : false # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "Arshad Mehmood"
 title_separator          : "-"
-subtitle                 : # site tagline that appears below site title in masthead
+subtitle                 : "Software Engineer • Android Developer • Tech Enthusiast" # site tagline that appears below site title in masthead
 name                     : "Arshad Mehmood"
-description              : "Personal Blog. Software Engineer. Android Developer. Master Business Informatics, University of Mannheim. Arshadmehmood.com"
-url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+description              : "Personal blog by Arshad Mehmood. Software Engineer specializing in web and mobile development. Sharing insights on Android, DevOps, and modern software engineering practices."
+url                      : "https://arshadmehmood.com" # the base hostname & protocol for your site
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "arshad115/arshad115.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : #"/assets/images/header_500x300.jpg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : true # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 180 # More realistic reading speed
 enable_copy_code_button  : true # true, false (default)
+show_date                : true # Show post dates
+read_time                : true # Show estimated read time
 copyright                : "Arshad Mehmood" # "copyright" name, defaults to site.title
 copyright_url            : # "copyright" URL, defaults to site.url
 comments:
@@ -82,33 +84,37 @@ google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
 # SEO Related
-google_site_verification :
-bing_site_verification   :
+google_site_verification : # Add your Google Search Console verification code
+bing_site_verification   : # Add your Bing verification code
 naver_site_verification  :
 yandex_site_verification :
 baidu_site_verification  :
 
 # Social Sharing
 twitter:
-  username               :
+  username               : "arshad115"
 facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : # Open Graph/Twitter default site image
+og_image                 : "/assets/images/bio-photo.jpg" # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type                   : "Person" # Person or Organization (defaults to Person)
+  name                   : "Arshad Mehmood" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
+    - "https://twitter.com/arshad115"
+    - "https://www.linkedin.com/in/arshadmehmood115/"
+    - "https://github.com/arshad115"
+    - "https://instagram.com/arshad115"
 
 # Analytics
 analytics:
-  provider               : "google" # false # false (default), "google", "google-universal", "google-gtag", "custom"
+  provider               : "google-gtag" # false # false (default), "google", "google-universal", "google-gtag", "custom"
   google:
-    tracking_id          : "UA-114855578-1"
-    anonymize_ip         : # true, false (default)
+    tracking_id          : "UA-114855578-1" # Replace with your GA4 measurement ID (G-XXXXXXXXXX)
+    anonymize_ip         : true # true, false (default)
 
 
 # Site Author

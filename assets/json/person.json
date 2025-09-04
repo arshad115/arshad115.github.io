@@ -1,0 +1,25 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Arshad Mehmood",
+  "url": "https://arshadmehmood.com",
+  "image": "https://arshadmehmood.com/assets/images/bio-photo.jpg",
+  "jobTitle": "Software Engineer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Software Engineer"
+  },
+  "alumniOf": "University of Mannheim",
+  "knowsAbout": ["Android Development", "Web Development", "DevOps", "Software Engineering", "Kotlin", "Java", "JavaScript", "Docker", "Kubernetes"],
+  "sameAs": [
+    "https://twitter.com/arshad115",
+    "https://www.linkedin.com/in/arshadmehmood115/",
+    "https://github.com/arshad115",
+    "https://instagram.com/arshad115"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mannheim",
+    "addressCountry": "Germany"
+  }
+}
