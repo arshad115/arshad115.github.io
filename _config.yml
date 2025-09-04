@@ -16,6 +16,7 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "en-US"
+rtl                      : false # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "Arshad Mehmood"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
@@ -29,6 +30,9 @@ logo                     : # path of logo image to display in the masthead, e.g.
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
+enable_copy_code_button  : true # true, false (default)
+copyright                : "Arshad Mehmood" # "copyright" name, defaults to site.title
+copyright_url            : # "copyright" URL, defaults to site.url
 comments:
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
@@ -50,6 +54,11 @@ comments:
     discussion_term      : # "pathname" (default), "url", "title", "og:title"
     reactions_enabled    : # '1' for enabled (default), '0' for disabled
     theme                : # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
+    strict               : # 1 for enabled, 0 for disabled (default)
+    input_position       : # "top", "bottom" # The comment input box will be placed above or below the comments
+    emit_metadata        : # 1 for enabled, 0 for disabled (default) # https://github.com/giscus/giscus/blob/main/ADVANCED-USAGE.md#imetadatamessage
+    lang                 : # "en" (default)
+    lazy                 : # true, false # Loading of the comments will be deferred until the user scrolls near the comments container.
   staticman:
     branch               : # "master"
     endpoint             : # "https://{your Staticman v3 API}/v3/entry/github/"
@@ -61,9 +70,9 @@ atom_feed:
   hide                   : # true, false (default)
 search                   : true # true, false (default)
 search_full_content      : true # true, false (default)
-search_provider          : # lunr (default), algolia, google
+search_provider          : lunr # lunr (default), algolia, google
 lunr:
-  search_within_pages    : # true, false (default)
+  search_within_pages    : true # true, false (default)
 algolia:
   application_id         : # YOUR_APPLICATION_ID
   index_name             : # YOUR_INDEX_NAME
