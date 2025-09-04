@@ -1,0 +1,27 @@
+# Files to preserve (your customizations)
+_config.yml
+Gemfile
+Gemfile.lock
+_pages/
+_posts/
+_portfolio/
+today-i-learned/
+_layouts/til.html
+_layouts/projects.html
+_includes/project-head.html
+assets/css/projects/
+assets/js/projects/
+.github/
+.idea/
+.gitmodules
+CNAME
+BingSiteAuth.xml
+resume.json
+staticman.yml
+index.html
+banner.js
+
+# Custom includes that should be preserved
+_includes/author-profile-custom-links.html
+
+# Any other custom files you've added
