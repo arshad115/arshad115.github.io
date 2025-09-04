@@ -1,11 +1,8 @@
 name: Build and Deploy Jekyll Site
 
-# Workflow disabled - uncomment 'on:' section below to re-enable
-# on:
-#   push:
-#     branches: [ "master", "main" ]
-#   pull_request:
-#     branches: [ "master", "main" ]
+# Workflow disabled - using workflow_dispatch with manual trigger only
+on:
+  workflow_dispatch:  # Only runs when manually triggered
 
 permissions:
   contents: read
