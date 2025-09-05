@@ -19,7 +19,7 @@ locale                   : "en-US"
 rtl                      : false # true, false (default) # turns direction of the page into right to left for RTL languages
 title                    : "Arshad Mehmood"
 title_separator          : "-"
-subtitle                 : "Software Engineer • Android Developer • Tech Enthusiast" # site tagline that appears below site title in masthead
+subtitle                 : "Software Engineer • Tech Enthusiast" # site tagline that appears below site title in masthead
 name                     : "Arshad Mehmood"
 description              : "Personal blog by Arshad Mehmood. Software Engineer specializing in web and mobile development. Sharing insights on Android, DevOps, and modern software engineering practices."
 url                      : "https://arshadmehmood.com" # the base hostname & protocol for your site
