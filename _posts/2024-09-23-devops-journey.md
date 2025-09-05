@@ -1,9 +1,10 @@
 ---
 title: "DevOps Journey"
-category: Software
+category: DevOps
 tags: 
-  - DevOps
-  - Developer Journey
+  - devops
+  - developer-journey
+  - career
 header:
   image: "https://shalb.com/wp-content/uploads/2019/11/Devops1.jpeg"
   caption: "Photo credit: [**https://shalb.com/**](https://shalb.com/wp-content/uploads/2019/11/Devops1.jpeg)"

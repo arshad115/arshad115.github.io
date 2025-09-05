@@ -1,6 +1,9 @@
 ---
-category: Hacks
-tags: Duolingo Languagelearning
+category: Tutorial
+tags:
+  - duolingo
+  - language-learning
+  - hack
 header:
   image: /assets/images/duolingo.png
   teaser: /assets/images/duolingo_teaser.png  

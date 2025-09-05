@@ -1,6 +1,11 @@
 ---
-category: HowTo
-tags: Gitlab Firebase CI CD Hosting
+category: Tutorial
+tags:
+  - gitlab
+  - firebase
+  - ci
+  - cd
+  - hosting
 header:
   image: /assets/images/cicd_pipeline_infograph.png
   caption: "Photo credit: [**Gitlab**](https://docs.gitlab.com/ee/ci/README.html)"

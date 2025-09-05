@@ -2,11 +2,13 @@
 title: "Always keep your cryptocurrency on a hardware wallet or cold storage - Not on exchanges!"
 category: Security
 tags: 
-  - Cryptocurrency
-  - Bitcoin
-  - Ethereum
-  - Ledger
-  - Ledger Nano S
+  - cryptocurrency
+  - bitcoin
+  - ethereum
+  - ledger
+  - ledger-nano-s
+  - cold-storage
+  - security
 header:
   image: /assets/images/ledger-wallet.png
   teaser: /assets/images/ledger_icon.png  

@@ -1,7 +1,10 @@
 ---
 title: How to use Gitlab after enabling Two-Factor Authentication (2FA)?
-category: Howto
-tags: Gitlab 2FA Security
+category: Tutorial
+tags: 
+  - gitlab
+  - 2fa
+  - security
 header:
   image: /assets/images/security.jpg
 comments: true

@@ -1,6 +1,11 @@
 ---
+title: "Auto update Android SQLite database version"
 category: Development
-tags: Android SQLite Database
+tags:
+  - android
+  - sqlite
+  - database
+  - mobile
 header:
   image: /assets/images/android_database.png
   teaser: /assets/images/android_database_teaser.png  

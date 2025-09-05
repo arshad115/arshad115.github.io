@@ -1,12 +1,12 @@
 ---
 title: "Setup SonarQube with Jenkins"
-category: Software
+category: DevOps
 tags: 
-  - DevOps
-  - Developer Journey
-  - SonarQube
-  - Jenkins
-  - Code Quality
+  - devops
+  - sonarqube
+  - jenkins
+  - code-quality
+  - automation
 header:
   image: /assets/images/posts/sonarqube-jenkins.png
   teaser: /assets/images/posts/sonarqube-jenkins.png

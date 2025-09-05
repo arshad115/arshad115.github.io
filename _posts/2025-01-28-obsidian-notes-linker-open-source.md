@@ -1,12 +1,12 @@
 ---
 title: "Obsidian Notes Linker - Open Source"
-category: Software
+category: Development
 tags: 
-  - Obsidian
-  - Markdown
-  - Linker
-  - Python
-  - Open Source
+  - obsidian
+  - markdown
+  - python
+  - open-source
+  - productivity
 header:
   image: https://www.sciencealert.com/images/2020-11/processed/galaxy-cluster-simulation_1024.jpg
   caption: "Photo credit: [**Illustris Collaboration**](https://www.illustris-project.org/media/)"

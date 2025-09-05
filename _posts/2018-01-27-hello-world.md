@@ -1,4 +1,10 @@
 ---
+title: "Hello World"
+category: Personal
+tags:
+  - introduction
+  - first-post
+  - blog
 comments: true
 header:
   image: /assets/images/helloworld.png

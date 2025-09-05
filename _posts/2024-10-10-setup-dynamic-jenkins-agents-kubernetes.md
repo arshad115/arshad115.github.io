@@ -1,11 +1,12 @@
 ---
 title: "Setup Dynamic Jenkins Agents in Kubernetes"
-category: Software
+category: DevOps
 tags: 
-  - DevOps
-  - Developer Journey
-  - Kubernetes
-  - Jenkins
+  - devops
+  - kubernetes
+  - jenkins
+  - automation
+  - ci-cd
 header:
   image: /assets/images/posts/jenks-k8s-cloud.png
   teaser: /assets/images/posts/jenks-k8s-cloud.png

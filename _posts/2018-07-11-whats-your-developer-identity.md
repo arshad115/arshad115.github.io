@@ -1,6 +1,11 @@
 ---
-title: Whats your identity?
-tags: Developer Identity
+title: "What's your developer identity?"
+category: Personal
+tags:
+  - developer
+  - identity
+  - career
+  - thoughts
 header:
   image: /assets/images/ariana.jpg
   caption: "Photo credit: [**Vevo/Ariana Grande**](https://www.youtube.com/watch?v=ffxKSjUwKdU)"

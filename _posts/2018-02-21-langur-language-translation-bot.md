@@ -1,6 +1,12 @@
 ---
+title: "Langur - Language translation bot"
 category: Development
-tags: Bots Nodejs Botframework
+tags:
+  - bots
+  - nodejs
+  - bot-framework
+  - language
+  - translation
 header:
   image: /assets/images/langur_teaser.png
   teaser: /assets/images/langur.jpg  

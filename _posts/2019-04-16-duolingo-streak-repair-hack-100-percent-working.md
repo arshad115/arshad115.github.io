@@ -1,12 +1,11 @@
 ---
-category: Hacks
+category: Tutorial
 tags: 
-  - Duolingo
-  - Language Learning
-  - Hack
-  - Repair
-  - German
-  - n-grams
+  - duolingo
+  - language-learning
+  - hack
+  - repair
+  - streak
 header:
   image: /assets/images/duolingo.png
   teaser: /assets/images/duolingo_teaser.png  

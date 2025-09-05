@@ -1,11 +1,13 @@
 ---
+title: "Using RxJS Subject for cross component communication in Angular"
 category: Development
 tags: 
-  - Angular
-  - Subject
-  - Cross Communication
-  - Rxjs
-  - Programming
+  - angular
+  - rxjs
+  - subject
+  - cross-component-communication
+  - javascript
+  - typescript
 header:
   image: https://miro.medium.com/max/1000/1*UJ68N887kfjee-bSvCIdIQ.png
   teaser: https://angular.io/assets/images/logos/angular/angular.svg

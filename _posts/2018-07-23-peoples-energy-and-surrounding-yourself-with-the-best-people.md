@@ -1,7 +1,11 @@
 ---
-title: People's Energy and surrounding yourself with the best people
-category: Life
-tags: People Energy
+title: "People's Energy and surrounding yourself with the best people"
+category: Personal
+tags:
+  - people
+  - energy
+  - relationships
+  - life
 header:
   image: /assets/images/aura.jpg
   caption: "Photo credit: [**WHOLESOME AYURVEDA**](http://www.wholesomeayurveda.com/2016/10/24/aura-part-1/)"

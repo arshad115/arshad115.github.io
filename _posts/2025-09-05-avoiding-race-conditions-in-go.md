@@ -1,8 +1,6 @@
 ---
 title: "Avoiding Race Conditions in Go: A Practical Guide to sync/atomic"
-categories: 
-  - Development
-  - Programming
+category: Development
 tags:
   - go
   - concurrency

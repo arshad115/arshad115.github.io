@@ -1,10 +1,13 @@
 ---
+title: "EStrong's ES File Explorer File Manager is always tracking you"
 category: Security
 tags: 
-  - Es File Explorer File Manager
-  - Privacy
-  - Tracking
-  - Ads
+  - es-file-explorer
+  - privacy
+  - tracking
+  - ads
+  - android
+  - security
 header:
   image: /assets/images/es_header.png
   teaser: /assets/images/es_teaser.png

@@ -1,14 +1,16 @@
 ---
+title: "Today I Learned to share knowledge"
+category: Personal
+tags: 
+  - today-i-learned
+  - open-source
+  - programming 
+  - github
+  - knowledge-sharing
 header:
   image: /assets/images/failure.jpg
   teaser: /assets/images/failure.jpg
 comments: true
-tags: 
-  - Today I Learned
-  - Open Source
-  - Programming 
-  - Github 
-  - Knowledge
 visible: false
 ---
 

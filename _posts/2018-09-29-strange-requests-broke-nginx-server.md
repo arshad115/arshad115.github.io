@@ -1,7 +1,11 @@
 ---
 title: "Strange Requests broke my nginx server"
 category: Security
-tags: security nginx server
+tags:
+  - security
+  - nginx
+  - server
+  - attack
 header:
   image: /assets/images/posts/site-down.PNG
   teaser: "https://asdqwe.net/wp-content/uploads/2016/04/504.jpg"

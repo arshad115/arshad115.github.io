@@ -1,11 +1,12 @@
 ---
 title: "Setup Prometheus Exporter in Jenkins"
-category: Software
+category: DevOps
 tags: 
-  - DevOps
-  - Developer Journey
-  - Prometheus
-  - Jenkins
+  - devops
+  - prometheus
+  - jenkins
+  - monitoring
+  - metrics
 header:
   image: /assets/images/posts/jenkins-prometheus.png
   teaser: /assets/images/posts/jenkins-prometheus.png

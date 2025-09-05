@@ -1,12 +1,15 @@
 ---
+title: "Generate unigrams, bigrams, trigrams, n-grams etc. in Python"
 category: Development
 tags: 
-  - Python
-  - Programming
-  - Unigram
-  - Bigram
-  - Trigram
+  - python
+  - programming
+  - unigram
+  - bigram
+  - trigram
   - n-grams
+  - nlp
+  - text-processing
 header:
   image: https://www.oreilly.com/library/view/artificial-intelligence-for/9781788472173/assets/447da4ba-e40a-4787-a2f2-20a906077475.png
   teaser: https://tr4.cbsistatic.com/hub/i/2018/01/24/e9ce7e9e-ce70-4281-909f-7fdc5e525e3a/wordcloudc.jpg

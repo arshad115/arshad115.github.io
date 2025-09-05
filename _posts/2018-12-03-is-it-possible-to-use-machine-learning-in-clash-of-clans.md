@@ -1,12 +1,13 @@
 ---
-category: Curiosity
 title: "Is it possible to use machine learning to build the best bases in Clash of Clans?"
+category: Personal
 tags: 
-  - Clash of Clans
-  - Machine Learning
-  - Deep Learning
-  - Neural Networks
-  - Gaming
+  - clash-of-clans
+  - machine-learning
+  - deep-learning
+  - neural-networks
+  - gaming
+  - thoughts
 header:
   image: https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwi43avrtaziAhUNyaQKHQJ8BFAQjRx6BAgBEAU&url=https%3A%2F%2Fmedium.com%2Ftradecraft-traction%2Fthe-secrets-behind-a-5m-per-day-mobile-game-clash-of-clans-24d45cd39019&psig=AOvVaw05DJoxSlXGBXNZq7M7PR3C&ust=1558521099658975
   teaser: https://yt3.ggpht.com/a-/AN66SAxf2g4A2F_v2klgv4V05TV2KYBlRhIg21qj6Q=s900-mo-c-c0xffffffff-rj-k-no

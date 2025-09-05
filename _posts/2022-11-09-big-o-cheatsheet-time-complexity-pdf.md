@@ -1,12 +1,12 @@
 ---
 title: "Big O Notation Cheatsheet in Landscape PDF"
-category: Software
+category: Development
 tags: 
-  - BigO
-  - Big O
-  - Cheatsheet
-  - PDF
-  - Download
+  - big-o
+  - algorithms
+  - cheatsheet
+  - pdf
+  - computer-science
 header:
   image: /assets/images/bigo.png
   teaser: /assets/images/bigo.png

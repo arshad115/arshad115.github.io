@@ -1,7 +1,17 @@
 ---
 title: "How to access Seagate COM Terminal with Arduino mega as a USB TTL Adapter and PuTTY"
 category: Hardware
-tags: arduino mega usb ttl seagate com terminal putty hdd
+tags:
+  - arduino
+  - mega
+  - usb
+  - ttl
+  - seagate
+  - com
+  - terminal
+  - putty
+  - hdd
+  - recovery
 header:
   image: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Seagate2015_2c_horizontal_pos.png"
   caption: "Photo credit: [**Wikipedia**](https://de.wikipedia.org/wiki/Seagate_Technology)"

@@ -1,5 +1,12 @@
 ---
-tags: Money
+title: "The Most Fulfilling $2 I Made and My Android Developer Journey"
+category: Personal
+tags:
+  - android
+  - developer-journey
+  - career
+  - money
+  - story
 header:
   image: /assets/images/us2.jpg
 comments: true

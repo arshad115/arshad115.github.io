@@ -1,11 +1,11 @@
 ---
-category: HowTo
+category: Tutorial
 tags: 
-  - Letsencrypt
-  - Certbot
-  - SSL Certificate
-  - Linux
-  - Nginx
+  - letsencrypt
+  - certbot
+  - ssl-certificate
+  - linux
+  - nginx
 header:
   image: https://cdn-images-1.medium.com/max/1600/1*Cd2NBjQD8Luwbu1Z23n5QQ.png
   teaser: https://letsencrypt.org/images/le-logo-twitter.png

@@ -1,7 +1,11 @@
 ---
 title: "How to delete files from a Heroku app repository"
-category: HowTo
-tags: Git Heroku repo plugin
+category: Tutorial
+tags:
+  - git
+  - heroku
+  - repository
+  - plugin
 header:
   image: "https://www.lc-tech.com/wp-content/themes/u-design/styles/common-images/Delete_Banner.jpg"
   caption: "Photo credit: [**lc-tech.com**](https://www.lc-tech.com/pc/filextinguisher/)"

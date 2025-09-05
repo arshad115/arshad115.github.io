@@ -1,12 +1,12 @@
 ---
 title: "Setup Prometheus & Grafana in Docker"
-category: Software
+category: DevOps
 tags: 
-  - DevOps
-  - Developer Journey
-  - Prometheus
-  - Grafana
-  - Docker
+  - devops
+  - prometheus
+  - grafana
+  - docker
+  - monitoring
 header:
   image: /assets/images/posts/docker-prometheus-grafana.png
   teaser: /assets/images/posts/docker-prometheus-grafana.png

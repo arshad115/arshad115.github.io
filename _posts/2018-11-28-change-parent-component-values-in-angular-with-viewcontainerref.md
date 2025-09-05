@@ -1,8 +1,12 @@
 ---
-category: Programming
+title: "Change parent component values in Angular with ViewContainerRef"
+category: Development
 tags: 
-  - Angular 2
-  - Parent Child Communication
+  - angular
+  - parent-child-communication
+  - javascript
+  - frontend
+  - typescript
 header:
   image: /assets/images/communication_header.jpg
   teaser: /assets/images/communication.jpg

@@ -1,10 +1,11 @@
 ---
-category: Hacks
+category: Tutorial
 tags: 
-  - WhatsApp
-  - Status
-  - Download
-  - Save
+  - whatsapp
+  - status
+  - download
+  - save
+  - mobile
 header:
   image: https://www-cdn.whatsapp.net/img/v4/whatsapp-promo.png
   teaser: http://cdn.iphonehacks.com/wp-content/uploads/2017/08/whatsapp-app-icon.jpg

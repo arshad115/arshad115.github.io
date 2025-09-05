@@ -1,7 +1,12 @@
 ---
 title: "How to use Arduino mega as a USB TTL Adapter"
 category: Hardware
-tags: arduino mega usb ttl
+tags:
+  - arduino
+  - mega
+  - usb
+  - ttl
+  - adapter
 header:
   image: "https://cdn.shopify.com/s/files/1/0506/1689/3647/products/A000067_03.front_934x700.jpg?v=1627401710"
   caption: "Photo credit: [**arduino.cc**](https://store-usa.arduino.cc/products/arduino-mega-2560-rev3)"

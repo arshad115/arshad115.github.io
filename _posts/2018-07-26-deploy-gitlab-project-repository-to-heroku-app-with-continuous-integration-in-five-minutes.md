@@ -1,7 +1,11 @@
 ---
 title: Deploy Gitlab Project/Repository to Heroku app with Continuous Integration in 5 minutes!
-category: HowTo
-tags: Gitlab Heroku CI CD
+category: Tutorial
+tags:
+  - gitlab
+  - heroku
+  - ci
+  - cd
 header:
   image: /assets/images/cicd_pipeline_infograph.png
   caption: "Photo credit: [**Gitlab**](https://docs.gitlab.com/ee/ci/README.html)"

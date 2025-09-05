@@ -1,9 +1,16 @@
 ---
+title: "What I learnt from my failed incubator"
+category: Personal
+tags:
+  - startup
+  - failure
+  - incubator
+  - lessons
+  - entrepreneurship
 header:
   image: /assets/images/failure.jpg
   teaser: /assets/images/failure.jpg
 comments: true
-tags: Startup Failure Incubator
 ---
 
 Ever since, I was in university, I was motivated to start my own company. In 2012, I graduated with Bachelor's degree from [FAST National University](http://nu.edu.pk/), Islambad.  Our university offered an incubator program and a couple of my friends were already applying for it. This seemed like a perfect opportunity to give it a try. So me and my friend, [Shafaat Javed](https://de.linkedin.com/in/shafaat-javed-7b221837/de), applied for an incubation office in our university and we were successful in getting one. 

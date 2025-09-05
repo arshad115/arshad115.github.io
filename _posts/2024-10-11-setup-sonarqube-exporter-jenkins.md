@@ -1,12 +1,12 @@
 ---
 title: "Setup SonarQube Prometheus Exporter"
-category: Software
+category: DevOps
 tags: 
-  - DevOps
-  - Developer Journey
-  - SonarQube
-  - Prometheus
-  - Monitoring
+  - devops
+  - sonarqube
+  - prometheus
+  - monitoring
+  - code-quality
 header:
   image: /assets/images/posts/prometheus.png
   teaser: /assets/images/posts/prometheus.png

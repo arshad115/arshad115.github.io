@@ -1,10 +1,12 @@
 ---
+title: "My first open source repository - Langur translation chat bot"
 category: Development
 tags: 
-  - Bots
-  - Nodejs
-  - Botframework
-  - Open Source
+  - bots
+  - nodejs
+  - bot-framework
+  - open-source
+  - translation
 header:
   image: /assets/images/langur_teaser.png
   teaser: /assets/images/langur.jpg  
