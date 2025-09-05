@@ -4,7 +4,7 @@ title: "About"
 permalink: /about/
 author_profile: true
 header:
-  image: /assets/images/about-header.jpg
+  image: /assets/images/about_header.jpeg
   caption: "Building the future, one line of code at a time"
 ---
 
