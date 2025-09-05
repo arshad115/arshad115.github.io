@@ -8,6 +8,7 @@ tags:
   - deployment
   - javascript
 comments: true
+toc: false
 ---
 
 > Deploy Angular app to Firebase hosting

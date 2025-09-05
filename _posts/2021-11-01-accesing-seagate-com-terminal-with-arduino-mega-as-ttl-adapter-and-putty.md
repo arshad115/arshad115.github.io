@@ -16,6 +16,7 @@ header:
   image: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Seagate2015_2c_horizontal_pos.png"
   caption: "Photo credit: [**Wikipedia**](https://de.wikipedia.org/wiki/Seagate_Technology)"
 comments: true
+toc: false
 ---
 
 ### Accessing Seagate Hardrive Recovery/Diagnostics Ports:

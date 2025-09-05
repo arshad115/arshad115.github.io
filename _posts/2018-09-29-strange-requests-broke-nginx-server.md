@@ -10,6 +10,7 @@ header:
   image: /assets/images/posts/site-down.PNG
   teaser: "https://asdqwe.net/wp-content/uploads/2016/04/504.jpg"
 comments: true
+toc: false
 ---
 
 Since the last month I am developing a Node.js application with Vue.js and recently, I bought a server and uploaded my still in development site there. I deployed my test application to the server just one week ago and yesterday, I noticed a strange 504 Gateway error. Hmm...strange! Upon googling, I found out that the **504 Gateway Timeout error** is an HTTP status code that means that one server did not receive a timely response from another server that it was accessing while attempting to load the web page or fill another request by the browser. I checked my backend and it is working fine,  for my other server too. 

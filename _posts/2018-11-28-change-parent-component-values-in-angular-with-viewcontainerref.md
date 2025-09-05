@@ -11,6 +11,7 @@ header:
   image: /assets/images/communication_header.jpg
   teaser: /assets/images/communication.jpg
 comments: true
+toc: false
 ---
 
 Well there are many ways of parent child communication and interaction in angular, e.g.  [@Input binding](https://angular.io/api/core/Input ), [setter](https://angular.io/guide/component-interaction#intercept-input-property-changes-with-a-setter), [ngOnChanges()](https://angular.io/guide/component-interaction#intercept-input-property-changes-with-ngonchanges), [EventEmitter](https://angular.io/guide/component-interaction#parent-listens-for-child-event), [ via local variable](https://angular.io/guide/component-interaction#parent-interacts-with-child-via-local-variable), [@ViewChild()](https://angular.io/guide/component-interaction#parent-calls-an-viewchild), [via a service](https://angular.io/guide/component-interaction#parent-and-children-communicate-via-a-service), and so on...

@@ -11,6 +11,7 @@ header:
   image: "https://cdn.shopify.com/s/files/1/0506/1689/3647/products/A000067_03.front_934x700.jpg?v=1627401710"
   caption: "Photo credit: [**arduino.cc**](https://store-usa.arduino.cc/products/arduino-mega-2560-rev3)"
 comments: true
+toc: false
 ---
 
 Using any Arduino as a USB to TTL Adapter is very easy. Just need to connect the **reset pin** with **grnd** pin to bypass the **ATmega** chip. The **Rx** and **Tx** pins can then be used as a normal *USB to TTL* Adapter. Below are some pictures:

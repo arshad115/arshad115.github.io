@@ -8,6 +8,7 @@ tags:
   - cross-promotion
   - java
 comments: true
+toc: false
 ---
 
 I have a lot of Android applications and a long time ago, I thought to cross promote my apps from insid my app. The first idea was to directly link to the Google play store page of my developer account, but I wanted more control over it and decided to make a simple JSON based RESTful API to send a list of apps and view it inside my app. This way I can also control which apps to show in which app. e.g. food related apps inside my recipe app.

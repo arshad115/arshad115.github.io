@@ -11,6 +11,7 @@ header:
   caption: "Photo credit: [**lc-tech.com**](https://www.lc-tech.com/pc/filextinguisher/)"
   teaser: "https://miro.medium.com/max/768/1*w2RAR48UbSAYv-6y_V-cdA.png"
 comments: true
+toc: false
 ---
 
 It's frustrating when you push some code to [Heroku](https://www.heroku.com/) and some files are just not deleted and [Heroku](https://www.heroku.com/) serves you an old version of your code with a mix of new files. Well, worry no more! You can simply delete the old files on your [Heroku](https://www.heroku.com/) app using this [Heroku repo](https://github.com/heroku/heroku-repo) plugin developed by [Heroku](https://www.heroku.com/) .

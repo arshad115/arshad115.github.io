@@ -12,6 +12,7 @@ header:
   image: https://miro.medium.com/max/1000/1*UJ68N887kfjee-bSvCIdIQ.png
   teaser: https://angular.io/assets/images/logos/angular/angular.svg
 comments: true
+toc: false
 ---
 
 Earlier I posted about [child to parent communication in angular](https://arshadmehmood.com/programming/change-parent-component-values-in-angular-with-viewcontainerref/), today we will take a look at cross component interaction in angular using `Subject` from the `rxjs` library.

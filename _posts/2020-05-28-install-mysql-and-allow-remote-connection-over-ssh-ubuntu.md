@@ -12,6 +12,7 @@ header:
   image: "https://www.it-daily.net/images/Aufmacher-2019/Remote_Access_shutterstock_434600221_700.jpg"
   caption: "Photo credit: [**it-daily.net**](https://www.it-daily.net/images/Aufmacher-2019/Remote_Access_shutterstock_434600221_700.jpg)"
 comments: true
+toc: false
 ---
 
 Install MySQL:

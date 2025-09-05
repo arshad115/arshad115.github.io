@@ -12,6 +12,7 @@ header:
   image: /assets/images/es_header.png
   teaser: /assets/images/es_teaser.png
 comments: true
+toc: false
 ---
 
 [Es File Explorer File Manager](https://play.google.com/store/apps/details?id=com.estrongs.android.pop) was one the best File managers for Android for the past few years. But they have definitely *killed the goose that layed the golden eggs*, by [adding ads to users lockscreens, without their consent](https://www.androidpit.com/this-is-why-you-should-not-use-es-file-explorer) and by tracking users, with their indirect consent(as mentioned in their privacy policy). 

@@ -10,6 +10,7 @@ header:
   image: https://www-cdn.whatsapp.net/img/v4/whatsapp-promo.png
   teaser: http://cdn.iphonehacks.com/wp-content/uploads/2017/08/whatsapp-app-icon.jpg
 comments: true
+toc: false
 ---
 
 I will show you a method to download/save [WhatsApp](https://www.whatsapp.com/) status photos and videos of your friends/contacts from your phone without installing any app. The only downside is that you require (temporary) access to a computer. This method works for both iPhone and Android.

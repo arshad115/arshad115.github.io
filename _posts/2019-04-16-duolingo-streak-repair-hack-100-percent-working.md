@@ -10,6 +10,7 @@ header:
   image: /assets/images/duolingo.png
   teaser: /assets/images/duolingo_teaser.png  
 comments: true
+toc: false
 ---
 
 Earlier I wrote about the [same topic here](https://arshadmehmood.com/hacks/duolingo-lost-streak-repair-hack/). Well after trying other methods I found out that is very easy to repair a lost streak. No more pressure! Better still, this method even works to repair your very old lost streaks.
