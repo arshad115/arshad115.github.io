@@ -13,6 +13,7 @@ header:
   image: /assets/images/ledger-wallet.png
   teaser: /assets/images/ledger_icon.png  
 comments: true
+toc: false
 ---
 
 

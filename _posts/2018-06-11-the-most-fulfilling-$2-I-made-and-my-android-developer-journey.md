@@ -10,6 +10,7 @@ tags:
 header:
   image: /assets/images/us2.jpg
 comments: true
+toc: false
 ---
 
 I started my Android developer journey back in 2008-2009 when Android was not very commonly know. I used to live in a small apartment in Islamabad,Pakistan at that time and I was also doing my bachelor's in computer science. Also at that time, I was in need of a new phone. It all started when I bought the first Android phone for myself in 2008: HTC Google G1. What a lovely phone it was, with a sliding keyboard, big screen and WiFi. I had so much fun writing texts on it and browsing the Internet back then.

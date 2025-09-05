@@ -12,6 +12,7 @@ header:
   teaser: /assets/images/failure.jpg
 comments: true
 visible: false
+toc: false
 ---
 
 Today I learned, sharing code.

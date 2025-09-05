@@ -6,6 +6,7 @@ tags:
   - first-post
   - blog
 comments: true
+toc: false
 header:
   image: /assets/images/helloworld.png
   teaser: /assets/images/helloworld_teaser.png  

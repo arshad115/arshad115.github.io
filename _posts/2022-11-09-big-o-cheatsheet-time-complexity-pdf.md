@@ -12,6 +12,7 @@ header:
   teaser: /assets/images/bigo.png
   caption: "Photo credit: [**Big-O cheat sheet**](https://www.bigocheatsheet.com/)"
 comments: true
+toc: false
 ---
 
 [Big-O cheat sheet](https://www.bigocheatsheet.com/) already provides a PDF, but its not good enough for me and also not in Landscape mode. So, I made a better one which you can download below:

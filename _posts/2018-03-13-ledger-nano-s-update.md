@@ -1,18 +1,17 @@
 ---
-title: "Ledger Nano S solution for stuck on 'Update' while updating to firmware 1.4.1"
-category: Tutorial
+title: "Ledger Nano S Update"
+category: Cryptocurrency
 tags: 
   - cryptocurrency
-  - bitcoin
-  - ethereum
   - ledger
-  - ledger-nano-s
-  - firmware
-  - troubleshooting
+  - nano-s
+  - hardware-wallet
+  - security
 header:
-  image: /assets/images/ledger-wallet.png
-  teaser: /assets/images/ledger_icon.png  
+  image: /assets/images/ledgernanosupdate.png
+  teaser: /assets/images/ledgernanosupdate_teaser.png  
 comments: true
+toc: false
 ---
 
 Hardware wallets are the safest and most convenient way to store cryptocurrency. The good thing about Ledger Nano S is that the private keys of your wallets are never shared.

@@ -1,20 +1,18 @@
 ---
-title: "Obsidian Notes Linker - Open Source"
+title: "Obsidian Notes Linker - Open Source Tool Released"
 category: Development
-tags: 
+tags:
   - obsidian
-  - markdown
-  - python
-  - open-source
+  - notes
   - productivity
+  - open-source
+  - typescript
+  - electron
 header:
-  image: https://www.sciencealert.com/images/2020-11/processed/galaxy-cluster-simulation_1024.jpg
-  caption: "Photo credit: [**Illustris Collaboration**](https://www.illustris-project.org/media/)"
-  teaser: https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/2023_Obsidian_logo.svg/768px-2023_Obsidian_logo.svg.png
-comments: true
----
-
-Obsidian Notes Linker is a new open-source project designed to help users of Obsidian, a popular markdown-based note-taking app, to automatically link their markdown files. This tool is written in Python and is available on GitHub for anyone to use and contribute to.
+  image: /assets/images/posts/obsidian-notes-linker.png
+  teaser: /assets/images/posts/obsidian-notes-linker.png
+excerpt: "Introducing Obsidian Notes Linker - an open-source tool to automatically create bidirectional links between your Obsidian notes. Boost your knowledge management workflow."
+---Obsidian Notes Linker is a new open-source project designed to help users of Obsidian, a popular markdown-based note-taking app, to automatically link their markdown files. This tool is written in Python and is available on GitHub for anyone to use and contribute to.
 
 Project can be found on Github [Obsidian Linker](https://github.com/arshad115/obsidian-linker)
 

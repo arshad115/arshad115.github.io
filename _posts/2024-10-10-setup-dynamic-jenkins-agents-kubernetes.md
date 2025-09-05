@@ -10,7 +10,7 @@ tags:
 header:
   image: /assets/images/posts/jenks-k8s-cloud.png
   teaser: /assets/images/posts/jenks-k8s-cloud.png
-comments: true
+excerpt: "Learn how to configure Jenkins to dynamically create agents in a Kubernetes cluster using Kind. Step-by-step guide to scalable CI/CD infrastructure."
 ---
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 

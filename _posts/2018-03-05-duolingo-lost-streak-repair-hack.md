@@ -8,6 +8,7 @@ header:
   image: /assets/images/duolingo.png
   teaser: /assets/images/duolingo_teaser.png  
 comments: true
+toc: false
 ---
 
 **Update: [I have posted an updated and easy method for the hack here](https://arshadmehmood.com/hacks/duolingo-streak-repair-hack-100-percent-working/)**

@@ -10,6 +10,7 @@ header:
   image: /assets/images/ariana.jpg
   caption: "Photo credit: [**Vevo/Ariana Grande**](https://www.youtube.com/watch?v=ffxKSjUwKdU)"
 comments: true
+toc: false
 ---
 
 We have many identities, identity for work, identity for friends and a different identity for home. But, I want to write about the developer identity, what is your software developer identity?

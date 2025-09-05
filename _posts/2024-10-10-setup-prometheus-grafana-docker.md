@@ -10,7 +10,7 @@ tags:
 header:
   image: /assets/images/posts/docker-prometheus-grafana.png
   teaser: /assets/images/posts/docker-prometheus-grafana.png
-comments: true
+excerpt: "Quick guide to setting up Prometheus and Grafana monitoring stack using Docker. Get your metrics collection and visualization running in minutes."
 ---
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 
