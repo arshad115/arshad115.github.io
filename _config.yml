@@ -23,7 +23,7 @@ subtitle                 : "Software Engineer • Android Developer • Tech Ent
 name                     : "Arshad Mehmood"
 description              : "Personal blog by Arshad Mehmood. Software Engineer specializing in web and mobile development. Sharing insights on Android, DevOps, and modern software engineering practices."
 url                      : "https://arshadmehmood.com" # the base hostname & protocol for your site
-baseurl                  : # the subpath of your site, e.g. "/blog"
+baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "arshad115/arshad115.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : "/assets/images/default-teaser.jpg" # path of fallback teaser image
 logo                     : "/assets/images/logo.png" # path of logo image to display in the masthead
@@ -122,7 +122,7 @@ analytics:
 author:
   name             : "Arshad Mehmood"
   avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g.
-  bio              : "Software Engineer | DevOps Enthusiast | Android Developer<br/>M.Sc. Business Informatics, University of Mannheim<br/>📍 Building scalable solutions & sharing knowledge"
+  bio              : "Software Engineer, DevOps Enthusiast, and Android Developer. M.Sc. Business Informatics from University of Mannheim. Building scalable solutions and sharing knowledge."
   location         : "Mannheim, Germany"
   email            :
   home             : "https://arshadmehmood.com/"
