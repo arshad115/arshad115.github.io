@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Custom styles for Arshad's blog
+   ========================================================================== */
+
+/* Brand colors and improvements */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --info-color: #17a2b8;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+}
+
+/* Enhanced masthead styling */
+.masthead {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.site-title {
+  font-weight: 700;
+  color: var(--dark-color) !important;
+}
+
+.site-subtitle {
+  color: var(--secondary-color);
+  font-style: italic;
+  margin-left: 0.5rem;
+}
+
+/* Improved button styling */
+.btn--primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.btn--primary:hover {
+  background-color: #0056b3 !important;
+  border-color: #0056b3 !important;
+}
+
+/* Enhanced code blocks */
+.highlight {
+  border-left: 4px solid var(--primary-color);
+}
+
+/* Improved newsletter signup styling */
+.newsletter-signup {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.newsletter-signup h3 {
+  color: white;
+  margin-top: 0;
+}
+
+/* Professional footer styling */
+.page__footer {
+  background-color: var(--dark-color);
+  color: white;
+}
+
+.page__footer a {
+  color: var(--primary-color);
+}
+
+/* Enhanced author profile */
+.author__avatar img {
+  border: 3px solid var(--primary-color);
+}
+
+/* Improved post meta styling */
+.page__meta {
+  color: var(--secondary-color);
+  font-size: 0.9em;
+}
+
+/* Tag styling */
+.page__taxonomy .page__taxonomy-item {
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  border: 1px solid var(--secondary-color);
+}
+
+.page__taxonomy .page__taxonomy-item:hover {
+  background-color: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 768px) {
+  .site-subtitle {
+    display: block;
+    margin-left: 0;
+    margin-top: 0.25rem;
+    font-size: 0.9em;
+  }
+}

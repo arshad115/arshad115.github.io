@@ -2,5 +2,40 @@
 layout: home
 author_profile: true
 header:
-  image: /assets/images/main_header.png
+  overlay_color: "#000"
+  overlay_filter: "0.5"
+  overlay_image: /assets/images/main_header.png
+  actions:
+    - label: "Read Latest Posts"
+      url: "/posts/"
+    - label: "Subscribe to Newsletter"  
+      url: "/newsletter/"
+excerpt: "Software Engineer sharing insights on DevOps, Android development, and modern software engineering practices. Join me on my journey of continuous learning and knowledge sharing."
+intro: 
+  - excerpt: '**Welcome to my blog!** I write about DevOps, Kubernetes, Android development, and software engineering. Here you''ll find practical tutorials, project insights, and my daily learnings. [Learn more about me →](/about/)'
+feature_row:
+  - image_path: /assets/images/posts/jenks-k8s-cloud.png
+    alt: "DevOps Journey"
+    title: "DevOps & Kubernetes"
+    excerpt: "Deep dive into modern DevOps practices, Kubernetes orchestration, and CI/CD automation."
+    url: "/software/devops-journey/"
+    btn_label: "Read More"
+    btn_class: "btn--primary"
+  - image_path: /assets/images/obsidian-logo.png
+    alt: "Open Source Projects" 
+    title: "Open Source Projects"
+    excerpt: "Contributing to the community with tools like Obsidian Notes Linker and various Android applications."
+    url: "/portfolio/"
+    btn_label: "View Projects"
+    btn_class: "btn--primary"
+  - image_path: /assets/images/til-icon.png
+    title: "Today I Learned"
+    excerpt: "Daily collection of development insights, tips, and discoveries across various technologies."
+    url: "/today-i-learned/"
+    btn_label: "Explore TIL"
+    btn_class: "btn--primary"
 ---
+
+{% include feature_row id="intro" type="center" %}
+
+{% include feature_row %}

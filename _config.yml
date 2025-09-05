@@ -25,8 +25,8 @@ description              : "Personal blog by Arshad Mehmood. Software Engineer s
 url                      : "https://arshadmehmood.com" # the base hostname & protocol for your site
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "arshad115/arshad115.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : #"/assets/images/header_500x300.jpg" # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+teaser                   : "/assets/images/default-teaser.jpg" # path of fallback teaser image
+logo                     : "/assets/images/logo.png" # path of logo image to display in the masthead
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 180 # More realistic reading speed
@@ -122,7 +122,7 @@ analytics:
 author:
   name             : "Arshad Mehmood"
   avatar           : "/assets/images/bio-photo.jpg" # path of avatar image, e.g.
-  bio              : "Software engineer for web and mobile. M.Sc. Business Informatics, University of Mannheim."
+  bio              : "Software Engineer | DevOps Enthusiast | Android Developer<br/>M.Sc. Business Informatics, University of Mannheim<br/>📍 Building scalable solutions & sharing knowledge"
   location         : "Mannheim, Germany"
   email            :
   home             : "https://arshadmehmood.com/"
