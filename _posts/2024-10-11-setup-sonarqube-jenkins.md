@@ -11,6 +11,7 @@ header:
   image: /assets/images/posts/sonarqube-jenkins.png
   teaser: /assets/images/posts/sonarqube-jenkins.png
 comments: true
+toc_sticky: true
 ---
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 

@@ -318,7 +318,6 @@ defaults:
       related: true
       visible: true
       toc: true
-      toc_sticky: true
   # _pages - til
   - scope:
       path: ""

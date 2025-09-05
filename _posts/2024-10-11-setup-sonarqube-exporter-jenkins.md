@@ -11,6 +11,7 @@ header:
   image: /assets/images/posts/prometheus.png
   teaser: /assets/images/posts/prometheus.png
 comments: true
+toc_sticky: true
 ---
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 

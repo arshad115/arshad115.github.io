@@ -12,6 +12,8 @@ header:
   caption: "gt-world-challenge-america.com"
 date: 2025-09-05
 last_modified_at: 2025-09-05
+comments: true
+toc_sticky: true
 excerpt: "Learn how to use Go's sync/atomic package to eliminate race conditions when working with concurrent goroutines. A practical guide with real-world examples."
 ---
 
