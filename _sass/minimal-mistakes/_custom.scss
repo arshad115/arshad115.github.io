@@ -15,9 +15,9 @@
 }
 
 /* Enhanced masthead styling */
-.masthead {
-  border-bottom: 2px solid var(--primary-color);
-}
+// .masthead {
+//   // border-bottom: 2px solid var(--primary-color);
+// }
 
 .site-title {
   font-weight: 700;
@@ -27,7 +27,6 @@
 .site-subtitle {
   color: var(--secondary-color);
   font-style: italic;
-  margin-left: 0.5rem;
 }
 
 /* Improved button styling */
@@ -42,9 +41,9 @@
 }
 
 /* Enhanced code blocks */
-.highlight {
-  border-left: 4px solid var(--primary-color);
-}
+// .highlight {
+//   border-left: 4px solid var(--primary-color);
+// }
 
 /* Improved newsletter signup styling */
 .newsletter-signup {
@@ -61,14 +60,14 @@
 }
 
 /* Professional footer styling */
-.page__footer {
-  background-color: var(--dark-color);
-  color: white;
-}
+// .page__footer {
+//   background-color: var(--dark-color);
+//   color: white;
+// }
 
-.page__footer a {
-  color: var(--primary-color);
-}
+// .page__footer a {
+//   color: var(--primary-color);
+// }
 
 /* Enhanced author profile */
 .author__avatar img {
@@ -92,6 +91,164 @@
   background-color: var(--primary-color);
   color: white;
   border-color: var(--primary-color);
+}
+
+/* Responsive image styles */
+.page__content {
+  /* All images in post content */
+  img {
+    max-width: 800px !important;
+    max-height: 500px !important;
+    width: auto !important;
+    height: auto !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block;
+    margin: 1rem auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Markdown images */
+  p img {
+    margin: 1.5rem auto;
+  }
+  
+  /* Images in links */
+  a img {
+    margin: 1rem auto;
+    transition: transform 0.3s ease;
+  }
+  
+  a:hover img {
+    transform: scale(1.02);
+  }
+}
+
+/* Figure images (Jekyll includes) */
+figure img {
+  max-width: 800px !important;
+  max-height: 500px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  margin: 0 auto 1rem auto !important;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+  .page__hero .page__hero-image,
+  .page__hero-image {
+    max-height: 500px !important;
+  }
+  
+  .page__hero--overlay {
+    max-height: 500px !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .page__content img,
+  figure img {
+    max-width: 90vw !important;
+    max-height: 400px !important;
+  }
+  
+  .page__hero .page__hero-image,
+  .page__hero-image {
+    max-height: 400px !important;
+  }
+  
+  .page__hero--overlay {
+    max-height: 400px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .page__content img,
+  figure img {
+    max-width: 95vw !important;
+    max-height: 300px !important;
+    margin: 1rem auto;
+  }
+  
+  .page__hero .page__hero-image,
+  .page__hero-image {
+    max-height: 250px !important;
+  }
+  
+  .page__hero--overlay {
+    max-height: 250px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .page__content img,
+  figure img {
+    max-height: 250px !important;
+  }
+  
+  .page__hero .page__hero-image,
+  .page__hero-image {
+    max-height: 200px !important;
+  }
+  
+  .page__hero--overlay {
+    max-height: 200px !important;
+  }
+}
+
+/* Special handling for very small images */
+.page__content img[width],
+.page__content img[style*="width"] {
+  max-width: min(800px, 100%) !important;
+}
+
+/* Small images that shouldn't be cropped (add class="small-image" to preserve aspect ratio) */
+.page__content img.small-image,
+figure img.small-image {
+  object-fit: contain !important;
+  max-height: 200px !important;
+  width: auto !important;
+}
+
+/* Icons and very small images (add class="icon" for no cropping) */
+.page__content img.icon,
+figure img.icon {
+  object-fit: contain !important;
+  max-width: 100px !important;
+  max-height: 100px !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* Hero images (header images in posts) */
+.page__hero .page__hero-image,
+.page__hero-image {
+  max-height: 600px !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* Hero overlay sections (background images) */
+.page__hero--overlay {
+  max-height: 600px !important;
+  overflow: hidden !important;
+}
+
+/* Extra large screens - even more generous */
+@media (min-width: 1400px) {
+  .page__hero .page__hero-image,
+  .page__hero-image {
+    max-height: 700px !important;
+  }
+  
+  .page__hero--overlay {
+    max-height: 700px !important;
+  }
 }
 
 /* Mobile responsiveness improvements */
