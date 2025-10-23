@@ -1,0 +1,162 @@
+---
+title: "ChatGPT is Secretly Sharing Conversations Within Projects: A Privacy Investigation"
+category: Software
+tags:
+  - Artificial Intelligence
+  - ChatGPT
+  - AI
+  - LLM
+  - Privacy
+  - OpenAI
+  - Data Sharing
+header:
+  image: https://images.ctfassets.net/kftzwdyauwt9/7LzxdzMcijUYHtIES6rmub/1dd3bc9f423a6b1cd5176936dbb029aa/Entry_Point.png?w=1920&q=90&fm=webp
+  teaser: https://images.ctfassets.net/kftzwdyauwt9/7LzxdzMcijUYHtIES6rmub/1dd3bc9f423a6b1cd5176936dbb029aa/Entry_Point.png?w=1920&q=90&fm=webp
+  caption: "Photo credit: [**OpenAI**](https://openai.com/de-DE/index/introducing-chatgpt-search/)"
+toc: true  # Table of contents
+toc_sticky: true  # Sticky TOC
+comments: true
+date: 2025-10-23
+last_modified_at: 2025-10-23
+author_profile: true
+read_time: true
+share: true
+related: true
+excerpt: "A detailed investigation revealing how ChatGPT's Projects feature shares conversation context between separate chats, despite users having memory settings disabled."
+---
+
+## Introduction
+
+Have you ever wondered if ChatGPT remembers things you've told it in previous conversations, even when you've disabled memory? I've been suspicious about this for quite some time, particularly regarding ChatGPT's **Projects** feature. After conducting a systematic test, I discovered something concerning: **ChatGPT is indeed sharing conversation context between separate chats within the same project**, even when memory settings are explicitly turned off.
+
+This investigation reveals a significant privacy implication that OpenAI doesn't clearly communicate to users. Let me walk you through my findings.
+
+## The Discovery: Memory Sharing in Projects
+
+### Setting the Stage: Memory Disabled
+
+Before conducting my test, I verified that my ChatGPT memory settings were completely disabled. This is crucial because it eliminates the obvious explanation for any information retention.
+
+{:.text-center}
+![ChatGPT Memory Settings Disabled](/assets/images/posts/Chatgpt_memory_off.PNG){: .align-center style="max-width: 70%; height: auto;"}
+*Memory settings clearly set to "Off"*
+
+### The Experiment: Testing Information Persistence
+
+#### Step 1: Initial Query in a Fresh Chat
+
+I started by creating a new chat within a project and asking ChatGPT if it knew my belly size. As expected, it had no prior knowledge of this information.
+
+{:.text-center}
+![Fresh Chat - No Prior Knowledge](/assets/images/posts/Chatgpt_fresh.PNG){: .align-center style="max-width: 70%; height: auto;"}
+*ChatGPT correctly states it has no knowledge of personal information*
+
+#### Step 2: Sharing Personal Information in a New Chat
+
+I then created a completely separate chat within the same project and shared personal information about my belly size. This was done to test if this information would somehow persist across different conversations.
+
+{:.text-center}
+![Sharing Personal Information](/assets/images/posts/Chatgpt_sharing.PNG){: .align-center style="max-width: 70%; height: auto;"}
+*Sharing personal information in a separate chat within the same project*
+
+#### Step 3: The Shocking Discovery
+
+When I returned to the first chat and asked the same question again, ChatGPT suddenly "remembered" the information I had shared in the completely separate conversation!
+
+{:.text-center}
+![ChatGPT Remembers Across Chats](/assets/images/posts/Chatgpt_again.PNG){: .align-center style="max-width: 70%; height: auto;"}
+*ChatGPT now has knowledge it shouldn't possess based on disabled memory settings*
+
+## Confirming the Scope
+
+### Project-Specific Behavior
+
+To understand the scope of this behavior, I verified that only two chats existed in my test project, confirming that the information sharing was contained within the project boundary.
+
+{:.text-center}
+![Only Two Chats in Project](/assets/images/posts/Chatgpt_chats.PNG){: .align-center style="max-width: 70%; height: auto;"}
+*Confirmation that only two chats existed in the test project*
+
+### Testing Outside Projects
+
+I conducted the same test in the main ChatGPT interface (outside of any project) and confirmed that this memory-sharing behavior does **not** occur in regular chats.
+
+{:.text-center}
+![No Memory Sharing in Main Chats](/assets/images/posts/Chatgpt_main.PNG){: .align-center style="max-width: 70%; height: auto;"}
+*Regular chats outside projects don't exhibit this behavior*
+
+## The Contradiction: What ChatGPT Claims vs. Reality
+
+### ChatGPT's Response to Direct Questioning
+
+When directly asked about this behavior, ChatGPT denies saving or sharing information between chats within projects:
+
+{:.text-center}
+![ChatGPT's Denial](/assets/images/posts/Chatgpt_saves_memory.PNG){: .align-center style="max-width: 70%; height: auto;"}
+*ChatGPT claims it doesn't save or share information between chats*
+
+This creates a concerning contradiction between what ChatGPT claims about its behavior and what actually happens in practice.
+
+## Limited Documentation and Transparency
+
+### Scarce Official Information
+
+The only reference I could find acknowledging this behavior was in a third-party article:
+[OpenAI has upgraded ChatGPT's Projects feature, and I find it makes working way more efficient](https://www.techradar.com/computing/artificial-intelligence/openai-has-upgraded-chatgpts-projects-feature-and-i-find-it-makes-working-way-more-efficient)
+
+### Missing from Official Documentation
+
+Notably, OpenAI's official website and documentation do not clearly explain this behavior. There are no settings to:
+- Control memory sharing within projects
+- Disable context sharing between chats in a project
+- Manage privacy preferences for project-level information retention
+
+## Privacy Implications and Concerns
+
+### What This Means for Users
+
+This discovery has several important implications:
+
+1. **Hidden Data Persistence**: Information you share in one chat within a project persists across all other chats in that project, regardless of your memory settings.
+
+2. **Lack of User Control**: There's no clear way to disable this behavior or manage what information is shared within a project.
+
+3. **Documentation Gap**: The behavior isn't clearly documented, leaving users unaware of how their data is being handled.
+
+4. **False Sense of Privacy**: Users who disable memory settings may believe their conversations are isolated, when they're actually not within projects.
+
+### Potential Risks
+
+- **Unintended Information Disclosure**: Sensitive information shared in one project chat becomes available in all other chats within that project
+- **Context Contamination**: Previous conversations can influence AI responses in ways users don't expect
+- **Privacy Confusion**: Users may not understand the true scope of information retention
+
+## Recommendations
+
+### For Users
+
+1. **Be Aware**: Understand that information shared in any chat within a ChatGPT project persists across all chats in that project
+2. **Project Hygiene**: Consider creating separate projects for sensitive or unrelated topics
+3. **Regular Cleanup**: Periodically review and clean up your ChatGPT projects
+4. **Verify Privacy Settings**: Don't rely solely on memory settings to control information persistence
+
+### For OpenAI
+
+1. **Improve Documentation**: Clearly explain how Projects handle information sharing
+2. **Add User Controls**: Provide settings to control context sharing within projects
+3. **Enhance Transparency**: Be more explicit about data handling practices
+4. **Fix Contradictory Responses**: Ensure ChatGPT accurately describes its own behavior
+
+## Conclusion
+
+This investigation reveals a significant gap between user expectations and ChatGPT's actual behavior within Projects. While the feature may be designed to improve workflow efficiency by maintaining context, the lack of clear documentation and user control raises important privacy concerns.
+
+The most troubling aspect is the contradiction between what ChatGPT claims about its behavior and what actually happens. Users deserve clear, accurate information about how their data is being handled, especially when privacy settings suggest certain protections are in place.
+
+Until OpenAI provides better transparency and user controls, it's important for users to be aware of this behavior and take appropriate precautions when sharing sensitive information in ChatGPT Projects.
+
+**Have you noticed similar behavior in your ChatGPT usage? Share your experiences in the comments below.**
+
+---
+
+*This investigation was conducted on October 23, 2025, using ChatGPT's Projects feature. Results may vary as OpenAI updates their platform.*
