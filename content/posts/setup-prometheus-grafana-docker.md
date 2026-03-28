@@ -15,7 +15,7 @@ comments: true
 excerpt: "Quick guide to setting up Prometheus and Grafana monitoring stack using Docker. Get your metrics collection and visualization running in minutes."
 ---
 
-_**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
+_**Note** This post is part of the [DevOps Journey](/devops/devops-journey/)_
 
 There are probably thousands of tutorials on setting up Prometheus & Grafana out there; This is probably the most basic one, with one-liners to get you started.
 

@@ -15,7 +15,7 @@ comments: true
 toc_sticky: true
 ---
 
-_**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
+_**Note** This post is part of the [DevOps Journey](/devops/devops-journey/)_
 
 To monitor Jenkins with Prometheus, we need to expose Jenkins metrics. Jenkins has a built-in Prometheus metrics endpoint that we can enable.
 

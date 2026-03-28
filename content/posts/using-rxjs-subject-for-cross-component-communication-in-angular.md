@@ -16,7 +16,7 @@ comments: true
 toc: false
 ---
 
-Earlier I posted about [child to parent communication in angular](https://arshadmehmood.com/programming/change-parent-component-values-in-angular-with-viewcontainerref/), today we will take a look at cross component interaction in angular using `Subject` from the `rxjs` library.
+Earlier I posted about [child to parent communication in angular](/development/change-parent-component-values-in-angular-with-viewcontainerref/), today we will take a look at cross component interaction in angular using `Subject` from the `rxjs` library.
 We can declare the subject inside our component or another service if you like and subscribe to it to make the changes. Whenever you want to interact with it, just do it with the `next` method. Here is the `AppComponent` code:
 
 ```typescript

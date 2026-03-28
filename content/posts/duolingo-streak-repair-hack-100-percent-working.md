@@ -14,7 +14,7 @@ comments: true
 toc: false
 ---
 
-Earlier I wrote about the [same topic here](https://arshadmehmood.com/hacks/duolingo-lost-streak-repair-hack/). Well after trying other methods I found out that is very easy to repair a lost streak. No more pressure! Better still, this method even works to repair your very old lost streaks.
+Earlier I wrote about the [same topic here](/tutorial/duolingo-lost-streak-repair-hack/). Well after trying other methods I found out that is very easy to repair a lost streak. No more pressure! Better still, this method even works to repair your very old lost streaks.
 
 First and foremost, as I had said earlier: 
 > I love Duolingo and I love learning a new language. I woudn't have any problem with it if the money was insignificant (3.49€ is a lot for a student :D) . It's not just the money, when you lose a streak, you also lose the motivation to continue learning the language on Duolingo. If there was an another option to pay with like, lingots, I would of course pay with them. Or may be if they had an option to repair your streak by watching a video ad. But, unfortunately, there is no such option.

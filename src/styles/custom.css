@@ -50,19 +50,19 @@ h3,
 .mini-card,
 .stack-item,
 .comments-shell {
-  border: 1px solid var(--page-border);
-  background: var(--page-bg-elevated);
-  box-shadow: var(--page-shadow-md);
-  backdrop-filter: blur(14px);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .hero-panel {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
-  padding: 2rem;
-  border-radius: 1.5rem;
-  background: var(--surface-strong);
+  padding: 1rem 0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .hero-panel h1 {
@@ -159,8 +159,8 @@ h3,
 
 .section-block {
   margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 1.25rem;
+  padding: 0;
+  border-radius: 0;
 }
 
 .section-heading {
@@ -198,8 +198,8 @@ h3,
 .taxonomy-card,
 .mini-card,
 .stack-item {
-  padding: 1rem;
-  border-radius: 1rem;
+  padding: 0;
+  border-radius: 0;
 }
 
 .content-card p,
@@ -266,17 +266,17 @@ h3,
 
 .comments-shell {
   margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 1.25rem;
+  padding: 0;
+  border-radius: 0;
 }
 
 .post-enhancement {
   margin-top: 2rem;
-  padding: 1.5rem;
-  border-radius: 1.25rem;
-  border: 1px solid var(--page-border);
-  background: var(--page-bg-elevated);
-  box-shadow: var(--page-shadow-md);
+  padding: 0;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .page-right-graph {
@@ -293,8 +293,8 @@ h3,
 
 .page-right-graph .slsg-graph-container {
   width: 100%;
-  border-radius: 1rem;
-  border: 1px solid var(--page-border);
+  border-radius: 0;
+  border: 0;
 }
 
 .contact-form {
