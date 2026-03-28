@@ -53,7 +53,6 @@ You have a plenty of options when buying a U2F device. Or, if you already have a
 9. Click yes, the device is now registered, make sure you have some other method as a backup to login if you lose your key. e.g. 2FA.
 10. The next time you login, you just have to connect your Nano to the computer and open the app and allow to authenticate.
 
-Support me with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 
 
 Read the original guidelines on [Ledger Support site](https://support.ledgerwallet.com/hc/en-us/articles/115005198545-Set-up-Fido-U2F-app)
 [![Ledger Nano S - The secure hardware wallet](https://www.ledgerwallet.com/images/promo/nano-s/ledger_nano-s_8-5-0x4-2-0.jpg)](https://www.ledger.com?r=febd7201637a)

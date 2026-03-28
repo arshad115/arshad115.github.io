@@ -23,5 +23,3 @@ As a noob user, I couldn't find how to use this token, after searching for a whi
 First create a personal access token, name it anything and then give it access to `api`, thats all that is required. Then copy the token, perhaps save it also as you won't be able to see it again. Then use it as the password for your git account. If you are using Windows Credential Manager, go to your [Gitlab](https://gitlab.com) profile and then replace the password with this token. 
 
 Everything should work fine now. :)
-
-Buy me a cup of coffee with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A`

@@ -79,5 +79,3 @@ This is it!
 ![Pipiline]({{ "/assets/images/posts/pipeline.png" | absolute_url }})
 
 Place all the files in a folder, commit and push your code to Gitlab. Once you commit, you can view it in Pipelines section in your project. If you have done everything properly, then the build will be passed and you will be able to see your application running on Heroku.  Goodluck :)
-
-Buy me a cup of coffee with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 

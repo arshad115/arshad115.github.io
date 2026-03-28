@@ -41,4 +41,3 @@ Its as simple as that!
 
 You can also view this example on [Stackblitz](https://stackblitz.com/edit/angular-comms-hhbmvs).
 
-Support me with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 

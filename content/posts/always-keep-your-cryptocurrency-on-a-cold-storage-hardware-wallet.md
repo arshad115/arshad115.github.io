@@ -34,4 +34,3 @@ While paper wallets safe, they are not exactly user friendly. Going through the 
 Or buy a Trezor here:
 [![Trezor hardware wallet](https://trezor.io/static/images/devices.webp)](https://shop.trezor.io/?a=arshadmehmood.com)
 
-Support me with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 

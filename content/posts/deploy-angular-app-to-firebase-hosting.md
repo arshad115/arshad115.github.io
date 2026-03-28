@@ -82,4 +82,3 @@ toc: false
     ```
     If everything went well, then your application will be deployed and you will see its url on the console.
     
-    Buy me a cup of coffee with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 

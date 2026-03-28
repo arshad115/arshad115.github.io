@@ -33,5 +33,3 @@ It's very easy to use and you can delete or reset your app in just two lines of 
    ```
 
 Now your [Heroku](https://www.heroku.com/) will be just as new. Push your code and it will be like, you just pushed some code to a new app. Cheers!
-
-Buy me a cup of coffee with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 

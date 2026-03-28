@@ -38,4 +38,3 @@ Not only that, the adwares in Es File Explorer are also running in the backgroun
 
 [Here is the log file](/assets/images/posts/estrong.txt) with filter for `Estrong.
 
-Support me with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 

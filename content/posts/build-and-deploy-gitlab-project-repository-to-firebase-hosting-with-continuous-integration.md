@@ -112,4 +112,3 @@ This is it!
 
 Now every time you commit your code to gitlab, the app is built and deployed to Firebase Hosting. You can view the running Pipelines in the CI section of your project on Gitlab. Since, we are also building the app, it takes around some time to build and deploy, so please be patient. If you have done everything properly, then the build will be passed and you will be able to see your application running on Firebase Hosting.  Goodluck :)
 
-Buy me a cup of coffee with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 
