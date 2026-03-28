@@ -17,8 +17,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update submodule
-        run: |
-          git submodule update --remote today-i-learned
+        run: bash scripts/update-submodule.sh --no-commit
           
       - name: Check for changes
         id: changes

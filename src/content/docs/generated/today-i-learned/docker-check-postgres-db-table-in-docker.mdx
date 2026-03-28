@@ -1,0 +1,42 @@
+---
+title: "Check Postgres db table in Docker"
+description: "Check Postgres db table in Docker - Today I Learned"
+slug: "today-i-learned/docker/check-postgres-db-table-in-docker"
+contentType: "til"
+category: "docker"
+tags:
+  - "docker"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/docker/build-and-push-with-docker"
+  - "today-i-learned/docker/multiple-ways-to-run-a-docker-container"
+  - "devops/setup-prometheus-grafana-docker"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+  - "today-i-learned/android/show-logs-from-timinglogger"
+  - "today-i-learned/android/string-array-in-xml"
+---
+
+# Check Postgres db table in Docker
+
+# List running containers to find the container ID or name
+docker ps
+
+# Access the PostgreSQL container
+docker exec -it postgres_container bash
+
+# Connect to PostgreSQL
+psql -U postgres -d mydatabase
+
+# List all tables
+\dt
+
+# Describe the structure of the 'ratings' table
+\d ratings
+
+# Query data from the 'ratings' table
+SELECT * FROM ratings;

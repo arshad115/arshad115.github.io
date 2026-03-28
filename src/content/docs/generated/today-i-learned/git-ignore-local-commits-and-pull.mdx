@@ -1,0 +1,36 @@
+---
+title: "Ignore local commits and pull repository from the remote branch"
+description: "Ignore local commits and pull repository from the remote branch - Today I Learned"
+slug: "today-i-learned/git/ignore-local-commits-and-pull"
+contentType: "til"
+category: "git"
+tags:
+  - "git"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/git/add-another-repository-as-submodule"
+  - "today-i-learned/git/clone-wtihout-folder"
+  - "today-i-learned/git/delete-local-branch"
+  - "today-i-learned/git/delete-remote-branch"
+  - "today-i-learned/git/fix-detached-head-submodule"
+  - "today-i-learned/git/fresh-start-main"
+  - "today-i-learned/git/move-commits-to-a-new-branch"
+  - "today-i-learned/git/pull-a-single-file-or-a-folder-from-another-branch"
+---
+
+# Ignore local commits and pull repository from the remote branch
+
+Just ignore the local commits and pull from the branch!
+
+### Reset:
+```
+git reset --hard origin/master
+```
+
+### Pull changes
+```
+git pull origin master
+```

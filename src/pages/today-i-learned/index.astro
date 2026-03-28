@@ -1,0 +1,28 @@
+---
+import CustomPage from '../../components/CustomPage.astro';
+import siteData from '../../generated/site-data.json';
+---
+
+<CustomPage title="Today I Learned" description="Daily notes from the today-i-learned submodule, grouped by category.">
+  <section class="section-block">
+    <p class="lede">
+      The TIL section is generated from the `today-i-learned` submodule. Every note keeps its own page and now joins
+      the same search index and local graph as the rest of the site.
+    </p>
+    <div class="taxonomy-grid">
+      {siteData.tilCategories.map((category) => (
+        <article class="taxonomy-card">
+          <div class="taxonomy-header">
+            <h2>{category.name}</h2>
+            <span>{category.count}</span>
+          </div>
+          <ul>
+            {category.items.map((item) => (
+              <li><a href={item.url}>{item.title}</a></li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+</CustomPage>

@@ -1,66 +1,54 @@
-# 👋 Welcome to **Arshad Mehmood's Blog**
+# Arshad Mehmood
 
-This repository powers my corner of the internet: a personal blog where I write about building software that is practical, scalable, and occasionally stubborn. 🚀
+This repository powers [arshadmehmood.com](https://arshadmehmood.com), now built with Astro, Starlight, GitHub Pages, and a generated content pipeline that pulls together blog posts, portfolio entries, and the `today-i-learned` submodule.
 
-If you're into **web engineering**, **Android development**, and **DevOps workflows that actually survive production**, you're in the right place.
+## Stack
 
----
+- Astro
+- Starlight
+- `starlight-site-graph`
+- GitHub Pages Actions
+- Pagefind search
+- Giscus comments
 
-## ✨ What this site is about
+## Source layout
 
-I use this blog to share:
+- `content/posts/` → blog post source files
+- `content/pages/` → long-form page content used by the generator where applicable
+- `content/portfolio/` → portfolio source files
+- `content/drafts/` → draft template and draft helpers
+- `today-i-learned/` → TIL submodule content source
+- `scripts/` → content generation, hooks, submodule update, and post creation helpers
+- `src/` → Astro/Starlight app source
+- `public/` → static assets served by Astro
 
-- 🛠️ Real-world engineering lessons from projects and product teams
-- 📱 Android and mobile development insights
-- ☁️ DevOps and deployment workflows
-- 🧠 Notes on architecture, performance, and developer productivity
-- 📚 Learnings worth documenting so future-me (and maybe you) can reuse them
-
----
-
-## 🧰 Tech stack
-
-This site is built with:
-
-- **Jekyll**
-- **Minimal Mistakes** (heavily customized)
-- **GitHub Pages** for hosting
-
----
-
-## 🗂️ Project structure (quick view)
-
-- `_posts/` → blog posts
-- `_pages/` → static pages
-- `_layouts/`, `_includes/`, `_sass/` → theme and layout customization
-- `assets/` → images, styles, scripts
-- `_config.yml` → site-wide configuration
-
----
-
-## 🧪 Run locally
+## Local development
 
 ```bash
-bundle install
-bundle exec jekyll serve
+npm install
+npm run dev
 ```
 
-Then open: `http://localhost:4000`
+Useful commands:
 
----
+```bash
+npm run sync:content
+npm run build
+npm run check
+npm run setup:hooks
+```
 
-## 🌍 Live site
+Post tooling documentation lives in [docs/post-generator.md](/Users/arshad/Developer/Github/blog/arshad115.github.io/docs/post-generator.md).
 
-**https://arshadmehmood.com**
+The content generator expects the TIL submodule to be present:
 
----
+```bash
+git submodule update --init --recursive
+```
 
-## 🤝 Connect with me
+## Notes
 
-- GitHub: [@arshad115](https://github.com/arshad115)
-- LinkedIn: [Arshad Mehmood](https://www.linkedin.com/in/arshadmehmood115/)
-- X/Twitter: [@arshad115](https://twitter.com/arshad115)
-
----
-
-Thanks for stopping by! If something here helps you ship better software, that's a win. 🙌
+- Blog post URLs are preserved from the old Jekyll site.
+- `projects` has been renamed to `portfolio`.
+- A local-neighborhood graph is rendered on posts, portfolio entries, and TIL pages.
+- A global graph page is planned later.

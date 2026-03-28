@@ -1,0 +1,34 @@
+---
+title: "Local Storage"
+description: "Local Storage - Today I Learned"
+slug: "today-i-learned/javascript/local-storage"
+contentType: "til"
+category: "javascript"
+tags:
+  - "javascript"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/javascript/add-attribute-to-json-object-using-spread-operator"
+  - "today-i-learned/javascript/document-getelementbyid-check-if-not-null"
+  - "today-i-learned/javascript/filter-array"
+  - "today-i-learned/javascript/get-unique-array"
+  - "today-i-learned/javascript/remove-class-name"
+  - "today-i-learned/javascript/remove-element-from-dom"
+  - "today-i-learned/javascript/replace-everything-before-a-certain-point-using-regex"
+  - "today-i-learned/javascript/trim-remove-character-from-start-or-end"
+---
+
+# Local Storage
+
+Browsers store variables in the local storage as strings, so you have to parse them into JSON or use strings.
+
+```js
+//to get
+let myVar = window.localStorage.getItem('myVar');
+
+//to set
+window.localStorage.setItem("myVar", myVar);
+```

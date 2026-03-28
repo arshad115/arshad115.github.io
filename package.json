@@ -1,35 +1,41 @@
 {
-  "name": "minimal-mistakes",
+  "name": "arshad115.github.io",
   "private": true,
-  "version": "4.24.0",
-  "description": "Minimal Mistakes 2 column Jekyll theme.",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/mmistakes/minimal-mistakes.git"
-  },
-  "keywords": [
-    "jekyll",
-    "theme",
-    "minimal"
-  ],
-  "author": "Michael Rose",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/mmistakes/minimal-mistakes/issues"
-  },
-  "homepage": "https://mmistakes.github.io/minimal-mistakes/",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Arshad Mehmood's personal site built with Astro, Starlight, and GitHub Pages.",
   "engines": {
-    "node": ">= 0.10.0"
-  },
-  "devDependencies": {
-    "npm-run-all": "^4.1.5",
-    "onchange": "^7.1.0",
-    "uglify-js": "^3.13.6"
+    "node": ">=20"
   },
   "scripts": {
-    "uglify": "uglifyjs assets/js/vendor/jquery/jquery-3.6.0.js assets/js/plugins/jquery.fitvids.js assets/js/plugins/jquery.greedy-navigation.js assets/js/plugins/jquery.magnific-popup.js assets/js/plugins/jquery.ba-throttle-debounce.js assets/js/plugins/smooth-scroll.js assets/js/plugins/gumshoe.js assets/js/_main.js -c -m -o assets/js/main.min.js",
-    "add-banner": "node banner.js",
-    "watch:js": "onchange \"assets/js/**/*.js\" -e \"assets/js/main.min.js\" -- npm run build:js",
-    "build:js": "npm run uglify && npm run add-banner"
+    "predev": "node scripts/generate-content.mjs",
+    "prebuild": "node scripts/generate-content.mjs",
+    "precheck": "node scripts/generate-content.mjs",
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "start": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "sync:content": "node scripts/generate-content.mjs",
+    "setup:hooks": "bash scripts/setup-hooks.sh",
+    "update:til": "bash scripts/update-submodule.sh",
+    "new:post": "python3 scripts/new_post.py",
+    "new:post:quick": "python3 scripts/quick_post.py",
+    "draft:to-post": "python3 scripts/draft_to_post.py"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/rss": "^4.0.11",
+    "@astrojs/sitemap": "^3.2.1",
+    "@astrojs/starlight": "^0.38.2",
+    "@pelagornis/page": "^1.2.2",
+    "astro": "^6.0.0",
+    "gray-matter": "^4.0.3",
+    "reading-time": "^1.5.0",
+    "starlight-site-graph": "^0.5.0",
+    "typescript": "^5.7.3"
+  },
+  "overrides": {
+    "picomatch": "^4.0.3"
   }
 }

@@ -1,0 +1,36 @@
+---
+title: "Close Dialog from typescript"
+description: "Close Dialog from typescript - Today I Learned"
+slug: "today-i-learned/angular2/close-dialog-from-typescript"
+contentType: "til"
+category: "angular2"
+tags:
+  - "angular2"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/angular2/add-dynamic-css-style-properties"
+  - "today-i-learned/angular2/add-seo-to-an-angular-app"
+  - "today-i-learned/angular2/add-window-resize-event-listener-comopnent"
+  - "today-i-learned/angular2/apply-more-than-one-pipe"
+  - "today-i-learned/angular2/bind-local-method-to-dom-eventlistener"
+  - "today-i-learned/angular2/disable-dialog-close-on-click-outsite"
+  - "today-i-learned/angular2/get-query-parameters"
+  - "today-i-learned/angular2/hide-element-based-on-window-size"
+---
+
+# Close Dialog from typescript
+
+Use this code:
+
+```ts
+  //constructor
+  constructor(public dialogRef: MatDialogRef<any>) {
+  }
+  //method to close
+  close() {
+    this.dialogRef.close();
+  }
+```

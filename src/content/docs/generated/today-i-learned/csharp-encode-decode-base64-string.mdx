@@ -1,0 +1,42 @@
+---
+title: "Encode/Decode Base64 string in C#"
+description: "Encode/Decode Base64 string in C# - Today I Learned"
+slug: "today-i-learned/csharp/encode-decode-base64-string"
+contentType: "til"
+category: "csharp"
+tags:
+  - "csharp"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/csharp/cast-json-object-to-class"
+  - "today-i-learned/csharp/create-a-stream-from-string"
+  - "today-i-learned/csharp/create-stream-from-base64-string"
+  - "today-i-learned/csharp/ldap-query-search-filter-syntax"
+  - "today-i-learned/csharp/wait-n-seconds-without-blocking-ui"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+---
+
+# Encode/Decode Base64 string in C#
+
+### Encode:
+```
+public static string Base64Encode(string plainText) {
+  var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(plainText);
+  return System.Convert.ToBase64String(plainTextBytes);
+}
+```
+
+### Decode:
+```
+public static string Base64Decode(string base64EncodedData) {
+  var base64EncodedBytes = System.Convert.FromBase64String(base64EncodedData);
+  return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+}
+```
+
+Copy and paste from [Stackoverflow](https://stackoverflow.com/questions/11743160/how-do-i-encode-and-decode-a-base64-string)

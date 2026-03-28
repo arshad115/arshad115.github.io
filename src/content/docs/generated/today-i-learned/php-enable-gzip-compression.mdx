@@ -1,0 +1,35 @@
+---
+title: "Enable gzip compression"
+description: "Enable gzip compression - Today I Learned"
+slug: "today-i-learned/php/enable-gzip-compression"
+contentType: "til"
+category: "php"
+tags:
+  - "php"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/php/allow-cross-origin-resource-sharing-cors"
+  - "today-i-learned/php/compress-string-data"
+  - "today-i-learned/php/fetch-mysql-column-values-as-comma-separated-values"
+  - "today-i-learned/php/install-mbstring-on-linux"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+  - "today-i-learned/android/show-logs-from-timinglogger"
+---
+
+# Enable gzip compression
+
+To enable gzip compression in PHP use this single line of code:
+
+```php
+  <?php
+    ob_start("ob_gzhandler");
+  ?>
+```
+
+This will add the gzip headers and also tell the browser that the page is compressed using gzip, so that the browser can decompress it easily.
+I saved around 230% of data transfer per page using gzip.

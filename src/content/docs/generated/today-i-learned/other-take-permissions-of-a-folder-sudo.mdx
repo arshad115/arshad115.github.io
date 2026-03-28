@@ -1,0 +1,34 @@
+---
+title: "Take permissions of a folder using sudo on Linux"
+description: "Take permissions of a folder using sudo on Linux - Today I Learned"
+slug: "today-i-learned/other/take-permissions-of-a-folder-sudo"
+contentType: "til"
+category: "other"
+tags:
+  - "other"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/other/add-current-user-as-the-owner-of-a-folder"
+  - "today-i-learned/other/add-new-file-type-to-context-menu-in-windows-10"
+  - "today-i-learned/other/configure-and-connect-mysql-workbench-with-ssh-connection"
+  - "today-i-learned/other/enable-curl-apache-easyphp"
+  - "today-i-learned/other/list-installed-packages-linux"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+---
+
+# Take permissions of a folder using sudo on Linux
+
+Replace with folder name:
+```
+sudo chmod a+rwx /var/log/nginx/
+```
+This too:
+```
+sudo chown -R www-data:www-data /var/log/nginx;
+sudo chmod -R 755 /var/log/nginx;
+```

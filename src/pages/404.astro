@@ -1,0 +1,14 @@
+---
+import CustomPage from '../components/CustomPage.astro';
+---
+
+<CustomPage title="Page not found" description="The page you requested could not be found.">
+  <section class="section-block">
+    <p class="lede">The page you requested does not exist anymore or the URL has changed.</p>
+    <div class="action-row">
+      <a class="action action-primary" href="/">Back to home</a>
+      <a class="action" href="/posts/">Browse posts</a>
+      <a class="action" href="/today-i-learned/">Browse TIL</a>
+    </div>
+  </section>
+</CustomPage>

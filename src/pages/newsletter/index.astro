@@ -1,0 +1,35 @@
+---
+import CustomPage from '../../components/CustomPage.astro';
+---
+
+<CustomPage title="Subscribe to My Newsletter" description="Subscribe for new posts and developer notes.">
+  <section class="section-block">
+    <p class="lede">
+      Stay updated with my latest posts and insights on software engineering, Android development, and DevOps
+      practices.
+    </p>
+    <ul>
+      <li>Automatic updates when I publish new posts</li>
+      <li>Weekly curated tech insights and tutorials</li>
+      <li>DevOps and Android development tips</li>
+      <li>No spam, unsubscribe anytime</li>
+    </ul>
+    <p><strong>RSS feed:</strong> <a href="/feed.xml">/feed.xml</a></p>
+
+    <form
+      class="contact-form"
+      action="https://your-domain.us1.list-manage.com/subscribe/post?u=YOUR_USER_ID&amp;id=YOUR_LIST_ID"
+      method="post"
+      target="_blank"
+    >
+      <label>
+        Email address
+        <input type="email" name="EMAIL" placeholder="Enter your email address" required />
+      </label>
+      <div class="hidden-field" aria-hidden="true">
+        <input type="text" name="b_YOUR_USER_ID_YOUR_LIST_ID" tabindex="-1" value="" />
+      </div>
+      <button type="submit" class="action action-primary">Subscribe</button>
+    </form>
+  </section>
+</CustomPage>

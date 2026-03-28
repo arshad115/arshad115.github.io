@@ -1,0 +1,32 @@
+---
+title: "Check if list contains unique elements"
+description: "Check if list contains unique elements - Today I Learned"
+slug: "today-i-learned/python/check-if-list-contains-unique-elements"
+contentType: "til"
+category: "python"
+tags:
+  - "python"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/python/check-if-string-is-numeric"
+  - "today-i-learned/python/check-palindrome"
+  - "today-i-learned/python/combine-pandas-dataframes-on-a-index"
+  - "today-i-learned/python/convert-dictionary-keys-values-list"
+  - "today-i-learned/python/convert-list-to-dictionary-with-indexes"
+  - "today-i-learned/python/convert-list-to-string"
+  - "today-i-learned/python/delete-key-from-dictionary"
+  - "today-i-learned/python/dictionary-get-list-of-values"
+---
+
+### Check if list contains unique elements
+
+Python sets are always unique, so we can compare the length of the original list with a list of set of the original list.
+
+```py
+# using set() + len() 
+# to check all unique list elements 
+isListUnique = len(set(test_list)) == len(test_list) 
+```

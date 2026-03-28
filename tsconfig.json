@@ -1,0 +1,17 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "baseUrl": "."
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "src/**/*",
+    "astro.config.mjs"
+  ],
+  "exclude": [
+    "public",
+    "scripts",
+    "today-i-learned",
+    "banner.js"
+  ]
+}

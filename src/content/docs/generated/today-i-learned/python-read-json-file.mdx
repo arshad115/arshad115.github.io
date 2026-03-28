@@ -1,0 +1,38 @@
+---
+title: "Read json file to pandas Dataframe"
+description: "Read json file to pandas Dataframe - Today I Learned"
+slug: "today-i-learned/python/read-json-file"
+contentType: "til"
+category: "python"
+tags:
+  - "python"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/python/check-if-list-contains-unique-elements"
+  - "today-i-learned/python/check-if-string-is-numeric"
+  - "today-i-learned/python/check-palindrome"
+  - "today-i-learned/python/combine-pandas-dataframes-on-a-index"
+  - "today-i-learned/python/convert-dictionary-keys-values-list"
+  - "today-i-learned/python/convert-list-to-dictionary-with-indexes"
+  - "today-i-learned/python/convert-list-to-string"
+  - "today-i-learned/python/delete-key-from-dictionary"
+---
+
+# Read json file to pandas Dataframe
+
+Reading a json file is very easy.
+
+```
+file_activeingredient = open('opencanada/activeingredient.json', 'r')
+
+# Load the first sheet of the JSON file into a data frame
+activeingredients = pd.read_json(file_activeingredient, orient='records')
+
+# View the first ten rows
+# print(activeingredients.head(10))
+```
+
+More info [here](https://pythonspot.com/json-encoding-and-decoding-with-python/) and [here](https://chrisalbon.com/python/data_wrangling/load_json_file_into_pandas/).

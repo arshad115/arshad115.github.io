@@ -1,0 +1,30 @@
+---
+title: "Load data in webView second time"
+description: "Load data in webView second time - Today I Learned"
+slug: "today-i-learned/android/load-data-in-webview-second-time"
+contentType: "til"
+category: "android"
+tags:
+  - "android"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/show-logs-from-timinglogger"
+  - "today-i-learned/android/string-array-in-xml"
+  - "android/auto-update-android-sqlite-database-version"
+  - "development/my-first-open-source-android-library"
+  - "personal/the-most-fulfilling-$2-I-made-and-my-android-developer-journey"
+  - "security/estrongs-es-file-explorer-file-manager-is-always-tracking-you"
+---
+
+# Load data in webView second time
+
+If you use, `webview.loadData()` it doesn't work in the subsequent calls. Instead use `WebView.loadDataWithBaseURL()` like this:
+
+```java
+WebView.loadDataWithBaseURL(null, data.toString(), "text/html","UTF-8", null);
+```

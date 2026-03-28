@@ -1,0 +1,39 @@
+---
+title: "Create Stream from a Base64 String"
+description: "Create Stream from a Base64 String - Today I Learned"
+slug: "today-i-learned/csharp/create-stream-from-base64-string"
+contentType: "til"
+category: "csharp"
+tags:
+  - "csharp"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/csharp/cast-json-object-to-class"
+  - "today-i-learned/csharp/create-a-stream-from-string"
+  - "today-i-learned/csharp/encode-decode-base64-string"
+  - "today-i-learned/csharp/ldap-query-search-filter-syntax"
+  - "today-i-learned/csharp/wait-n-seconds-without-blocking-ui"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+---
+
+# Create Stream from a Base64 String
+
+Make sure your image data does not contain some header information at the beginning:
+```csharp
+imageCode = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAABkC...
+```
+This will cause an error. Just remove everything in front of and including the first comma, and you good to go.
+
+```csharp
+imageCode = "iVBORw0KGgoAAAANSUhEUgAAAMgAAABkC...
+```
+
+### Covert base64 image to a stream
+```csharp
+Stream memStream = new MemoryStream(Convert.FromBase64String(base64StringData));
+```

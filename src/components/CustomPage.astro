@@ -1,0 +1,15 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  template?: 'doc' | 'splash';
+}
+
+const { title, description, template = 'doc' } = Astro.props;
+---
+
+<StarlightPage frontmatter={{ title, description, template, editUrl: false }}>
+  <slot />
+</StarlightPage>

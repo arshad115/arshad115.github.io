@@ -1,0 +1,41 @@
+---
+const config = {
+  repo: import.meta.env.PUBLIC_GISCUS_REPO,
+  repoId: import.meta.env.PUBLIC_GISCUS_REPO_ID,
+  category: import.meta.env.PUBLIC_GISCUS_CATEGORY,
+  categoryId: import.meta.env.PUBLIC_GISCUS_CATEGORY_ID,
+  mapping: import.meta.env.PUBLIC_GISCUS_MAPPING ?? 'pathname',
+  strict: import.meta.env.PUBLIC_GISCUS_STRICT ?? '0',
+  reactionsEnabled: import.meta.env.PUBLIC_GISCUS_REACTIONS_ENABLED ?? '1',
+  emitMetadata: import.meta.env.PUBLIC_GISCUS_EMIT_METADATA ?? '0',
+  inputPosition: import.meta.env.PUBLIC_GISCUS_INPUT_POSITION ?? 'bottom',
+  theme: import.meta.env.PUBLIC_GISCUS_THEME ?? 'light',
+  lang: import.meta.env.PUBLIC_GISCUS_LANG ?? 'en',
+  loading: 'lazy',
+};
+
+const isConfigured = config.repo && config.repoId && config.category && config.categoryId;
+---
+
+{isConfigured && (
+  <section class="comments-shell">
+    <h2>Discussion</h2>
+    <script
+      is:inline
+      src="https://giscus.app/client.js"
+      data-repo={config.repo}
+      data-repo-id={config.repoId}
+      data-category={config.category}
+      data-category-id={config.categoryId}
+      data-mapping={config.mapping}
+      data-strict={config.strict}
+      data-reactions-enabled={config.reactionsEnabled}
+      data-emit-metadata={config.emitMetadata}
+      data-input-position={config.inputPosition}
+      data-theme={config.theme}
+      data-lang={config.lang}
+      crossorigin="anonymous"
+      async
+    ></script>
+  </section>
+)}

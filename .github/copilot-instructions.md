@@ -1,19 +1,22 @@
-# GitHub Copilot Instructions for Arshad's Jekyll Blog
+# GitHub Copilot Instructions for Arshad's Astro Blog
 
 ## Project Architecture
-This is a Jekyll-powered personal blog built on the **Minimal Mistakes theme** with two main content types:
-- **Blog posts** (`_posts/`) - Technical articles with date-based URLs
-- **Today I Learned (TIL)** - Micro-learning snippets in a separate repo structure (`today-i-learned/`)
+This is an Astro + Starlight personal site with generated content sourced from legacy content folders and the `today-i-learned` submodule. The main content types are:
+- **Blog posts** from `_posts/`
+- **Portfolio entries** from `_portfolio/`
+- **Today I Learned (TIL)** from `today-i-learned/`
 
 ## Critical File Structure
 ```
-├── _posts/                    # Main blog content (YYYY-MM-DD-title.md)
-├── _portfolio/                # Project showcases
-├── _pages/                    # Static pages (contact, about, etc.)
-├── _layouts/                  # Custom layouts (til.html for TIL integration)
-├── _data/navigation.yml       # Site navigation structure
-├── today-i-learned/          # Separate TIL content with auto-generation
-└── assets/images/posts/      # Post header images
+├── _posts/                    # Legacy blog content source
+├── _portfolio/                # Legacy portfolio source
+├── _pages/                    # Legacy static page source
+├── today-i-learned/           # TIL submodule source
+├── scripts/generate-content.mjs
+├── src/content.config.ts
+├── src/pages/                 # Astro routes
+├── src/components/            # Astro components
+└── public/assets/             # Static assets
 ```
 
 ## Content Creation Patterns
@@ -36,49 +39,46 @@ This is a Jekyll-powered personal blog built on the **Minimal Mistakes theme** w
 
 ### Today I Learned (TIL)
 - Lives in `today-i-learned/[category]/` folders
-- **No frontmatter** - plain markdown only
-- Auto-generated README via `update_readme.py` script
-- Integrated into main site via custom `til.html` layout
-
-## Jekyll Configuration Specifics
-- Uses **GitHub Pages** compatible plugins only (`jekyll-paginate`, `jekyll-sitemap`, `jekyll-gist`, `jekyll-feed`, `jekyll-include-cache`)
-- **Collections**: `portfolio` and `today-i-learned` with custom permalinks
-- **Theme skin**: `default` (configurable via `minimal_mistakes_skin`)
-- **Comments**: Disqus integration (`provider: "disqus"`, `shortname: "arshadmehmood"`)
+- Usually plain markdown without frontmatter
+- README is still maintained inside the submodule
+- Astro generates TIL pages from the underlying note files, not from the README page loop
 
 ## Development Workflow
 ```bash
-# Local development
-bundle exec jekyll serve
+# Sync generated docs content
+npm run sync:content
 
-# Build for production  
-bundle exec jekyll build
+# Local development
+npm run dev
+
+# Build for production
+npm run build
 
 # Update TIL README (auto-generates category stats)
 cd today-i-learned && python update_readme.py
 ```
 
 ## Custom Components
-- **TIL Integration**: `_layouts/til.html` renders the auto-generated TIL README
-- **Visibility Control**: Posts have `visible: true` flag (can be hidden without deletion)
-- **Series Navigation**: Manual linking for post series (see DevOps Journey pattern)
+- **TIL Integration**: Generated from the submodule into Starlight docs entries
+- **Graph**: Added through `src/components/StarlightFooter.astro`
+- **Comments**: Giscus component in `src/components/GiscusComments.astro`
 
 ## Asset Management
-- **Images**: Store in `/assets/images/posts/` with consistent naming
+- **Images**: Store in `/public/assets/images/posts/` with consistent naming
 - **Headers**: Both `image` and `teaser` should point to the same file
-- **JavaScript**: Build process via npm scripts (`npm run build:js`)
+- **Generator output**: `src/content/docs/generated/` and `src/generated/site-data.json`
 
 ## Integration Points
-- **GitHub Pages**: Direct deployment from `master` branch
-- **Disqus**: Comment system with site-specific shortname
-- **Google Analytics**: Configured in `_config.yml`
-- **Social Sharing**: Built-in Minimal Mistakes sharing buttons
+- **GitHub Pages**: Deploys from `master` via `.github/workflows/deploy-pages.yml`
+- **Giscus**: Configured through `PUBLIC_GISCUS_*` environment variables
+- **Google Analytics**: Added in `astro.config.mjs`
+- **Graph**: `starlight-site-graph` integration outputs `dist/sitegraph/sitemap.json`
 
 ## Common Gotchas
-- **TIL files**: Never add frontmatter - breaks the auto-generation system
-- **Jekyll serve**: Restart required for `_config.yml` changes
-- **Collections**: TIL content appears both as collection items and via README inclusion
-- **Breadcrumbs**: Enabled globally (`breadcrumbs: true`) but can be overridden per-page
+- **TIL files**: Plain markdown is still the safest input shape
+- **Legacy sources**: `_posts`, `_pages`, and `_portfolio` are source-of-truth inputs for the generator
+- **Submodule**: Run `git submodule update --init --recursive` before build if missing
+- **Generated content**: Re-run `npm run sync:content` after changing legacy source folders
 
 ## Content Guidelines
 - **Code blocks**: Use triple backticks with language specification

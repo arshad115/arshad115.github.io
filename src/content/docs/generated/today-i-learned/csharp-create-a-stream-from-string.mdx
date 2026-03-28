@@ -1,0 +1,41 @@
+---
+title: "Create a stream from string"
+description: "Create a stream from string - Today I Learned"
+slug: "today-i-learned/csharp/create-a-stream-from-string"
+contentType: "til"
+category: "csharp"
+tags:
+  - "csharp"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/csharp/cast-json-object-to-class"
+  - "today-i-learned/csharp/create-stream-from-base64-string"
+  - "today-i-learned/csharp/encode-decode-base64-string"
+  - "today-i-learned/csharp/ldap-query-search-filter-syntax"
+  - "today-i-learned/csharp/wait-n-seconds-without-blocking-ui"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+---
+
+### Create a stream from string
+
+Use this function:
+```csharp
+public static Stream GenerateStreamFromString(string s)
+{
+    var stream = new MemoryStream();
+    var writer = new StreamWriter(stream);
+    writer.Write(s);
+    writer.Flush();
+    stream.Position = 0;
+    return stream;
+}
+```
+
+Don't forget to close the stream after using it.
+
+Got it from [here](https://stackoverflow.com/questions/1879395/how-do-i-generate-a-stream-from-a-string)

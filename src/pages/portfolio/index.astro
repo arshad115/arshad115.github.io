@@ -1,0 +1,27 @@
+---
+import CustomPage from '../../components/CustomPage.astro';
+import siteData from '../../generated/site-data.json';
+---
+
+<CustomPage title="Portfolio" description="Selected projects, experiments, and products I have built.">
+  <section class="section-block">
+    <p class="lede">
+      A mix of Android apps, automation work, chatbots, and product experiments. Project detail pages now live beside
+      blog posts and TIL notes so they participate in the same site graph.
+    </p>
+    <div class="card-grid">
+      {siteData.portfolio.map((item) => (
+        <article class="content-card portfolio-card">
+          {item.image && <img src={item.image} alt={item.title} />}
+          <h2><a href={item.url}>{item.title}</a></h2>
+          {item.excerpt && <p>{item.excerpt}</p>}
+          {item.tags?.length > 0 && (
+            <p class="meta-row">
+              {item.tags.map((tag) => <span>{tag}</span>)}
+            </p>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
+</CustomPage>

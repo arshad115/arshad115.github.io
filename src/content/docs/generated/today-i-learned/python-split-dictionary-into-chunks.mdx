@@ -1,0 +1,42 @@
+---
+title: "Split dictionary into chunks"
+description: "Split dictionary into chunks - Today I Learned"
+slug: "today-i-learned/python/split-dictionary-into-chunks"
+contentType: "til"
+category: "python"
+tags:
+  - "python"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/python/check-if-list-contains-unique-elements"
+  - "today-i-learned/python/check-if-string-is-numeric"
+  - "today-i-learned/python/check-palindrome"
+  - "today-i-learned/python/combine-pandas-dataframes-on-a-index"
+  - "today-i-learned/python/convert-dictionary-keys-values-list"
+  - "today-i-learned/python/convert-list-to-dictionary-with-indexes"
+  - "today-i-learned/python/convert-list-to-string"
+  - "today-i-learned/python/delete-key-from-dictionary"
+---
+
+# Split dictionary into chunks
+
+Get smaller chunks of dictionary!
+
+```python
+def split_dict_equally(input_dict, chunks=2):
+    "Splits dict by keys. Returns a list of dictionaries."
+    # prep with empty dicts
+    return_list = [dict() for idx in xrange(chunks)]
+    idx = 0
+    for k,v in input_dict.iteritems():
+        return_list[idx][k] = v
+        if idx < chunks-1:  # indexes start at 0
+            idx += 1
+        else:
+            idx = 0
+    return return_list
+```
+[Source](https://gist.github.com/miloir/2196917)

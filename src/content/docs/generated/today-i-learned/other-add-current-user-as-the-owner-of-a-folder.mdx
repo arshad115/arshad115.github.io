@@ -1,0 +1,33 @@
+---
+title: "Add current user as the owner of a folder to give write permissions"
+description: "Add current user as the owner of a folder to give write permissions - Today I Learned"
+slug: "today-i-learned/other/add-current-user-as-the-owner-of-a-folder"
+contentType: "til"
+category: "other"
+tags:
+  - "other"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/other/add-new-file-type-to-context-menu-in-windows-10"
+  - "today-i-learned/other/configure-and-connect-mysql-workbench-with-ssh-connection"
+  - "today-i-learned/other/enable-curl-apache-easyphp"
+  - "today-i-learned/other/list-installed-packages-linux"
+  - "today-i-learned/other/take-permissions-of-a-folder-sudo"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+---
+
+### Add current user as the owner of a folder to give write permissions
+
+Run the following commands:
+
+```
+sudo chmod -R 757 /var/www
+sudo chown -R $USER:$USER /var/www
+```
+
+Replace with your own folder

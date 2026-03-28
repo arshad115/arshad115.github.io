@@ -1,0 +1,88 @@
+---
+import CustomPage from '../components/CustomPage.astro';
+import siteData from '../generated/site-data.json';
+
+const featuredPortfolio = siteData.portfolio.slice(0, 3);
+const tilCategories = siteData.tilCategories.slice(0, 6);
+---
+
+<CustomPage
+  title="Arshad Mehmood"
+  description="Software engineer writing about DevOps, Android, software engineering, and continuous learning."
+  template="splash"
+>
+  <section class="hero-panel">
+    <div>
+      <p class="eyebrow">Software Engineer in Mannheim</p>
+      <h1>Writing in public about systems, software, and the notes worth keeping.</h1>
+      <p class="lede">
+        This site now brings blog posts, portfolio work, and the <a href="/today-i-learned/">Today I Learned</a>
+        knowledge base into one Starlight-powered knowledge hub.
+      </p>
+      <div class="action-row">
+        <a class="action action-primary" href="/posts/">Read the blog</a>
+        <a class="action" href="/today-i-learned/">Browse TIL</a>
+        <a class="action" href="/portfolio/">See portfolio</a>
+      </div>
+    </div>
+    <div class="hero-aside">
+      <img src="/assets/images/bio-photo.jpg" alt="Arshad Mehmood portrait" />
+      <div class="stat-grid">
+        <div><strong>{siteData.posts.length}</strong><span>Posts</span></div>
+        <div><strong>{siteData.til.length}</strong><span>TIL entries</span></div>
+        <div><strong>{siteData.portfolio.length}</strong><span>Portfolio items</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <p class="eyebrow">Recent writing</p>
+      <h2>Latest posts</h2>
+    </div>
+    <div class="card-grid">
+      {siteData.recentPosts.map((post) => (
+        <article class="content-card">
+          <p class="meta-row">
+            <span>{post.category}</span>
+            <span>{post.pubDate}</span>
+            <span>{post.readingTime} min read</span>
+          </p>
+          <h3><a href={post.url}>{post.title}</a></h3>
+          {post.excerpt && <p>{post.excerpt}</p>}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <p class="eyebrow">Knowledge graph source</p>
+      <h2>Today I Learned categories</h2>
+    </div>
+    <div class="mini-grid">
+      {tilCategories.map((category) => (
+        <a class="mini-card" href="/today-i-learned/">
+          <strong>{category.name}</strong>
+          <span>{category.count} notes</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <p class="eyebrow">Selected work</p>
+      <h2>Portfolio</h2>
+    </div>
+    <div class="card-grid">
+      {featuredPortfolio.map((item) => (
+        <article class="content-card portfolio-card">
+          {item.image && <img src={item.image} alt={item.title} />}
+          <h3><a href={item.url}>{item.title}</a></h3>
+          {item.excerpt && <p>{item.excerpt}</p>}
+        </article>
+      ))}
+    </div>
+  </section>
+</CustomPage>

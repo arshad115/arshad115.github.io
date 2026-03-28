@@ -1,0 +1,37 @@
+---
+title: "Apply two or more pipes"
+description: "Apply two or more pipes - Today I Learned"
+slug: "today-i-learned/angular2/apply-more-than-one-pipe"
+contentType: "til"
+category: "angular2"
+tags:
+  - "angular2"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/angular2/add-dynamic-css-style-properties"
+  - "today-i-learned/angular2/add-seo-to-an-angular-app"
+  - "today-i-learned/angular2/add-window-resize-event-listener-comopnent"
+  - "today-i-learned/angular2/bind-local-method-to-dom-eventlistener"
+  - "today-i-learned/angular2/close-dialog-from-typescript"
+  - "today-i-learned/angular2/disable-dialog-close-on-click-outsite"
+  - "today-i-learned/angular2/get-query-parameters"
+  - "today-i-learned/angular2/hide-element-based-on-window-size"
+---
+
+# Apply two or more pipes
+
+To transforme the data, we can apply multiple pipes. It is called [chaining](https://angular.io/guide/pipes), the same as in method chaining. 
+
+{% raw %} 
+```ts
+The chained hero's birthday is
+{{ birthday | date | uppercase}}
+```
+{% endraw %}
+
+This example—which displays FRIDAY, APRIL 15, 1988—chains the same pipes as above, but passes in a parameter to date as well.
+
+[Full tutorial - Chaining pipes](https://www.packtpub.com/mapt/book/web_development/9781785880230/11/ch11lvl1sec67/chaining-pipes)

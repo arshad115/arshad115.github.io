@@ -1,0 +1,34 @@
+---
+title: "Show logs from TimingLogger"
+description: "Show logs from TimingLogger - Today I Learned"
+slug: "today-i-learned/android/show-logs-from-timinglogger"
+contentType: "til"
+category: "android"
+tags:
+  - "android"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+  - "today-i-learned/android/string-array-in-xml"
+  - "android/auto-update-android-sqlite-database-version"
+  - "development/my-first-open-source-android-library"
+  - "personal/the-most-fulfilling-$2-I-made-and-my-android-developer-journey"
+  - "security/estrongs-es-file-explorer-file-manager-is-always-tracking-you"
+---
+
+# Show logs from TimingLogger
+
+If you are using `TimingLogger` to log the times of code execution then they don't just show up in the logcat. You have to enable them like so:
+
+> Run this command in the console/terminal
+
+```java
+adb shell setprop log.tag.MyTag VERBOSE
+```
+
+*MyTag* is the first argument which you pass to create an instance of `TimingLogger`.

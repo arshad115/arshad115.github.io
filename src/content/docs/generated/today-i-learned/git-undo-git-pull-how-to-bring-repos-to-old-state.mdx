@@ -1,0 +1,40 @@
+---
+title: "Undo git pull"
+description: "Undo git pull - Today I Learned"
+slug: "today-i-learned/git/undo-git-pull-how-to-bring-repos-to-old-state"
+contentType: "til"
+category: "git"
+tags:
+  - "git"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/git/add-another-repository-as-submodule"
+  - "today-i-learned/git/clone-wtihout-folder"
+  - "today-i-learned/git/delete-local-branch"
+  - "today-i-learned/git/delete-remote-branch"
+  - "today-i-learned/git/fix-detached-head-submodule"
+  - "today-i-learned/git/fresh-start-main"
+  - "today-i-learned/git/ignore-local-commits-and-pull"
+  - "today-i-learned/git/move-commits-to-a-new-branch"
+---
+
+# Undo git pull
+
+### With Head
+```
+git reset --hard 'HEAD@{1}'
+```
+
+### With time
+```
+git reset --hard master@{"10 minutes ago"}
+```
+or
+```
+git reset --hard master@{8:30}
+```
+
+For more details, go here: [Stackoverflow](https://stackoverflow.com/questions/1223354/undo-git-pull-how-to-bring-repos-to-old-state)

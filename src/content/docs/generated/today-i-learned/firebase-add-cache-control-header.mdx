@@ -1,0 +1,54 @@
+---
+title: "Add Cache-Control headers"
+description: "Add Cache-Control headers - Today I Learned"
+slug: "today-i-learned/firebase/add-cache-control-header"
+contentType: "til"
+category: "firebase"
+tags:
+  - "firebase"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/firebase/get-firebase-app-name"
+  - "today-i-learned/firebase/where-to-find-firebase-cloud-messaging-server-api-key-in-firebase-console"
+  - "tutorial/build-and-deploy-gitlab-project-repository-to-firebase-hosting-with-continuous-integration"
+  - "tutorial/deploy-angular-app-to-firebase-hosting"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+  - "today-i-learned/android/show-logs-from-timinglogger"
+---
+
+# Add Cache-Control headers
+
+To add headers to your static resources in Firebase hosting, add the `headers` section within `hosting` in the `firebase.json` file:
+
+```json
+"hosting": {
+  // Add the "headers" section within "hosting".
+  "headers": [ {
+    "source" : "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+    "headers" : [ {
+      "key" : "Access-Control-Allow-Origin",
+      "value" : "*"
+    } ]
+  }, {
+    "source" : "**/*.@(jpg|jpeg|gif|png)",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=300000"
+    } ]
+  }, {
+    // Sets the cache header for 404 pages to cache for 5 minutes
+    "source" : "404.html",
+    "headers" : [ {
+      "key" : "Cache-Control",
+      "value" : "max-age=300"
+    } ]
+  } ]
+}
+```
+
+[More info](https://firebase.google.com/docs/hosting/url-redirects-rewrites)

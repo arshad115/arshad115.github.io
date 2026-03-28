@@ -1,0 +1,32 @@
+---
+title: "Combine or merge two pandas Dataframes using a index"
+description: "Combine or merge two pandas Dataframes using a index - Today I Learned"
+slug: "today-i-learned/python/combine-pandas-dataframes-on-a-index"
+contentType: "til"
+category: "python"
+tags:
+  - "python"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/python/check-if-list-contains-unique-elements"
+  - "today-i-learned/python/check-if-string-is-numeric"
+  - "today-i-learned/python/check-palindrome"
+  - "today-i-learned/python/convert-dictionary-keys-values-list"
+  - "today-i-learned/python/convert-list-to-dictionary-with-indexes"
+  - "today-i-learned/python/convert-list-to-string"
+  - "today-i-learned/python/delete-key-from-dictionary"
+  - "today-i-learned/python/dictionary-get-list-of-values"
+---
+
+# Combine or merge two pandas Dataframes using a index
+
+Reading a json file is very easy.
+
+```
+merged_df = df_1.merge(df_2,left_on='id', right_on='df1_id', how='outer')
+```
+
+More info [here](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.merge.html).

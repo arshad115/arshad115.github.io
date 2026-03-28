@@ -1,0 +1,41 @@
+---
+title: "Get query parameters"
+description: "Get query parameters - Today I Learned"
+slug: "today-i-learned/angular2/get-query-parameters"
+contentType: "til"
+category: "angular2"
+tags:
+  - "angular2"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/angular2/add-dynamic-css-style-properties"
+  - "today-i-learned/angular2/add-seo-to-an-angular-app"
+  - "today-i-learned/angular2/add-window-resize-event-listener-comopnent"
+  - "today-i-learned/angular2/apply-more-than-one-pipe"
+  - "today-i-learned/angular2/bind-local-method-to-dom-eventlistener"
+  - "today-i-learned/angular2/close-dialog-from-typescript"
+  - "today-i-learned/angular2/disable-dialog-close-on-click-outsite"
+  - "today-i-learned/angular2/hide-element-based-on-window-size"
+---
+
+# Get query parameters
+
+If you want to get the query parameters:
+
+```js
+import {ActivatedRoute} from '@angular/router';
+...
+
+constructor(private route:ActivatedRoute){}
+bankName:string;
+
+ngOnInit(){
+    // 'bank' is the name of the route parameter
+    this.bankName = this.route.snapshot.params['bank'];
+}
+```
+
+ Solution found here: https://stackoverflow.com/questions/40275862/how-to-get-parameter-on-angular2-route-in-angular-way

@@ -1,0 +1,31 @@
+---
+title: "Ignore a typerscript error"
+description: "Ignore a typerscript error - Today I Learned"
+slug: "today-i-learned/typescript/ignore-a-typescript-error"
+contentType: "til"
+category: "typescript"
+tags:
+  - "typescript"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "development/change-parent-component-values-in-angular-with-viewcontainerref"
+  - "development/obsidian-notes-linker-open-source"
+  - "development/using-rxjs-subject-for-cross-component-communication-in-angular"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+  - "today-i-learned/android/show-logs-from-timinglogger"
+  - "today-i-learned/android/string-array-in-xml"
+---
+
+# Ignore a typerscript error
+
+Sometimes you just want typescript to ignore your errors, because you are used to working with javascript! Not exactly true but may be you have a dynamically generated file or a script with runs remotely and the variables are not available locally. 
+Then just use this line to ignore the typerscript errors above your code:
+
+```
+// @ts-ignore
+```

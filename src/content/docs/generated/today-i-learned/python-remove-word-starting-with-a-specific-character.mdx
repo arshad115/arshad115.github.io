@@ -1,0 +1,31 @@
+---
+title: "Remove word starting with a specific character"
+description: "Remove word starting with a specific character - Today I Learned"
+slug: "today-i-learned/python/remove-word-starting-with-a-specific-character"
+contentType: "til"
+category: "python"
+tags:
+  - "python"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/python/check-if-list-contains-unique-elements"
+  - "today-i-learned/python/check-if-string-is-numeric"
+  - "today-i-learned/python/check-palindrome"
+  - "today-i-learned/python/combine-pandas-dataframes-on-a-index"
+  - "today-i-learned/python/convert-dictionary-keys-values-list"
+  - "today-i-learned/python/convert-list-to-dictionary-with-indexes"
+  - "today-i-learned/python/convert-list-to-string"
+  - "today-i-learned/python/delete-key-from-dictionary"
+---
+
+# Remove word starting with a specific character
+
+Take out the word if it starts with a certain letter. It can be done with regex or without. I prefer the regex one:
+
+```python
+import re
+clean = re.sub(r'(\s)?@\w+', r'\1', '@myStupidFriend please remove the mention')
+```

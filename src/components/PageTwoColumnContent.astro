@@ -1,0 +1,20 @@
+---
+import ThemeTwoColumnContent from '@pelagornis/page/overrides/TwoColumnContent.astro';
+import LocalPageGraph from './LocalPageGraph.astro';
+
+const entry = Astro.locals.starlightRoute?.entry;
+const contentType = entry?.data?.contentType;
+const showGraph = contentType === 'post' || contentType === 'portfolio' || contentType === 'til';
+---
+
+<ThemeTwoColumnContent>
+  <slot />
+  <div slot="right-sidebar">
+    {showGraph && (
+      <div class="page-right-graph">
+        <LocalPageGraph />
+      </div>
+    )}
+    <slot name="right-sidebar" />
+  </div>
+</ThemeTwoColumnContent>

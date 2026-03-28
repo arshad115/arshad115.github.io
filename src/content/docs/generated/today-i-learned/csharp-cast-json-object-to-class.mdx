@@ -1,0 +1,50 @@
+---
+title: "Cast or deserialize a Json object to a class in C#"
+description: "Cast or deserialize a Json object to a class in C# - Today I Learned"
+slug: "today-i-learned/csharp/cast-json-object-to-class"
+contentType: "til"
+category: "csharp"
+tags:
+  - "csharp"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/csharp/create-a-stream-from-string"
+  - "today-i-learned/csharp/create-stream-from-base64-string"
+  - "today-i-learned/csharp/encode-decode-base64-string"
+  - "today-i-learned/csharp/ldap-query-search-filter-syntax"
+  - "today-i-learned/csharp/wait-n-seconds-without-blocking-ui"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+---
+
+# Cast or deserialize a Json object to a class in C#
+
+Deserialize Javascript/Json objects using [JavaScriptSerializer](https://docs.microsoft.com/de-de/dotnet/api/system.web.script.serialization.javascriptserializer?view=netframework-4.7.2) in C#.
+
+```cs
+using System.Web.Script.Serialization;
+
+    ////////////////////////////////////////////////
+    public class MyClass
+    {
+        public string name { get; set; }
+    }
+    ////////////////////////////////////////////////
+    
+    var data = "{ \"name\":\"Test\" }"; // your json string
+    
+    JavaScriptSerializer json_serializer = new JavaScriptSerializer();
+    try
+    {
+        MyClass myClassObject = json_serializer.Deserialize<MyClass>(data);
+    }
+    catch (Exception e)
+    {
+        throw;
+    }
+
+```

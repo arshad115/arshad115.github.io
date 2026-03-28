@@ -1,0 +1,33 @@
+---
+title: "Search for a table name in a database"
+description: "Search for a table name in a database - Today I Learned"
+slug: "today-i-learned/sql/search-for-table-name-in-a-database"
+contentType: "til"
+category: "sql"
+tags:
+  - "sql"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "today-i-learned/sql/find-all-tables-with-a-specific-column-name"
+  - "today-i-learned/sql/return-results-in-json"
+  - "today-i-learned/sql/select-all-columns-from-joined-table-and-some-from-other-table"
+  - "today-i-learned/sql/view-table-schema-using-sql"
+  - "today-i-learned/android/circular-imageview-with-picasso"
+  - "today-i-learned/android/create-region-android-studio"
+  - "today-i-learned/android/load-data-in-webview-second-time"
+  - "today-i-learned/android/show-logs-from-timinglogger"
+---
+
+# Search for a table name in a database
+
+   ## Search for a table
+    
+   Use this query to search for a table:
+    
+   ```sql
+       SELECT * FROM INFORMATION_SCHEMA.TABLES 
+       WHERE TABLE_NAME LIKE '%%'
+   ```

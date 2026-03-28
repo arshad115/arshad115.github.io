@@ -1,0 +1,55 @@
+---
+title: "Hide an element based on window size"
+description: "Hide an element based on window size - Today I Learned"
+slug: "today-i-learned/angular2/hide-element-based-on-window-size"
+contentType: "til"
+category: "angular2"
+tags:
+  - "angular2"
+sidebar:
+  hidden: true
+graph:
+  visible: true
+links:
+  - "add-window-resize-event-listener-comopnent"
+  - "today-i-learned/angular2/add-dynamic-css-style-properties"
+  - "today-i-learned/angular2/add-seo-to-an-angular-app"
+  - "today-i-learned/angular2/add-window-resize-event-listener-comopnent"
+  - "today-i-learned/angular2/apply-more-than-one-pipe"
+  - "today-i-learned/angular2/bind-local-method-to-dom-eventlistener"
+  - "today-i-learned/angular2/close-dialog-from-typescript"
+  - "today-i-learned/angular2/disable-dialog-close-on-click-outsite"
+  - "today-i-learned/angular2/get-query-parameters"
+---
+
+# Hide an element based on window size
+
+In the [previous til](add-window-resize-event-listener-comopnent.md), I posted the code for window resize event listener, now we will use it to show/hide elements.
+
+### Typescript
+```ts
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
+})
+public windowWidth: any;
+export class AppComponent{
+   constructor() {
+    this.windowWidth = document.body.clientWidth;
+   }
+   onResize(event){
+     this.windowWidth = event.target.innerWidth;
+   }
+}
+```
+
+### Template
+> Only show if window width is greater than 720 pixels.
+```html
+<div *ngIf="windowWidth > 720"></div>
+
+```

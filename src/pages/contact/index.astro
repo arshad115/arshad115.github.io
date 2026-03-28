@@ -1,0 +1,62 @@
+---
+import CustomPage from '../../components/CustomPage.astro';
+---
+
+<CustomPage
+  title="Contact"
+  description="Preferred methods of sending your questions, inquiries, messages, and love letters to me."
+>
+  <section class="section-block">
+    <p>
+      Have questions about me, this website, writing code, or building mobile apps? Short and succinct messages via
+      <a href="https://twitter.com/arshad115">Twitter</a> or
+      <a href="https://www.linkedin.com/in/arshadmehmood115/">LinkedIn</a> are usually the fastest route.
+    </p>
+    <p>For anything else, use the contact form below.</p>
+
+    <form
+      class="contact-form"
+      id="form1"
+      name="form1"
+      accept-charset="UTF-8"
+      autocomplete="off"
+      enctype="multipart/form-data"
+      method="post"
+      novalidate
+      action="https://arshadmehmood.wufoo.com/forms/z1hz7vco0ex212o/#public"
+    >
+      <label>
+        Name
+        <input id="Field9" name="Field9" type="text" spellcheck="false" maxlength="255" required placeholder="Your name" />
+      </label>
+      <label>
+        Email address
+        <input
+          id="Field10"
+          name="Field10"
+          type="email"
+          spellcheck="false"
+          maxlength="255"
+          required
+          placeholder="email@address.com"
+        />
+      </label>
+      <label>
+        Website
+        <input id="Field12" name="Field12" type="url" spellcheck="false" maxlength="255" />
+      </label>
+      <label>
+        Message
+        <textarea id="Field13" name="Field13" spellcheck="true" rows="10" required></textarea>
+      </label>
+      <button class="action action-primary" id="saveForm" name="saveForm" type="submit">Send message</button>
+      <div class="hidden-field">
+        <label for="comment">
+          Do not fill this out
+          <textarea name="comment" id="comment" rows="1" cols="1"></textarea>
+          <input type="hidden" id="idstamp" name="idstamp" value="6CVd19E85y35pIbKDiRJVe24x4Rv6kjzw3Zyhk6w7jQ=" />
+        </label>
+      </div>
+    </form>
+  </section>
+</CustomPage>

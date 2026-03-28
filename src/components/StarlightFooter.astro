@@ -1,0 +1,14 @@
+---
+import DefaultFooter from '@astrojs/starlight/components/Footer.astro';
+import GiscusComments from './GiscusComments.astro';
+
+const entry = Astro.locals.starlightRoute.entry;
+const contentType = entry.data?.contentType;
+const showEnhancements = contentType === 'post' || contentType === 'portfolio' || contentType === 'til';
+---
+
+<DefaultFooter />
+
+{showEnhancements && (
+  <GiscusComments />
+)}
