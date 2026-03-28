@@ -4,6 +4,8 @@ node_modules/
 # Astro build artifacts
 .astro/
 dist/
+src/content/docs/generated/
+src/generated/site-data.json
 
 # Logs
 npm-debug.log*

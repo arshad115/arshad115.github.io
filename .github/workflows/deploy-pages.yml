@@ -39,9 +39,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Generate content
-        run: node scripts/generate-content.mjs
-
       - name: Build Astro site
         run: npm run build
 

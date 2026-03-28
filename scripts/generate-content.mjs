@@ -112,6 +112,8 @@ function toFrontmatter(data) {
 
 function normalizeBody(body) {
   return body
+    .replace(/\{%\s*raw\s*%\}\s*/g, '')
+    .replace(/\s*\{%\s*endraw\s*%\}/g, '')
     .replace(/\{\{\s*"([^"]+)"\s*\|\s*absolute_url\s*\}\}/g, '$1')
     .replace(/\{\{\s*"([^"]+)"\s*\|\s*relative_url\s*\}\}/g, '$1')
     .replace(/\{\{\s*'([^']+)'\s*\|\s*relative_url\s*\}\}/g, '$1')
