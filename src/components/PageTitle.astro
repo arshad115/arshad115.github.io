@@ -1,0 +1,51 @@
+---
+import siteData from '../generated/site-data.json';
+import PostMetaRow from './PostMetaRow.astro';
+
+const { entry, id } = Astro.locals.starlightRoute;
+const { title, description, pubDate, updatedDate } = entry.data;
+
+const postMeta = siteData.posts.find((post) => post.slug === id);
+---
+
+<div class="article-header">
+  <h1 id="_top">{title}</h1>
+  {
+    postMeta && (
+      <PostMetaRow
+        className="article-meta-row"
+        pubDate={pubDate}
+        updatedDate={updatedDate}
+        readingTime={postMeta.readingTime}
+        category={postMeta.category}
+        categorySlug={postMeta.categorySlug}
+      />
+    )
+  }
+</div>
+
+<style>
+  @layer starlight.core {
+    .article-header h1 {
+      margin-top: 1rem;
+      margin-bottom: 0;
+      font-size: var(--sl-text-h1);
+      line-height: var(--sl-line-height-headings);
+      font-weight: 600;
+      color: var(--sl-color-white);
+    }
+
+    .article-meta-row {
+      margin-top: 0.9rem;
+      margin-bottom: 0;
+    }
+
+    .article-excerpt {
+      margin: 0.9rem 0 0;
+      max-width: 65ch;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--page-text-muted);
+    }
+  }
+</style>

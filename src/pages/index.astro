@@ -1,5 +1,6 @@
 ---
 import CustomPage from '../components/CustomPage.astro';
+import PostMetaRow from '../components/PostMetaRow.astro';
 import siteData from '../generated/site-data.json';
 
 const featuredPortfolio = siteData.portfolio.slice(0, 3);
@@ -40,15 +41,16 @@ const tilCategories = siteData.tilCategories.slice(0, 6);
       <p class="eyebrow">Recent writing</p>
       <h2>Latest posts</h2>
     </div>
-    <div class="card-grid">
+      <div class="card-grid">
       {siteData.recentPosts.map((post) => (
         <article class="content-card">
-          <p class="meta-row">
-            <span>{post.pubDate}</span>
-            <span>{post.readingTime} min read</span>
-            <a class="meta-badge" href={`/categories/#${post.categorySlug}`}>{post.category}</a>
-          </p>
           <h3><a href={post.url}>{post.title}</a></h3>
+          <PostMetaRow
+            pubDate={post.pubDate}
+            readingTime={post.readingTime}
+            category={post.category}
+            categorySlug={post.categorySlug}
+          />
           {post.excerpt && <p>{post.excerpt}</p>}
         </article>
       ))}

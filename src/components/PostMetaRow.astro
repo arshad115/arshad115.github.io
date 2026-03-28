@@ -1,0 +1,49 @@
+---
+interface Props {
+  pubDate?: string | Date;
+  updatedDate?: string | Date;
+  readingTime?: number;
+  category?: string;
+  categorySlug?: string;
+  className?: string;
+}
+
+const {
+  pubDate,
+  updatedDate,
+  readingTime,
+  category,
+  categorySlug,
+  className = '',
+} = Astro.props;
+
+const locale = Astro.currentLocale ?? 'en';
+
+function formatDate(value?: string | Date) {
+  if (!value) return null;
+
+  return new Date(value).toLocaleDateString(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+}
+
+const publishedLabel = formatDate(pubDate);
+const updatedLabel =
+  updatedDate && String(updatedDate) !== String(pubDate) ? formatDate(updatedDate) : null;
+---
+
+<p class:list={['meta-row', className]}>
+  {publishedLabel && <span>{publishedLabel}</span>}
+  {updatedLabel && <span>Updated {updatedLabel}</span>}
+  {readingTime && <span>{readingTime} min read</span>}
+  {
+    category && categorySlug && (
+      <a class="meta-badge" href={`/categories/#${categorySlug}`}>
+        {category}
+      </a>
+    )
+  }
+</p>

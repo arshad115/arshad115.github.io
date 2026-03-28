@@ -226,10 +226,10 @@ h3,
   display: inline-flex;
   align-items: center;
   padding: 0.12rem 0.5rem;
-  border: 1px solid color-mix(in srgb, var(--page-accent) 20%, var(--page-border));
+  border: 1px solid color-mix(in srgb, var(--page-text-muted) 18%, var(--page-border));
   border-radius: 999px;
-  background: color-mix(in srgb, var(--page-accent) 7%, var(--page-bg-elevated));
-  color: color-mix(in srgb, var(--page-accent) 78%, var(--page-text-muted));
+  background: color-mix(in srgb, var(--page-text-muted) 6%, var(--page-bg-elevated));
+  color: color-mix(in srgb, var(--page-text-muted) 92%, var(--page-text));
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.06em;
@@ -239,9 +239,35 @@ h3,
 
 .meta-badge:hover,
 .meta-badge:focus-visible {
-  border-color: color-mix(in srgb, var(--page-accent) 30%, var(--page-border));
-  background: color-mix(in srgb, var(--page-accent) 10%, var(--page-bg-elevated));
-  color: color-mix(in srgb, var(--page-accent-hover) 75%, var(--page-text-muted));
+  border-color: color-mix(in srgb, var(--page-text-muted) 26%, var(--page-border));
+  background: color-mix(in srgb, var(--page-text-muted) 10%, var(--page-bg-elevated));
+  color: color-mix(in srgb, var(--page-text-muted) 96%, var(--page-text));
+}
+
+.content-card .meta-row,
+.stack-item .meta-row {
+  color: var(--page-text-muted);
+}
+
+.content-card .meta-row span,
+.stack-item .meta-row span {
+  color: var(--page-text-muted);
+}
+
+.content-card .meta-row .meta-badge,
+.stack-item .meta-row .meta-badge {
+  color: color-mix(in srgb, var(--page-text-muted) 92%, var(--page-text));
+  border-color: color-mix(in srgb, var(--page-text-muted) 18%, var(--page-border));
+  background: color-mix(in srgb, var(--page-text-muted) 6%, var(--page-bg-elevated));
+}
+
+.content-card .meta-row .meta-badge:hover,
+.content-card .meta-row .meta-badge:focus-visible,
+.stack-item .meta-row .meta-badge:hover,
+.stack-item .meta-row .meta-badge:focus-visible {
+  color: color-mix(in srgb, var(--page-text-muted) 96%, var(--page-text));
+  border-color: color-mix(in srgb, var(--page-text-muted) 26%, var(--page-border));
+  background: color-mix(in srgb, var(--page-text-muted) 10%, var(--page-bg-elevated));
 }
 
 .taxonomy-card {
@@ -295,6 +321,20 @@ h3,
   width: 100%;
   border-radius: 0;
   border: 0;
+}
+
+.right-sidebar-panel .sl-container,
+.page-toc-sticky,
+.page-toc-sticky :where(.sl-toc),
+.page-toc-sticky :where(.sl-toc > summary) {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+
+.page-toc-sticky {
+  padding: 0 !important;
 }
 
 .contact-form {

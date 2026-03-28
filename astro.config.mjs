@@ -77,6 +77,7 @@ export default defineConfig({
       disable404Route: true,
       components: {
         Footer: './src/components/StarlightFooter.astro',
+        PageTitle: './src/components/PageTitle.astro',
         PageSidebar: './src/components/PageSidebar.astro',
       },
       editLink: {
