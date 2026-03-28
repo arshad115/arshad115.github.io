@@ -20,16 +20,16 @@ I will show you a method to download/save [WhatsApp](https://www.whatsapp.com/) 
 
 1. Go to [https://web.whatsapp.com/](https://web.whatsapp.com/) on your computer and connect your phone on which [WhatsApp](https://www.whatsapp.com/) is installed.
 
-   ![WhatsApp web](\assets\images\posts\whatsappweb.PNG)
+   ![WhatsApp web](/assets/images/posts/whatsappweb.PNG)
 
 2. After connecting, click the status icon and go to status which you want to save. 
 
-   ![WhatsApp web](\assets\images\posts\wa1.PNG)
+   ![WhatsApp web](/assets/images/posts/wa1.PNG)
 
 3. While the status is playing in the browser, right click on the image/video and click **Save image as...** or **Save video as...** and save it to your desired location. I tried it in [Chrome](https://www.google.com/chrome/), but it should also work in other browsers.
 
-   ![WhatsApp web](\assets\images\posts\wa2.PNG)
+   ![WhatsApp web](/assets/images/posts/wa2.PNG)
 
-   ![WhatsApp web](\assets\images\posts\wa3.PNG)
+   ![WhatsApp web](/assets/images/posts/wa3.PNG)
 
    Afterwards you can move the file to your phone by transferring it or sending it to yourself.
