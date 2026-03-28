@@ -37,9 +37,9 @@ After turning on the **Arduino**, find out the **COM** port from the device mana
 
 Enter the following settings in [**PuTTY**](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html):
 
-![ ]({{ "/assets/images/posts/putty_com1.PNG" | absolute_url }})
+![ ]({{ "/assets/images/posts/putty_com1.png" | absolute_url }})
 
-![ ]({{ "/assets/images/posts/putty_com2.PNG" | absolute_url }})
+![ ]({{ "/assets/images/posts/putty_com2.png" | absolute_url }})
 
 In my case the port was *COM3*. Click on open and you should be good to go!
 

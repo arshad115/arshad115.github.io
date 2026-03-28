@@ -7,7 +7,7 @@ tags:
   - server
   - attack
 header:
-  image: /assets/images/posts/site-down.PNG
+  image: /assets/images/posts/site-down.png
   teaser: "https://asdqwe.net/wp-content/uploads/2016/04/504.jpg"
 comments: true
 toc: false
@@ -17,7 +17,7 @@ Since the last month I am developing a Node.js application with Vue.js and recen
 
 I am running [NGINX] (https://www.nginx.com/) web server and decided to look at the access and error logs. I saw some strange requests which look like hacking attempts by a bot. There are a lot of http requests and most of them are served with a 404 error. A preview of the requests is here:
 
-![Strange requests]({{ "/assets/images/posts/access-logs.PNG" | absolute_url }})
+![Strange requests]({{ "/assets/images/posts/access-logs.png" | absolute_url }})
 
 It looks like the bot is trying to access the server files using http. I still don't know what exactly happened, but, these request broke my server and perhaps installed a worm or a malware on the system too.  For now, I have redeployed my application and blocked all http requests, as the requests are mostly http based. SSL is already configured on my server. 
 

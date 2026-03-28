@@ -33,7 +33,7 @@ links:
 
 I am an Android developer and while developing one of my apps, I noticed that Android device got slow recently and I was getting lots of error messages on the logcat console in Android studio. At first, I thought the errors are from my app, but later I found out that they are from Es File Explorer, I decided to investigate further. I saw that Es File Explorer is constantly tracking and sending data to their servers in the background.
 
-![Tracking](/assets/images/posts/tracking_es_manager.PNG)
+![Tracking](/assets/images/posts/tracking_es_manager.png)
 
 Here is one the decoded request:
 
@@ -45,7 +45,7 @@ Apparently, `LORIC6gwj4Ixo9Ce2Orl6g` is my unique id for background tracking. Th
 
 Along with that, I saw that it is also requesting, connection info and location data. 
 
-![Tracking](/assets/images/posts/Estrong_File_manager.PNG)
+![Tracking](/assets/images/posts/Estrong_File_manager.png)
 
 Not only that, the adwares in Es File Explorer are also running in the background and tracking you, the ones which I saw in logcat are `DuSwipe` and `Appsflyer`. They would be generating lots of data by tracking their 300 Million users. I am not a security expert but, I found out that they are monitoring me in the background, without telling me, I have uninstalled their app. 
 

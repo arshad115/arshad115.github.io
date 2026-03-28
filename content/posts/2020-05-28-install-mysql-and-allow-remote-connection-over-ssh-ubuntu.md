@@ -96,7 +96,7 @@ Under the Parameters Tab, enter the following information:
 
 **SSH Hostname:** 123.456.789.123:22
 
-**SSH Username:** {your SSH username}
+**SSH Username:** `your SSH username`
 
 **SSH Password:** leave blank/click “Clear” to be safe
 
@@ -110,6 +110,6 @@ Under the Parameters Tab, enter the following information:
 
 **Password:** your database password
 
-![ ]({{ "/assets/images/posts/mysqlwork.PNG" | absolute_url }})
+![ ]({{ "/assets/images/posts/mysqlwork.png" | absolute_url }})
 
 Click Test Connection and everything should work fine.

@@ -21,10 +21,10 @@ For the sake of simplicity, we will use a simple application made with PHP, whic
 
 1. Login to your heroku [account](https://id.heroku.com/login). 
 2. [Create a new app](https://dashboard.heroku.com/new-app).
-![Buildpack]({{ "/assets/images/posts/buildpack.PNG" | absolute_url }})
+![Buildpack]({{ "/assets/images/posts/buildpack.png" | absolute_url }})
 3. Go to app settings and install `heroku/php` buildpack.
 4. Go to your [account settings](https://dashboard.heroku.com/account).
-![API Key]({{ "/assets/images/posts/api_key.PNG" | absolute_url }})
+![API Key]({{ "/assets/images/posts/api_key.png" | absolute_url }})
 5. Copy the API Key.
 
 ### Gitlab
@@ -33,7 +33,7 @@ Our Gitlab repository will host the code of our application and also the `.gitla
 1. [Create a new git repository/project on Gitlab](https://gitlab.com/projects/new).
 2. Go to setting of the project and then to [CI/CD](https://gitlab.com/arshad115/RecipeApis/settings/ci_cd).
 3. There you will see a section named Variables. Click on Expand.
-![Variables]({{ "/assets/images/posts/variables.PNG" | absolute_url }})
+![Variables]({{ "/assets/images/posts/variables.png" | absolute_url }})
 4. Enter your API key from the heroku account. Name the key as `HEROKU_API_KEY` and paste the value. 
 6. Set as protected. 
 
@@ -75,7 +75,7 @@ heroku:
 In this file we create a new job to push our code to heroku using the API key and we only push the master branch, you can change to any other branch. 
 
 This is it! 
-![Pipiline]({{ "/assets/images/posts/pipeline.PNG" | absolute_url }})
+![Pipiline]({{ "/assets/images/posts/pipeline.png" | absolute_url }})
 
 Place all the files in a folder, commit and push your code to Gitlab. Once you commit, you can view it in Pipelines section in your project. If you have done everything properly, then the build will be passed and you will be able to see your application running on Heroku.  Goodluck :)
 

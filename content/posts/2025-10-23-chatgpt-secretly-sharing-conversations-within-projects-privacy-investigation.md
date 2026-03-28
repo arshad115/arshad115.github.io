@@ -38,7 +38,7 @@ This investigation reveals a significant privacy implication that OpenAI doesn't
 Before conducting my test, I verified that my ChatGPT memory settings were completely disabled. This is crucial because it eliminates the obvious explanation for any information retention.
 
 {:.text-center}
-![ChatGPT Memory Settings Disabled](/assets/images/posts/Chatgpt_memory_off.PNG){: .align-center style="max-width: 70%; height: auto;"}
+![ChatGPT Memory Settings Disabled](/assets/images/posts/Chatgpt_memory_off.png){: .align-center style="max-width: 70%; height: auto;"}
 *Memory settings clearly set to "Off"*
 
 ### The Experiment: Testing Information Persistence
@@ -48,7 +48,7 @@ Before conducting my test, I verified that my ChatGPT memory settings were compl
 I started by creating a new chat within a project and asking ChatGPT if it knew my belly size. As expected, it had no prior knowledge of this information.
 
 {:.text-center}
-![Fresh Chat - No Prior Knowledge](/assets/images/posts/Chatgpt_fresh.PNG){: .align-center style="max-width: 70%; height: auto;"}
+![Fresh Chat - No Prior Knowledge](/assets/images/posts/Chatgpt_fresh.png){: .align-center style="max-width: 70%; height: auto;"}
 *ChatGPT correctly states it has no knowledge of personal information*
 
 #### Step 2: Sharing Personal Information in a New Chat
@@ -56,7 +56,7 @@ I started by creating a new chat within a project and asking ChatGPT if it knew 
 I then created a completely separate chat within the same project and shared personal information about my belly size. This was done to test if this information would somehow persist across different conversations.
 
 {:.text-center}
-![Sharing Personal Information](/assets/images/posts/Chatgpt_sharing.PNG){: .align-center style="max-width: 70%; height: auto;"}
+![Sharing Personal Information](/assets/images/posts/Chatgpt_sharing.png){: .align-center style="max-width: 70%; height: auto;"}
 *Sharing personal information in a separate chat within the same project*
 
 #### Step 3: The Shocking Discovery
@@ -64,7 +64,7 @@ I then created a completely separate chat within the same project and shared per
 When I returned to the first chat and asked the same question again, ChatGPT suddenly "remembered" the information I had shared in the completely separate conversation!
 
 {:.text-center}
-![ChatGPT Remembers Across Chats](/assets/images/posts/Chatgpt_again.PNG){: .align-center style="max-width: 70%; height: auto;"}
+![ChatGPT Remembers Across Chats](/assets/images/posts/Chatgpt_again.png){: .align-center style="max-width: 70%; height: auto;"}
 *ChatGPT now has knowledge it shouldn't possess based on disabled memory settings*
 
 ## Confirming the Scope
@@ -74,7 +74,7 @@ When I returned to the first chat and asked the same question again, ChatGPT sud
 To understand the scope of this behavior, I verified that only two chats existed in my test project, confirming that the information sharing was contained within the project boundary.
 
 {:.text-center}
-![Only Two Chats in Project](/assets/images/posts/Chatgpt_chats.PNG){: .align-center style="max-width: 70%; height: auto;"}
+![Only Two Chats in Project](/assets/images/posts/Chatgpt_chats.png){: .align-center style="max-width: 70%; height: auto;"}
 *Confirmation that only two chats existed in the test project*
 
 ### Testing Outside Projects
@@ -82,7 +82,7 @@ To understand the scope of this behavior, I verified that only two chats existed
 I conducted the same test in the main ChatGPT interface (outside of any project) and confirmed that this memory-sharing behavior does **not** occur in regular chats.
 
 {:.text-center}
-![No Memory Sharing in Main Chats](/assets/images/posts/Chatgpt_main.PNG){: .align-center style="max-width: 70%; height: auto;"}
+![No Memory Sharing in Main Chats](/assets/images/posts/Chatgpt_main.png){: .align-center style="max-width: 70%; height: auto;"}
 *Regular chats outside projects don't exhibit this behavior*
 
 ## The Contradiction: What ChatGPT Claims vs. Reality
@@ -92,7 +92,7 @@ I conducted the same test in the main ChatGPT interface (outside of any project)
 When directly asked about this behavior, ChatGPT denies saving or sharing information between chats within projects:
 
 {:.text-center}
-![ChatGPT's Denial](/assets/images/posts/Chatgpt_saves_memory.PNG){: .align-center style="max-width: 70%; height: auto;"}
+![ChatGPT's Denial](/assets/images/posts/Chatgpt_saves_memory.png){: .align-center style="max-width: 70%; height: auto;"}
 *ChatGPT claims it doesn't save or share information between chats*
 
 This creates a concerning contradiction between what ChatGPT claims about its behavior and what actually happens in practice.
