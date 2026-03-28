@@ -44,9 +44,9 @@ const tilCategories = siteData.tilCategories.slice(0, 6);
       {siteData.recentPosts.map((post) => (
         <article class="content-card">
           <p class="meta-row">
-            <span>{post.category}</span>
             <span>{post.pubDate}</span>
             <span>{post.readingTime} min read</span>
+            <a class="meta-badge" href={`/categories/#${post.categorySlug}`}>{post.category}</a>
           </p>
           <h3><a href={post.url}>{post.title}</a></h3>
           {post.excerpt && <p>{post.excerpt}</p>}

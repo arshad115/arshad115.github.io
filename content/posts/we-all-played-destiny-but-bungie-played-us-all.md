@@ -1,5 +1,6 @@
 ---
 title: "We All Played Destiny, but Bungie Played Us All"
+pubDate: 2026-03-27
 category: Personal
 tags:
   - Destiny 2
@@ -15,7 +16,6 @@ header:
 toc: true
 toc_sticky: true
 comments: true
-date: 2026-03-27
 last_modified_at: 2026-03-27
 author_profile: true
 read_time: true

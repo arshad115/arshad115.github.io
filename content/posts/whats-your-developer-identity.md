@@ -1,5 +1,6 @@
 ---
 title: "What's your developer identity?"
+pubDate: 2018-07-11
 category: Personal
 tags:
   - developer

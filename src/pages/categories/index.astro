@@ -4,21 +4,19 @@ import siteData from '../../generated/site-data.json';
 ---
 
 <CustomPage title="Posts by Category" description="Browse posts grouped by category.">
-  <section class="section-block">
-    <div class="taxonomy-grid">
-      {siteData.categories.map((category) => (
-        <article class="taxonomy-card">
-          <div class="taxonomy-header">
-            <h2>{category.name}</h2>
-            <span>{category.count}</span>
-          </div>
-          <ul>
-            {category.items.slice(0, 8).map((item) => (
-              <li><a href={item.url}>{item.title}</a></li>
-            ))}
-          </ul>
-        </article>
-      ))}
-    </div>
-  </section>
+  <div class="taxonomy-grid">
+    {siteData.categories.map((category) => (
+      <article class="taxonomy-card" id={category.slug}>
+        <div class="taxonomy-header">
+          <h2>{category.name}</h2>
+          <span>{category.count}</span>
+        </div>
+        <ul>
+          {category.items.slice(0, 8).map((item) => (
+            <li><a href={item.url}>{item.title}</a></li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
 </CustomPage>

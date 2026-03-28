@@ -4,21 +4,19 @@ import siteData from '../../generated/site-data.json';
 ---
 
 <CustomPage title="Posts by Tag" description="Explore blog posts, TIL notes, and portfolio entries by tag.">
-  <section class="section-block">
-    <div class="taxonomy-grid">
-      {siteData.tags.map((tag) => (
-        <article class="taxonomy-card">
-          <div class="taxonomy-header">
-            <h2>{tag.name}</h2>
-            <span>{tag.count}</span>
-          </div>
-          <ul>
-            {tag.items.slice(0, 8).map((item) => (
-              <li><a href={item.url}>{item.title}</a></li>
-            ))}
-          </ul>
-        </article>
-      ))}
-    </div>
-  </section>
+  <div class="taxonomy-grid">
+    {siteData.tags.map((tag) => (
+      <article class="taxonomy-card">
+        <div class="taxonomy-header">
+          <h2>{tag.name}</h2>
+          <span>{tag.count}</span>
+        </div>
+        <ul>
+          {tag.items.slice(0, 8).map((item) => (
+            <li><a href={item.url}>{item.title}</a></li>
+          ))}
+        </ul>
+      </article>
+    ))}
+  </div>
 </CustomPage>

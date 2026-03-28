@@ -1,5 +1,6 @@
 ---
 title: "Deploy Angular app to Firebase hosting"
+pubDate: 2018-08-20
 category: Tutorial
 tags:
   - angular

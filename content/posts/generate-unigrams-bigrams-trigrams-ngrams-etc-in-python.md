@@ -1,5 +1,6 @@
 ---
 title: "Generate Unigrams, Bigrams, Trigrams, n-grams etc in Python"
+pubDate: 2019-03-15
 category: Tutorial
 tags:
   - python
@@ -12,7 +13,9 @@ header:
   teaser: /assets/images/nltk_teaser.png
 comments: true
 excerpt: "Learn how to generate n-grams (unigrams, bigrams, trigrams) in Python using NLTK and custom functions. Complete guide for text processing and NLP tasks."
----To generate unigrams, bigrams, trigrams or n-grams, you can use python's [**Natural Language Toolkit (NLTK)**](https://github.com/nltk/nltk), which makes it so easy.
+---
+
+To generate unigrams, bigrams, trigrams or n-grams, you can use python's [**Natural Language Toolkit (NLTK)**](https://github.com/nltk/nltk), which makes it so easy.
 
 ### First steps
 

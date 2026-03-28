@@ -9,7 +9,9 @@ const config = {
   reactionsEnabled: import.meta.env.PUBLIC_GISCUS_REACTIONS_ENABLED ?? '1',
   emitMetadata: import.meta.env.PUBLIC_GISCUS_EMIT_METADATA ?? '0',
   inputPosition: import.meta.env.PUBLIC_GISCUS_INPUT_POSITION ?? 'bottom',
-  theme: import.meta.env.PUBLIC_GISCUS_THEME ?? 'light',
+  theme: import.meta.env.PUBLIC_GISCUS_THEME ?? 'preferred_color_scheme',
+  lightTheme: import.meta.env.PUBLIC_GISCUS_LIGHT_THEME ?? 'light',
+  darkTheme: import.meta.env.PUBLIC_GISCUS_DARK_THEME ?? 'dark',
   lang: import.meta.env.PUBLIC_GISCUS_LANG ?? 'en',
   loading: 'lazy',
 };
@@ -37,5 +39,51 @@ const isConfigured = config.repo && config.repoId && config.category && config.c
       crossorigin="anonymous"
       async
     ></script>
+    <script
+      is:inline
+      define:vars={{
+        giscusTheme: config.theme,
+        giscusLightTheme: config.lightTheme,
+        giscusDarkTheme: config.darkTheme,
+      }}
+    >
+      (() => {
+        const getSiteTheme = () => {
+          const theme = document.documentElement.getAttribute('data-theme') || document.body?.getAttribute('data-theme');
+          return theme === 'dark' ? 'dark' : 'light';
+        };
+
+        const resolveGiscusTheme = () => {
+          if (giscusTheme && giscusTheme !== 'preferred_color_scheme') return giscusTheme;
+          return getSiteTheme() === 'dark' ? giscusDarkTheme : giscusLightTheme;
+        };
+
+        const syncGiscusTheme = () => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe?.contentWindow) return;
+
+          iframe.contentWindow.postMessage(
+            {
+              giscus: {
+                setConfig: {
+                  theme: resolveGiscusTheme(),
+                },
+              },
+            },
+            'https://giscus.app'
+          );
+        };
+
+        window.addEventListener('themechange', syncGiscusTheme);
+        window.addEventListener('load', () => setTimeout(syncGiscusTheme, 50));
+
+        const observer = new MutationObserver((mutations) => {
+          if (mutations.some((m) => m.attributeName === 'data-theme')) {
+            syncGiscusTheme();
+          }
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      })();
+    </script>
   </section>
 )}

@@ -1,5 +1,6 @@
 ---
 title: "People's Energy and surrounding yourself with the best people"
+pubDate: 2018-07-23
 category: Personal
 tags:
   - people

@@ -1,5 +1,6 @@
 ---
 title: "My first open source Android library"
+pubDate: 2019-08-28
 category: Development
 tags:
   - android

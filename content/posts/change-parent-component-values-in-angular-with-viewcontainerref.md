@@ -1,5 +1,6 @@
 ---
 title: "Change parent component values in Angular with ViewContainerRef"
+pubDate: 2018-11-28
 category: Development
 tags: 
   - angular

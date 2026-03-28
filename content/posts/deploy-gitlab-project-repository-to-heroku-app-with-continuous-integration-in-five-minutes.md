@@ -1,5 +1,6 @@
 ---
 title: Deploy Gitlab Project/Repository to Heroku app with Continuous Integration in 5 minutes!
+pubDate: 2018-07-26
 category: Tutorial
 tags:
   - gitlab

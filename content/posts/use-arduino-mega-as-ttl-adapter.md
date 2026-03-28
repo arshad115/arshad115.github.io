@@ -1,5 +1,6 @@
 ---
 title: "How to use Arduino mega as a USB TTL Adapter"
+pubDate: 2021-11-01
 category: Hardware
 tags:
   - arduino

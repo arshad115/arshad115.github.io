@@ -125,6 +125,37 @@ function normalizeBody(body) {
     .trim();
 }
 
+function normalizeDate(value, fallback) {
+  const fallbackDate = fallback ? String(fallback).slice(0, 10) : null;
+  if (!value) return fallbackDate;
+
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return value.toISOString().slice(0, 10);
+  }
+
+  const stringValue = String(value).trim();
+  if (!stringValue) return fallbackDate;
+
+  const directDateMatch = stringValue.match(/^(\d{4}-\d{2}-\d{2})/);
+  if (directDateMatch) return directDateMatch[1];
+
+  const parsed = new Date(stringValue);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString().slice(0, 10);
+  }
+
+  return fallbackDate;
+}
+
+function resolvePostPubDate(file, frontmatter) {
+  const value = frontmatter.pubDate ?? frontmatter.date;
+  const normalized = normalizeDate(value);
+  if (!normalized) {
+    throw new Error(`Post is missing valid pubDate in frontmatter: content/posts/${file}`);
+  }
+  return normalized;
+}
+
 function transformGallery(body, gallery = []) {
   if (!body.includes('{% include gallery')) return body;
   const galleryMarkdown = gallery
@@ -313,6 +344,7 @@ async function generatePosts(siteData) {
     const explicitLinks = ensureArray(parsed.data.links)
       .map((value) => normalizeInternalLink(value, slug))
       .filter(Boolean);
+    const pubDate = resolvePostPubDate(file, parsed.data);
     const frontmatterData = {
       title,
       description: parsed.data.excerpt || parsed.data.description || '',
@@ -320,8 +352,8 @@ async function generatePosts(siteData) {
       contentType: 'post',
       category: categoryName,
       tags,
-      pubDate: parsed.data.date || file.slice(0, 10),
-      updatedDate: parsed.data.last_modified_at || parsed.data.date || file.slice(0, 10),
+      pubDate,
+      updatedDate: normalizeDate(parsed.data.updatedDate || parsed.data.last_modified_at || pubDate, pubDate),
       heroImage: parsed.data.header?.image,
       teaser: parsed.data.header?.teaser,
       draft: Boolean(parsed.data.draft),
@@ -342,7 +374,7 @@ async function generatePosts(siteData) {
       url,
       slug,
       excerpt: parsed.data.excerpt || '',
-      pubDate: parsed.data.date || file.slice(0, 10),
+      pubDate,
       readingTime: Math.ceil(readingTime(body).minutes),
     });
   }
@@ -371,7 +403,7 @@ async function generatePortfolio(siteData) {
       slug,
       contentType: 'portfolio',
       tags,
-      pubDate: parsed.data.date || '2018-02-21',
+      pubDate: normalizeDate(parsed.data.date, '2018-02-21'),
       heroImage: parsed.data.header?.image,
       teaser: parsed.data.header?.teaser,
       sidebar: { hidden: true },

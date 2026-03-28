@@ -1,5 +1,6 @@
 ---
 title: "How to delete files from a Heroku app repository"
+pubDate: 2018-09-16
 category: Tutorial
 tags:
   - git

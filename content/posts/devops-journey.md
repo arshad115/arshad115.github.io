@@ -1,5 +1,6 @@
 ---
 title: "DevOps Journey"
+pubDate: 2024-09-23
 category: DevOps
 tags: 
   - devops

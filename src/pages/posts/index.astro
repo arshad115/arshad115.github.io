@@ -6,20 +6,17 @@ const posts = [...siteData.posts].sort((a, b) => new Date(b.pubDate).getTime() -
 ---
 
 <CustomPage title="All Posts" description="Browse every blog post in chronological order.">
-  <section class="section-block">
-    <p class="lede">Browse all my blog posts by year, category, or simply scroll through the chronological list below.</p>
-    <div class="stack-list">
-      {posts.map((post) => (
-        <article class="stack-item">
-          <p class="meta-row">
-            <span>{post.pubDate}</span>
-            <span>{post.category}</span>
-            <span>{post.readingTime} min read</span>
-          </p>
-          <h2><a href={post.url}>{post.title}</a></h2>
-          {post.excerpt && <p>{post.excerpt}</p>}
-        </article>
-      ))}
-    </div>
-  </section>
+  <div class="stack-list">
+    {posts.map((post) => (
+      <article class="stack-item">
+        <p class="meta-row">
+          <span>{post.pubDate}</span>
+          <span>{post.readingTime} min read</span>
+          <a class="meta-badge" href={`/categories/#${post.categorySlug}`}>{post.category}</a>
+        </p>
+        <h2><a href={post.url}>{post.title}</a></h2>
+        {post.excerpt && <p>{post.excerpt}</p>}
+      </article>
+    ))}
+  </div>
 </CustomPage>

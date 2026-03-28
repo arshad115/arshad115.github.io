@@ -1,5 +1,6 @@
 ---
 title: "Today I Learned to share knowledge"
+pubDate: 2018-08-19
 category: Personal
 tags: 
   - today-i-learned

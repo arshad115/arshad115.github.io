@@ -1,5 +1,6 @@
 ---
 title: "Using RxJS Subject for cross component communication in Angular"
+pubDate: 2019-07-24
 category: Development
 tags: 
   - angular

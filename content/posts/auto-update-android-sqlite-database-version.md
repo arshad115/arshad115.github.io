@@ -1,5 +1,6 @@
 ---
 title: "Auto Update Android SQLite Database Version"
+pubDate: 2018-01-28
 category: Android
 tags: 
   - android

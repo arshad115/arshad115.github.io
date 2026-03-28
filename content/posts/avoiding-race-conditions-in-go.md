@@ -1,5 +1,6 @@
 ---
 title: "Avoiding Race Conditions in Go: A Practical Guide to sync/atomic"
+pubDate: 2025-09-05
 category: Development
 tags:
   - go
@@ -10,7 +11,6 @@ tags:
 header:
   image: https://www.gt-world-challenge-america.com//timthumb.php?w=1600&src=%2Fimages%2FSRO_SEB_2024_2142__FL-TP.JPG
   caption: "gt-world-challenge-america.com"
-date: 2025-09-05
 last_modified_at: 2025-09-05
 comments: true
 toc_sticky: true

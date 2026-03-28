@@ -1,5 +1,6 @@
 ---
 title: "ChatGPT is Secretly Sharing Conversations Within Projects: A Privacy Investigation"
+pubDate: 2025-10-23
 category: Software
 tags:
   - Artificial Intelligence
@@ -16,7 +17,6 @@ header:
 toc: true  # Table of contents
 toc_sticky: true  # Sticky TOC
 comments: true
-date: 2025-10-23
 last_modified_at: 2025-10-23
 author_profile: true
 read_time: true

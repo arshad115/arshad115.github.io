@@ -1,5 +1,6 @@
 ---
 title: "Setup SonarQube Prometheus Exporter"
+pubDate: 2024-10-11
 category: DevOps
 tags: 
   - devops
@@ -13,6 +14,7 @@ header:
 comments: true
 toc_sticky: true
 ---
+
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 
 To monitor SonarQube metrics with Prometheus, we can use the SonarQube Prometheus Exporter plugin or the built-in web API metrics endpoint.

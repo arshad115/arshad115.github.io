@@ -1,5 +1,6 @@
 ---
 title: "How to access Seagate COM Terminal with Arduino mega as a USB TTL Adapter and PuTTY"
+pubDate: 2021-11-01
 category: Hardware
 tags:
   - arduino

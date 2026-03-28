@@ -1,5 +1,6 @@
 ---
 title: "Ledger Nano S Update"
+pubDate: 2018-03-13
 category: Cryptocurrency
 tags: 
   - cryptocurrency

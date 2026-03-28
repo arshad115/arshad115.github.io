@@ -1,5 +1,6 @@
 ---
 title: "Using Ledger Nano S as a Universal 2nd Factor Authentication (U2F) device"
+pubDate: 2018-09-14
 category: Tutorial
 tags: 
   - cryptocurrency
@@ -16,7 +17,6 @@ header:
   teaser: "https://s3.amazonaws.com/groovehq/uploaded/2g796cjbudshjd3xhucaewpxgv70x403ms102ar50fx9zzex27?1488402680"
 comments: true
 ---
-
 
 > [Skip right to, how to use it with Ledger Nano S](#how-to-use-ledger-nano-s-as-a-u2f-device)
 

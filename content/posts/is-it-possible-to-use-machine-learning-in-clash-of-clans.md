@@ -1,5 +1,6 @@
 ---
 title: "Is it possible to use machine learning to build the best bases in Clash of Clans?"
+pubDate: 2018-12-03
 category: Personal
 tags: 
   - clash-of-clans

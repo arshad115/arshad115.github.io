@@ -1,5 +1,6 @@
 ---
 title: "Big O Notation Cheatsheet in Landscape PDF"
+pubDate: 2022-11-09
 category: Development
 tags: 
   - big-o

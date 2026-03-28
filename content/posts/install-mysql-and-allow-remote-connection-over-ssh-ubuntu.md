@@ -1,5 +1,6 @@
 ---
 title: "Install and Configure MySQL database on Ubuntu for remote connection over SSH with MySQL Workbench"
+pubDate: 2020-05-28
 category: Tutorial
 tags:
   - mysql

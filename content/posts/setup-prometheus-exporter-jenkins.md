@@ -1,5 +1,6 @@
 ---
 title: "Setup Prometheus Exporter in Jenkins"
+pubDate: 2024-10-11
 category: DevOps
 tags: 
   - devops
@@ -13,6 +14,7 @@ header:
 comments: true
 toc_sticky: true
 ---
+
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 
 To monitor Jenkins with Prometheus, we need to expose Jenkins metrics. Jenkins has a built-in Prometheus metrics endpoint that we can enable.
