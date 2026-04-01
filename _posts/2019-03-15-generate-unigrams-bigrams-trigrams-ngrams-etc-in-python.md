@@ -31,8 +31,7 @@ Run this script once to download and install the punctuation tokenizer:
 By using these methods you will get the lists for each:
 
 ```python
-from nltk word_tokenize
-from nltk import bigrams, trigrams
+from nltk import word_tokenize, bigrams, trigrams
 
 unigrams = word_tokenize("The quick brown fox jumps over the lazy dog")
 bigrams = bigrams(unigrams)
@@ -46,8 +45,7 @@ For simple unigrams you can also split the strings with a space.
 To generate `4-grams` *(n = 4)*:
 
 ```python
-from nltk word_tokenize
-from nltk import bigrams, trigrams
+from nltk import word_tokenize, bigrams, trigrams
 
 unigrams = word_tokenize("The quick brown fox jumps over the lazy dog")
 4grams =  ngrams(unigrams, 4)
@@ -58,11 +56,10 @@ unigrams = word_tokenize("The quick brown fox jumps over the lazy dog")
 To generate n-grams for m to n order, use the method `everygrams`:
 Here `n=2` and `m=6`, it will generate `2-grams`,`3-grams`,`4-grams`,`5-grams` and `6-grams`.
 ```python
-from nltk word_tokenize
-from nltk import bigrams, trigrams
+from nltk import word_tokenize, everygrams
 
 unigrams = word_tokenize("The quick brown fox jumps over the lazy dog")
-2to6grams = everygrams(unigrams, 2, 6)
+grams_2_to_6 = list(everygrams(unigrams, 2, 6))
 ```
 
 ## Real-World Applications
