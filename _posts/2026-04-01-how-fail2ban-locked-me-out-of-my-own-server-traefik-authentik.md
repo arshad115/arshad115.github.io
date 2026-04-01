@@ -18,6 +18,9 @@ read_time: true
 share: true
 related: true
 excerpt: "A real incident report: I got my own IP banned after enabling Fail2ban with Traefik and Authentik, lost SSH access, recovered via provider console, and fixed my configuration."
+header:
+  image: "/assets/images/posts/tdos1otdos1otdos.png"
+  teaser: "/assets/images/posts/tdos1otdos1otdos.png"
 ---
 
 I use Fail2ban to protect my server, but after wiring things around Traefik + Authentik and tightening rules too aggressively, I ended up banning my own public IP and lost SSH access.

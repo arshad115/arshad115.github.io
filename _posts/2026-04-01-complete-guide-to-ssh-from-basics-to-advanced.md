@@ -17,6 +17,9 @@ read_time: true
 share: true
 related: true
 excerpt: "Master SSH from connection basics to advanced file transfers. Learn authentication methods, key management, remote command execution, and security best practices."
+header:
+    image: "/assets/images/posts/exroeuexroeuexro.png"
+    teaser: "/assets/images/posts/exroeuexroeuexro.png"
 ---
 
 SSH (Secure Shell) is the foundation of secure remote access to servers and systems. This guide covers everything from basics to advanced usage, with practical examples you can use immediately.
