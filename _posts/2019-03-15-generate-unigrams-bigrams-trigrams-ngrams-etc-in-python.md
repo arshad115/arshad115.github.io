@@ -48,7 +48,7 @@ To generate `4-grams` *(n = 4)*:
 from nltk import word_tokenize, bigrams, trigrams
 
 unigrams = word_tokenize("The quick brown fox jumps over the lazy dog")
-4grams =  ngrams(unigrams, 4)
+four_grams = list(ngrams(unigrams, 4))
 ```
 
 ### n-grams in a range
