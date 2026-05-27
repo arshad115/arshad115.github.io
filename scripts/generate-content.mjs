@@ -7,6 +7,7 @@ const root = process.cwd();
 const docsRoot = path.join(root, 'src', 'content', 'docs');
 const generatedRoot = path.join(docsRoot, 'generated');
 const dataRoot = path.join(root, 'src', 'generated');
+const publicRoot = path.join(root, 'public');
 
 const pageExcludes = new Set([
   '404.md',
@@ -147,6 +148,33 @@ function normalizeDate(value, fallback) {
   }
 
   return fallbackDate;
+}
+
+function isLocalAssetPath(value) {
+  return typeof value === 'string' && value.startsWith('/assets/');
+}
+
+async function assetExistsInPublic(assetPath) {
+  if (!isLocalAssetPath(assetPath)) return true;
+  const relativePath = assetPath.replace(/^\/+/, '');
+  try {
+    await fs.access(path.join(publicRoot, relativePath));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function resolveHeroMedia(header) {
+  const image = header?.image;
+  const teaser = header?.teaser;
+  const imageOk = await assetExistsInPublic(image);
+  const teaserOk = await assetExistsInPublic(teaser);
+  return {
+    heroImage: imageOk ? image : teaserOk ? teaser : image,
+    teaser: teaserOk ? teaser : imageOk ? image : teaser,
+    heroCaption: header?.caption,
+  };
 }
 
 function resolvePostPubDate(file, frontmatter) {
@@ -334,6 +362,7 @@ async function generatePosts(siteData) {
   for (const file of files) {
     const source = await fs.readFile(path.join(postsRoot, file), 'utf8');
     const parsed = matter(source);
+    const resolvedMedia = await resolveHeroMedia(parsed.data.header);
     const categoryName = parsed.data.category || ensureArray(parsed.data.categories)[0] || 'software';
     const category = slugify(categoryName);
     const slugPart = removeMarkdownExtension(file.replace(/^\d{4}-\d{2}-\d{2}-/, ''));
@@ -356,8 +385,9 @@ async function generatePosts(siteData) {
       tags,
       pubDate,
       updatedDate: normalizeDate(parsed.data.updatedDate || parsed.data.last_modified_at || pubDate, pubDate),
-      heroImage: parsed.data.header?.image,
-      teaser: parsed.data.header?.teaser,
+      heroImage: resolvedMedia.heroImage,
+      heroCaption: resolvedMedia.heroCaption,
+      teaser: resolvedMedia.teaser,
       draft: Boolean(parsed.data.draft),
       sidebar: { hidden: true },
       graph: { visible: true },
@@ -389,6 +419,7 @@ async function generatePortfolio(siteData) {
   for (const file of files) {
     const source = await fs.readFile(path.join(portfolioRoot, file), 'utf8');
     const parsed = matter(source);
+    const resolvedMedia = await resolveHeroMedia(parsed.data.header);
     const slugPart = removeMarkdownExtension(file);
     const title = parsed.data.title || titleize(slugPart);
     const slug = `portfolio/${slugPart}`;
@@ -406,8 +437,9 @@ async function generatePortfolio(siteData) {
       contentType: 'portfolio',
       tags,
       pubDate: normalizeDate(parsed.data.date, '2018-02-21'),
-      heroImage: parsed.data.header?.image,
-      teaser: parsed.data.header?.teaser,
+      heroImage: resolvedMedia.heroImage,
+      heroCaption: resolvedMedia.heroCaption,
+      teaser: resolvedMedia.teaser,
       sidebar: { hidden: true },
       graph: { visible: true },
     };
@@ -422,7 +454,7 @@ async function generatePortfolio(siteData) {
       url,
       slug,
       excerpt: parsed.data.excerpt || '',
-      image: parsed.data.header?.teaser || parsed.data.header?.image || '',
+      image: resolvedMedia.teaser || resolvedMedia.heroImage || '',
       tags,
     });
   }

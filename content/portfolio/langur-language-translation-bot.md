@@ -3,7 +3,7 @@ title: "Langur Language Translation Chatbot"
 excerpt: "Opensource language translation chat bot called Langur."
 header:
   image: /assets/images/langur_teaser.png
-  teaser: /assets/images/langur.jpg
+  teaser: /assets/images/repo_images/langur.jpg
 gallery:
   - url: https://i.imgur.com/bTS1Rri.png
     image_path: https://i.imgur.com/bTS1Rri.png

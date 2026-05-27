@@ -12,6 +12,7 @@ const docs = defineCollection({
       pubDate: z.union([z.string(), z.date()]).optional(),
       updatedDate: z.union([z.string(), z.date()]).optional(),
       heroImage: z.string().optional(),
+      heroCaption: z.string().optional(),
       teaser: z.string().optional(),
       links: z.array(z.string()).default([]),
       graph: z.object({ visible: z.boolean().optional() }).passthrough().optional(),

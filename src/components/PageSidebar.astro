@@ -14,14 +14,16 @@ const showGraph = contentType === 'post' || contentType === 'portfolio' || conte
       <div class="lg:sl-hidden">
         <MobileTableOfContents />
       </div>
-      {showGraph && (
-        <div class="right-sidebar-panel sl-hidden lg:sl-block page-right-graph">
-          <LocalPageGraph />
-        </div>
-      )}
-      <div class="right-sidebar-panel sl-hidden lg:sl-block">
-        <div class="sl-container">
-          <TableOfContents />
+      <div class="right-sidebar-stack sl-hidden lg:sl-block">
+        {showGraph && (
+          <div class="right-sidebar-panel page-right-graph">
+            <LocalPageGraph />
+          </div>
+        )}
+        <div class="right-sidebar-panel">
+          <div class="sl-container">
+            <TableOfContents />
+          </div>
         </div>
       </div>
     </>

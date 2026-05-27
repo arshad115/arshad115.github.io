@@ -3,12 +3,26 @@ import siteData from '../generated/site-data.json';
 import PostMetaRow from './PostMetaRow.astro';
 
 const { entry, id } = Astro.locals.starlightRoute;
-const { title, description, pubDate, updatedDate } = entry.data;
+const { title, description, pubDate, updatedDate, heroImage, heroCaption, teaser } = entry.data;
+const headerImage = heroImage || teaser;
+const headerCaptionHtml = heroCaption
+  ? heroCaption
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  : '';
 
 const postMeta = siteData.posts.find((post) => post.slug === id);
 ---
 
 <div class="article-header">
+  {
+    headerImage && (
+      <div class="article-header-image-wrap">
+        <img class="article-header-image" src={headerImage} alt={title} loading="eager" decoding="async" />
+        {headerCaptionHtml && <p class="article-image-caption" set:html={headerCaptionHtml} />}
+      </div>
+    )
+  }
   <h1 id="_top">{title}</h1>
   {
     postMeta && (
@@ -26,6 +40,11 @@ const postMeta = siteData.posts.find((post) => post.slug === id);
 
 <style>
   @layer starlight.core {
+    .article-header {
+      width: 100%;
+      max-width: none;
+    }
+
     .article-header h1 {
       margin-top: 1rem;
       margin-bottom: 0;
@@ -38,6 +57,48 @@ const postMeta = siteData.posts.find((post) => post.slug === id);
     .article-meta-row {
       margin-top: 0.9rem;
       margin-bottom: 0;
+    }
+
+    .article-header-image {
+      display: block;
+      width: 100%;
+      max-width: none;
+      height: auto;
+      margin: 0;
+      border-radius: 0;
+    }
+
+    .article-header-image-wrap {
+      position: relative;
+      margin: 0 0 1rem;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .article-image-caption {
+      position: absolute;
+      right: 0.65rem;
+      bottom: 0.65rem;
+      margin: 0;
+      max-width: min(90%, 52ch);
+      padding: 0.28rem 0.45rem;
+      border-radius: 0.35rem;
+      background: color-mix(in srgb, black 48%, transparent);
+      color: color-mix(in srgb, white 80%, var(--page-text-muted));
+      font-size: 0.72rem;
+      line-height: 1.35;
+      text-align: right;
+    }
+
+    .article-image-caption :global(a) {
+      color: color-mix(in srgb, white 72%, var(--page-text-muted));
+      text-decoration: none;
+    }
+
+    .article-image-caption :global(a:hover) {
+      color: color-mix(in srgb, white 82%, var(--page-text-muted));
+      text-decoration: underline;
     }
 
     .article-excerpt {

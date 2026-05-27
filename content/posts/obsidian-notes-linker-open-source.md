@@ -10,8 +10,8 @@ tags:
   - typescript
   - electron
 header:
-  image: /assets/images/posts/obsidian-notes-linker.png
-  teaser: /assets/images/posts/obsidian-notes-linker.png
+  image: /assets/images/posts/ol-usage.png
+  teaser: /assets/images/posts/ol-usage.png
 comments: true
 toc_sticky: true
 excerpt: "Introducing Obsidian Notes Linker - an open-source tool to automatically create bidirectional links between your Obsidian notes. Boost your knowledge management workflow."

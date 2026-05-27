@@ -373,6 +373,12 @@ h3,
 }
 
 .sl-markdown-content :where(img) {
+  display: block;
+  margin: 1.25rem auto;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: clamp(14rem, 58vh, 34rem);
   border-radius: 1rem;
 }
 

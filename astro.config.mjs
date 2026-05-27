@@ -45,32 +45,7 @@ export default defineConfig({
         { icon: 'linkedin', label: 'LinkedIn', href: 'https://www.linkedin.com/in/arshadmehmood115/' },
         { icon: 'twitter', label: 'Twitter', href: 'https://twitter.com/arshad115' },
       ],
-      sidebar: [
-        {
-          label: 'Explore',
-          items: [
-            { label: 'Home', link: '/' },
-            { label: 'About', link: '/about/' },
-            { label: 'All Posts', link: '/posts/' },
-            { label: 'Categories', link: '/categories/' },
-            { label: 'Tags', link: '/tags/' },
-            { label: 'Today I Learned', link: '/today-i-learned/' },
-            { label: 'Portfolio', link: '/portfolio/' },
-          ],
-        },
-        {
-          label: 'Pages',
-          collapsed: true,
-          items: [
-            { label: 'Resources', link: '/resources/' },
-            { label: 'Newsletter', link: '/newsletter/' },
-            { label: 'Resume', link: '/resume/' },
-            { label: 'Support', link: '/support/' },
-            { label: 'Contact', link: '/contact/' },
-            { label: 'Terms', link: '/terms/' },
-          ],
-        },
-      ],
+      sidebar: [],
       pagination: false,
       lastUpdated: true,
       credits: false,
