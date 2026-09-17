@@ -20,7 +20,7 @@ _**Note** This project has been migrated to [Vault Linker](/development/introduc
 
 Obsidian Notes Linker is a new open-source project designed to help users of Obsidian, a popular markdown-based note-taking app, to automatically link their markdown files. This tool is written in Python and is available on GitHub for anyone to use and contribute to.
 
-Project can be found on Github [Obsidian Linker](https://github.com/arshad115/obsidian-linker)
+Project can be found on Github ~~[Obsidian Linker](https://github.com/arshad115/obsidian-linker)~~ [vault-linker](https://github.com/arshad115/vault-linker)
 
 ## Features
 
