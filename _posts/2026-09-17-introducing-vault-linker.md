@@ -26,7 +26,7 @@ If you use Obsidian as a knowledge base, you have probably felt the gap between 
 
 This project started as **Obsidian Linker**. Same idea, sharper name, and a much more capable toolset. The GitHub repo is now [vault-linker](https://github.com/arshad115/vault-linker), the PyPI package is [vaultlinker](https://pypi.org/project/vaultlinker/), and the Obsidian community plugin id is **vault-linker**. The old `obsidian-linker` console entry still works as an alias for the CLI, so existing scripts keep running.
 
-If you read my earlier write-up, [Obsidian Notes Linker - Open Source Tool Released](/2025/01/28/obsidian-notes-linker-open-source/), this post is the successor: rebrand plus CLI depth, audit/unlink, parallelism, and a first-class plugin.
+If you read my earlier write-up, [Obsidian Notes Linker - Open Source Tool Released](/development/obsidian-notes-linker-open-source/), this post is the successor: rebrand plus CLI depth, audit/unlink, parallelism, and a first-class plugin.
 
 ## Why rebrand?
 
@@ -120,7 +120,7 @@ Try a dry run on a copy of your vault, skim the audit output, then commit to a f
 
 **Related posts**
 
-- [Obsidian Notes Linker - Open Source Tool Released](/2025/01/28/obsidian-notes-linker-open-source/)
+- [Obsidian Notes Linker - Open Source Tool Released](/development/obsidian-notes-linker-open-source/)
 
 **Links**
 
