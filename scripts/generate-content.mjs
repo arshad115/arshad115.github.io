@@ -28,9 +28,14 @@ const pagesRoot = path.join(authoredContentRoot, 'pages');
 const portfolioRoot = path.join(authoredContentRoot, 'portfolio');
 const siteOrigin = 'https://arshadmehmood.com';
 const syntheticLinkLimits = {
-  post: 6,
-  portfolio: 4,
-  til: 8,
+  post: 8,
+  portfolio: 2,
+  til: 3,
+};
+const graphLinkPolicy = {
+  excludedPrefixes: ['portfolio/'],
+  postMaxLinks: 8,
+  postMaxTilLinks: 2,
 };
 const markdownSourcePattern = /\.(md|mdx)$/i;
 
@@ -52,6 +57,17 @@ function titleize(value = '') {
     .replace(/[-_]+/g, ' ')
     .replace(/\b\w/g, (char) => char.toUpperCase())
     .trim();
+}
+
+function toGraphTitle(title, maxChars = 26) {
+  const normalized = String(title || '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!normalized) return '';
+  if (normalized.length <= maxChars) return normalized;
+  const truncated = normalized.slice(0, maxChars - 1);
+  const safe = truncated.slice(0, Math.max(truncated.lastIndexOf(' '), 14)).trim();
+  return `${safe}…`;
 }
 
 function ensureArray(value) {
@@ -252,6 +268,17 @@ function isGraphContentLink(value) {
   return !/^assets\//i.test(value) && !/\.(png|jpe?g|gif|svg|webp|pdf|xml|ico|txt|css|js)$/i.test(value);
 }
 
+function inferContentTypeFromSlug(slug = '') {
+  if (slug.startsWith('today-i-learned/')) return 'til';
+  if (slug.startsWith('portfolio/')) return 'portfolio';
+  if (slug.includes('/')) return 'post';
+  return 'page';
+}
+
+function isAllowedGraphTarget(slug = '') {
+  return !graphLinkPolicy.excludedPrefixes.some((prefix) => slug.startsWith(prefix));
+}
+
 async function resetGenerated() {
   await fs.rm(generatedRoot, { recursive: true, force: true });
   await fs.mkdir(path.join(generatedRoot, 'posts'), { recursive: true });
@@ -341,11 +368,26 @@ async function writeGeneratedDocs(entries) {
   buildSyntheticLinks(entries);
 
   for (const entry of entries) {
-    const links = uniquePreserveOrder([
+    const baseLinks = uniquePreserveOrder([
       ...entry.parsedLinks,
       ...entry.explicitLinks,
       ...(entry.syntheticLinks || []),
-    ]).filter((link) => link !== entry.slug && isGraphContentLink(link));
+    ]).filter((link) => link !== entry.slug && isGraphContentLink(link) && isAllowedGraphTarget(link));
+
+    let links = baseLinks;
+
+    if (entry.contentType === 'post') {
+      const tilLinks = baseLinks
+        .filter((link) => inferContentTypeFromSlug(link) === 'til')
+        .slice(0, graphLinkPolicy.postMaxTilLinks);
+
+      const remainingSlots = Math.max(0, graphLinkPolicy.postMaxLinks - tilLinks.length);
+      const postLinks = baseLinks
+        .filter((link) => inferContentTypeFromSlug(link) === 'post')
+        .slice(0, remainingSlots);
+
+      links = [...postLinks, ...tilLinks];
+    }
 
     const frontmatter = toFrontmatter({
       ...entry.frontmatterData,
@@ -367,6 +409,7 @@ async function generatePosts(siteData) {
     const category = slugify(categoryName);
     const slugPart = removeMarkdownExtension(file.replace(/^\d{4}-\d{2}-\d{2}-/, ''));
     const title = parsed.data.title || titleize(slugPart);
+    const graphTitle = toGraphTitle(title);
     const slug = `${category}/${slugPart}`;
     const url = `/${slug}/`;
     const body = normalizeBody(parsed.content);
@@ -391,6 +434,12 @@ async function generatePosts(siteData) {
       draft: Boolean(parsed.data.draft),
       sidebar: { hidden: true },
       graph: { visible: true },
+      sitemap: {
+        pageTitle: graphTitle,
+        // Ignore markdown-derived links for graph construction on posts.
+        // We rely on curated frontmatter.links for deterministic graph size.
+        linkInclusionRules: ['!**/*'],
+      },
     };
     entries.push(
       createContentEntry(path.join('generated', 'posts', `${slugPart}.mdx`), frontmatterData, body, {
@@ -422,6 +471,7 @@ async function generatePortfolio(siteData) {
     const resolvedMedia = await resolveHeroMedia(parsed.data.header);
     const slugPart = removeMarkdownExtension(file);
     const title = parsed.data.title || titleize(slugPart);
+    const graphTitle = toGraphTitle(title);
     const slug = `portfolio/${slugPart}`;
     const url = `/${slug}/`;
     const body = transformGallery(normalizeBody(parsed.content), parsed.data.gallery || []);
@@ -442,6 +492,7 @@ async function generatePortfolio(siteData) {
       teaser: resolvedMedia.teaser,
       sidebar: { hidden: true },
       graph: { visible: true },
+      sitemap: { pageTitle: graphTitle },
     };
     entries.push(
       createContentEntry(path.join('generated', 'portfolio', `${slugPart}.mdx`), frontmatterData, body, {
@@ -511,6 +562,7 @@ async function generateTil(siteData) {
       const parsed = matter(source);
       const firstHeading = parsed.content.match(/^#*\s*(.+)$/m)?.[1]?.trim();
       const title = parsed.data.title || firstHeading || removeMarkdownExtension(file);
+      const graphTitle = toGraphTitle(title);
       const slugPart = removeMarkdownExtension(file);
       const slug = `today-i-learned/${category}/${slugPart}`;
       const url = `/${slug}/`;
@@ -529,6 +581,7 @@ async function generateTil(siteData) {
         tags,
         sidebar: { hidden: true },
         graph: { visible: true },
+        sitemap: { pageTitle: graphTitle },
       };
       entries.push(
         createContentEntry(

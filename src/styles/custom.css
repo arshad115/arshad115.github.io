@@ -323,6 +323,14 @@ h3,
   border: 0;
 }
 
+.slsg-background-blur {
+  z-index: 9998 !important;
+}
+
+.slsg-is-fullscreen {
+  z-index: 9999 !important;
+}
+
 .right-sidebar-panel .sl-container,
 .page-toc-sticky,
 .page-toc-sticky :where(.sl-toc),

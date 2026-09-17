@@ -1,5 +1,10 @@
 ---
 import { PageGraph } from 'starlight-site-graph/components';
+import { getPageGraphConfig } from '../config/page-graph';
+
+const entry = Astro.locals.starlightRoute?.entry;
+const contentType = entry?.data?.contentType;
+const graphConfig = getPageGraphConfig(contentType);
 ---
 
-<PageGraph />
+<PageGraph config={graphConfig} />

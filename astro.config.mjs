@@ -87,6 +87,10 @@ gtag('config', '${analyticsId}');`,
       overridePageSidebar: false,
       backlinks: false,
       graph: true,
+      sitemapConfig: {
+        // Keep graph edges deterministic: only use explicit frontmatter.links.
+        linkInclusionRules: ['!**/*'],
+      },
       trackVisitedPages: 'session',
       graphConfig: {
         actions: ['fullscreen', 'depth', 'reset-zoom', 'render-arrows', 'settings'],
