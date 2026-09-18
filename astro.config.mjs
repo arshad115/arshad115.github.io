@@ -18,6 +18,7 @@ export default defineConfig({
       plugins: [
         pagePlugin({
           siteTitle: 'Arshad Mehmood',
+          footerText: `© ${new Date().getFullYear()} Arshad Mehmood`,
           navigation: [
             { href: '/', label: 'Home' },
             { href: '/posts/', label: 'Posts' },
@@ -56,6 +57,7 @@ export default defineConfig({
         Footer: './src/components/StarlightFooter.astro',
         PageTitle: './src/components/PageTitle.astro',
         PageSidebar: './src/components/PageSidebar.astro',
+        TwoColumnContent: './src/components/PageTwoColumnContent.astro',
       },
       editLink: {
         baseUrl: 'https://github.com/arshad115/arshad115.github.io/edit/master/',

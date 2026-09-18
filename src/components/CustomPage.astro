@@ -10,6 +10,9 @@ interface Props {
 const { title, description, template = 'doc' } = Astro.props;
 ---
 
-<StarlightPage frontmatter={{ title, description, template, editUrl: false }}>
+<StarlightPage
+  frontmatter={{ title, description, template, editUrl: false }}
+  hasSidebar={template !== 'splash'}
+>
   <slot />
 </StarlightPage>

@@ -3,7 +3,7 @@ import siteData from '../generated/site-data.json';
 import PostMetaRow from './PostMetaRow.astro';
 
 const { entry, id } = Astro.locals.starlightRoute;
-const { title, description, pubDate, updatedDate, heroImage, heroCaption, teaser } = entry.data;
+const { title, pubDate, updatedDate, template, heroImage, heroCaption, teaser } = entry.data;
 const headerImage = heroImage || teaser;
 const headerCaptionHtml = heroCaption
   ? heroCaption
@@ -12,8 +12,13 @@ const headerCaptionHtml = heroCaption
   : '';
 
 const postMeta = siteData.posts.find((post) => post.slug === id);
+const isSplash = template === 'splash';
 ---
 
+{
+  isSplash ? (
+    <h1 id="_top" class="sr-only">{title}</h1>
+  ) : (
 <div class="article-header">
   {
     headerImage && (
@@ -37,9 +42,23 @@ const postMeta = siteData.posts.find((post) => post.slug === id);
     )
   }
 </div>
+  )
+}
 
 <style>
   @layer starlight.core {
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     .article-header {
       width: 100%;
       max-width: none;

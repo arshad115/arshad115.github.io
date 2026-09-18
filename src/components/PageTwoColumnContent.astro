@@ -2,19 +2,46 @@
 import ThemeTwoColumnContent from '@pelagornis/page/overrides/TwoColumnContent.astro';
 import LocalPageGraph from './LocalPageGraph.astro';
 
-const entry = Astro.locals.starlightRoute?.entry;
-const contentType = entry?.data?.contentType;
+const route = Astro.locals.starlightRoute;
+const contentType = route?.entry?.data?.contentType;
 const showGraph = contentType === 'post' || contentType === 'portfolio' || contentType === 'til';
+const isSplash = route?.entry?.data?.template === 'splash' || route?.hasSidebar === false;
 ---
 
-<ThemeTwoColumnContent>
-  <slot />
-  <div slot="right-sidebar">
-    {showGraph && (
-      <div class="page-right-graph">
-        <LocalPageGraph />
-      </div>
-    )}
-    <slot name="right-sidebar" />
-  </div>
-</ThemeTwoColumnContent>
+<div class:list={{ 'home-layout': isSplash }}>
+  <ThemeTwoColumnContent>
+    <slot />
+    <div slot="right-sidebar">
+      {showGraph && (
+        <div class="page-right-graph">
+          <LocalPageGraph />
+        </div>
+      )}
+      <slot name="right-sidebar" />
+    </div>
+  </ThemeTwoColumnContent>
+</div>
+
+<style>
+  @media (min-width: 769px) {
+    .home-layout :global(.page-sidebar-nav) {
+      display: none !important;
+    }
+
+    .home-layout :global(.page-content-wrapper) {
+      margin-left: 0 !important;
+      width: 100% !important;
+      max-width: 52rem !important;
+      margin-inline: auto !important;
+    }
+
+    .home-layout :global(.page-main-container.with-sidebar) {
+      gap: 0;
+      justify-content: center;
+    }
+
+    .home-layout :global(.page-toc-sidebar) {
+      display: none !important;
+    }
+  }
+</style>
