@@ -49,6 +49,25 @@ git submodule update --init --recursive
 ## Notes
 
 - Blog post URLs are preserved from the old Jekyll site.
-- `projects` has been renamed to `portfolio`.
+- `projects` has been renamed to `portfolio` (with redirects from `/projects/`).
 - A local-neighborhood graph is rendered on posts, portfolio entries, and TIL pages.
 - A global graph page is planned later.
+
+## Migration verification
+
+Before merging to `master`, run the URL parity check against the live site:
+
+```bash
+npm run verify:migration
+```
+
+This builds the site and compares every URL in https://arshadmehmood.com/sitemap.xml against the Astro output (including legacy redirects).
+
+Set GitHub Actions secrets before deploy:
+
+- `PUBLIC_GISCUS_REPO`
+- `PUBLIC_GISCUS_REPO_ID`
+- `PUBLIC_GISCUS_CATEGORY`
+- `PUBLIC_GISCUS_CATEGORY_ID`
+
+Optional: `PUBLIC_GA_MEASUREMENT_ID` (defaults to the legacy UA property).

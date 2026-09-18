@@ -11,8 +11,9 @@ src/generated/site-data.json
 npm-debug.log*
 
 # # Environment files
-# .env
-# .env.*
+.env
+.env.*
+!.env.example
 
 # Editor and OS files
 .DS_Store

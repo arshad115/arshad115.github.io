@@ -3,13 +3,15 @@ import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 import pagePlugin from '@pelagornis/page';
 import sitegraphIntegration from 'starlight-site-graph/integration';
+import { legacyUrlRedirects } from './scripts/legacy-url-redirects.mjs';
 
-const analyticsId = 'UA-114855578-1';
+const analyticsId = process.env.PUBLIC_GA_MEASUREMENT_ID || 'UA-114855578-1';
 
 export default defineConfig({
   site: 'https://arshadmehmood.com',
   output: 'static',
   trailingSlash: 'always',
+  redirects: legacyUrlRedirects,
   integrations: [
     sitemap(),
     starlight({

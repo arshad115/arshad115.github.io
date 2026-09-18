@@ -1,6 +1,7 @@
 ---
 title: "What I learnt from my failed incubator"
 pubDate: 2018-08-10
+permalink: /personal/what-I-learnt-from-my-failed-incubator/
 category: Personal
 tags:
   - startup

@@ -21,7 +21,9 @@
     "update:til": "bash scripts/update-submodule.sh",
     "new:post": "python3 scripts/new_post.py",
     "new:post:quick": "python3 scripts/quick_post.py",
-    "draft:to-post": "python3 scripts/draft_to_post.py"
+    "draft:to-post": "python3 scripts/draft_to_post.py",
+    "test:urls": "node --test tests/url-parity.test.mjs",
+    "verify:migration": "npm run build && npm run test:urls"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

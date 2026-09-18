@@ -410,8 +410,11 @@ async function generatePosts(siteData) {
     const slugPart = removeMarkdownExtension(file.replace(/^\d{4}-\d{2}-\d{2}-/, ''));
     const title = parsed.data.title || titleize(slugPart);
     const graphTitle = toGraphTitle(title);
-    const slug = `${category}/${slugPart}`;
-    const url = `/${slug}/`;
+    const permalink = parsed.data.permalink ? String(parsed.data.permalink).trim() : '';
+    const url = permalink
+      ? (permalink.endsWith('/') ? permalink : `${permalink}/`)
+      : `/${category}/${slugPart}/`;
+    const slug = stripSlashes(url);
     const body = normalizeBody(parsed.content);
     const tags = ensureArray(parsed.data.tags).map(String);
     const parsedLinks = buildLinks(body, slug);

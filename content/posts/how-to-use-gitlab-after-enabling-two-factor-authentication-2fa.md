@@ -1,6 +1,7 @@
 ---
 title: How to use Gitlab after enabling Two-Factor Authentication (2FA)?
 pubDate: 2018-07-12
+permalink: /tutorial/how-to-use-gitlab-after-enabling-Two-Factor-Authentication-(2FA)/
 category: Tutorial
 tags: 
   - gitlab

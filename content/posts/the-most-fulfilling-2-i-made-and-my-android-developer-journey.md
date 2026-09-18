@@ -1,6 +1,7 @@
 ---
 title: "The Most Fulfilling $2 I Made and My Android Developer Journey"
 pubDate: 2018-06-11
+permalink: /personal/the-most-fulfilling-$2-I-made-and-my-android-developer-journey/
 category: Personal
 tags:
   - android

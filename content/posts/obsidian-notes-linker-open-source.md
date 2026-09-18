@@ -1,6 +1,7 @@
 ---
 title: "Obsidian Notes Linker - Open Source Tool Released"
 pubDate: 2025-01-28
+permalink: /obsidian-notes-linker-open-source/
 category: Development
 tags:
   - obsidian
