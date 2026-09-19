@@ -1,0 +1,14 @@
+---
+description: This Starlight migration branch is abandoned; follow the plain Astro restart brief.
+alwaysApply: true
+---
+
+# Abandoned Starlight migration
+
+This branch (`codex/astro-starlight-migration`) is **not** the target architecture. Do not add Starlight features, Pelagornis usage, or more `scripts/generate-content.mjs` behavior.
+
+Read `docs/plain-astro-restart.md` before any migration, graph, URL, or content-pipeline work.
+
+**Target:** plain Astro, owned layouts, content collections on `content/` + TIL submodule, Pagefind, TOC from `render().headings`. Optional local graph from **real** links only via `starlight-site-graph` in vanilla Astro mode.
+
+**Do not:** merge this branch to `master`, install another blog theme, synthesize graph edges from tags, or “fix” Starlight into a blog in place. Start a **new branch from current `origin/master`** and copy salvage items listed in that doc.

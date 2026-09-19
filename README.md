@@ -1,6 +1,10 @@
 # Arshad Mehmood
 
-This repository powers [arshadmehmood.com](https://arshadmehmood.com), now built with Astro, Starlight, GitHub Pages, and a generated content pipeline that pulls together blog posts, portfolio entries, and the `today-i-learned` submodule.
+This repository powers [arshadmehmood.com](https://arshadmehmood.com). **Production `master` is still Jekyll.** This branch is a failed Astro + Starlight attempt and is not the destination.
+
+The next migration is **plain Astro** (no Starlight, no Pelagornis theme). What to copy from this branch, what went wrong, and what not to repeat: [docs/plain-astro-restart.md](docs/plain-astro-restart.md).
+
+The rest of this README describes **this branch only**, so local `npm run dev` still makes sense until the new branch exists.
 
 ## Stack
 

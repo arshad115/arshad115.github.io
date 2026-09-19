@@ -1,23 +1,25 @@
 # GitHub Copilot Instructions for Arshad's Astro Blog
 
-## Project Architecture
-This is an Astro + Starlight personal site with generated content sourced from legacy content folders and the `today-i-learned` submodule. The main content types are:
-- **Blog posts** from `_posts/`
-- **Portfolio entries** from `_portfolio/`
+**Stop.** This file is stale and describes the abandoned Starlight attempt (it even still says `_posts/`). The target architecture and salvage list are in [docs/plain-astro-restart.md](../docs/plain-astro-restart.md). Do not extend Starlight, Pelagornis, or `generate-content.mjs`.
+
+## Project Architecture (this branch only — do not copy forward)
+This branch is an Astro + Starlight experiment with generated content sourced from `content/` and the `today-i-learned` submodule. The main content types on **this** tree are:
+- **Blog posts** from `content/posts/` (not `_posts/` — that path is Jekyll `master`)
+- **Portfolio entries** from `content/portfolio/`
 - **Today I Learned (TIL)** from `today-i-learned/`
 
-## Critical File Structure
+## Critical File Structure (this branch only)
 ```
-├── _posts/                    # Legacy blog content source
-├── _portfolio/                # Legacy portfolio source
-├── _pages/                    # Legacy static page source
-├── today-i-learned/           # TIL submodule source
-├── scripts/generate-content.mjs
+├── content/posts|pages|portfolio|drafts/
+├── today-i-learned/           # TIL submodule
+├── scripts/generate-content.mjs   # Starlight adapter — do not take to the next branch
 ├── src/content.config.ts
-├── src/pages/                 # Astro routes
-├── src/components/            # Astro components
-└── public/assets/             # Static assets
+├── src/pages/
+├── src/components/
+└── public/assets/
 ```
+
+Jekyll `master` still uses `_posts/`, `_pages/`, `_portfolio/`. Recreate `content/` from those live trees, not from this branch if they have diverged. See `docs/plain-astro-restart.md`.
 
 ## Content Creation Patterns
 
