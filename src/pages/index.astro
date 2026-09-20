@@ -1,0 +1,46 @@
+---
+import Base from '../layouts/Base.astro';
+import EntryList from '../components/EntryList.astro';
+import { getPosts } from '../lib/content';
+import { SITE } from '../lib/site';
+
+const posts = await getPosts();
+const latest = posts.slice(0, 8);
+---
+
+<Base title={SITE.title} description={SITE.description} permalink="/">
+  <div class="home-intro">
+    <figure class="home-photo">
+      <img
+        src="/assets/images/bio-photo.jpg"
+        alt="Arshad Mehmood sitting by the river in Mannheim"
+        width="900"
+        height="1200"
+      />
+      <figcaption>By the water in Mannheim, where most of this is written.</figcaption>
+    </figure>
+    <div>
+      <p class="kicker">Software engineer · Mannheim</p>
+      <h1>Arshad Mehmood</h1>
+      <p class="lede">
+        I write down the work I wish I had already documented: DevOps that holds up, Android details,
+        and the systems notes that only show up after something breaks. This is a notebook, not a product
+        launch page.
+      </p>
+      <p>
+        When a thought is too small for an essay, it goes in the{' '}
+        <a href="/today-i-learned/">Today I Learned</a>
+        {' '}collection. The rest lives in{' '}
+        <a href="/posts/">long posts</a>.
+      </p>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <h2>Latest posts</h2>
+      <a href="/posts/">All posts</a>
+    </div>
+    <EntryList entries={latest} headingLevel="h3" />
+  </section>
+</Base>

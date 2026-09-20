@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts, groupByTag } from '../../lib/content';
+
+const groups = groupByTag(await getPosts());
+---
+
+<Base title="Tags" description="Blog posts grouped by tag." permalink="/tags/">
+  <div class="reading">
+    <p class="kicker">Index</p>
+    <h1>Tags</h1>
+  </div>
+  {groups.map((group) => (
+    <section class="taxonomy" id={group.slug}>
+      <h2>{group.name} <span class="meta">({group.items.length})</span></h2>
+      <ul>
+        {group.items.map((item) => (
+          <li>
+            <a href={item.permalink}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>

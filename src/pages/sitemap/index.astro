@@ -1,0 +1,44 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getRenderableEntries, listingRoutes } from '../../lib/content';
+
+const entries = await getRenderableEntries();
+const groups = [
+  { name: 'Pages', items: listingRoutes.filter((route) => route.path !== '/sitemap/') },
+  {
+    name: 'Posts',
+    items: entries.filter((entry) => entry.kind === 'post').map((entry) => ({ path: entry.permalink, title: entry.title })),
+  },
+  {
+    name: 'Today I Learned',
+    items: entries.filter((entry) => entry.kind === 'til').map((entry) => ({ path: entry.permalink, title: entry.title })),
+  },
+  {
+    name: 'Portfolio',
+    items: entries.filter((entry) => entry.kind === 'portfolio').map((entry) => ({ path: entry.permalink, title: entry.title })),
+  },
+];
+---
+
+<Base title="Sitemap" description="A list of pages, posts, and notes on this site." permalink="/sitemap/">
+  <article class="reading">
+    <p class="kicker">Map</p>
+    <h1>Sitemap</h1>
+    <p>
+      A list of pages on the site. Robots can have the{' '}
+      <a href="/sitemap.xml">XML version</a>.
+    </p>
+  </article>
+  {groups.map((group) => (
+    <section class="taxonomy">
+      <h2>{group.name}</h2>
+      <ul>
+        {group.items.map((item) => (
+          <li>
+            <a href={item.path}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>

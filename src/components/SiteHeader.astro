@@ -1,0 +1,56 @@
+---
+import { NAV } from '../lib/site';
+
+const current = Astro.url.pathname;
+---
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <a class="wordmark" href="/">
+      <svg class="wordmark-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <path
+          fill="currentColor"
+          d="M6 26V8.2h4.1l5.9 12.6 5.9-12.6H26V26h-3.6v-9.3L16.8 26h-1.6l-5.6-9.3V26H6Z"
+        ></path>
+      </svg>
+      <span class="wordmark-name">Arshad Mehmood</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav id="site-nav" class="site-nav" aria-label="Primary">
+      {
+        NAV.map((item) => (
+          <a href={item.href} aria-current={current === item.href || (item.href !== '/' && current.startsWith(item.href)) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+      <a href="/search/">Search</a>
+    </nav>
+    <div class="nav-tools">
+      <button class="theme-toggle" type="button" data-theme-toggle>Dark</button>
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector('.masthead');
+  const toggle = document.querySelector('.nav-toggle');
+  toggle?.addEventListener('click', () => {
+    const open = header?.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  const themeButton = document.querySelector('[data-theme-toggle]');
+  const syncLabel = () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (themeButton) themeButton.textContent = dark ? 'Light' : 'Dark';
+  };
+  syncLabel();
+  themeButton?.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    document.dispatchEvent(new Event('themechange'));
+    syncLabel();
+  });
+</script>

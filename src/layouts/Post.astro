@@ -1,0 +1,64 @@
+---
+import { render } from 'astro:content';
+import Base from './Base.astro';
+import PostMeta from '../components/PostMeta.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import GiscusComments from '../components/GiscusComments.astro';
+import type { SiteEntry } from '../lib/content';
+
+interface Props {
+  entry: SiteEntry;
+  related?: SiteEntry[];
+}
+
+const { entry, related = [] } = Astro.props;
+const { Content, headings } = await render(entry.collection);
+const showToc = entry.showToc && headings.filter((heading) => heading.depth >= 2).length > 2;
+const image = entry.header?.image;
+---
+
+<Base
+  title={entry.title}
+  description={entry.excerpt}
+  permalink={entry.permalink}
+  image={image || entry.header?.teaser}
+  type={entry.kind === 'page' ? 'website' : 'article'}
+>
+  <article class="reading" data-pagefind-body>
+    <p class="kicker" data-pagefind-ignore>
+      {entry.kind === 'til' && 'Today I Learned'}
+      {entry.kind === 'post' && 'Essay'}
+      {entry.kind === 'portfolio' && 'Portfolio'}
+      {entry.kind === 'page' && 'Page'}
+    </p>
+    <h1>{entry.title}</h1>
+    {entry.kind !== 'page' && <PostMeta entry={entry} />}
+    {image && (
+      <figure class="figure-plain" data-pagefind-ignore>
+        <img src={image} alt="" />
+        {entry.header?.caption && <figcaption>{entry.header.caption}</figcaption>}
+      </figure>
+    )}
+    {showToc && <TableOfContents headings={headings} />}
+    <div class="prose">
+      <Content />
+    </div>
+    {related.length > 0 && (
+      <aside class="related" data-pagefind-ignore>
+        <h2>More in {entry.category}</h2>
+        <ul>
+          {related.map((item) => (
+            <li>
+              <a href={item.permalink}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      </aside>
+    )}
+    {entry.kind === 'post' && entry.comments && (
+      <div data-pagefind-ignore>
+        <GiscusComments />
+      </div>
+    )}
+  </article>
+</Base>

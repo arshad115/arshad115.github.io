@@ -1,66 +1,45 @@
-# 👋 Welcome to **Arshad Mehmood's Blog**
+# Arshad Mehmood — personal site
 
-This repository powers my corner of the internet: a personal blog where I write about building software that is practical, scalable, and occasionally stubborn. 🚀
+Plain [Astro](https://astro.build) static site for [arshadmehmood.com](https://arshadmehmood.com).
 
-If you're into **web engineering**, **Android development**, and **DevOps workflows that actually survive production**, you're in the right place.
+**Production is still Jekyll** on `master`. This branch (`astro-plain-migration`) is the rebuild. Do not point GitHub Pages at it until `npm run test:urls` is green and cutover is intentional.
 
----
+## Develop
 
-## ✨ What this site is about
+Needs Node 20.
 
-I use this blog to share:
-
-- 🛠️ Real-world engineering lessons from projects and product teams
-- 📱 Android and mobile development insights
-- ☁️ DevOps and deployment workflows
-- 🧠 Notes on architecture, performance, and developer productivity
-- 📚 Learnings worth documenting so future-me (and maybe you) can reuse them
-
----
-
-## 🧰 Tech stack
-
-This site is built with:
-
-- **Jekyll**
-- **Minimal Mistakes** (heavily customized)
-- **GitHub Pages** for hosting
-
----
-
-## 🗂️ Project structure (quick view)
-
-- `_posts/` → blog posts
-- `_pages/` → static pages
-- `_layouts/`, `_includes/`, `_sass/` → theme and layout customization
-- `assets/` → images, styles, scripts
-- `_config.yml` → site-wide configuration
-
----
-
-## 🧪 Run locally
-
-```bash
-bundle install
-bundle exec jekyll serve
+```sh
+git submodule update --init --recursive
+npm ci
+npm run dev
 ```
 
-Then open: `http://localhost:4000`
+Open the printed local URL. Search (Pagefind) is indexed during `npm run build`.
 
----
+```sh
+npm run build
+npm run preview
+npm run test:urls
+npm run verify
+```
 
-## 🌍 Live site
+## Content
 
-**https://arshadmehmood.com**
+| Path | What |
+| --- | --- |
+| `content/posts/` | Blog posts. Public URL is `/{category}/{filename-slug}/` |
+| `content/pages/` | Prose pages (`/about/`, `/resources/`, …) |
+| `content/portfolio/` | Portfolio write-ups |
+| `content/drafts/` | Unpublished |
+| `today-i-learned/` | Git submodule. Notes at `/today-i-learned/{category}/{slug}/` |
+| `public/` | CNAME, images, files |
 
----
+Do not add Starlight, a blog theme package, or a content generator that writes `src/content/docs/`. Canonical URLs are frozen in `tests/fixtures/jekyll-sitemap.xml`.
 
-## 🤝 Connect with me
+## Comments
 
-- GitHub: [@arshad115](https://github.com/arshad115)
-- LinkedIn: [Arshad Mehmood](https://www.linkedin.com/in/arshadmehmood115/)
-- X/Twitter: [@arshad115](https://twitter.com/arshad115)
+Giscus is on **posts only**. Copy `.env.example` to `.env` and fill `PUBLIC_GISCUS_REPO_ID` / `PUBLIC_GISCUS_CATEGORY_ID` from [giscus.app](https://giscus.app). Empty IDs hide the widget.
 
----
+## Deploy
 
-Thanks for stopping by! If something here helps you ship better software, that's a win. 🙌
+`.github/workflows/deploy-pages.yml` is **workflow_dispatch only** and will not publish unless the ref is `master`. CI on this branch builds and runs the URL fixture test without deploying.

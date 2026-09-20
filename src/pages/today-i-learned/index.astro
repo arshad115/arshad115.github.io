@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getTilNotes, groupByCategory } from '../../lib/content';
+
+const notes = await getTilNotes();
+const groups = groupByCategory(notes);
+---
+
+<Base
+  title="Today I Learned"
+  description="Short notes from the today-i-learned notebook, grouped by topic."
+  permalink="/today-i-learned/"
+>
+  <div class="reading">
+    <p class="kicker">Notebook</p>
+    <h1>Today I Learned</h1>
+    <p class="lede">
+      {notes.length} notes kept as a git submodule. These are the scraps that did not need a full post.
+    </p>
+  </div>
+  {groups.map((group) => (
+    <section class="taxonomy" id={group.slug}>
+      <h2>{group.name} <span class="meta">({group.items.length})</span></h2>
+      <ul>
+        {group.items.map((item) => (
+          <li>
+            <a href={item.permalink}>{item.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
+</Base>

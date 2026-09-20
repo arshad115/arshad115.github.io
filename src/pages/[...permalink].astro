@@ -1,0 +1,21 @@
+---
+import { getRenderableEntries, relatedPosts } from '../lib/content';
+import { stripSlashes } from '../lib/site';
+import Post from '../layouts/Post.astro';
+
+export async function getStaticPaths() {
+  const entries = await getRenderableEntries();
+  const posts = entries.filter((entry) => entry.kind === 'post');
+  return entries.map((entry) => ({
+    params: { permalink: stripSlashes(entry.permalink) },
+    props: {
+      entry,
+      related: entry.kind === 'post' ? relatedPosts(entry, posts) : [],
+    },
+  }));
+}
+
+const { entry, related } = Astro.props;
+---
+
+<Post entry={entry} related={related} />

@@ -1,0 +1,21 @@
+---
+import { FOOTER_NAV, SITE } from '../lib/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <ul class="footer-links">
+      {FOOTER_NAV.map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
+      <li><a href={SITE.github}>GitHub</a></li>
+      <li><a href={SITE.linkedin}>LinkedIn</a></li>
+      <li><a href={SITE.twitter}>Twitter</a></li>
+    </ul>
+    <p>
+      © {year} {SITE.author}. {SITE.location}. Writing from a notebook, not a dashboard.
+    </p>
+  </div>
+</footer>

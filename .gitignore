@@ -1,37 +1,36 @@
-# Vim
-*~
-*.sw[p_]
+# Dependencies
+node_modules/
 
-# Sublime Text
+# Astro
+.astro/
+dist/
+
+# Logs
+npm-debug.log*
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Editor and OS
+.DS_Store
+.idea/
 *.sublime-project
 *.sublime-workspace
+*~
+*.swp
+*.swo
 
-# Ruby Gem
-*.gem
+# Ruby / leftover Jekyll
 .bundle
-Gemfile.lock
-**/vendor/bundle
-
-# Node.js and NPM
-node_modules
-npm-debug.log*
-package-lock.json
-codekit-config.json
-
-# macOS
-.DS_Store
-
-# Jekyll generated files
+vendor/bundle
 .jekyll-cache
 .jekyll-metadata
 .sass-cache
-_asset_bundler_cache
 _site
-codekit-config.json
-example/_site
-Gemfile.lock
-node_modules
-npm-debug.log*
+
+# Generated local
 /_pages/projects.mustache
 /_pages/generate.py
 /_pages/repos.json

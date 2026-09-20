@@ -1,0 +1,24 @@
+---
+import type { SiteEntry } from '../lib/content';
+import PostMeta from './PostMeta.astro';
+
+interface Props {
+  entries: SiteEntry[];
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { entries, headingLevel = 'h2' } = Astro.props;
+const Heading = headingLevel;
+---
+
+<ol class="entry-list">
+  {entries.map((entry) => (
+    <li>
+      <Heading>
+        <a href={entry.permalink}>{entry.title}</a>
+      </Heading>
+      <PostMeta entry={entry} />
+      {entry.excerpt && <p>{entry.excerpt}</p>}
+    </li>
+  ))}
+</ol>

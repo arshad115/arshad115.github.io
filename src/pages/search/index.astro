@@ -1,0 +1,28 @@
+---
+import Base from '../../layouts/Base.astro';
+---
+
+<Base title="Search" description="Search posts, notes, and pages." permalink="/search/">
+  <link slot="head" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+  <article class="reading">
+    <p class="kicker">Find</p>
+    <h1>Search</h1>
+    <p class="lede">Looks through the built site. Best after a production build, when the index is fresh.</p>
+    <div id="search"></div>
+  </article>
+  <script is:inline src="/pagefind/pagefind-ui.js"></script>
+  <script is:inline>
+    const mount = document.querySelector('#search');
+    if (mount && window.PagefindUI) {
+      new window.PagefindUI({
+        element: '#search',
+        showImages: false,
+        showSubResults: true,
+        resetStyles: false,
+      });
+    } else if (mount) {
+      mount.innerHTML =
+        '<p>Search is indexed during <code>npm run build</code>. Run a build, or use the listings in the meantime.</p>';
+    }
+  </script>
+</Base>

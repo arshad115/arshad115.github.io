@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import { projectGroups } from '../../data/projects';
+import { getPortfolio } from '../../lib/content';
+import { SITE } from '../../lib/site';
+
+const entries = await getPortfolio();
+---
+
+<Base
+  title="Portfolio"
+  description="Android apps, chatbots, and other shipped work."
+  permalink="/portfolio/"
+>
+  <div class="reading">
+    <p class="kicker">Work</p>
+    <h1>Portfolio</h1>
+    <p class="lede">
+      Android apps I published, a translation chatbot, and a few client sites. The longer write-ups live
+      with the{' '}
+      <a href="/posts/">posts</a>.
+    </p>
+    <ul class="project-index">
+      {projectGroups.map((group) => (
+        <li>
+          <a href={`#${group.id}`}>{group.name}</a>
+        </li>
+      ))}
+    </ul>
+    <p>
+      <a href={SITE.playStore}>Android apps on Google Play</a>
+      {' · '}
+      <a href={SITE.github}>All repositories</a>
+    </p>
+  </div>
+
+  {projectGroups.map((group) => (
+    <section class="taxonomy" id={group.id}>
+      <h2>{group.name}</h2>
+      {group.items.map((item) => (
+        <article class="project-row">
+          <div>
+            <h3><a href={item.href}>{item.name}</a></h3>
+            <p>{item.description}</p>
+          </div>
+          {item.image && <img src={item.image} alt="" />}
+        </article>
+      ))}
+    </section>
+  ))}
+
+  {entries.length > 0 && (
+    <section class="taxonomy" id="notes">
+      <h2>Write-ups</h2>
+      <ul>
+        {entries.map((entry) => (
+          <li>
+            <a href={entry.permalink}>{entry.title}</a>
+            {entry.excerpt && ` — ${entry.excerpt}`}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>
