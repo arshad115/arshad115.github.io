@@ -5,7 +5,7 @@ import { getPosts, groupByTag } from '../../lib/content';
 const groups = groupByTag(await getPosts());
 ---
 
-<Base title="Tags" description="Blog posts grouped by tag." permalink="/tags/">
+<Base title="Tags" description="Blog posts grouped by tag." permalink="/tags/" pageType="CollectionPage">
   <div class="reading">
     <p class="kicker">Index</p>
     <h1>Tags</h1>

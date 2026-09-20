@@ -5,7 +5,7 @@ import { getPosts, groupByCategory } from '../../lib/content';
 const groups = groupByCategory(await getPosts());
 ---
 
-<Base title="Categories" description="Blog posts grouped by category." permalink="/categories/">
+<Base title="Categories" description="Blog posts grouped by category." permalink="/categories/" pageType="CollectionPage">
   <div class="reading">
     <p class="kicker">Index</p>
     <h1>Categories</h1>

@@ -15,6 +15,14 @@ const { entry, related = [] } = Astro.props;
 const { Content, headings } = await render(entry.collection);
 const showToc = entry.showToc && headings.filter((heading) => heading.depth >= 2).length > 2;
 const image = entry.header?.image;
+const imageAlt = entry.header?.alt || entry.title;
+const ogType = entry.kind === 'page' ? 'website' : 'article';
+const pageType =
+  entry.kind === 'page' && entry.permalink === '/about/'
+    ? 'AboutPage'
+    : entry.kind === 'page'
+      ? 'WebPage'
+      : undefined;
 ---
 
 <Base
@@ -22,7 +30,18 @@ const image = entry.header?.image;
   description={entry.excerpt}
   permalink={entry.permalink}
   image={image || entry.header?.teaser}
-  type={entry.kind === 'page' ? 'website' : 'article'}
+  imageAlt={imageAlt}
+  type={ogType}
+  kind={entry.kind}
+  pageType={pageType}
+  published={entry.date}
+  modified={entry.updated}
+  tags={entry.tags}
+  section={entry.category}
+  categoryLabel={entry.categoryLabel}
+  minutes={entry.minutes}
+  wordCount={entry.wordCount}
+  markdown
 >
   <article class="reading" data-pagefind-body>
     <p class="kicker" data-pagefind-ignore>
@@ -35,7 +54,7 @@ const image = entry.header?.image;
     {entry.kind !== 'page' && <PostMeta entry={entry} />}
     {image && (
       <figure class="figure-plain" data-pagefind-ignore>
-        <img src={image} alt={entry.header?.alt || ''} />
+        <img src={image} alt={imageAlt} decoding="async" fetchpriority="high" />
         {entry.header?.caption && (
           <figcaption>
             {entry.header.captionHref ? (

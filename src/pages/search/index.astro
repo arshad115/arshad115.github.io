@@ -2,7 +2,12 @@
 import Base from '../../layouts/Base.astro';
 ---
 
-<Base title="Search" description="Search posts, notes, and pages." permalink="/search/">
+<Base
+  title="Search"
+  description="Search posts, notes, and pages."
+  permalink="/search/"
+  pageType="SearchResultsPage"
+>
   <link slot="head" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
   <article class="reading">
     <p class="kicker">Find</p>
@@ -20,6 +25,23 @@ import Base from '../../layouts/Base.astro';
         showSubResults: true,
         resetStyles: false,
       });
+      const q = new URLSearchParams(window.location.search).get('q');
+      if (q) {
+        const fill = () => {
+          const input = document.querySelector('#search input');
+          if (!input) return false;
+          const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;
+          setter ? setter.call(input, q) : (input.value = q);
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+          return true;
+        };
+        if (!fill()) {
+          const observer = new MutationObserver(() => {
+            if (fill()) observer.disconnect();
+          });
+          observer.observe(mount, { childList: true, subtree: true });
+        }
+      }
     } else if (mount) {
       mount.innerHTML =
         '<p>Search is indexed during <code>npm run build</code>. Run a build, or use the listings in the meantime.</p>';

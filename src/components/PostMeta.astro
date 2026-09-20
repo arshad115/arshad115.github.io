@@ -11,6 +11,11 @@ const { entry } = Astro.props;
 
 <p class="meta" data-pagefind-ignore>
   {entry.date && <time datetime={entry.date.toISOString()}>{formatDate(entry.date)}</time>}
+  {entry.updated && (
+    <span>
+      Updated <time datetime={entry.updated.toISOString()}>{formatDate(entry.updated)}</time>
+    </span>
+  )}
   {entry.kind === 'post' && <span>{entry.minutes} min read</span>}
   {entry.category && (
     <a href={entry.categoryPath || `/categories/#${entry.category}`}>{entry.categoryLabel || entry.category}</a>

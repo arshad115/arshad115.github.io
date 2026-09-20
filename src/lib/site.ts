@@ -1,17 +1,5 @@
-export const SITE = {
-  title: 'Arshad Mehmood',
-  description:
-    'Personal blog by Arshad Mehmood, a software engineer in Mannheim. Notes on DevOps, Android, systems, and a Today I Learned notebook.',
-  url: 'https://arshadmehmood.com',
-  author: 'Arshad Mehmood',
-  location: 'Mannheim, Germany',
-  defaultImage: '/assets/images/bio-photo.jpg',
-  github: 'https://github.com/arshad115',
-  linkedin: 'https://www.linkedin.com/in/arshadmehmood115/',
-  twitter: 'https://twitter.com/arshad115',
-  instagram: 'https://instagram.com/arshad115',
-  playStore: 'http://bit.ly/KookydroidApps',
-};
+export { SITE } from './site-meta.mjs';
+export { absoluteUrl } from './seo.mjs';
 
 export const NAV = [
   { href: '/posts/', label: 'Posts' },
@@ -92,9 +80,4 @@ export function excerptFromBody(body: string, max = 220): string {
     .trim();
   if (plain.length <= max) return plain;
   return `${plain.slice(0, max).replace(/\s+\S*$/, '')}…`;
-}
-
-export function absoluteUrl(pathname: string): string {
-  if (pathname.startsWith('http')) return pathname;
-  return new URL(pathname, SITE.url).toString();
 }

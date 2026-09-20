@@ -45,7 +45,7 @@ Jekyll leftover in older post bodies (`{{ "/path" \| absolute_url }}`, kramdown 
 
 ## Routes (v1)
 
-`/`, `/posts/`, `/today-i-learned/` (+ notes), `/portfolio/` (+ entries), `/categories/`, `/tags/`, `/about/`, `/contact/` (Wufoo), `/resources/`, `/resume/`, `/support/`, `/terms/`, `/newsletter/` (RSS copy), `/sitemap/`, `/search/`, `/feed.xml`, `/404`.
+`/`, `/posts/`, `/today-i-learned/` (+ notes), `/portfolio/` (+ entries), `/categories/`, `/tags/`, `/about/`, `/contact/` (Wufoo), `/resources/`, `/resume/`, `/support/`, `/terms/`, `/newsletter/` (RSS copy), `/sitemap/`, `/search/`, `/feed.xml`, `/llms.txt`, `/llms-full.txt`, `/404`.
 
 ## Commands
 

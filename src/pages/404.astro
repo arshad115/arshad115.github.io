@@ -2,7 +2,12 @@
 import Base from '../layouts/Base.astro';
 ---
 
-<Base title="Page not found" description="This URL is not on the site." permalink="/404.html">
+<Base
+  title="Page not found"
+  description="This URL is not on the site."
+  permalink="/404.html"
+  robots="noindex, follow"
+>
   <article class="reading not-found">
     <p class="kicker">404</p>
     <h1>This page is not here.</h1>

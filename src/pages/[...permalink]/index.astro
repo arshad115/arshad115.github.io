@@ -1,7 +1,7 @@
 ---
-import { getRenderableEntries, relatedPosts } from '../lib/content';
-import { stripSlashes } from '../lib/site';
-import Post from '../layouts/Post.astro';
+import { getRenderableEntries, relatedPosts } from '../../lib/content';
+import { stripSlashes } from '../../lib/site';
+import Post from '../../layouts/Post.astro';
 
 export async function getStaticPaths() {
   const entries = await getRenderableEntries();

@@ -28,6 +28,8 @@ export type SiteEntry = {
   comments: boolean;
   showToc: boolean;
   minutes: number;
+  wordCount: number;
+  body: string;
   collection:
     | CollectionEntry<'posts'>
     | CollectionEntry<'pages'>
@@ -74,6 +76,8 @@ export function fromPost(entry: CollectionEntry<'posts'>): SiteEntry {
     comments: true,
     showToc: data.toc !== false,
     minutes: readingMinutes(body),
+    wordCount: body.trim().split(/\s+/).filter(Boolean).length,
+    body,
     collection: entry,
   };
 }
@@ -92,6 +96,8 @@ export function fromPage(entry: CollectionEntry<'pages'>): SiteEntry {
     comments: false,
     showToc: Boolean(data.toc),
     minutes: readingMinutes(body),
+    wordCount: body.trim().split(/\s+/).filter(Boolean).length,
+    body,
     tags: [],
     collection: entry,
   };
@@ -115,6 +121,8 @@ export function fromTil(entry: CollectionEntry<'til'>): SiteEntry {
     comments: false,
     showToc: false,
     minutes: readingMinutes(body),
+    wordCount: body.trim().split(/\s+/).filter(Boolean).length,
+    body,
     collection: entry,
   };
 }
@@ -133,6 +141,8 @@ export function fromPortfolio(entry: CollectionEntry<'portfolio'>): SiteEntry {
     comments: false,
     showToc: false,
     minutes: readingMinutes(body),
+    wordCount: body.trim().split(/\s+/).filter(Boolean).length,
+    body,
     tags: asList(data.tags),
     collection: entry,
   };

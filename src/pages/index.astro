@@ -8,7 +8,7 @@ const posts = await getPosts();
 const latest = posts.slice(0, 8);
 ---
 
-<Base title={SITE.title} description={SITE.description} permalink="/">
+<Base title={SITE.title} description={SITE.description} permalink="/" markdown="/index.md">
   <div class="home-intro">
     <figure class="home-photo">
       <img

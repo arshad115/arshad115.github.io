@@ -6,7 +6,12 @@ import { getPosts } from '../../lib/content';
 const posts = await getPosts();
 ---
 
-<Base title="All posts" description="Every essay and tutorial, newest first." permalink="/posts/">
+<Base
+  title="All posts"
+  description="Every essay and tutorial, newest first."
+  permalink="/posts/"
+  pageType="CollectionPage"
+>
   <div class="reading">
     <p class="kicker">Index</p>
     <h1>All posts</h1>

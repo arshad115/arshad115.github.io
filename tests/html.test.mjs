@@ -112,6 +112,8 @@ test('RSS and XML sitemap list the live site', async () => {
   assert.match(sitemap, /https:\/\/arshadmehmood\.com/);
   assert.match(sitemap, /the-most-fulfilling-2-i-made-and-my-android-developer-journey/);
   assert.match(sitemap, /what-i-learnt-from-my-failed-incubator/);
+  assert.match(sitemap, /<lastmod>/);
+  assert.match(sitemap, /\/llms\.txt/);
   assert.doesNotMatch(sitemap, /the-most-fulfilling-\$2/);
   assert.doesNotMatch(sitemap, /Two-Factor-Authentication-\(2FA\)/);
 });
@@ -181,4 +183,42 @@ test('categories page uses one Title Case bucket per slug', async () => {
   assert.match(html, /<h2>DevOps /);
   assert.doesNotMatch(html, /<h2>development /);
   assert.doesNotMatch(html, /<h2>devops /);
+});
+
+test('human sitemap lists prose pages, not only listings', async () => {
+  const html = await readDist('/sitemap/');
+  assert.match(html, /href="\/about\/">About</);
+  assert.match(html, /href="\/resume\/">Resume/);
+  assert.match(html, /href="\/resources\/">/);
+  assert.match(html, /href="\/llms\.txt"/);
+});
+
+test('articles expose published time, JSON-LD, and Markdown discovery', async () => {
+  const html = await readDist('/personal/whats-your-developer-identity/');
+  assert.match(html, /property="article:published_time"/);
+  assert.match(html, /"@type":"BlogPosting"/);
+  assert.match(html, /rel="describedby"[^>]*llms\.txt/);
+  assert.match(html, /rel="alternate"[^>]*type="text\/markdown"[^>]*whats-your-developer-identity\/index\.md/);
+  const md = await readDist('/personal/whats-your-developer-identity/index.md');
+  assert.match(md, /^# What's your developer identity\?/);
+  assert.match(md, /Canonical: https:\/\/arshadmehmood\.com\/personal\/whats-your-developer-identity\//);
+});
+
+test('llms.txt is a root Markdown map for agents', async () => {
+  const llms = await readDist('/llms.txt');
+  assert.match(llms, /^# Arshad Mehmood\n/);
+  assert.match(llms, /^> /m);
+  assert.match(llms, /^## Essays\n/m);
+  assert.match(llms, /index\.md/);
+  const full = await readDist('/llms-full.txt');
+  assert.match(full, /delete-local-branch\/index\.md/);
+});
+
+test('404 is noindex; robots allow AI crawlers', async () => {
+  const notFound = await readDist('/404.html');
+  assert.match(notFound, /content="noindex, follow"/);
+  const robots = await fs.readFile(path.join(root, 'dist/robots.txt'), 'utf8');
+  assert.match(robots, /GPTBot/);
+  assert.match(robots, /ClaudeBot/);
+  assert.match(robots, /Sitemap:/);
 });
