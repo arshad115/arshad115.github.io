@@ -1,16 +1,16 @@
 {
-  "name": "Arshad Mehmood Blog (Jekyll)",
+  "name": "Arshad Mehmood Blog (Astro)",
   "install": "bash .cursor/install.sh",
   "terminals": [
     {
-      "name": "Jekyll server",
-      "command": "export PATH=\"$HOME/.rbenv/bin:$PATH\"; eval \"$(rbenv init - bash)\"; bundle exec jekyll serve --host 0.0.0.0 --port 4000 --no-watch"
+      "name": "Astro dev",
+      "command": "npm run dev -- --host 0.0.0.0 --port 4321"
     }
   ],
   "ports": [
     {
-      "name": "Jekyll server",
-      "port": 4000
+      "name": "Astro",
+      "port": 4321
     }
   ]
 }
