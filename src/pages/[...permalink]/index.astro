@@ -5,12 +5,12 @@ import Post from '../../layouts/Post.astro';
 
 export async function getStaticPaths() {
   const entries = await getRenderableEntries();
-  const posts = entries.filter((entry) => entry.kind === 'post');
+  const relatedCatalog = entries.filter((entry) => entry.kind === 'post' || entry.kind === 'til');
   return entries.map((entry) => ({
     params: { permalink: stripSlashes(entry.permalink) },
     props: {
       entry,
-      related: entry.kind === 'post' ? relatedPosts(entry, posts) : [],
+      related: entry.kind === 'post' ? relatedPosts(entry, relatedCatalog) : [],
     },
   }));
 }

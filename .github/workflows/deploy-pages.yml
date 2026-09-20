@@ -40,6 +40,17 @@ jobs:
       - name: Check
         run: npm run check
 
+      - name: Require Giscus or comments-off on master
+        if: github.ref == 'refs/heads/master'
+        env:
+          PUBLIC_GISCUS_REPO: ${{ secrets.PUBLIC_GISCUS_REPO }}
+          PUBLIC_GISCUS_REPO_ID: ${{ secrets.PUBLIC_GISCUS_REPO_ID }}
+          PUBLIC_GISCUS_CATEGORY: ${{ secrets.PUBLIC_GISCUS_CATEGORY }}
+          PUBLIC_GISCUS_CATEGORY_ID: ${{ secrets.PUBLIC_GISCUS_CATEGORY_ID }}
+          COMMENTS_DISABLED: ${{ vars.COMMENTS_DISABLED }}
+          PUBLIC_COMMENTS_DISABLED: ${{ vars.COMMENTS_DISABLED }}
+        run: node scripts/assert-giscus-config.mjs
+
       - name: Build
         run: npm run build
         env:
@@ -47,6 +58,8 @@ jobs:
           PUBLIC_GISCUS_REPO_ID: ${{ secrets.PUBLIC_GISCUS_REPO_ID }}
           PUBLIC_GISCUS_CATEGORY: ${{ secrets.PUBLIC_GISCUS_CATEGORY }}
           PUBLIC_GISCUS_CATEGORY_ID: ${{ secrets.PUBLIC_GISCUS_CATEGORY_ID }}
+          COMMENTS_DISABLED: ${{ vars.COMMENTS_DISABLED }}
+          PUBLIC_COMMENTS_DISABLED: ${{ vars.COMMENTS_DISABLED }}
 
       - name: Site tests
         run: npm run test:site

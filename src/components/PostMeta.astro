@@ -1,5 +1,5 @@
 ---
-import { formatDate } from '../lib/site';
+import { formatDate, tagSlug } from '../lib/site';
 import type { SiteEntry } from '../lib/content';
 
 interface Props {
@@ -21,6 +21,6 @@ const { entry } = Astro.props;
     <a href={entry.categoryPath || `/categories/#${entry.category}`}>{entry.categoryLabel || entry.category}</a>
   )}
   {(entry.tags ?? []).map((tag) => (
-      <a href={`/tags/#${tag.toLowerCase().replace(/\s+/g, '-')}`}>{tag}</a>
+      <a href={`/tags/#${tagSlug(tag)}`}>{tag}</a>
     ))}
 </p>

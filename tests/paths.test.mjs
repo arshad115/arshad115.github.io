@@ -3,8 +3,10 @@ import { test } from 'node:test';
 import { astroRedirects, caseAliasRedirects, legacyUrlRedirects } from '../scripts/legacy-url-redirects.mjs';
 import {
   categorySlug,
+  filenameDate,
   filenameSlug,
   postPermalink,
+  tagSlug,
   tilPermalink,
   withTrailingSlash,
 } from '../src/lib/paths.mjs';
@@ -38,6 +40,16 @@ test('filenameSlug strips only the date prefix', () => {
 test('categorySlug lowercases without pretty-slugging punctuation', () => {
   assert.equal(categorySlug('DevOps'), 'devops');
   assert.equal(categorySlug('Development'), 'development');
+});
+
+test('tagSlug strips punctuation for fragment ids', () => {
+  assert.equal(tagSlug('C++'), 'c');
+  assert.equal(tagSlug('Two-Factor Authentication (2FA)'), 'two-factor-authentication-2fa');
+});
+
+test('filenameDate reads the post filename prefix', () => {
+  assert.equal(filenameDate('2018-07-11-whats-your-developer-identity'), '2018-07-11');
+  assert.equal(filenameDate('git/delete-local-branch'), undefined);
 });
 
 test('TIL permalinks are category/slug under /today-i-learned/', () => {

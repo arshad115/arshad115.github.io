@@ -5,6 +5,10 @@ import PostMeta from '../components/PostMeta.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import GiscusComments from '../components/GiscusComments.astro';
 import type { SiteEntry } from '../lib/content';
+import { imageSize } from '../lib/image-size.mjs';
+import { relatedHeading } from '../lib/related.mjs';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/400-italic.css';
 
 interface Props {
   entry: SiteEntry;
@@ -16,6 +20,9 @@ const { Content, headings } = await render(entry.collection);
 const showToc = entry.showToc && headings.filter((heading) => heading.depth >= 2).length > 2;
 const image = entry.header?.image;
 const imageAlt = entry.header?.alt || entry.title;
+const imageDimensions = image ? imageSize(image) : undefined;
+const captionId = entry.header?.caption ? 'header-caption' : undefined;
+const relatedTitle = relatedHeading(entry, related);
 const ogType = entry.kind === 'page' ? 'website' : 'article';
 const pageType =
   entry.kind === 'page' && entry.permalink === '/about/'
@@ -54,9 +61,17 @@ const pageType =
     {entry.kind !== 'page' && <PostMeta entry={entry} />}
     {image && (
       <figure class="figure-plain" data-pagefind-ignore>
-        <img src={image} alt={imageAlt} decoding="async" fetchpriority="high" />
+        <img
+          src={image}
+          alt={imageAlt}
+          width={imageDimensions?.width}
+          height={imageDimensions?.height}
+          decoding="async"
+          fetchpriority="high"
+          aria-describedby={captionId}
+        />
         {entry.header?.caption && (
-          <figcaption>
+          <figcaption id={captionId}>
             {entry.header.captionHref ? (
               <a href={entry.header.captionHref}>{entry.header.caption}</a>
             ) : (
@@ -72,7 +87,7 @@ const pageType =
     </div>
     {related.length > 0 && (
       <aside class="related" data-pagefind-ignore>
-        <h2>More in {entry.categoryLabel || entry.category}</h2>
+        <h2>{relatedTitle}</h2>
         <ul>
           {related.map((item) => (
             <li>

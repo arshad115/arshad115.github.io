@@ -47,6 +47,21 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -262,6 +277,7 @@ h3 {
 .figure-plain img {
   display: block;
   width: 100%;
+  height: auto;
   border: 1px solid var(--rule);
 }
 

@@ -75,3 +75,17 @@ test('new-til.sh scaffolds a YAML title and no body H1', () => {
   assert.match(body, /Prefer merge for shared branches/);
   assert.match(result.stdout, /\/today-i-learned\/git\/rebase-vs-merge\//);
 });
+
+test('update-submodule.sh stays on the pin unless --remote is passed', () => {
+  const script = fs.readFileSync(path.join(root, 'scripts/update-submodule.sh'), 'utf8');
+  assert.match(script, /Usage:.*\[--remote\]/);
+  assert.match(script, /if \[\[ "\$remote" -eq 1 \]\]/);
+  assert.match(script, /git submodule update --remote today-i-learned/);
+  const defaultBody = script.replace(/if \[\[ "\$remote" -eq 1 \]\][\s\S]*?fi/g, '');
+  assert.doesNotMatch(defaultBody, /--remote today-i-learned/);
+});
+
+test('verify runs astro check between unit tests and the build', () => {
+  const pkg = JSON.parse(fs.readFileSync(path.join(root, 'package.json'), 'utf8'));
+  assert.equal(pkg.scripts.verify, 'npm test && npm run check && npm run build && npm run test:site');
+});

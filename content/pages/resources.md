@@ -5,7 +5,7 @@ permalink: /resources/
 
 A curated collection of tools, libraries, and resources I use and recommend for software development.
 
-## 🛠️ Development Tools
+## Development Tools
 
 ### Android Development
 - **[Android Studio](https://developer.android.com/studio)** - Official IDE for Android development
@@ -24,7 +24,7 @@ A curated collection of tools, libraries, and resources I use and recommend for 
 - **[Node.js](https://nodejs.org/)** - JavaScript runtime
 - **[Firebase](https://firebase.google.com/)** - Google's mobile and web application platform
 
-## 📚 Learning Resources
+## Learning Resources
 
 ### Books
 - **Clean Code** by Robert C. Martin
@@ -37,14 +37,14 @@ A curated collection of tools, libraries, and resources I use and recommend for 
 - **[Coursera](https://www.coursera.org/)** - University-level courses
 - **[Google Developers](https://developers.google.com/)** - Google's developer resources
 
-## 🎯 Productivity Tools
+## Productivity Tools
 
 - **[Obsidian](https://obsidian.md/)** - Knowledge management (see my [Obsidian Linker project](https://github.com/arshad115/obsidian-linker))
 - **[VS Code](https://code.visualstudio.com/)** - Code editor
 - **[Git](https://git-scm.com/)** - Version control system
 - **[GitLab](https://gitlab.com/)** - DevOps platform
 
-## 💡 Useful Libraries & Frameworks
+## Useful Libraries & Frameworks
 
 ### Android
 - **[Retrofit](https://square.github.io/retrofit/)** - HTTP client

@@ -3,7 +3,7 @@ description: Plain Astro migration rules for this personal site
 alwaysApply: true
 ---
 
-This repo is a **plain Astro** rebuild of arshadmehmood.com. Follow `AGENTS.md` and `docs/plain-astro-restart.md`. Ignore `MIGRATION_PLAN.md`.
+This repo is a **plain Astro** rebuild of arshadmehmood.com. Follow `AGENTS.md` (live contract). `docs/plain-astro-restart.md` is historical. Ignore `MIGRATION_PLAN.md`.
 
 Do not use Starlight, Pelagornis, or any npm blog theme. Do not merge the failed `codex/astro-starlight-migration` branch. Production `master` stays Jekyll until the fixture URL test is green. Do not auto-deploy this branch.
 

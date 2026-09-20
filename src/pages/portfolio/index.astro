@@ -2,9 +2,18 @@
 import Base from '../../layouts/Base.astro';
 import { projectGroups } from '../../data/projects';
 import { getPortfolio } from '../../lib/content';
+import { imageSize } from '../../lib/image-size.mjs';
 import { SITE } from '../../lib/site';
 
 const entries = await getPortfolio();
+const groups = projectGroups.map((group) => ({
+  ...group,
+  items: group.items.map((item) => ({
+    ...item,
+    imageAlt: item.image ? `Screenshot of ${item.name.replace(/-/g, ' ')}` : undefined,
+    imageDimensions: item.image ? imageSize(item.image) : undefined,
+  })),
+}));
 ---
 
 <Base
@@ -22,7 +31,7 @@ const entries = await getPortfolio();
       <a href="/posts/">posts</a>.
     </p>
     <ul class="project-index">
-      {projectGroups.map((group) => (
+      {groups.map((group) => (
         <li>
           <a href={`#${group.id}`}>{group.name}</a>
         </li>
@@ -35,7 +44,7 @@ const entries = await getPortfolio();
     </p>
   </div>
 
-  {projectGroups.map((group) => (
+  {groups.map((group) => (
     <section class="taxonomy" id={group.id}>
       <h2>{group.name}</h2>
       {group.items.map((item) => (
@@ -44,7 +53,16 @@ const entries = await getPortfolio();
             <h3><a href={item.href}>{item.name}</a></h3>
             <p>{item.description}</p>
           </div>
-          {item.image && <img src={item.image} alt={item.name} />}
+          {item.image && (
+            <img
+              src={item.image}
+              alt={item.imageAlt}
+              width={item.imageDimensions?.width}
+              height={item.imageDimensions?.height}
+              loading="lazy"
+              decoding="async"
+            />
+          )}
         </article>
       ))}
     </section>

@@ -24,13 +24,11 @@ import {
   stripSlashes,
   categorySlug,
   filenameSlug,
+  tagSlug,
+  filenameDate,
 } from './paths.mjs';
 
-export { withTrailingSlash, stripSlashes, categorySlug, filenameSlug };
-
-export function tagSlug(name: string): string {
-  return categorySlug(name);
-}
+export { withTrailingSlash, stripSlashes, categorySlug, filenameSlug, tagSlug, filenameDate };
 
 export function titleFromSlug(id: string): string {
   const slug = filenameSlug(id).split('/').pop() || id;

@@ -22,6 +22,14 @@ export function isRedirectHtml(html) {
   return /http-equiv=["']refresh["']/i.test(html) || /<title>\s*Redirecting to:/i.test(html);
 }
 
+export function redirectTargetFromHtml(html) {
+  const refresh = html.match(/http-equiv=["']refresh["'][^>]*content=["'][^"']*url=([^"']+)/i);
+  if (!refresh) return null;
+  const target = refresh[1].trim();
+  if (/^https?:\/\//i.test(target)) return pathnameFromUrl(target);
+  return normalizePath(target);
+}
+
 export function distPathFor(urlPath) {
   const normalized = normalizePath(urlPath);
   if (normalized === '/404/' || normalized === '/404.html') {

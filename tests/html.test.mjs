@@ -127,17 +127,26 @@ test('contact uses Wufoo; newsletter is RSS-only', async () => {
   assert.doesNotMatch(newsletter, /YOUR_USER_ID|mailchimp/i);
 });
 
-test('Giscus is never on TIL notes', async () => {
+test('Giscus is on posts when configured, explained when not, and never on TIL', async () => {
+  const post = await readDist(CLEAN_POST);
   const til = await readDist(TIL_GIT);
+  assert.match(post, /data-comments="(giscus|off)"/);
+  if (post.includes('data-comments="giscus"')) {
+    assert.match(post, /giscus\.app/);
+  } else {
+    assert.match(post, /Comments are not enabled on this build/);
+    assert.doesNotMatch(post, /giscus\.app/);
+  }
   assert.match(til, /Today I Learned/);
   assert.doesNotMatch(til, /giscus\.app/);
+  assert.doesNotMatch(til, /data-comments=/);
   assert.equal([...til.matchAll(/<h1[\s>]/g)].length, 1);
 });
 
 test('header captions are plain text or links, not Markdown YAML leftovers', async () => {
   const html = await readDist('/personal/whats-your-developer-identity/');
   assert.match(html, /<img[^>]+alt="Ariana Grande in the Side to Side music video"/);
-  assert.match(html, /<figcaption><a href="https:\/\/www\.youtube\.com\/watch\?v=ffxKSjUwKdU">Photo credit: Vevo\/Ariana Grande<\/a><\/figcaption>/);
+  assert.match(html, /<figcaption id="header-caption"><a href="https:\/\/www\.youtube\.com\/watch\?v=ffxKSjUwKdU">Photo credit: Vevo\/Ariana Grande<\/a><\/figcaption>/);
   assert.doesNotMatch(html, /<figcaption>\[[*]*Vevo/);
 });
 
@@ -221,4 +230,52 @@ test('404 is noindex; robots allow AI crawlers', async () => {
   assert.match(robots, /GPTBot/);
   assert.match(robots, /ClaudeBot/);
   assert.match(robots, /Sitemap:/);
+});
+
+test('About and Resources headings are plain text, not emoji', async () => {
+  const about = await readDist('/about/');
+  assert.match(about, /id="hello-im-arshad-mehmood"/);
+  assert.match(about, /Hello, I.m Arshad Mehmood/);
+  assert.doesNotMatch(about, /<h[1-6][^>]*>\s*[\u{1F300}-\u{1FAFF}]/u);
+  const resources = await readDist('/resources/');
+  assert.match(resources, /id="development-tools"/);
+  assert.doesNotMatch(resources, /<h[1-6][^>]*>\s*[\u{1F300}-\u{1FAFF}]/u);
+});
+
+test('header figures expose alt, dimensions, and a caption association', async () => {
+  const html = await readDist('/personal/whats-your-developer-identity/');
+  assert.match(html, /<img[^>]+alt="Ariana Grande in the Side to Side music video"/);
+  assert.match(html, /<img[^>]+width="\d+"[^>]+height="\d+"/);
+  assert.match(html, /aria-describedby="header-caption"/);
+});
+
+test('SSH essay related list prefers markdown TIL links', async () => {
+  const html = await readDist('/devops/complete-guide-to-ssh-from-basics-to-advanced/');
+  assert.match(html, /<h2>Related<\/h2>/);
+  assert.match(html, /href="\/today-i-learned\/ssh\/ssh-connection-basics\/"/);
+});
+
+test('mobile nav can close from the keyboard; theme toggle exposes pressed state', async () => {
+  const html = await readDist('/');
+  assert.match(html, /class="nav-toggle"[^>]*aria-controls="site-nav"/);
+  assert.match(html, /aria-expanded="false"/);
+  assert.match(html, /data-theme-toggle[^>]*aria-pressed=/);
+  assert.match(html, /Escape/);
+});
+
+test('home does not load IBM Plex Mono; posts do', async () => {
+  const home = await readDist('/');
+  assert.doesNotMatch(home, /ibm-plex-mono/i);
+  const post = await readDist(CLEAN_POST);
+  assert.match(post, /ibm-plex-mono/i);
+});
+
+test('portfolio uses HTTPS Play URLs, not bit.ly, and lists Langur once', async () => {
+  const html = await readDist('/portfolio/');
+  assert.doesNotMatch(html, /bit\.ly/i);
+  assert.doesNotMatch(html, /http:\/\/play\.google/);
+  assert.match(html, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.kookydroidapps\.mosquesnearme/);
+  assert.match(html, /https:\/\/www\.kentech\.ie\//);
+  const langur = [...html.matchAll(/href="\/portfolio\/langur-language-translation-bot\/"/g)];
+  assert.equal(langur.length, 2, 'one project row plus the write-ups index');
 });

@@ -2,6 +2,8 @@
 /// <reference types="astro/client" />
 
 interface ImportMetaEnv {
+  readonly COMMENTS_DISABLED?: string;
+  readonly PUBLIC_COMMENTS_DISABLED?: string;
   readonly PUBLIC_GISCUS_REPO?: string;
   readonly PUBLIC_GISCUS_REPO_ID?: string;
   readonly PUBLIC_GISCUS_CATEGORY?: string;

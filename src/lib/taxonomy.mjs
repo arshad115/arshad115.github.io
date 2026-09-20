@@ -1,4 +1,4 @@
-import { categorySlug } from './paths.mjs';
+import { categorySlug, tagSlug } from './paths.mjs';
 
 /**
  * Closed post taxonomy. YAML `category:` and the URL segment must be one of these.
@@ -65,7 +65,7 @@ export function groupByTagName(entries) {
     for (const tag of entry.tags || []) {
       const raw = String(tag).trim();
       if (!raw) continue;
-      const slug = categorySlug(raw) || raw;
+      const slug = tagSlug(raw) || raw;
       const current = map.get(slug);
       if (current) {
         current.items.push(entry);

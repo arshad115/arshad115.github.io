@@ -1,6 +1,8 @@
 import { defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { listingRoutePaths } from './lib/routes.mjs';
+import { categorySlug, withTrailingSlash } from './lib/paths.mjs';
 import { CATEGORY_SLUGS } from './lib/taxonomy.mjs';
 
 /** Keep the filename as the collection id. Do not github-slug it. */
@@ -24,7 +26,14 @@ const header = z
   })
   .optional();
 
-const tags = z.array(z.string()).optional();
+const tags = z
+  .union([z.array(z.string()), z.string()])
+  .optional()
+  .transform((value) => {
+    if (value == null) return undefined;
+    const list = Array.isArray(value) ? value : String(value).split(',');
+    return list.map((item) => String(item).trim()).filter(Boolean);
+  });
 
 const posts = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './content/posts', generateId: fileId }),
@@ -33,12 +42,14 @@ const posts = defineCollection({
     date: z.coerce.date(),
     category: z
       .string()
+      .transform((value) => categorySlug(value))
       .refine((value) => CATEGORY_SLUGS.includes(value), {
         message: `category must be one of: ${CATEGORY_SLUGS.join(', ')}`,
       }),
     tags,
     excerpt: z.string().optional(),
     last_modified_at: z.coerce.date().optional(),
+    draft: z.boolean().optional(),
     header,
     toc: z.boolean().optional(),
   }),
@@ -48,7 +59,15 @@ const pages = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './content/pages', generateId: fileId }),
   schema: z.object({
     title: z.string(),
-    permalink: z.string(),
+    permalink: z
+      .string()
+      .transform((value) => withTrailingSlash(value.startsWith('/') ? value : `/${value}`))
+      .refine((value) => value.startsWith('/') && value.endsWith('/'), {
+        message: 'permalink must be a root-relative path with a trailing slash',
+      })
+      .refine((value) => !listingRoutePaths.has(value), {
+        message: 'permalink collides with a listing route',
+      }),
     excerpt: z.string().optional(),
     header,
     toc: z.boolean().optional(),

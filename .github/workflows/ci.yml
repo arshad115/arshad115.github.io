@@ -46,6 +46,8 @@ jobs:
           PUBLIC_GISCUS_REPO_ID: ${{ secrets.PUBLIC_GISCUS_REPO_ID }}
           PUBLIC_GISCUS_CATEGORY: ${{ secrets.PUBLIC_GISCUS_CATEGORY }}
           PUBLIC_GISCUS_CATEGORY_ID: ${{ secrets.PUBLIC_GISCUS_CATEGORY_ID }}
+          COMMENTS_DISABLED: ${{ vars.COMMENTS_DISABLED }}
+          PUBLIC_COMMENTS_DISABLED: ${{ vars.COMMENTS_DISABLED }}
 
       - name: Site tests
         run: npm run test:site

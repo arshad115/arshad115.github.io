@@ -1,16 +1,16 @@
 # Restart the site as plain Astro
 
-**Status:** this branch (`codex/astro-starlight-migration`) is a failed first attempt. Do not merge it to `master`. Do not keep iterating Starlight on it.
+**Live contract:** [`AGENTS.md`](../AGENTS.md) on `astro-plain-migration`. That is the rebuild. This file is the original restart brief — historical context, not “you are on the Starlight branch.”
 
-**Next step:** archive this branch, create a **new branch from current `origin/master`** (live Jekyll), copy this file onto that branch as the first commit, then implement the target below.
+**History:** `codex/astro-starlight-migration` was a failed first attempt (Starlight + Pelagornis). Do not merge it to `master`. Do not keep iterating Starlight on it.
 
-Related branches to keep as reference, not as a base:
+Related reference branches (not a base):
 
-- `codex/astro-starlight-migration` (this tree)
+- `codex/astro-starlight-migration`
 - `origin/codex/astro-starlight-migration` (diverged; graph/image work)
 - `backup/master-before-astro-starlight-migration`
 
-Production remains Jekyll on `master` / [arshadmehmood.com](https://arshadmehmood.com) until the new Astro branch has URL parity.
+Production remains Jekyll on `master` / [arshadmehmood.com](https://arshadmehmood.com) until URL parity is green.
 
 ---
 
@@ -30,7 +30,7 @@ Build a **plain Astro static site** with layouts we own.
 
 Starlight is a docs framework. Using it as the blog shell forced a generator, a `docs` collection, theme overrides, and Pelagornis. Search and TOC do not need Starlight: Pagefind indexes `dist/` after build; content collections already return heading `{ depth, slug, text }` arrays.
 
-Do **not** `npm install` another blog theme (Astro Paper, Cactus, etc.). This repo already lost years to Minimal Mistakes upstream and then fought Starlight/Pelagornis (`PageTitle`, `PageSidebar`, `TwoColumnContent`, hidden sidebar, `custom.css`). Own `Base.astro` / `Post.astro` and reuse visual language from `src/styles/custom.css` (terracotta `#b8563d`, home hero, listing cards). Steal *structure* from the official Astro blog example (collections, RSS, markdown), not a theme package.
+Do **not** `npm install` another blog theme (Astro Paper, Cactus, etc.). This repo already lost years to Minimal Mistakes upstream and then fought Starlight/Pelagornis (`PageTitle`, `PageSidebar`, `TwoColumnContent`, hidden sidebar, `custom.css`). Own `Base.astro` / `Post.astro` and reuse visual language from `src/styles/global.css` (terracotta `#b8563d`, home photo, ~65ch reading column). Steal *structure* from the official Astro blog example (collections, RSS, markdown), not a theme package.
 
 ---
 

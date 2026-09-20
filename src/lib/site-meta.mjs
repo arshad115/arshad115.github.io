@@ -18,7 +18,7 @@ export const SITE = {
   twitter: 'https://twitter.com/arshad115',
   twitterHandle: '@arshad115',
   instagram: 'https://instagram.com/arshad115',
-  playStore: 'http://bit.ly/KookydroidApps',
+  playStore: 'https://play.google.com/store/apps/dev?id=7044232667654327190',
 };
 
 export const PERSON_ID = `${SITE.url}/#person`;

@@ -15,7 +15,9 @@ const current = Astro.url.pathname;
       </svg>
       <span class="wordmark-name">Arshad Mehmood</span>
     </a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      Menu
+    </button>
     <nav id="site-nav" class="site-nav" aria-label="Primary">
       {
         NAV.map((item) => (
@@ -27,7 +29,15 @@ const current = Astro.url.pathname;
       <a href="/search/">Search</a>
     </nav>
     <div class="nav-tools">
-      <button class="theme-toggle" type="button" data-theme-toggle>Dark</button>
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-pressed="false"
+        aria-label="Switch to dark theme"
+      >
+        Dark
+      </button>
     </div>
   </div>
 </header>
@@ -35,22 +45,81 @@ const current = Astro.url.pathname;
 <script>
   const header = document.querySelector('.masthead');
   const toggle = document.querySelector('.nav-toggle');
-  toggle?.addEventListener('click', () => {
-    const open = header?.classList.toggle('is-open');
+  const nav = document.querySelector('#site-nav');
+  const themeButton = document.querySelector('[data-theme-toggle]');
+  const mobileNav = window.matchMedia('(max-width: 780px)');
+
+  const isMobile = () => mobileNav.matches;
+  const isOpen = () => header?.classList.contains('is-open') === true;
+
+  function focusables() {
+    const nodes: HTMLElement[] = [];
+    if (toggle instanceof HTMLElement) nodes.push(toggle);
+    if (nav) {
+      for (const link of nav.querySelectorAll('a')) {
+        if (link instanceof HTMLElement) nodes.push(link);
+      }
+    }
+    if (themeButton instanceof HTMLElement) nodes.push(themeButton);
+    return nodes;
+  }
+
+  function setOpen(open: boolean, { restoreFocus = true } = {}) {
+    if (!header || !(toggle instanceof HTMLElement)) return;
+    header.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (!open && restoreFocus && isMobile()) toggle.focus();
+  }
+
+  toggle?.addEventListener('click', () => {
+    setOpen(!isOpen(), { restoreFocus: false });
   });
 
-  const themeButton = document.querySelector('[data-theme-toggle]');
-  const syncLabel = () => {
+  nav?.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element) || !event.target.closest('a')) return;
+    // Hide after the click so display:none does not cancel navigation.
+    window.setTimeout(() => setOpen(false, { restoreFocus: false }), 0);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (!isOpen() || !isMobile()) return;
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      setOpen(false);
+      return;
+    }
+    if (event.key !== 'Tab') return;
+    const nodes = focusables();
+    if (nodes.length === 0) return;
+    const active = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const index = active ? nodes.indexOf(active) : -1;
+    const last = nodes.length - 1;
+    if (event.shiftKey && index <= 0) {
+      event.preventDefault();
+      nodes[last]?.focus();
+    } else if (!event.shiftKey && (index === last || index === -1)) {
+      event.preventDefault();
+      nodes[0]?.focus();
+    }
+  });
+
+  mobileNav.addEventListener('change', () => {
+    if (!isMobile()) setOpen(false, { restoreFocus: false });
+  });
+
+  const syncThemeButton = () => {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    if (themeButton) themeButton.textContent = dark ? 'Light' : 'Dark';
+    if (!(themeButton instanceof HTMLElement)) return;
+    themeButton.textContent = dark ? 'Light' : 'Dark';
+    themeButton.setAttribute('aria-pressed', dark ? 'true' : 'false');
+    themeButton.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
   };
-  syncLabel();
+  syncThemeButton();
   themeButton?.addEventListener('click', () => {
     const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
     document.dispatchEvent(new Event('themechange'));
-    syncLabel();
+    syncThemeButton();
   });
 </script>

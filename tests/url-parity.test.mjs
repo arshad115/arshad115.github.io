@@ -10,14 +10,17 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { test } from 'node:test';
-import { legacyUrlRedirects } from '../scripts/legacy-url-redirects.mjs';
+import { astroRedirects, caseAliasRedirects, legacyUrlRedirects } from '../scripts/legacy-url-redirects.mjs';
 import {
   collectHtmlFiles,
   collectStaticAssetPaths,
   distDir,
+  distPathFor,
   isRedirectHtml,
   normalizePath,
   pathnameFromUrl,
+  readDist,
+  redirectTargetFromHtml,
   root,
 } from './helpers/dist.mjs';
 
@@ -104,4 +107,38 @@ test('frozen Jekyll sitemap URLs land on real HTML in dist/', async () => {
     0,
     missing.length ? `${missing.length} fixture URL(s) failed:\n${report}` : undefined,
   );
+});
+
+async function sameDistFile(left, right) {
+  try {
+    const [a, b] = await Promise.all([
+      fs.stat(distPathFor(left)),
+      fs.stat(distPathFor(right)),
+    ]);
+    return a.dev === b.dev && a.ino === b.ino;
+  } catch {
+    return false;
+  }
+}
+
+test('every Astro alias exists in dist as redirect HTML to a real page', async () => {
+  for (const [from, to] of Object.entries(astroRedirects)) {
+    const html = await readDist(from);
+    assert.equal(isRedirectHtml(html), true, `${from} should be redirect HTML in dist/`);
+    const target = redirectTargetFromHtml(html);
+    assert.equal(normalizePath(target || ''), normalizePath(to), `${from} should refresh to ${to}`);
+    const landing = await readDist(to);
+    assert.equal(isRedirectHtml(landing), false, `${to} should be real HTML`);
+    assert.match(landing, /Arshad Mehmood/, `${to} missing site name`);
+  }
+});
+
+test('case-only aliases are redirect HTML when the filesystem can store them', async () => {
+  for (const [from, to] of Object.entries(caseAliasRedirects)) {
+    if (await sameDistFile(from, to)) continue;
+    const html = await readDist(from);
+    assert.equal(isRedirectHtml(html), true, `${from} should be redirect HTML in dist/`);
+    const landing = await readDist(to);
+    assert.equal(isRedirectHtml(landing), false, `${to} should be real HTML`);
+  }
 });

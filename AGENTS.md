@@ -2,7 +2,7 @@
 
 This branch (`astro-plain-migration`) rebuilds the site as a **plain Astro static site**. Production `master` is still Jekyll + Minimal Mistakes on [arshadmehmood.com](https://arshadmehmood.com) until URL parity is green.
 
-Read `docs/plain-astro-restart.md` first. Ignore root `MIGRATION_PLAN.md` (Starlight plan; superseded).
+This file is the live contract. `docs/plain-astro-restart.md` is historical context for the Starlight false start. Ignore root `MIGRATION_PLAN.md`.
 
 ## Hard rules
 
@@ -10,14 +10,14 @@ Read `docs/plain-astro-restart.md` first. Ignore root `MIGRATION_PLAN.md` (Starl
 - Do **not** merge `codex/astro-starlight-migration` or `backup/master-before-astro-starlight-migration`.
 - Do **not** auto-deploy this branch to GitHub Pages. Deploy workflow is `workflow_dispatch` only and must refuse to publish unless `master`.
 - Do **not** change git config, force-push, or skip hooks.
-- Live Jekyll paths are frozen in `tests/fixtures/jekyll-sitemap.xml`. After following aliases, the landing URL must be real HTML. New posts use lowercase kebab slugs. Punctuation live paths (`$2`, `(2FA)`) redirect to the cleaned slug; do not keep those as canonical pages. Other aliases: `/projects/` → `/portfolio/`, `/page2/`–`/page9/` → `/posts/`.
+- Live Jekyll paths are frozen in `tests/fixtures/jekyll-sitemap.xml`. After following aliases, the landing URL must be real HTML. New posts use lowercase kebab slugs. Punctuation live paths (`$2`, `(2FA)`) redirect to the cleaned slug; do not keep those as canonical pages. Other aliases: `/projects/` → `/portfolio/`, `/page2/`–`/page9/` → `/posts/`. Alias HTML must exist in `dist/` (case-only aliases are written after build on case-sensitive filesystems).
 - One source per URL. Do not keep a `content/pages/foo.md` *and* `src/pages/foo/` for the same route.
 - Static files live in `public/`. Do not revive a second `assets/` tree at the repo root.
-- Giscus on **posts only**, never every TIL note.
+- Giscus on **posts only**, never every TIL note. Master deploy requires the four `PUBLIC_GISCUS_*` secrets or `COMMENTS_DISABLED=true`.
 - No Universal Analytics default. No Mailchimp `YOUR_USER_ID` placeholder. Newsletter is RSS-only until there is a real list.
 - No synthetic tag-overlap graph. Graph is v1.1 and optional, from real markdown links only.
-- `today-i-learned/` is a git submodule. Fail the build if it is missing. `git submodule update --init --recursive` after clone.
-- Do not publish `content/drafts/`.
+- `today-i-learned/` is a git submodule. Fail the build if it is missing. `git submodule update --init --recursive` after clone. `scripts/update-submodule.sh` checks out the pin; pass `--remote` only when you intend to bump it.
+- Do not publish `content/drafts/`. Do not publish posts with `draft: true`.
 - Licensed or open fonts only. Do not use Square Market / SqMarket unless a license file is in this repo.
 
 ## Layouts and look
@@ -56,9 +56,10 @@ npm run dev
 npm run build          # also runs Pagefind
 npm test               # unit tests (no dist/ required)
 npm run test:site      # URL fixture + HTML contracts; needs a fresh build
-npm run verify
+npm run verify         # test, check, build, test:site
 ./scripts/new-post.sh "Title"
 ./scripts/new-til.sh "Title" category
+./scripts/update-submodule.sh  # pin; add --remote to fetch upstream HEAD
 ```
 
 Node 20. Site URL: `https://arshadmehmood.com`. `trailingSlash: 'always'`.

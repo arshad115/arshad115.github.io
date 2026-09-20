@@ -48,3 +48,17 @@ test('header images use alt text and plain-text captions', () => {
     }
   }
 });
+
+test('post filename date matches YAML date', () => {
+  const files = markdownFiles('content/posts');
+  assert.ok(files.length > 0);
+  for (const file of files) {
+    const name = path.basename(file);
+    const fileDate = name.match(/^(\d{4}-\d{2}-\d{2})-/);
+    assert.ok(fileDate, `${name} must start with YYYY-MM-DD-`);
+    const text = fs.readFileSync(file, 'utf8');
+    const yamlDate = text.match(/^date:\s*['"]?(\d{4}-\d{2}-\d{2})/m);
+    assert.ok(yamlDate, `${name} missing date:`);
+    assert.equal(yamlDate[1], fileDate[1], `${name} YAML date must match the filename`);
+  }
+});

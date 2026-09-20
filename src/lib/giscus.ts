@@ -1,3 +1,5 @@
+import { commentsDisabled } from './giscus-config.mjs';
+
 export const giscus = {
   repo: import.meta.env.PUBLIC_GISCUS_REPO,
   repoId: import.meta.env.PUBLIC_GISCUS_REPO_ID,
@@ -14,4 +16,8 @@ export const giscus = {
   lang: import.meta.env.PUBLIC_GISCUS_LANG ?? 'en',
 };
 
-export const giscusEnabled = Boolean(giscus.repo && giscus.repoId && giscus.category && giscus.categoryId);
+export const giscusEnabled =
+  !commentsDisabled({
+    COMMENTS_DISABLED: import.meta.env.COMMENTS_DISABLED,
+    PUBLIC_COMMENTS_DISABLED: import.meta.env.PUBLIC_COMMENTS_DISABLED,
+  }) && Boolean(giscus.repo && giscus.repoId && giscus.category && giscus.categoryId);

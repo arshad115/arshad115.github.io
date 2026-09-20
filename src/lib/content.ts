@@ -1,5 +1,8 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import { rewriteJekyllMarkdown } from './jekyll';
+import { assertUniquePermalinks, isPublishedData } from './permalinks.mjs';
+import { listingRoutes } from './routes.mjs';
+import { relatedPosts } from './related.mjs';
 import {
   asList,
   categorySlug,
@@ -8,7 +11,9 @@ import {
   readingMinutes,
   withTrailingSlash,
 } from './site';
-import { groupByCategoryName, groupByTagName, sameCategory, categoryLabel } from './taxonomy.mjs';
+import { groupByCategoryName, groupByTagName, categoryLabel } from './taxonomy.mjs';
+
+export { listingRoutes, relatedPosts };
 
 export type EntryKind = 'post' | 'page' | 'til' | 'portfolio';
 
@@ -149,7 +154,7 @@ export function fromPortfolio(entry: CollectionEntry<'portfolio'>): SiteEntry {
 }
 
 export async function getPosts(): Promise<SiteEntry[]> {
-  const entries = await getCollection('posts');
+  const entries = await getCollection('posts', ({ data }) => isPublishedData(data));
   return entries
     .map(fromPost)
     .sort((a, b) => (b.date?.getTime() ?? 0) - (a.date?.getTime() ?? 0));
@@ -177,7 +182,9 @@ export async function getRenderableEntries(): Promise<SiteEntry[]> {
     getTilNotes(),
     getPortfolio(),
   ]);
-  return [...posts, ...pages, ...til, ...portfolio];
+  const entries = [...posts, ...pages, ...til, ...portfolio];
+  assertUniquePermalinks(entries);
+  return entries;
 }
 
 export function groupByCategory(entries: SiteEntry[]): Array<{ name: string; slug: string; items: SiteEntry[] }> {
@@ -188,23 +195,3 @@ export function groupByTag(entries: SiteEntry[]): Array<{ name: string; slug: st
   return groupByTagName(entries);
 }
 
-export function relatedPosts(post: SiteEntry, all: SiteEntry[], limit = 3): SiteEntry[] {
-  return all
-    .filter(
-      (item) => item.permalink !== post.permalink && item.category && sameCategory(item.category, post.category),
-    )
-    .slice(0, limit);
-}
-
-export const listingRoutes = [
-  { path: '/', title: 'Home' },
-  { path: '/posts/', title: 'All Posts' },
-  { path: '/today-i-learned/', title: 'Today I Learned' },
-  { path: '/portfolio/', title: 'Portfolio' },
-  { path: '/categories/', title: 'Categories' },
-  { path: '/tags/', title: 'Tags' },
-  { path: '/contact/', title: 'Contact' },
-  { path: '/newsletter/', title: 'Newsletter' },
-  { path: '/search/', title: 'Search' },
-  { path: '/sitemap/', title: 'Sitemap' },
-];
