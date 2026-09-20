@@ -1,17 +1,20 @@
 ---
-category: Tutorial
+title: Build and Deploy GitLab Project Repository to Firebase Hosting with Continuous Integration
+date: 2018-08-30
+category: tutorial
 tags:
   - gitlab
   - firebase
   - ci
   - cd
   - hosting
+toc: false
 header:
   image: /assets/images/cicd_pipeline_infograph.png
-  caption: "Photo credit: [**Gitlab**](https://docs.gitlab.com/ee/ci/README.html)"
+  alt: CI/CD pipeline infographic
+  caption: "Photo credit: Gitlab"
+  captionHref: https://docs.gitlab.com/ee/ci/README.html
   teaser: /assets/images/ci_teaser.png
-comments: true
-toc: false
 ---
 
 Previously, I wrote a blog post on how to [Deploy Angular App To Firebase Hosting](https://arshadmehmood.com/deploy-angular-app-to-firebase-hosting/) and [Deploy Gitlab Project/Repository to Heroku app with Continuous Integration in 5 minutes!](https://arshadmehmood.com/howto/deploy-gitlab-project-repository-to-heroku-app-with-continuous-integration-in-five-minutes/). Now we will use [Gitlab's Continuous Integration (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html) to build and deploy an [Angular 6](https://angular.io/) app to [Firebase Hosting](https://firebase.google.com/docs/hosting/) . It's really cool!

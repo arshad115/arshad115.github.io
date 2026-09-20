@@ -1,7 +1,9 @@
 ---
-title: "Setup Dynamic Jenkins Agents in Kubernetes"
-category: DevOps
-tags: 
+title: Setup Dynamic Jenkins Agents in Kubernetes
+excerpt: Learn how to configure Jenkins to dynamically create agents in a Kubernetes cluster using Kind. Step-by-step guide to scalable CI/CD infrastructure.
+date: 2024-10-10
+category: devops
+tags:
   - devops
   - kubernetes
   - jenkins
@@ -9,11 +11,9 @@ tags:
   - ci-cd
 header:
   image: /assets/images/posts/jenks-k8s-cloud.png
-  teaser: /assets/images/posts/jenks-k8s-cloud.png
-comments: true
-toc_sticky: true
-excerpt: "Learn how to configure Jenkins to dynamically create agents in a Kubernetes cluster using Kind. Step-by-step guide to scalable CI/CD infrastructure."
+  alt: Jenkins agents running on Kubernetes
 ---
+
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 
 We want to use a Kubernetes Cluster with Jenkins, so that Jenkins can fire up slaves in the cluster as required and perform the pipeline tasks.

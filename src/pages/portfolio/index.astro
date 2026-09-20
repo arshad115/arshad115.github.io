@@ -43,7 +43,7 @@ const entries = await getPortfolio();
             <h3><a href={item.href}>{item.name}</a></h3>
             <p>{item.description}</p>
           </div>
-          {item.image && <img src={item.image} alt="" />}
+          {item.image && <img src={item.image} alt={item.name} />}
         </article>
       ))}
     </section>

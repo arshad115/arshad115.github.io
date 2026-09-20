@@ -68,13 +68,12 @@ Copy by file, **do not merge** this branch into `master` or into the new branch.
 
 Re-implement redirects correctly (this copy is a checklist, not drop-in):
 
-1. **Canonical URL = exact path on the frozen Jekyll sitemap.** That path must be a real page in `dist/`, not a redirect to a “cleaner” slug.
-2. Redirects are only for **aliases**: `/projects/` → `/portfolio/`, `/page2/`…`/page9/` → `/posts/`, extra case spellings that are **not** in the sitemap.
-3. Do not invert that. This branch sometimes maps a live path *onto* an ugly permalink and sometimes *away* from the permalink (`what-I-learnt` → `what-i-learnt`). Pick the sitemap spelling and stick to it. GitHub Pages is case-sensitive.
-4. Ugly public URLs stay public if they were live, including `/personal/the-most-fulfilling-$2-I-made-and-my-android-developer-journey/` and `/tutorial/how-to-use-gitlab-after-enabling-Two-Factor-Authentication-(2FA)/`.
-5. **Fix the test.** Today it adds every redirect *source* to `availablePaths`, so a mapped live URL can pass even if the **target** was never built. After following redirects, the landing path must exist as HTML in `dist/`.
-6. **Commit a Jekyll sitemap fixture** (`tests/fixtures/jekyll-sitemap.xml` or a URL list). Do not use live `https://arshadmehmood.com/sitemap.xml` as the only source: after cutover the test becomes “site vs itself,” and this branch already drifted (parity failed for `/development/introducing-vault-linker/` and two TIL notes).
-7. Run the fixture test in CI on every PR, without depending on a stale local `dist/`.
+1. **Landing URL after aliases = real HTML in `dist/`.** The frozen Jekyll sitemap is the set of live inbound paths. They may redirect to a cleaned slug (`$2`, `(2FA)`). The destination must exist as a page, not as another redirect.
+2. Redirects are **aliases only**: `/projects/` → `/portfolio/`, `/page2/`…`/page9/` → `/posts/`, and old punctuation post URLs → lowercase kebab slugs. Do not keep `$` or `(2FA)` as canonical filenames.
+3. GitHub Pages is case-sensitive. The cleaned slug is the one page; extra casings are redirects only when they are not already that slug.
+4. **Fix the test.** Today it adds every redirect *source* to `availablePaths`, so a mapped live URL can pass even if the **target** was never built. After following redirects, the landing path must exist as HTML in `dist/`.
+5. **Commit a Jekyll sitemap fixture** (`tests/fixtures/jekyll-sitemap.xml` or a URL list). Do not use live `https://arshadmehmood.com/sitemap.xml` as the only source: after cutover the test becomes “site vs itself,” and this branch already drifted (parity failed for `/development/introducing-vault-linker/` and two TIL notes).
+6. Run the fixture test in CI on every PR, without depending on a stale local `dist/`.
 
 **Content layout (the folders, not the generator)**
 
@@ -97,11 +96,10 @@ Re-implement redirects correctly (this copy is a checklist, not drop-in):
 - `.gitmodules` + `scripts/update-submodule.sh` (paths already updated)
 - Fail the build if the submodule is missing (good idea from the generator; do it in the Astro integration or a prebuild script without writing Starlight MDX)
 
-**Post scaffolding (fix before reuse)**
+**Post / TIL scaffolding**
 
-- `content/drafts/post-template.mdx` as a starting template
-- `scripts/draft_to_post.py` is the only Python entry that defines `POSTS_DIR` *before* `__main__`
-- `scripts/new_post.py` and `scripts/quick_post.py` assign `POSTS_DIR` **after** `if __name__ == "__main__"` → `NameError` if run as scripts. Move constants to the top or replace with one Node script. Do not copy `install.sh` / `setup_aliases.sh` blindly (`setup_aliases.sh` appends to the user shell profile).
+- Use `./scripts/new-post.sh` and `./scripts/new-til.sh` (Node implementations in `scripts/new-post.mjs` / `scripts/new-til.mjs`). They replace the root Python helpers (`new_post.py`, `quick_post.py`, `draft_to_post.py`) and the submodule wrappers for creating notes from this repo.
+- Do not copy `install.sh` / `setup_aliases.sh` (`setup_aliases.sh` appends to the user shell profile).
 
 ### Take as a warning only
 
@@ -150,7 +148,7 @@ The Jekyll → Astro move was still the right *direction* (escape the Minimal Mi
 - Do not keep a generator whose only job is to satisfy Starlight.
 - Do not add a blog theme package “for speed.”
 - Do not synthesize graph links so the widget looks busy.
-- Do not change public URLs to prettier slugs. Redirect aliases only.
+- Do not keep `$` or parentheses in Jekyll filenames as canonical URLs. Redirect those live paths to lowercase kebab slugs.
 - Do not deploy Astro until the **fixture** URL test is green.
 - Do not use `GITHUB_TOKEN` submodule auto-commits as the publish path without a follow-up deploy (`GITHUB_TOKEN` pushes do not start other workflows).
 - Do not leave `content/pages/foo.md` *and* `src/pages/foo/` as competing sources. One source per route.

@@ -1,6 +1,6 @@
 ---
+title: Resume/CV
 permalink: /resume/
-title: "Resume/CV"
 toc: true
 ---
 

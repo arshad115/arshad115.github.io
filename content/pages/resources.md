@@ -1,6 +1,5 @@
 ---
-layout: single
-title: "Developer Resources"
+title: Developer Resources
 permalink: /resources/
 ---
 

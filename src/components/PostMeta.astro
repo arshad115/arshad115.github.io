@@ -13,7 +13,7 @@ const { entry } = Astro.props;
   {entry.date && <time datetime={entry.date.toISOString()}>{formatDate(entry.date)}</time>}
   {entry.kind === 'post' && <span>{entry.minutes} min read</span>}
   {entry.category && (
-    <a href={entry.categoryPath || `/categories/#${entry.category.toLowerCase()}`}>{entry.category}</a>
+    <a href={entry.categoryPath || `/categories/#${entry.category}`}>{entry.categoryLabel || entry.category}</a>
   )}
   {(entry.tags ?? []).map((tag) => (
       <a href={`/tags/#${tag.toLowerCase().replace(/\s+/g, '-')}`}>{tag}</a>

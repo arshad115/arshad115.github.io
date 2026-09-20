@@ -1,6 +1,7 @@
 ---
-title: "How to access Seagate COM Terminal with Arduino mega as a USB TTL Adapter and PuTTY"
-category: Hardware
+title: How to access Seagate COM Terminal with Arduino mega as a USB TTL Adapter and PuTTY
+date: 2021-11-01
+category: hardware
 tags:
   - arduino
   - mega
@@ -12,11 +13,12 @@ tags:
   - putty
   - hdd
   - recovery
-header:
-  image: "https://upload.wikimedia.org/wikipedia/commons/6/6b/Seagate2015_2c_horizontal_pos.png"
-  caption: "Photo credit: [**Wikipedia**](https://de.wikipedia.org/wiki/Seagate_Technology)"
-comments: true
 toc: false
+header:
+  image: https://upload.wikimedia.org/wikipedia/commons/6/6b/Seagate2015_2c_horizontal_pos.png
+  alt: Seagate Technology logo
+  caption: "Photo credit: Wikipedia"
+  captionHref: https://de.wikipedia.org/wiki/Seagate_Technology
 ---
 
 ### Accessing Seagate Hardrive Recovery/Diagnostics Ports:

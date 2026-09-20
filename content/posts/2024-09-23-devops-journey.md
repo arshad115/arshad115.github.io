@@ -1,16 +1,17 @@
 ---
-title: "DevOps Journey"
-category: DevOps
-tags: 
+title: DevOps Journey
+excerpt: "Join my DevOps learning journey as I build a complete CI/CD pipeline using Jenkins, Docker, Kubernetes, Prometheus, and Grafana. A hands-on approach to mastering DevOps practices."
+date: 2024-09-23
+category: devops
+tags:
   - devops
   - developer-journey
   - career
 header:
-  image: "https://shalb.com/wp-content/uploads/2019/11/Devops1.jpeg"
-  caption: "Photo credit: [**https://shalb.com/**](https://shalb.com/wp-content/uploads/2019/11/Devops1.jpeg)"
-comments: true
-toc_sticky: true
-excerpt: "Join my DevOps learning journey as I build a complete CI/CD pipeline using Jenkins, Docker, Kubernetes, Prometheus, and Grafana. A hands-on approach to mastering DevOps practices."
+  image: https://shalb.com/wp-content/uploads/2019/11/Devops1.jpeg
+  alt: DevOps infinity-loop diagram
+  caption: "Photo credit: shalb.com"
+  captionHref: https://shalb.com/
 ---
 
 ### DevOps

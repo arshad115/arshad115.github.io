@@ -1,7 +1,8 @@
 ---
-title: "Introducing Vault Linker"
-excerpt: "Automatically link note titles in Obsidian vaults with the rebranded Vault Linker CLI and community plugin."
-category: Development
+title: Introducing Vault Linker
+excerpt: Automatically link note titles in Obsidian vaults with the rebranded Vault Linker CLI and community plugin.
+date: 2026-09-17
+category: development
 tags:
   - obsidian
   - vault-linker
@@ -10,16 +11,7 @@ tags:
   - productivity
 header:
   image: /assets/images/posts/vault-linker/before.png
-  teaser: /assets/images/posts/vault-linker/before.png
-toc: true
-toc_sticky: true
-comments: true
-date: 2026-09-17
-last_modified_at: 2026-09-17
-author_profile: true
-read_time: true
-share: true
-related: true
+  alt: Vault Linker before-and-after screenshot
 ---
 
 If you use Obsidian as a knowledge base, you have probably felt the gap between *having* hundreds of notes and *connecting* them. Manually turning every mention of a note title into a wikilink does not scale. That is what **Vault Linker** is for: it scans your vault, matches note titles (and YAML aliases) in prose, and inserts `[[wikilinks]]` where it is safe to do so—skipping front matter, code blocks, existing links, and embeds.

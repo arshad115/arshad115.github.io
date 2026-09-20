@@ -1,7 +1,8 @@
 ---
-title: "Setup SonarQube with Jenkins"
-category: DevOps
-tags: 
+title: Setup SonarQube with Jenkins
+date: 2024-10-11
+category: devops
+tags:
   - devops
   - sonarqube
   - jenkins
@@ -9,10 +10,9 @@ tags:
   - automation
 header:
   image: /assets/images/posts/sonarqube-jenkins.png
-  teaser: /assets/images/posts/sonarqube-jenkins.png
-comments: true
-toc_sticky: true
+  alt: SonarQube connected to Jenkins
 ---
+
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 
 SonarQube provides continuous inspection of code quality through static analysis. Let's integrate it with Jenkins for automated code quality checks.

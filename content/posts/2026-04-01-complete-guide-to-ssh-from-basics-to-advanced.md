@@ -1,25 +1,17 @@
 ---
 title: "Complete Guide to SSH: From Basics to Advanced"
-category: DevOps
+excerpt: "Master SSH from connection basics to advanced file transfers. Learn authentication methods, key management, remote command execution, and security best practices."
+date: 2026-04-01
+category: devops
 tags:
   - ssh
   - security
   - linux
   - terminal
   - remote-access
-toc: true  # Table of contents
-toc_sticky: true  # Sticky TOC
-comments: true
-date: 2026-04-01
-last_modified_at: 2026-04-01
-author_profile: true
-read_time: true
-share: true
-related: true
-excerpt: "Master SSH from connection basics to advanced file transfers. Learn authentication methods, key management, remote command execution, and security best practices."
 header:
-    image: "/assets/images/posts/exroeuexroeuexro.png"
-    teaser: "/assets/images/posts/exroeuexroeuexro.png"
+  image: /assets/images/posts/exroeuexroeuexro.png
+  alt: SSH connection diagram
 ---
 
 SSH (Secure Shell) is the foundation of secure remote access to servers and systems. This guide covers everything from basics to advanced usage, with practical examples you can use immediately.

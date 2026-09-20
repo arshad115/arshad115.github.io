@@ -1,4 +1,4 @@
-name: Deploy Astro Site
+name: Deploy
 
 on:
   workflow_dispatch:
@@ -15,24 +15,27 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v6
 
       - name: Install
         run: npm ci
+
+      - name: Unit tests
+        run: npm test
 
       - name: Check
         run: npm run check
@@ -45,12 +48,12 @@ jobs:
           PUBLIC_GISCUS_CATEGORY: ${{ secrets.PUBLIC_GISCUS_CATEGORY }}
           PUBLIC_GISCUS_CATEGORY_ID: ${{ secrets.PUBLIC_GISCUS_CATEGORY_ID }}
 
-      - name: URL parity
-        run: npm run test:urls
+      - name: Site tests
+        run: npm run test:site
 
       - name: Upload artifact
         if: github.ref == 'refs/heads/master'
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
@@ -64,4 +67,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

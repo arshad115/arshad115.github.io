@@ -1,10 +1,9 @@
 ---
-layout: single
-title: "About"
+title: About
 permalink: /about/
-author_profile: true
 header:
   image: /assets/images/about_header.jpeg
+  alt: Mannheim Palace courtyard under a blue sky
   caption: "Building the future, one line of code at a time"
 ---
 

@@ -1,17 +1,18 @@
 ---
-title: "Langur - Language translation bot"
-category: Development
+title: Langur - Language translation bot
+date: 2018-02-21
+category: development
 tags:
   - bots
   - nodejs
   - bot-framework
   - language
   - translation
+toc: false
 header:
   image: /assets/images/langur_teaser.png
-  teaser: /assets/images/langur.jpg  
-comments: true
-toc: false
+  alt: Langur translation chatbot conversation screenshot
+  teaser: /assets/images/langur.jpg
 ---
 
 Since, I am living in Germany. __I have to learn the German language.__ Somewhow, I came up with this idea of translating text messages of whatever you type into the chat, I thought it would make my life easier. You can get the translation, without having to leave the app. This way you could easily talk with your friends and also learn the language.

@@ -1,37 +1,17 @@
-# Dependencies
 node_modules/
-
-# Astro
 .astro/
 dist/
-
-# Logs
-npm-debug.log*
-
-# Environment
 .env
 .env.*
 !.env.example
 
-# Editor and OS
+npm-debug.log*
+
 .DS_Store
 .idea/
+.vscode/
 *.sublime-project
 *.sublime-workspace
 *~
 *.swp
 *.swo
-
-# Ruby / leftover Jekyll
-.bundle
-vendor/bundle
-.jekyll-cache
-.jekyll-metadata
-.sass-cache
-_site
-
-# Generated local
-/_pages/projects.mustache
-/_pages/generate.py
-/_pages/repos.json
-/_posts/unfinished

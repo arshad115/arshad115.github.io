@@ -1,16 +1,18 @@
 ---
-category: Tutorial
-tags: 
+title: How to Auto-Renew Let’s Encrypt SSL Certificate Using Certbot
+date: 2019-04-19
+category: tutorial
+tags:
   - letsencrypt
   - certbot
   - ssl-certificate
   - linux
   - nginx
+toc: false
 header:
   image: https://cdn-images-1.medium.com/max/1600/1*Cd2NBjQD8Luwbu1Z23n5QQ.png
+  alt: "Let's Encrypt certificate diagram"
   teaser: https://letsencrypt.org/images/le-logo-twitter.png
-comments: true
-toc: false
 ---
 
 [Let's Encrypt](https://letsencrypt.org/) is awesome! They offer free ssl certificates for three months and also a auto renewal bot which updates the certificates for you when it is about to expire.

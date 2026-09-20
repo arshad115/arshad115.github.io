@@ -10,7 +10,7 @@ Read `docs/plain-astro-restart.md` first. Ignore root `MIGRATION_PLAN.md` (Starl
 - Do **not** merge `codex/astro-starlight-migration` or `backup/master-before-astro-starlight-migration`.
 - Do **not** auto-deploy this branch to GitHub Pages. Deploy workflow is `workflow_dispatch` only and must refuse to publish unless `master`.
 - Do **not** change git config, force-push, or skip hooks.
-- Canonical URLs are the paths in `tests/fixtures/jekyll-sitemap.xml`. GitHub Pages is case-sensitive. Ugly live paths stay. Redirects are aliases only (`/projects/` → `/portfolio/`, `/page2/`–`/page9/` → `/posts/`, extra casings **not** in the fixture).
+- Live Jekyll paths are frozen in `tests/fixtures/jekyll-sitemap.xml`. After following aliases, the landing URL must be real HTML. New posts use lowercase kebab slugs. Punctuation live paths (`$2`, `(2FA)`) redirect to the cleaned slug; do not keep those as canonical pages. Other aliases: `/projects/` → `/portfolio/`, `/page2/`–`/page9/` → `/posts/`.
 - One source per URL. Do not keep a `content/pages/foo.md` *and* `src/pages/foo/` for the same route.
 - Static files live in `public/`. Do not revive a second `assets/` tree at the repo root.
 - Giscus on **posts only**, never every TIL note.
@@ -35,9 +35,13 @@ Own `src/layouts/Base.astro` and `src/layouts/Post.astro`. Original CSS in `src/
 | `today-i-learned/<category>/*.md` | `til` collection; skip README / SCRIPT_README / TIL_SCRIPTS_README |
 | `_drafts/` | `content/drafts/` |
 
-Post permalinks keep the **filename** slug (case, `$`, parentheses). Category in the path is lowercased. Do not prettify slugs.
+Post files are `YYYY-MM-DD-slug.md`. The **slug after the date is the public URL path** (`/{category}/{slug}/`). Use lowercase kebab slugs. Category in YAML is a closed lowercase slug from `src/lib/taxonomy.mjs` (`development`, `devops`); the UI Title-Cases it, with an exception only when English is irregular (`DevOps`). Date in the filename and `date:` in YAML should match. Old Jekyll punctuation URLs belong in `astroRedirects` in `scripts/legacy-url-redirects.mjs`. Mixed-case live URLs belong in `caseAliasRedirects` and are written after build on case-sensitive filesystems only.
 
-Jekyll leftover in markdown (`{{ "/path" \| absolute_url }}`, `{% raw %}`, kramdown `{:.class}`) is rewritten at load time in `src/lib/jekyll.ts`. Do not treat Angular `{{ }}` in TIL notes as Liquid.
+Header images use `header.image`, required `header.alt`, optional plain-text `header.caption` and `header.captionHref`. Do not put Markdown in YAML captions.
+
+TIL notes live in the submodule (`today-i-learned/{category}/{slug}.md`) with YAML `title:`. The layout prints the H1; do not repeat it in the body. `update_readme.py` in that repo reads `title:` first, then a heading. Do not use Jekyll `{% raw %}` around Angular examples.
+
+Jekyll leftover in older post bodies (`{{ "/path" \| absolute_url }}`, kramdown `{:.class}`) is still rewritten at load time in `src/lib/jekyll.ts`. Do not treat Angular `{{ }}` in TIL notes as Liquid.
 
 ## Routes (v1)
 
@@ -50,8 +54,11 @@ git submodule update --init --recursive
 npm ci
 npm run dev
 npm run build          # also runs Pagefind
-npm run test:urls      # fixture vs dist/; landing path must be real HTML, not a redirect source
+npm test               # unit tests (no dist/ required)
+npm run test:site      # URL fixture + HTML contracts; needs a fresh build
 npm run verify
+./scripts/new-post.sh "Title"
+./scripts/new-til.sh "Title" category
 ```
 
 Node 20. Site URL: `https://arshadmehmood.com`. `trailingSlash: 'always'`.

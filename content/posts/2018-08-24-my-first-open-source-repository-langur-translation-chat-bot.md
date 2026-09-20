@@ -1,7 +1,8 @@
 ---
-title: "My first open source repository - Langur translation chat bot"
-category: Development
-tags: 
+title: My first open source repository - Langur translation chat bot
+date: 2018-08-24
+category: development
+tags:
   - bots
   - nodejs
   - bot-framework
@@ -9,8 +10,8 @@ tags:
   - translation
 header:
   image: /assets/images/langur_teaser.png
-  teaser: /assets/images/langur.jpg  
-comments: true
+  alt: Langur translation chatbot conversation screenshot
+  teaser: /assets/images/langur.jpg
 ---
 
 Sometime ago, I made a chatbot from translating one language to another called [Langur](https://arshadmehmood.com/development/langur-language-translation-bot/). Today, I have decided to make it open source, so that people can learn from it and make chat bots easily. It's my very first open source repository and way of contributing to the open source community. The bot is live and it has some channels linked to it, you can test it in the demo section. It's really simple and anyone can do. You will find the [Language translation chat bot on Github](https://github.com/arshad115/langur-translation-bot). Here is a little intro about what it does and how to use it. 

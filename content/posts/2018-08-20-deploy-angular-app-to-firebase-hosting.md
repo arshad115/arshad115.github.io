@@ -1,16 +1,15 @@
 ---
-title: "Deploy Angular app to Firebase hosting"
-category: Tutorial
+title: Deploy Angular app to Firebase hosting
+date: 2018-08-20
+category: tutorial
 tags:
   - angular
   - firebase
   - hosting
   - deployment
   - javascript
-comments: true
 toc: false
 ---
-
 > Deploy Angular app to Firebase hosting
 
  Hosting an angular app on firebase is really easy. 

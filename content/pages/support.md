@@ -1,67 +1,19 @@
 ---
+title: Show your support
 permalink: /support/
-title: "Show your support"
-last_modified_at: 2018-12-03T18:32:42-05:00
-excerpt: "If you like the free content I provide on my blog, here's how to show your thanks and motivate me to create more of it."
+excerpt: If something here helped you, the useful follow-up is to share it, star a repo, or write back.
 toc: true
 ---
 
-The tutorials, Jekyll themes, and other articles I publish have been a true labor of love for me. If you've found any of this content useful here's how to show your thanks and motivate me to create more.
+The posts and Today I Learned notes are written so I do not have to solve the same problem twice. If they helped you, that is enough. If you want to do more:
 
-## Send a donation
+- Share a link. That is the highest-leverage thanks.
+- Star or use the [open source](https://github.com/arshad115) when it fits your work.
+- [Write to me](/contact/) if you found a mistake or have a question.
 
-If you'd like to support me so I can continue to provide free content and themes --- hit one of the buttons below. I accept PayPal, Square Cash, and Bitcoin: [`1KvHBVXcbeWhwcSRJQdcwVsUZBYnyH5enw`](/assets/images/bitcoin-qr.png "Bitcoin QR code").
+## Follow
 
-<p markdown="0">
-  <a href="https://www.paypal.me/mmistakes" onclick="ga('send', 'event', 'link', 'click', 'Send PayPal');" class="btn">
-    <svg class="icon icon--paypal" width="16px" height="16px"><use xlink:href="/assets/icons/icons.svg#icon-paypal"></use></svg> Send PayPal
-  </a>
-  <a href="https://cash.me/$mmistakes" onclick="ga('send', 'event', 'link', 'click', 'Send Square Cash');" class="btn">Send Square Cash</a>
-  <a href="/assets/images/bitcoin-qr.png" onclick="ga('send', 'event', 'link', 'click', 'Send Bitcoin');" class="btn" title="1KvHBVXcbeWhwcSRJQdcwVsUZBYnyH5enw">Send Bitcoin</a>
-</p>
-
-## Buy something
-
-If you shop on [Amazon.de](https://www.amazon.com/?_encoding=UTF8&camp=1789&creative=390957&linkCode=ur2&tag=mademist-20&linkId=P557QDXPWEYIZTDS), using my referral link below will earn me a small commission if you end up buying something. I also maintain an Amazon Wish List if you are feeling extra generous. :wink:
-
-<div markdown="0" class="btn--group">
-  <a href="https://www.amazon.com/?_encoding=UTF8&camp=1789&creative=390957&linkCode=ur2&tag=mademist-20&linkId=P557QDXPWEYIZTDS" onclick="ga('send', 'event', 'link', 'click', 'Shop Amazon');" class="btn">
-    <svg class="icon icon--amazon" width="16px" height="16px"><use xlink:href="/assets/icons/icons.svg#icon-amazon"></use></svg> Shop Amazon
-  </a>
-  <a href="https://www.amazon.de/hz/wishlist/dl/invite/fhNbrCQ" onclick="ga('send', 'event', 'link', 'click', 'Amazon Wish List');" class="btn">
-    <svg class="icon icon--amazon" width="16px" height="16px"><use xlink:href="/assets/icons/icons.svg#icon-amazon"></use></svg> My Amazon Wish List
-  </a>
-</div>
-
-## Spread the word
-
-Have a website or use social networking sites like Twitter, Facebook, Google+, Tumblr, or Pinterest? Please consider sharing the content found on **Made Mistakes** or linking to <https://mademistakes.com>
-
-## Follow me on social media
-
-I post infrequently on social media --- I'm not the type to barf out a stream of rants and retweets in quick succession. Posts are typically speed painting videos, web design and development tidbits, sarcastic remarks, and photographic fragments from what little life I live.
-
-If these sorts of things interest you, follow along on:
-
-- [Twitter](https://twitter.com/mmistakes)
-- [Instagram](https://instagram.com/mmistakes/)
-- [GitHub](https://github.com/mmistakes)
-- [YouTube](https://www.youtube.com/user/anotherjpeg)
-- [Facebook](https://www.facebook.com/michaelrose)
-
-## Subscribe to the feeds
-
-The main feed[^feed] for everything on Made Mistakes.
-
-- Atom: [atom.xml](atom.xml)
-- JSON: [feed.json](feed.json)
-
-### Feeds by topic
-
-- Blog articles: [articles.xml](articles.xml)
-- Paper for iOS tutorials: [mastering-paper.xml](mastering-paper.xml)
-- PaperFaces iPad portraits: [paperfaces.xml](paperfaces.xml)
-- Procreate iPad paintings: [procreate-paintings.xml](procreate-paintings.xml)
-- Today I learned posts: [til.xml](til.xml)
-
-[^feed]: Right click any of the feed links found on this page and add to your feed reader of choice. My favorite is [feedly](https://feedly.com), which syncs your subscriptions across all browsers and mobile devices.
+- [RSS](/feed.xml)
+- [GitHub](https://github.com/arshad115)
+- [LinkedIn](https://www.linkedin.com/in/arshadmehmood115/)
+- [Twitter](https://twitter.com/arshad115)

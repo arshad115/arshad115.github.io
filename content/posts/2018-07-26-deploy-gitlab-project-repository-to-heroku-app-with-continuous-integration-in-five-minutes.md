@@ -1,6 +1,7 @@
 ---
-title: Deploy Gitlab Project/Repository to Heroku app with Continuous Integration in 5 minutes!
-category: Tutorial
+title: "Deploy Gitlab Project/Repository to Heroku app with Continuous Integration in 5 minutes!"
+date: 2018-07-26
+category: tutorial
 tags:
   - gitlab
   - heroku
@@ -8,9 +9,10 @@ tags:
   - cd
 header:
   image: /assets/images/cicd_pipeline_infograph.png
-  caption: "Photo credit: [**Gitlab**](https://docs.gitlab.com/ee/ci/README.html)"
+  alt: CI/CD pipeline infographic
+  caption: "Photo credit: Gitlab"
+  captionHref: https://docs.gitlab.com/ee/ci/README.html
   teaser: /assets/images/ci_teaser.png
-comments: true
 ---
 
 I love [Heroku](https://www.heroku.com/) and I love [Gitlab](https://gitlab.com/). Both of them offer so much for free, which comes in handy when you're just testing applications. What I love even more is the [Gitlab's Continuous Integration (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html). Its just amazing, what you can do with it!

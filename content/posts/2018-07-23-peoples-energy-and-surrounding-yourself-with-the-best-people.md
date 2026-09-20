@@ -1,17 +1,19 @@
 ---
-title: "People's Energy and surrounding yourself with the best people"
-category: Personal
+title: People's Energy and surrounding yourself with the best people
+date: 2018-07-23
+category: personal
 tags:
   - people
   - energy
   - relationships
   - life
+toc: false
 header:
   image: /assets/images/aura.jpg
-  caption: "Photo credit: [**WHOLESOME AYURVEDA**](http://www.wholesomeayurveda.com/2016/10/24/aura-part-1/)"
-  teaser: /assets/images/chakra.jpg 
-comments: true
-toc: false
+  alt: Illustrated aura around a seated figure
+  caption: "Photo credit: WHOLESOME AYURVEDA"
+  captionHref: http://www.wholesomeayurveda.com/2016/10/24/aura-part-1/
+  teaser: /assets/images/chakra.jpg
 ---
 
 You are the [average of five people](http://www.businessinsider.com/jim-rohn-youre-the-average-of-the-five-people-you-spend-the-most-time-with-2012-7?IR=T) you spend the most time with, according to [Jim Rohn](https://www.jimrohn.com/).  And we are [influenced more by our environment than we think](http://www.businessinsider.com/32-ways-to-quickly-and-easily-improve-your-life-2012-7?IR=T#dont-study-in-groups-28). What kind people you are around with, will make you their average. So, it is very important that you surround yourself with the types of people of you want to become or relate to or look forward to the most. 

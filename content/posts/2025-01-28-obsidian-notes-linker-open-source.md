@@ -1,6 +1,8 @@
 ---
-title: "Obsidian Notes Linker - Open Source Tool Released"
-category: Development
+title: Obsidian Notes Linker - Open Source Tool Released
+excerpt: Introducing Obsidian Notes Linker - an open-source tool to automatically create bidirectional links between your Obsidian notes. Boost your knowledge management workflow.
+date: 2025-01-28
+category: development
 tags:
   - obsidian
   - notes
@@ -10,10 +12,7 @@ tags:
   - electron
 header:
   image: /assets/images/posts/obsidian-notes-linker.png
-  teaser: /assets/images/posts/obsidian-notes-linker.png
-comments: true
-toc_sticky: true
-excerpt: "Introducing Obsidian Notes Linker - an open-source tool to automatically create bidirectional links between your Obsidian notes. Boost your knowledge management workflow."
+  alt: Obsidian Notes Linker graph screenshot
 ---
 
 _**Note** This project has been migrated to [Vault Linker](/development/introducing-vault-linker/), repo is now: [vault-linker](https://github.com/arshad115/vault-linker)_

@@ -1,6 +1,8 @@
 ---
 title: "ChatGPT is Secretly Sharing Conversations Within Projects: A Privacy Investigation"
-category: Software
+excerpt: "A detailed investigation revealing how ChatGPT's Projects feature shares conversation context between separate chats, despite users having memory settings disabled."
+date: 2025-10-23
+category: software
 tags:
   - Artificial Intelligence
   - ChatGPT
@@ -11,18 +13,9 @@ tags:
   - Data Sharing
 header:
   image: https://images.ctfassets.net/kftzwdyauwt9/7LzxdzMcijUYHtIES6rmub/1dd3bc9f423a6b1cd5176936dbb029aa/Entry_Point.png?w=1920&q=90&fm=webp
-  teaser: https://images.ctfassets.net/kftzwdyauwt9/7LzxdzMcijUYHtIES6rmub/1dd3bc9f423a6b1cd5176936dbb029aa/Entry_Point.png?w=1920&q=90&fm=webp
-  caption: "Photo credit: [**OpenAI**](https://openai.com/de-DE/index/introducing-chatgpt-search/)"
-toc: true  # Table of contents
-toc_sticky: true  # Sticky TOC
-comments: true
-date: 2025-10-23
-last_modified_at: 2025-10-23
-author_profile: true
-read_time: true
-share: true
-related: true
-excerpt: "A detailed investigation revealing how ChatGPT's Projects feature shares conversation context between separate chats, despite users having memory settings disabled."
+  alt: ChatGPT product screenshot
+  caption: "Photo credit: OpenAI"
+  captionHref: https://openai.com/de-DE/index/introducing-chatgpt-search/
 ---
 
 ## Introduction

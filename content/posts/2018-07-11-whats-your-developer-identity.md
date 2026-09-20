@@ -1,16 +1,18 @@
 ---
-title: "What's your developer identity?"
-category: Personal
+title: What's your developer identity?
+date: 2018-07-11
+category: personal
 tags:
   - developer
   - identity
   - career
   - thoughts
+toc: false
 header:
   image: /assets/images/ariana.jpg
-  caption: "Photo credit: [**Vevo/Ariana Grande**](https://www.youtube.com/watch?v=ffxKSjUwKdU)"
-comments: true
-toc: false
+  alt: Ariana Grande in the Side to Side music video
+  caption: "Photo credit: Vevo/Ariana Grande"
+  captionHref: https://www.youtube.com/watch?v=ffxKSjUwKdU
 ---
 
 We have many identities, identity for work, identity for friends and a different identity for home. But, I want to write about the developer identity, what is your software developer identity?

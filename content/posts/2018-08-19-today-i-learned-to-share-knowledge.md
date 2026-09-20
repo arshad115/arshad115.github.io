@@ -1,18 +1,17 @@
 ---
-title: "Today I Learned to share knowledge"
-category: Personal
-tags: 
+title: Today I Learned to share knowledge
+date: 2018-08-19
+category: personal
+tags:
   - today-i-learned
   - open-source
-  - programming 
+  - programming
   - github
   - knowledge-sharing
+toc: false
 header:
   image: /assets/images/failure.jpg
-  teaser: /assets/images/failure.jpg
-comments: true
-visible: false
-toc: false
+  alt: Crumpled paper on a desk
 ---
 
 Today I learned, sharing code.

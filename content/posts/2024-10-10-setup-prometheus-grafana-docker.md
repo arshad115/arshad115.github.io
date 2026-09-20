@@ -1,7 +1,9 @@
 ---
 title: "Setup Prometheus & Grafana in Docker"
-category: DevOps
-tags: 
+excerpt: Quick guide to setting up Prometheus and Grafana monitoring stack using Docker. Get your metrics collection and visualization running in minutes.
+date: 2024-10-10
+category: devops
+tags:
   - devops
   - prometheus
   - grafana
@@ -9,10 +11,9 @@ tags:
   - monitoring
 header:
   image: /assets/images/posts/docker-prometheus-grafana.png
-  teaser: /assets/images/posts/docker-prometheus-grafana.png
-comments: true
-excerpt: "Quick guide to setting up Prometheus and Grafana monitoring stack using Docker. Get your metrics collection and visualization running in minutes."
+  alt: Prometheus and Grafana running in Docker
 ---
+
 _**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
 
 There are probably thousands of tutorials on setting up Prometheus & Grafana out there; This is probably the most basic one, with one-liners to get you started.

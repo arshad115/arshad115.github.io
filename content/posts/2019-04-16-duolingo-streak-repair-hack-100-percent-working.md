@@ -1,16 +1,18 @@
 ---
-category: Tutorial
-tags: 
+title: Duolingo Streak Repair Hack 100 Percent Working
+date: 2019-04-16
+category: tutorial
+tags:
   - duolingo
   - language-learning
   - hack
   - repair
   - streak
+toc: false
 header:
   image: /assets/images/duolingo.png
-  teaser: /assets/images/duolingo_teaser.png  
-comments: true
-toc: false
+  alt: Duolingo owl mascot
+  teaser: /assets/images/duolingo_teaser.png
 ---
 
 Earlier I wrote about the [same topic here](https://arshadmehmood.com/hacks/duolingo-lost-streak-repair-hack/). Well after trying other methods I found out that is very easy to repair a lost streak. No more pressure! Better still, this method even works to repair your very old lost streaks.

@@ -1,15 +1,16 @@
 ---
-title: "Hello World"
-category: Personal
+title: Hello World
+date: 2018-01-27
+category: personal
 tags:
   - introduction
   - first-post
   - blog
-comments: true
 toc: false
 header:
   image: /assets/images/helloworld.png
-  teaser: /assets/images/helloworld_teaser.png  
+  alt: Hello World printed in a terminal
+  teaser: /assets/images/helloworld_teaser.png
 ---
 
 Hello World. The first letters you usually type when you begin some new program, to test it is working properly. 

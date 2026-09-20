@@ -1,6 +1,7 @@
 ---
-title: "Install and Configure MySQL database on Ubuntu for remote connection over SSH with MySQL Workbench"
-category: Tutorial
+title: Install and Configure MySQL database on Ubuntu for remote connection over SSH with MySQL Workbench
+date: 2020-05-28
+category: tutorial
 tags:
   - mysql
   - ssh
@@ -8,11 +9,12 @@ tags:
   - workbench
   - droplet
   - ubuntu
-header:
-  image: "https://www.it-daily.net/images/Aufmacher-2019/Remote_Access_shutterstock_434600221_700.jpg"
-  caption: "Photo credit: [**it-daily.net**](https://www.it-daily.net/images/Aufmacher-2019/Remote_Access_shutterstock_434600221_700.jpg)"
-comments: true
 toc: false
+header:
+  image: https://www.it-daily.net/images/Aufmacher-2019/Remote_Access_shutterstock_434600221_700.jpg
+  alt: Remote database access illustration
+  caption: "Photo credit: it-daily.net"
+  captionHref: https://www.it-daily.net/
 ---
 
 Install MySQL:

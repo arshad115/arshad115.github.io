@@ -272,6 +272,12 @@ h3 {
   color: var(--ink-muted);
 }
 
+.figure-plain figcaption a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
 .toc {
   margin: 0 0 1.8rem;
   padding: 0.9rem 0 0;

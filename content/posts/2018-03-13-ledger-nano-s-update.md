@@ -1,17 +1,18 @@
 ---
-title: "Ledger Nano S Update"
-category: Cryptocurrency
-tags: 
+title: Ledger Nano S Update
+date: 2018-03-13
+category: cryptocurrency
+tags:
   - cryptocurrency
   - ledger
   - nano-s
   - hardware-wallet
   - security
+toc: false
 header:
   image: /assets/images/ledgernanosupdate.png
-  teaser: /assets/images/ledgernanosupdate_teaser.png  
-comments: true
-toc: false
+  alt: Ledger Nano S hardware wallet
+  teaser: /assets/images/ledgernanosupdate_teaser.png
 ---
 
 Hardware wallets are the safest and most convenient way to store cryptocurrency. The good thing about Ledger Nano S is that the private keys of your wallets are never shared.

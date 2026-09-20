@@ -1,6 +1,8 @@
 ---
-title: "How Fail2ban Locked Me Out of My Own Server (Traefik + Authentik)"
-category: DevOps
+title: How Fail2ban Locked Me Out of My Own Server (Traefik + Authentik)
+excerpt: "A real incident report: I got my own IP banned after enabling Fail2ban with Traefik and Authentik, lost SSH access, recovered via provider console, and fixed my configuration."
+date: 2026-04-01
+category: devops
 tags:
   - fail2ban
   - security
@@ -8,19 +10,9 @@ tags:
   - traefik
   - authentik
   - linux
-toc: true  # Table of contents
-toc_sticky: true  # Sticky TOC
-comments: true
-date: 2026-04-01
-last_modified_at: 2026-04-01
-author_profile: true
-read_time: true
-share: true
-related: true
-excerpt: "A real incident report: I got my own IP banned after enabling Fail2ban with Traefik and Authentik, lost SSH access, recovered via provider console, and fixed my configuration."
 header:
-  image: "/assets/images/posts/tdos1otdos1otdos.png"
-  teaser: "/assets/images/posts/tdos1otdos1otdos.png"
+  image: /assets/images/posts/tdos1otdos1otdos.png
+  alt: Server lockout and reverse-proxy diagram
 ---
 
 I use Fail2ban to protect my server, but after wiring things around Traefik + Authentik and tightening rules too aggressively, I ended up banning my own public IP and lost SSH access.

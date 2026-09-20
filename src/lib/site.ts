@@ -31,34 +31,17 @@ export const FOOTER_NAV = [
   { href: '/terms/', label: 'Terms' },
 ];
 
-export function withTrailingSlash(pathname: string): string {
-  if (!pathname || pathname === '/') return '/';
-  if (/\.[a-z0-9]+$/i.test(pathname)) return pathname;
-  return pathname.endsWith('/') ? pathname : `${pathname}/`;
-}
+import {
+  withTrailingSlash,
+  stripSlashes,
+  categorySlug,
+  filenameSlug,
+} from './paths.mjs';
 
-export function stripSlashes(pathname: string): string {
-  return pathname.replace(/^\/+|\/+$/g, '');
-}
-
-export function categorySlug(name: string): string {
-  return String(name || '')
-    .trim()
-    .toLowerCase()
-    .replace(/\s+/g, '-');
-}
+export { withTrailingSlash, stripSlashes, categorySlug, filenameSlug };
 
 export function tagSlug(name: string): string {
   return categorySlug(name);
-}
-
-export function filenameSlug(id: string): string {
-  return id.replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\\/g, '/');
-}
-
-export function filenameDate(id: string): string | undefined {
-  const match = id.match(/^(\d{4}-\d{2}-\d{2})-/);
-  return match?.[1];
 }
 
 export function titleFromSlug(id: string): string {
@@ -93,13 +76,6 @@ export function formatDate(value: Date | string | undefined): string {
     year: 'numeric',
     timeZone: 'UTC',
   }).format(date);
-}
-
-export function isoDate(value: Date | string | undefined): string | undefined {
-  if (!value) return undefined;
-  const date = value instanceof Date ? value : new Date(value);
-  if (Number.isNaN(date.getTime())) return undefined;
-  return date.toISOString();
 }
 
 export function readingMinutes(text: string, wordsPerMinute = 180): number {

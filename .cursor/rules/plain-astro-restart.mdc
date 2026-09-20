@@ -7,4 +7,4 @@ This repo is a **plain Astro** rebuild of arshadmehmood.com. Follow `AGENTS.md` 
 
 Do not use Starlight, Pelagornis, or any npm blog theme. Do not merge the failed `codex/astro-starlight-migration` branch. Production `master` stays Jekyll until the fixture URL test is green. Do not auto-deploy this branch.
 
-Canonical URLs come from `tests/fixtures/jekyll-sitemap.xml`. Redirects are aliases only. Keep ugly live paths. Giscus on posts only. Static files in `public/`. Fail the build if the `today-i-learned` submodule is missing.
+Live Jekyll paths are in `tests/fixtures/jekyll-sitemap.xml`. After following redirects, the landing path must be real HTML. Clean kebab slugs are canonical; `$`, parentheses, and mixed-case live URLs are aliases only. Giscus on posts only. Static files in `public/`. Fail the build if the `today-i-learned` submodule is missing.

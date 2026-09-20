@@ -1,6 +1,8 @@
 ---
 title: "We All Played Destiny, but Bungie Played Us All"
-category: Personal
+excerpt: "After more than seven years, 1,000+ Grandmaster Nightfall clears, and thousands of hours in Destiny 2, this is my goodbye letter to a game Bungie slowly turned into an extraction machine."
+date: 2026-03-27
+category: personal
 tags:
   - Destiny 2
   - Bungie
@@ -10,18 +12,10 @@ tags:
   - Opinion
 header:
   image: https://gamingcy.com/wp-content/uploads/2024/09/Caude-6-in-Destiny-2-The-Final-Shape.jpg
+  alt: Destiny 2 The Final Shape artwork with Cade-6
+  caption: "Photo: gamingcy.com"
+  captionHref: https://gamingcy.com
   teaser: https://gamingcy.com/wp-content/uploads/2024/09/Who-is-Caude-6-in-D2.jpg
-  caption: "Photo: [**gamingcy.com**](https://gamingcy.com)"
-toc: true
-toc_sticky: true
-comments: true
-date: 2026-03-27
-last_modified_at: 2026-03-27
-author_profile: true
-read_time: true
-share: true
-related: true
-excerpt: "After more than seven years, 1,000+ Grandmaster Nightfall clears, and thousands of hours in Destiny 2, this is my goodbye letter to a game Bungie slowly turned into an extraction machine."
 ---
 
 I have played *Destiny 2* for more than seven years. I have over 1,000 Grandmaster Nightfall clears. Around 70% of those I did solo. My vault and characters are packed with masterworked gear. I sit on piles of cores, shards, and endgame materials. On Stadia, I was consistently one of the top players because *Destiny 2* was not just *a* game to me.

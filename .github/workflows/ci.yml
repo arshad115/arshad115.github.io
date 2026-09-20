@@ -5,27 +5,36 @@ on:
   push:
     branches:
       - astro-plain-migration
+      - master
 
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   check:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           submodules: recursive
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: 20
+          node-version-file: .nvmrc
           cache: npm
 
       - name: Install
         run: npm ci
+
+      - name: Unit tests
+        run: npm test
 
       - name: Check
         run: npm run check
@@ -38,5 +47,5 @@ jobs:
           PUBLIC_GISCUS_CATEGORY: ${{ secrets.PUBLIC_GISCUS_CATEGORY }}
           PUBLIC_GISCUS_CATEGORY_ID: ${{ secrets.PUBLIC_GISCUS_CATEGORY_ID }}
 
-      - name: URL parity
-        run: npm run test:urls
+      - name: Site tests
+        run: npm run test:site

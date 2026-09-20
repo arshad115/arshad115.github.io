@@ -1,17 +1,18 @@
 ---
-title: "Change parent component values in Angular with ViewContainerRef"
-category: Development
-tags: 
+title: Change parent component values in Angular with ViewContainerRef
+date: 2018-11-28
+category: development
+tags:
   - angular
   - parent-child-communication
   - javascript
   - frontend
   - typescript
+toc: false
 header:
   image: /assets/images/communication_header.jpg
+  alt: "People talking, standing in for component communication"
   teaser: /assets/images/communication.jpg
-comments: true
-toc: false
 ---
 
 Well there are many ways of parent child communication and interaction in angular, e.g.  [@Input binding](https://angular.io/api/core/Input ), [setter](https://angular.io/guide/component-interaction#intercept-input-property-changes-with-a-setter), [ngOnChanges()](https://angular.io/guide/component-interaction#intercept-input-property-changes-with-ngonchanges), [EventEmitter](https://angular.io/guide/component-interaction#parent-listens-for-child-event), [ via local variable](https://angular.io/guide/component-interaction#parent-interacts-with-child-via-local-variable), [@ViewChild()](https://angular.io/guide/component-interaction#parent-calls-an-viewchild), [via a service](https://angular.io/guide/component-interaction#parent-and-children-communicate-via-a-service), and so on...

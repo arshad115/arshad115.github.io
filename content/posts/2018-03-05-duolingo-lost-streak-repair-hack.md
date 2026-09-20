@@ -1,14 +1,16 @@
 ---
-category: Tutorial
+title: Duolingo Lost Streak Repair Hack
+date: 2018-03-05
+category: tutorial
 tags:
   - duolingo
   - language-learning
   - hack
+toc: false
 header:
   image: /assets/images/duolingo.png
-  teaser: /assets/images/duolingo_teaser.png  
-comments: true
-toc: false
+  alt: Duolingo owl mascot
+  teaser: /assets/images/duolingo_teaser.png
 ---
 
 **Update: [I have posted an updated and easy method for the hack here](https://arshadmehmood.com/hacks/duolingo-streak-repair-hack-100-percent-working/)**

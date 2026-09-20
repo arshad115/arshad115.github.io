@@ -1,7 +1,8 @@
 ---
 title: "Always keep your cryptocurrency on a hardware wallet or cold storage - Not on exchanges!"
-category: Security
-tags: 
+date: 2018-09-08
+category: security
+tags:
   - cryptocurrency
   - bitcoin
   - ethereum
@@ -9,13 +10,12 @@ tags:
   - ledger-nano-s
   - cold-storage
   - security
+toc: false
 header:
   image: /assets/images/ledger-wallet.png
-  teaser: /assets/images/ledger_icon.png  
-comments: true
-toc: false
+  alt: Ledger hardware wallet
+  teaser: /assets/images/ledger_icon.png
 ---
-
 
 As with any type of currency or asset, you would always want to keep it in a safe place. Safe places are safe boxes in your home, banks, vaults, wallet and in the case of digital crypto currencies, a cold storage or a hardware wallet. As we all know online banking is pretty safe, but its not impossible to hack, many banks have been hacked in the past. Cryptocurrency exchanges are no different. They are essentially online system which *CAN* be hacked. Buying cryptocurrency and keeping it online in an exchange is the same as, buying something from a store and letting them hold it for you. It is possible, that the next day you visit the store, its not there anymore, or taken over by someone else and they refuse to give you your belongings. You wouldn't trust them, right? Online exchanges are the same, they are online stores for buying crypto. It worth mentioning the example of [Mt. Gox](https://en.wikipedia.org/wiki/Mt._Gox). Apparently, 850,000 bitcoins were *stolen*. They filed a bankruptcy   and people lost their money forever. *Who knows, it could be an inside job (it's my personal opinion, please don't sue me!)*. Countless other exchanges have been hacked in the past. Case in point, right after buying cryptocurrency, store it in a safe wallet. Safe wallets are paper wallets or hardware wallets aka cold storage.
 

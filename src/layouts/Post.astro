@@ -35,8 +35,16 @@ const image = entry.header?.image;
     {entry.kind !== 'page' && <PostMeta entry={entry} />}
     {image && (
       <figure class="figure-plain" data-pagefind-ignore>
-        <img src={image} alt="" />
-        {entry.header?.caption && <figcaption>{entry.header.caption}</figcaption>}
+        <img src={image} alt={entry.header?.alt || ''} />
+        {entry.header?.caption && (
+          <figcaption>
+            {entry.header.captionHref ? (
+              <a href={entry.header.captionHref}>{entry.header.caption}</a>
+            ) : (
+              entry.header.caption
+            )}
+          </figcaption>
+        )}
       </figure>
     )}
     {showToc && <TableOfContents headings={headings} />}
@@ -45,7 +53,7 @@ const image = entry.header?.image;
     </div>
     {related.length > 0 && (
       <aside class="related" data-pagefind-ignore>
-        <h2>More in {entry.category}</h2>
+        <h2>More in {entry.categoryLabel || entry.category}</h2>
         <ul>
           {related.map((item) => (
             <li>

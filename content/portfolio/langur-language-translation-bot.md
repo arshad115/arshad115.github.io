@@ -3,14 +3,8 @@ title: "Langur Language Translation Chatbot"
 excerpt: "Opensource language translation chat bot called Langur."
 header:
   image: /assets/images/langur_teaser.png
+  alt: Langur translation chatbot conversation screenshot
   teaser: /assets/images/langur.jpg
-gallery:
-  - url: https://i.imgur.com/bTS1Rri.png
-    image_path: https://i.imgur.com/bTS1Rri.png
-    alt: "Running langur"
-  - url: https://i.imgur.com/eF4HWwn.png
-    image_path: https://i.imgur.com/eF4HWwn.png
-    alt: "Translating with Langur chatbot"
 ---
 
 Langur is a translation chat bot made with [Microsoft Bot Framework](https://dev.botframework.com/) with [Node.js](http://nodejs.org)  and a free [Google translate Api](https://github.com/matheuss/google-translate-api). I made it as project to get started with chatbots and then later, I made it opensource. Source code is available on [Github](https://github.com/arshad115/langur-translation-bot). You can read more about it and how to run it, on my [blog](https://arshadmehmood.com/development/my-first-open-source-repository-langur-translation-chat-bot/).

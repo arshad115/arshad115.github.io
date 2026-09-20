@@ -1,17 +1,16 @@
 ---
 title: How to use Gitlab after enabling Two-Factor Authentication (2FA)?
-category: Tutorial
-tags: 
+date: 2018-07-12
+category: tutorial
+tags:
   - gitlab
   - 2fa
   - security
+toc: false
 header:
   image: /assets/images/security.jpg
-comments: true
-toc: false
+  alt: "Padlock on a keyboard, standing in for account security"
 ---
-
-
 
 You should always try to use Two-Factor Authentication whenever possible, as, it adds another layer of  protection and security. A few days ago, I also enabled 2FA in [Gitlab](https://gitlab.com). Everything worked fine, until I pushed my code using git and it told me to use Personal Access Token. 
 

@@ -1,7 +1,8 @@
 ---
-title: "Using Ledger Nano S as a Universal 2nd Factor Authentication (U2F) device"
-category: Tutorial
-tags: 
+title: Using Ledger Nano S as a Universal 2nd Factor Authentication (U2F) device
+date: 2018-09-14
+category: tutorial
+tags:
   - cryptocurrency
   - bitcoin
   - ethereum
@@ -11,12 +12,12 @@ tags:
   - 2fa
   - authentication
 header:
-  image: "https://www.yubico.com/wp-content/uploads/2014/10/Slider-U2F-02.png"
-  caption: "Photo credit: [**Yubico**](https://www.yubico.com/solutions/fido-u2f/)"
-  teaser: "https://s3.amazonaws.com/groovehq/uploaded/2g796cjbudshjd3xhucaewpxgv70x403ms102ar50fx9zzex27?1488402680"
-comments: true
+  image: https://www.yubico.com/wp-content/uploads/2014/10/Slider-U2F-02.png
+  alt: Yubico U2F security key illustration
+  caption: "Photo credit: Yubico"
+  captionHref: https://www.yubico.com/solutions/fido-u2f/
+  teaser: https://s3.amazonaws.com/groovehq/uploaded/2g796cjbudshjd3xhucaewpxgv70x403ms102ar50fx9zzex27?1488402680
 ---
-
 
 > [Skip right to, how to use it with Ledger Nano S](#how-to-use-ledger-nano-s-as-a-u2f-device)
 

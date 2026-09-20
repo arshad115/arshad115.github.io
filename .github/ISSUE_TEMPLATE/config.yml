@@ -1,5 +1,5 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
-  - name: Support
-    url: https://github.com/mmistakes/minimal-mistakes/discussions
-    about: Please post your support questions in the Discussions section.
+  - name: Contact form
+    url: https://arshadmehmood.com/contact/
+    about: Questions about me, the writing, or this site
