@@ -16,17 +16,6 @@ header:
 
 SSH (Secure Shell) is the foundation of secure remote access to servers and systems. This guide covers everything from basics to advanced usage, with practical examples you can use immediately.
 
-## Table of Contents
-
-- [SSH Basics](#ssh-basics)
-- [Authentication Methods](#authentication-methods)
-- [Key Management](#key-management)
-- [Remote Command Execution](#remote-command-execution)
-- [File Transfers](#file-transfers)
-- [Advanced Techniques](#advanced-techniques)
-- [Troubleshooting](#troubleshooting)
-- [Security Best Practices](#security-best-practices)
-
 ## SSH Basics
 
 SSH lets you securely connect to remote servers, execute commands, and transfer files over encrypted connections.

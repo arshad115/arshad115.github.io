@@ -18,14 +18,14 @@ Sometime ago, I made a chatbot from translating one language to another called [
 
 
 
-<a href="https://imgur.com/0tg1mAh"><img  style="float: right;" src="https://i.imgur.com/0tg1mAht.png" title="source: imgur.com" /></a> 
+<a href="https://imgur.com/0tg1mAh"><img style="float: right;" src="https://i.imgur.com/0tg1mAht.png" alt="Langur chat asking for a source and target language" title="source: imgur.com" /></a> 
 
 Langur is a translation chat bot made with [Microsoft Bot Framework](https://dev.botframework.com/) with [Node.js](http://nodejs.org)  and a free [Google translate Api](https://github.com/matheuss/google-translate-api). You can read more about it on my [blog](https://arshadmehmood.com/development/langur-language-translation-bot/).
 
 ### Demo:
 
 Fb Messenger
-<a href='https://www.messenger.com/t/2053091328235574'><img src='https://facebook.botframework.com/Content/MessageUs.png'></a>
+<a href="https://www.messenger.com/t/2053091328235574">Message Langur on Messenger</a>
 
 kik
 <a href='https://bots.kik.com/#/langurtranslator'>langurtranslator</a>

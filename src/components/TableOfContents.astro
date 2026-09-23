@@ -10,7 +10,9 @@ interface Props {
 }
 
 const { headings } = Astro.props;
-const items = headings.filter((heading) => heading.depth >= 2 && heading.depth <= 3);
+const items = headings.filter(
+  (heading) => heading.depth === 2 && !/^table of contents$/i.test(heading.text.trim()),
+);
 ---
 
 {items.length > 2 && (

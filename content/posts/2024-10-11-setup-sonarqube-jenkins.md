@@ -13,7 +13,7 @@ header:
   alt: SonarQube connected to Jenkins
 ---
 
-_**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
+_**Note** This post is part of the [DevOps Journey](/devops/devops-journey/)_
 
 SonarQube provides continuous inspection of code quality through static analysis. Let's integrate it with Jenkins for automated code quality checks.
 

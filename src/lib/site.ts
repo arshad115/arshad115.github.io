@@ -71,8 +71,12 @@ export function readingMinutes(text: string, wordsPerMinute = 180): number {
 
 export function excerptFromBody(body: string, max = 220): string {
   const plain = body
-    .replace(/^---[\s\S]*?---/, '')
-    .replace(/```[\s\S]*?```/g, '')
+    .replace(/^---[\s\S]*?---\s*/, '')
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/^\s*_(?:\*{1,2})?Note(?:\*{1,2})?[\s\S]*?_\s*/m, ' ')
+    .replace(/!\[[^\]]*\](?:\(<[^>]*>\)|\([^)]*\))/g, ' ')
+    .replace(/\[([^\]]*)\]\(<[^>]*>\)/g, '$1')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
     .replace(/[#>*_`[\]]/g, '')
     .replace(/\s+/g, ' ')
     .trim();

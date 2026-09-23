@@ -16,7 +16,7 @@ Inside the JSON, you can write your own title, description and even give your ow
 You can view the [Crosspromote](https://github.com/kookydroid-apps/crosspromote) library and view the instructions, on how to integrate it in your project.
 The apps look like this inside your app:
 <div align="center">
-<img src="https://github.com/kookydroid-apps/crosspromote/raw/master/1.png" width="400">
+<img src="https://github.com/kookydroid-apps/crosspromote/raw/master/1.png" width="400" alt="Crosspromote library showing a list of apps inside another app">
 </div>
 
 Feel free to use it and give me feedback about it.

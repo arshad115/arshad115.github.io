@@ -12,11 +12,8 @@ tags:
   - 2fa
   - authentication
 header:
-  image: https://www.yubico.com/wp-content/uploads/2014/10/Slider-U2F-02.png
-  alt: Yubico U2F security key illustration
-  caption: "Photo credit: Yubico"
-  captionHref: https://www.yubico.com/solutions/fido-u2f/
-  teaser: https://s3.amazonaws.com/groovehq/uploaded/2g796cjbudshjd3xhucaewpxgv70x403ms102ar50fx9zzex27?1488402680
+  image: /assets/images/ledger-wallet.png
+  alt: Ledger hardware wallet
 ---
 
 > [Skip right to, how to use it with Ledger Nano S](#how-to-use-ledger-nano-s-as-a-u2f-device)
@@ -43,9 +40,7 @@ You have a plenty of options when buying a U2F device. Or, if you already have a
 
 3. Go to Manager tab in Ledger Live.
 
-4. Install the Fido U2F application by clicking on the green download button. 
-
-   ![Fido U2f](https://support.ledgerwallet.com/hc/article_attachments/360004255734/InstallFidoU2F.png)
+4. Install the Fido U2F application by clicking on the green download button.
 
 5. Open the Fido U2F app, its now the app is ready to use.
 6. Go to your site, where you want to register the device.
@@ -56,10 +51,6 @@ You have a plenty of options when buying a U2F device. Or, if you already have a
 
 Support me with ETH: `0x681a83007bC52C0bF42B41263Dc498f9Ef7af02A` 
 
-Read the original guidelines on [Ledger Support site](https://support.ledgerwallet.com/hc/en-us/articles/115005198545-Set-up-Fido-U2F-app)
-[![Ledger Nano S - The secure hardware wallet](https://www.ledgerwallet.com/images/promo/nano-s/ledger_nano-s_8-5-0x4-2-0.jpg)](https://www.ledger.com?r=febd7201637a)
-
-You can also do the same with a [Trezor](https://doc.satoshilabs.com/trezor-user/u2f.html)
-[![Trezor hardware wallet](https://trezor.io/static/images/devices.webp)](https://shop.trezor.io/?a=arshadmehmood.com)
+Read the original guidelines on [Ledger Support site](https://support.ledgerwallet.com/hc/en-us/articles/115005198545-Set-up-Fido-U2F-app). A [Ledger Nano S](https://www.ledger.com?r=febd7201637a) can do this, and so can a [Trezor](https://doc.satoshilabs.com/trezor-user/u2f.html).
 
    

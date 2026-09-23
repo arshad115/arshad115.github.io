@@ -18,7 +18,7 @@ Langur is a translation chat bot made with [Microsoft Bot Framework](https://dev
 ### Demo:
 
 Fb Messenger
-<a href='https://www.messenger.com/t/2053091328235574'><img src='https://facebook.botframework.com/Content/MessageUs.png'></a>
+<a href="https://www.messenger.com/t/2053091328235574">Message Langur on Messenger</a>
 
 kik
 <a href='https://bots.kik.com/#/langurtranslator'>langurtranslator</a>

@@ -22,7 +22,7 @@ This file is the live contract. `docs/plain-astro-restart.md` is historical cont
 
 ## Layouts and look
 
-Own `src/layouts/Base.astro` and `src/layouts/Post.astro`. Original CSS in `src/styles/global.css` — warm engineering notebook, light by default, terracotta `#b8563d`, ~65ch reading column, wordmark “Arshad Mehmood”, home photo `/assets/images/bio-photo.jpg`. No cards, drop shadows, glassmorphism, hero gradients, docs sidebar, or emoji nav.
+Own `src/layouts/Base.astro` and `src/layouts/Post.astro`. Original CSS in `src/styles/global.css` — cool paper, light by default, ink `#1a1e1b`, accent `#0c6b62`, Source Serif for reading, ~65ch column, wordmark “Arshad Mehmood”, home photo `/assets/images/bio-photo.jpg`. No cards, drop shadows, glassmorphism, hero gradients, docs sidebar, or emoji nav.
 
 ## Content
 

@@ -9,6 +9,8 @@
  */
 export const astroRedirects = {
   '/projects/': '/portfolio/',
+  '/software/devops-journey/': '/devops/devops-journey/',
+  '/software/setup-prometheus-grafana-docker/': '/devops/setup-prometheus-grafana-docker/',
   '/page2/': '/posts/',
   '/page3/': '/posts/',
   '/page4/': '/posts/',

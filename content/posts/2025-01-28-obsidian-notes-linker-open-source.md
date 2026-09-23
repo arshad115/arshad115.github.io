@@ -11,8 +11,8 @@ tags:
   - typescript
   - electron
 header:
-  image: /assets/images/posts/obsidian-notes-linker.png
-  alt: Obsidian Notes Linker graph screenshot
+  image: /assets/images/posts/ol-usage.png
+  alt: Obsidian Notes Linker scanning a vault in the terminal
 ---
 
 _**Note** This project has been migrated to [Vault Linker](/development/introducing-vault-linker/), repo is now: [vault-linker](https://github.com/arshad115/vault-linker)_

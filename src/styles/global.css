@@ -1,21 +1,21 @@
 :root {
   color-scheme: light;
-  --bg: #f4efe6;
-  --bg-raised: #fbf7f0;
-  --ink: #241c16;
-  --ink-muted: #5e5348;
-  --rule: #d8cfc2;
-  --rule-strong: #c4b7a6;
-  --accent: #b8563d;
-  --accent-hover: #933f2a;
-  --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
-  --code-bg: #efe6d6;
-  --mark: #e8d3a8;
+  --bg: #f4f6f3;
+  --bg-raised: #fbfcf9;
+  --ink: #1a1e1b;
+  --ink-muted: #5a615c;
+  --rule: #d5d9d2;
+  --rule-strong: #b7beb6;
+  --accent: #0c6b62;
+  --accent-hover: #084e48;
+  --accent-soft: color-mix(in srgb, var(--accent) 12%, transparent);
+  --code-bg: #e8ece6;
+  --mark: #d3ebe4;
   --focus: var(--accent);
   --measure: 65ch;
   --site: 74rem;
   --header: 5.5rem;
-  --font-display: 'Fraunces', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-display: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --font-ui: 'Source Sans 3', 'Source Sans Pro', ui-sans-serif, system-ui, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
@@ -24,16 +24,16 @@
 
 html[data-theme='dark'] {
   color-scheme: dark;
-  --bg: #1c1916;
-  --bg-raised: #25211d;
-  --ink: #f1e6d6;
-  --ink-muted: #b8aa9a;
-  --rule: #3d352e;
-  --rule-strong: #52483e;
-  --accent: #d4785c;
-  --accent-hover: #e59a82;
-  --code-bg: #2a241f;
-  --mark: #4a3a24;
+  --bg: #121413;
+  --bg-raised: #191c1a;
+  --ink: #e7ebe4;
+  --ink-muted: #a3aaa3;
+  --rule: #2a2e2b;
+  --rule-strong: #3d433e;
+  --accent: #6dcec2;
+  --accent-hover: #9ae0d6;
+  --code-bg: #1c201e;
+  --mark: #1e3a36;
 }
 
 *,
@@ -74,9 +74,20 @@ body {
 
 img,
 svg,
-video {
+video,
+iframe {
   max-width: 100%;
+}
+
+img,
+svg,
+video {
   height: auto;
+}
+
+.prose iframe {
+  height: auto;
+  aspect-ratio: 16 / 9;
 }
 
 a {
@@ -152,7 +163,7 @@ a:hover {
 .wordmark-name {
   font-family: var(--font-display);
   font-size: 1.2rem;
-  font-weight: 560;
+  font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
@@ -164,7 +175,7 @@ a:hover {
   background: transparent;
   color: var(--ink);
   border: 1px solid var(--rule-strong);
-  border-radius: 999px;
+  border-radius: 2px;
   padding: 0.35rem 0.75rem;
   cursor: pointer;
 }
@@ -205,10 +216,12 @@ a:hover {
 
 .page {
   padding-block: 2.4rem 3.5rem;
+  overflow-wrap: anywhere;
 }
 
 .reading {
   width: min(var(--measure), 100%);
+  min-width: 0;
   margin-inline: auto;
 }
 
@@ -226,8 +239,8 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 560;
-  letter-spacing: -0.025em;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   line-height: 1.18;
   text-wrap: balance;
 }
@@ -248,11 +261,9 @@ h3 {
 }
 
 .lede {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.28rem;
+  font-size: 1.2rem;
   font-weight: 450;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--ink);
 }
 
@@ -358,6 +369,7 @@ h3 {
 }
 
 .prose pre {
+  max-width: 100%;
   overflow: auto;
   padding: 1rem 1.1rem;
   background: var(--code-bg);
@@ -372,7 +384,10 @@ h3 {
 }
 
 .prose table {
+  display: block;
   width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
   font-size: 0.95rem;
 }

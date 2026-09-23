@@ -14,7 +14,7 @@ header:
   alt: Jenkins agents running on Kubernetes
 ---
 
-_**Note** This post is part of the [DevOps Journey](/software/devops-journey/)_
+_**Note** This post is part of the [DevOps Journey](/devops/devops-journey/)_
 
 We want to use a Kubernetes Cluster with Jenkins, so that Jenkins can fire up slaves in the cluster as required and perform the pipeline tasks.
 Instead of paying a lot of money for the Kubernetes Cluster, we will set it up locally using [Kind](https://kind.sigs.k8s.io/). 
