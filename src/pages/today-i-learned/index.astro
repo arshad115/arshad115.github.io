@@ -3,7 +3,35 @@ import Base from '../../layouts/Base.astro';
 import { getTilNotes, groupByCategory } from '../../lib/content';
 
 const notes = await getTilNotes();
-const groups = groupByCategory(notes);
+const topicLabels: Record<string, string> = {
+  android: 'Android',
+  angular2: 'Angular',
+  csharp: 'C#',
+  css: 'CSS',
+  docker: 'Docker',
+  facebook: 'Facebook',
+  firebase: 'Firebase',
+  git: 'Git',
+  github: 'GitHub',
+  javascript: 'JavaScript',
+  jekyll: 'Jekyll',
+  kubernetes: 'Kubernetes',
+  nginx: 'Nginx',
+  nodejs: 'Node.js',
+  other: 'Other',
+  php: 'PHP',
+  programming: 'Programming',
+  python: 'Python',
+  security: 'Security',
+  sql: 'SQL',
+  ssh: 'SSH',
+  typescript: 'TypeScript',
+  vuejs: 'Vue.js',
+};
+const groups = groupByCategory(notes).map((group) => ({
+  ...group,
+  displayName: topicLabels[group.slug] ?? group.name,
+}));
 ---
 
 <Base
@@ -12,23 +40,62 @@ const groups = groupByCategory(notes);
   permalink="/today-i-learned/"
   pageType="CollectionPage"
 >
-  <div class="reading">
-    <p class="kicker">Notebook</p>
-    <h1>Today I Learned</h1>
-    <p class="lede">
-      {notes.length} notes kept as a git submodule. These are the scraps that did not need a full post.
-    </p>
-  </div>
-  {groups.map((group) => (
-    <section class="taxonomy" id={group.slug}>
-      <h2>{group.name} <span class="meta">({group.items.length})</span></h2>
-      <ul>
-        {group.items.map((item) => (
-          <li>
-            <a href={item.permalink}>{item.title}</a>
-          </li>
+  <div class="collection-shell" data-til-index>
+    <header class="collection-intro">
+      <p class="kicker">Notebook</p>
+      <h1>Today I Learned</h1>
+      <p class="lede">
+        {notes.length} concise notes grouped by topic—the useful scraps that did not need a full essay.
+      </p>
+      <label class="filter-control" for="til-filter">
+        <span>Filter notes</span>
+        <input id="til-filter" type="search" placeholder="Try SSH, Python, Git…" autocomplete="off" />
+      </label>
+      <nav class="category-jump" aria-label="TIL topics">
+        {groups.map((group) => (
+          <a href={`#${group.slug}`}>{group.displayName} <span>{group.items.length}</span></a>
         ))}
-      </ul>
-    </section>
-  ))}
+      </nav>
+      <p class="filter-status" aria-live="polite" data-til-status>{notes.length} notes</p>
+    </header>
+    <div class="taxonomy-list">
+      {groups.map((group) => (
+        <section class="taxonomy" id={group.slug} data-til-group>
+          <h2>{group.displayName} <span class="taxonomy-count">{group.items.length}</span></h2>
+          <ul>
+            {group.items.map((item) => (
+              <li data-til-item data-search={`${group.displayName} ${item.title}`.toLowerCase()}>
+                <a href={item.permalink}>{item.title}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+    </div>
+    <p class="empty-state" hidden data-til-empty>No notes match that filter.</p>
+  </div>
+  <script>
+    const index = document.querySelector<HTMLElement>('[data-til-index]');
+    const input = index?.querySelector<HTMLInputElement>('#til-filter');
+    const groups = [...(index?.querySelectorAll<HTMLElement>('[data-til-group]') ?? [])];
+    const status = index?.querySelector<HTMLElement>('[data-til-status]');
+    const empty = index?.querySelector<HTMLElement>('[data-til-empty]');
+
+    input?.addEventListener('input', () => {
+      const query = input.value.trim().toLowerCase();
+      let visible = 0;
+      for (const group of groups) {
+        let groupVisible = 0;
+        for (const item of group.querySelectorAll<HTMLElement>('[data-til-item]')) {
+          const matches = !query || item.dataset.search?.includes(query) === true;
+          item.hidden = !matches;
+          if (matches) groupVisible += 1;
+        }
+        group.hidden = groupVisible === 0;
+        visible += groupVisible;
+      }
+      if (status) status.textContent = `${visible} ${visible === 1 ? 'note' : 'notes'}`;
+      if (empty) empty.hidden = visible !== 0;
+    });
+  </script>
 </Base>

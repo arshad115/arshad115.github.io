@@ -20,3 +20,8 @@ test('excerpts drop markdown destinations that contain parentheses', () => {
   assert.match(excerpt, /onUpgrade\(SQLiteDatabase, int, int\) method/);
   assert.doesNotMatch(excerpt, /https?:/);
 });
+
+test('excerpts strip raw HTML image markup', () => {
+  const body = '<img src="https://example.com/image.png" width="800" height="600" alt="Example" />\n\nUseful prose follows.';
+  assert.equal(excerptFromBody(body), 'Useful prose follows.');
+});

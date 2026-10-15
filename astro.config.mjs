@@ -2,7 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
-import { remarkRewriteJekyll, remarkStripJekyllRaw } from './src/lib/jekyll.ts';
+import {
+  rehypeLocalImageDimensions,
+  remarkNormalizeHeadingDepth,
+  remarkRewriteJekyll,
+  remarkStripJekyllRaw,
+} from './src/lib/jekyll.ts';
 import { astroRedirects } from './scripts/legacy-url-redirects.mjs';
 
 function tilSubmodule() {
@@ -25,7 +30,8 @@ export default defineConfig({
   },
   markdown: {
     processor: unified({
-      remarkPlugins: [remarkRewriteJekyll, remarkStripJekyllRaw],
+      remarkPlugins: [remarkRewriteJekyll, remarkStripJekyllRaw, remarkNormalizeHeadingDepth],
+      rehypePlugins: [rehypeLocalImageDimensions],
     }),
     shikiConfig: {
       themes: {

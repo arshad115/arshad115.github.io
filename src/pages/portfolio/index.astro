@@ -6,11 +6,20 @@ import { imageSize } from '../../lib/image-size.mjs';
 import { SITE } from '../../lib/site';
 
 const entries = await getPortfolio();
+const projectLabel = (name: string) => name
+  .split('-')
+  .map((part) => {
+    const upper = part.toUpperCase();
+    if (['UAE', 'C#', 'MS'].includes(upper)) return upper;
+    return part.charAt(0).toUpperCase() + part.slice(1);
+  })
+  .join(' ');
 const groups = projectGroups.map((group) => ({
   ...group,
   items: group.items.map((item) => ({
     ...item,
-    imageAlt: item.image ? `Screenshot of ${item.name.replace(/-/g, ' ')}` : undefined,
+    displayName: projectLabel(item.name),
+    imageAlt: item.image ? `Screenshot of ${projectLabel(item.name)}` : undefined,
     imageDimensions: item.image ? imageSize(item.image) : undefined,
   })),
 }));
@@ -22,7 +31,8 @@ const groups = projectGroups.map((group) => ({
   permalink="/portfolio/"
   pageType="CollectionPage"
 >
-  <div class="reading">
+  <div class="collection-shell">
+    <header class="collection-intro">
     <p class="kicker">Work</p>
     <h1>Portfolio</h1>
     <p class="lede">
@@ -42,16 +52,19 @@ const groups = projectGroups.map((group) => ({
       {' · '}
       <a href={SITE.github}>All repositories</a>
     </p>
-  </div>
+    </header>
 
   {groups.map((group) => (
-    <section class="taxonomy" id={group.id}>
+    <section class="taxonomy project-group" id={group.id}>
       <h2>{group.name}</h2>
       {group.items.map((item) => (
         <article class="project-row">
           <div>
-            <h3><a href={item.href}>{item.name}</a></h3>
+            <h3>{item.displayName}</h3>
             <p>{item.description}</p>
+            <a class="project-link" href={item.href}>
+              {item.href.startsWith('/') ? 'Read project' : 'View project'} <span aria-hidden="true">→</span>
+            </a>
           </div>
           {item.image && (
             <img
@@ -81,4 +94,5 @@ const groups = projectGroups.map((group) => ({
       </ul>
     </section>
   )}
+  </div>
 </Base>

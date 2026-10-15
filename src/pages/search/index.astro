@@ -12,7 +12,7 @@ import Base from '../../layouts/Base.astro';
   <article class="reading">
     <p class="kicker">Find</p>
     <h1>Search</h1>
-    <p class="lede">Looks through the built site. Best after a production build, when the index is fresh.</p>
+    <p class="lede">Search posts, Today I Learned notes, and pages.</p>
     <div id="search"></div>
   </article>
   <script is:inline src="/pagefind/pagefind-ui.js"></script>
@@ -22,7 +22,8 @@ import Base from '../../layouts/Base.astro';
       new window.PagefindUI({
         element: '#search',
         showImages: false,
-        showSubResults: true,
+        showSubResults: false,
+        excerptLength: 24,
         resetStyles: false,
       });
       const q = new URLSearchParams(window.location.search).get('q');

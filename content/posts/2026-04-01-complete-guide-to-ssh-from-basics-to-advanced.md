@@ -10,7 +10,7 @@ tags:
   - terminal
   - remote-access
 header:
-  image: /assets/images/posts/exroeuexroeuexro.png
+  image: /assets/images/posts/ssh-guide-header.webp
   alt: SSH connection diagram
 ---
 

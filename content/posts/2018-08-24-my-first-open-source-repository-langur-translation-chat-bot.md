@@ -18,7 +18,7 @@ Sometime ago, I made a chatbot from translating one language to another called [
 
 
 
-<a href="https://imgur.com/0tg1mAh"><img style="float: right;" src="https://i.imgur.com/0tg1mAht.png" alt="Langur chat asking for a source and target language" title="source: imgur.com" /></a> 
+<a href="https://imgur.com/0tg1mAh"><img style="float: right;" src="https://i.imgur.com/0tg1mAht.png" width="160" height="160" loading="lazy" decoding="async" alt="Langur chat asking for a source and target language" title="source: imgur.com" /></a>
 
 Langur is a translation chat bot made with [Microsoft Bot Framework](https://dev.botframework.com/) with [Node.js](http://nodejs.org)  and a free [Google translate Api](https://github.com/matheuss/google-translate-api). You can read more about it on my [blog](https://arshadmehmood.com/development/langur-language-translation-bot/).
 
@@ -66,7 +66,7 @@ Or create a file named: `keys.js` and export these values.
 node app.js
 ```
 
-![Imgur](https://i.imgur.com/d7MXzlT.png)
+<img src="https://i.imgur.com/d7MXzlT.png" width="582" height="85" loading="lazy" decoding="async" alt="Microsoft Bot Emulator connection settings" />
 
 > Install Microsoft Bot Emulator 
 
@@ -74,18 +74,18 @@ Download and Install [Microsoft Bot Framework Emulator](https://github.com/Micro
 
 Enter your appId and appPassword and click connect, 
 
-![Imgur](https://i.imgur.com/bTS1Rri.png)
+<img src="https://i.imgur.com/bTS1Rri.png" width="795" height="601" loading="lazy" decoding="async" alt="Langur chatbot running in the Bot Emulator" />
 
 
 
 Afterwards, you can interact with the bot like so:
 
-![Imgur](https://i.imgur.com/eF4HWwn.png)
+<img src="https://i.imgur.com/eF4HWwn.png" width="619" height="867" loading="lazy" decoding="async" alt="Langur translating a chat message" />
 
 
 
 ### License
 
-Langur - Language translation chat bot is released under [GNU General Public License v3.0](License.md). Please refer to the LICENSE file for detailed information. 
+Langur - Language translation chat bot is released under the [GNU General Public License v3.0](https://github.com/arshad115/langur-translation-bot/blob/master/LICENSE). Please refer to the LICENSE file for detailed information.
 
 Copyright: [Arshad Mehmood](https://arshadmehmood.com/)

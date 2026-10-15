@@ -4,6 +4,13 @@ import EntryList from '../../components/EntryList.astro';
 import { getPosts } from '../../lib/content';
 
 const posts = await getPosts();
+const years = Object.entries(
+  posts.reduce<Record<string, typeof posts>>((groups, post) => {
+    const year = String(post.date?.getUTCFullYear() ?? 'Earlier');
+    (groups[year] ??= []).push(post);
+    return groups;
+  }, {}),
+).sort(([a], [b]) => b.localeCompare(a));
 ---
 
 <Base
@@ -12,10 +19,22 @@ const posts = await getPosts();
   permalink="/posts/"
   pageType="CollectionPage"
 >
-  <div class="reading">
+  <div class="collection-shell">
+    <header class="collection-intro">
     <p class="kicker">Index</p>
     <h1>All posts</h1>
-    <p class="lede">Newest first. Category and tag indexes live next door if you want to wander that way.</p>
+    <p class="lede">Essays, tutorials, and field notes, newest first.</p>
+    <nav class="collection-links" aria-label="Browse posts">
+      <a href="/categories/">Browse categories</a>
+      <a href="/tags/">Browse tags</a>
+      <a href="/search/">Search everything</a>
+    </nav>
+    </header>
+    {years.map(([year, entries]) => (
+      <section class="year-group" aria-labelledby={`year-${year}`}>
+        <h2 id={`year-${year}`}>{year}</h2>
+        <EntryList entries={entries} headingLevel="h3" />
+      </section>
+    ))}
   </div>
-  <EntryList entries={posts} />
 </Base>

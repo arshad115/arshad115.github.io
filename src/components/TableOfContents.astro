@@ -16,8 +16,8 @@ const items = headings.filter(
 ---
 
 {items.length > 2 && (
-  <nav class="toc" aria-label="On this page" data-pagefind-ignore>
-    <h2>On this page</h2>
+  <details class="toc" open data-pagefind-ignore>
+    <summary>On this page <span>{items.length} sections</span></summary>
     <ol>
       {items.map((heading) => (
         <li style={`margin-left: ${(heading.depth - 2) * 0.9}rem`}>
@@ -25,5 +25,23 @@ const items = headings.filter(
         </li>
       ))}
     </ol>
-  </nav>
+  </details>
 )}
+
+<script>
+  const toc = document.querySelector<HTMLDetailsElement>('.toc');
+  const narrow = window.matchMedia('(max-width: 780px)');
+
+  const syncToc = () => {
+    if (!toc) return;
+    toc.open = !narrow.matches;
+  };
+
+  syncToc();
+  narrow.addEventListener('change', syncToc);
+  toc?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (narrow.matches) toc.open = false;
+    });
+  });
+</script>

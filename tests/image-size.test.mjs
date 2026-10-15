@@ -22,3 +22,7 @@ test('imageSize reads a real public asset', () => {
   assert.ok(size?.width && size.width > 0);
   assert.ok(size?.height && size.height > 0);
 });
+
+test('imageSize returns recorded dimensions for legacy remote images', () => {
+  assert.deepEqual(imageSize('https://i.imgur.com/bTS1Rri.png'), { width: 795, height: 601 });
+});

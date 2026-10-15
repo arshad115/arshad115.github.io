@@ -11,8 +11,8 @@ Langur is a translation chat bot made with [Microsoft Bot Framework](https://dev
 
 <figure class="gallery">
   <figcaption>These are some screenshots of the chatbot.</figcaption>
-  <a href="https://i.imgur.com/bTS1Rri.png"><img src="https://i.imgur.com/bTS1Rri.png" alt="Running langur" /></a>
-  <a href="https://i.imgur.com/eF4HWwn.png"><img src="https://i.imgur.com/eF4HWwn.png" alt="Translating with Langur chatbot" /></a>
+  <a href="https://i.imgur.com/bTS1Rri.png"><img src="https://i.imgur.com/bTS1Rri.png" width="795" height="601" loading="lazy" decoding="async" alt="Running Langur" /></a>
+  <a href="https://i.imgur.com/eF4HWwn.png"><img src="https://i.imgur.com/eF4HWwn.png" width="619" height="867" loading="lazy" decoding="async" alt="Translating with Langur chatbot" /></a>
 </figure>
 
 ### Demo:
@@ -32,6 +32,6 @@ In the beginning, the bot asks you for your source and target language and then 
 
 ### License
 
-Langur - Language translation chat bot is released under [GNU General Public License v3.0](License.md). Please refer to the LICENSE file for detailed information. 
+Langur - Language translation chat bot is released under the [GNU General Public License v3.0](https://github.com/arshad115/langur-translation-bot/blob/master/LICENSE). Please refer to the LICENSE file for detailed information.
 
 Copyright: [Arshad Mehmood](https://arshadmehmood.com/)

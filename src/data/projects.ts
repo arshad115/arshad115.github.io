@@ -63,7 +63,7 @@ export const projectGroups: ProjectGroup[] = [
   },
   {
     id: 'javascript',
-    name: 'Javascript',
+    name: 'JavaScript',
     items: [
       {
         name: 'orenhold-website',

@@ -11,7 +11,7 @@ tags:
   - authentik
   - linux
 header:
-  image: /assets/images/posts/tdos1otdos1otdos.png
+  image: /assets/images/posts/fail2ban-lockout-header.webp
   alt: Server lockout and reverse-proxy diagram
 ---
 

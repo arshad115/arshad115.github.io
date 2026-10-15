@@ -26,7 +26,7 @@ const current = Astro.url.pathname;
           </a>
         ))
       }
-      <a href="/search/">Search</a>
+      <a href="/search/" aria-current={current.startsWith('/search/') ? 'page' : undefined}>Search</a>
     </nav>
     <div class="nav-tools">
       <button
@@ -113,6 +113,8 @@ const current = Astro.url.pathname;
     themeButton.textContent = dark ? 'Light' : 'Dark';
     themeButton.setAttribute('aria-pressed', dark ? 'true' : 'false');
     themeButton.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    const themeColour = document.querySelector('meta[name="theme-color"]');
+    themeColour?.setAttribute('content', dark ? '#131517' : '#ffffff');
   };
   syncThemeButton();
   themeButton?.addEventListener('click', () => {

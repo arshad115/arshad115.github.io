@@ -15,7 +15,7 @@ If you are living under a rock for the past few years, then you probably don't k
 
 I've been playing it for many years, given its [addictive nature](https://www.businessinsider.com/why-clash-of-clans-is-so-popular-2014-9?IR=T). Here is a simple introduction, within the game, you have different defenses and other players attack your base to steal your gold and other resources. Every player's base layout is different, and you basically have to build your base strategically to defend successfully from attacks and protect your resources. There are [many sites](https://www.clashofclans-tools.com/Layouts/Top) where users have posted their own base layouts based on their effectiveness. The base layouts show the max level of the defenses and sometimes do not exactly defend so well, this got me thinking: **How to build the perfect base?**
 
-![Not a perfect base](https://thatsmytop10.com/wp-content/uploads/2014/05/Top-10-Funny-COC-Base-no-1.jpg)
+<img src="https://thatsmytop10.com/wp-content/uploads/2014/05/Top-10-Funny-COC-Base-no-1.jpg" width="1024" height="768" loading="lazy" decoding="async" alt="Not a perfect Clash of Clans base" />
 
 ### Can we use artificial intelligence please?
 

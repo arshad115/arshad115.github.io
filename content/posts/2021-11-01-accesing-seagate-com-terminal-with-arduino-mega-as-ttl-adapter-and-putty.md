@@ -25,7 +25,7 @@ header:
 
 The ports are shown here:
 
-![https://sudonull.com/post/145870-Resurrect-HDD](https://habrastorage.org/storage2/471/e3b/097/471e3b097546725b54e9ef7e6c0d5dd7.png)
+<img src="https://habrastorage.org/storage2/471/e3b/097/471e3b097546725b54e9ef7e6c0d5dd7.png" width="550" height="160" loading="lazy" decoding="async" alt="Seagate hard drive recovery and diagnostics ports" />
 
 ![ ](/assets/images/posts/hdd2.jpeg)
 
@@ -44,7 +44,6 @@ Enter the following settings in [**PuTTY**](http://www.chiark.greenend.org.uk/~s
 ![ ](/assets/images/posts/putty_com2.PNG)
 
 In my case the port was *COM3*. Click on open and you should be good to go!
-
 
 
 

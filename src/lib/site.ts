@@ -77,6 +77,7 @@ export function excerptFromBody(body: string, max = 220): string {
     .replace(/!\[[^\]]*\](?:\(<[^>]*>\)|\([^)]*\))/g, ' ')
     .replace(/\[([^\]]*)\]\(<[^>]*>\)/g, '$1')
     .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/<[^>]+>/g, ' ')
     .replace(/[#>*_`[\]]/g, '')
     .replace(/\s+/g, ' ')
     .trim();

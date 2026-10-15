@@ -5,7 +5,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { test } from 'node:test';
-import { isRedirectHtml, readDist, distPathFor, root } from './helpers/dist.mjs';
+import {
+  collectHtmlFiles,
+  distDir,
+  isRedirectHtml,
+  readDist,
+  distPathFor,
+  root,
+} from './helpers/dist.mjs';
 
 async function sameDistFile(left, right) {
   try {
@@ -263,6 +270,41 @@ test('mobile nav can close from the keyboard; theme toggle exposes pressed state
   assert.match(html, /Escape/);
 });
 
+test('collection pages expose practical browsing controls', async () => {
+  const posts = await readDist('/posts/');
+  assert.match(posts, /class="collection-links"/);
+  assert.match(posts, /href="\/categories\/"/);
+  assert.match(posts, /href="\/tags\/"/);
+  assert.match(posts, /class="year-group"/);
+
+  const til = await readDist('/today-i-learned/');
+  assert.match(til, /id="til-filter"[^>]*type="search"/);
+  assert.match(til, /class="category-jump"/);
+  assert.match(til, /data-til-item/);
+  assert.match(til, />JavaScript <span>9<\/span>/);
+});
+
+test('article navigation and theme controls adapt to the reader', async () => {
+  const post = await readDist('/devops/complete-guide-to-ssh-from-basics-to-advanced/');
+  assert.match(post, /<details class="toc" open/);
+  assert.match(post, /12 sections/);
+
+  const search = await readDist('/search/');
+  assert.match(search, /href="\/search\/" aria-current="page"/);
+  assert.doesNotMatch(search, /Best after a production build/);
+
+  const home = await readDist('/');
+  assert.match(home, /prefers-color-scheme: dark/);
+  assert.match(home, /meta name="theme-color" content="#ffffff"/);
+});
+
+test('contact form uses native validation and labels optional fields', async () => {
+  const contact = await readDist('/contact/');
+  assert.doesNotMatch(contact, /<form[^>]+novalidate/);
+  assert.match(contact, /Website <small>\(optional\)<\/small>/);
+  assert.match(contact, /type="email"[^>]+required/);
+});
+
 test('home does not load IBM Plex Mono; posts do', async () => {
   const home = await readDist('/');
   assert.doesNotMatch(home, /ibm-plex-mono/i);
@@ -278,4 +320,46 @@ test('portfolio uses HTTPS Play URLs, not bit.ly, and lists Langur once', async 
   assert.match(html, /https:\/\/www\.kentech\.ie\//);
   const langur = [...html.matchAll(/href="\/portfolio\/langur-language-translation-bot\/"/g)];
   assert.equal(langur.length, 2, 'one project row plus the write-ups index');
+});
+
+test('migrated cross-links use published routes and valid fragments', async () => {
+  const contact = await readDist('/contact/');
+  const support = await readDist('/support/');
+  assert.match(contact, /href="\/support\/#follow"/);
+  assert.match(support, /id="follow"/);
+
+  const langur = await readDist('/development/my-first-open-source-repository-langur-translation-chat-bot/');
+  assert.doesNotMatch(langur, /href="License\.md"/);
+  assert.match(langur, /github\.com\/arshad115\/langur-translation-bot\/blob\/master\/LICENSE/);
+
+  const rsync = await readDist('/today-i-learned/ssh/using-rsync-for-file-transfers/');
+  assert.match(rsync, /href="\/today-i-learned\/ssh\/using-scp-for-file-transfers\/"/);
+});
+
+test('article headings do not skip levels below the layout H1', async () => {
+  const files = await collectHtmlFiles(distDir);
+  for (const [route, file] of files) {
+    const html = await fs.readFile(file, 'utf8');
+    if (isRedirectHtml(html)) continue;
+    const prose = html.match(/<div class="prose">([\s\S]*?)<\/div>/)?.[1];
+    if (!prose) continue;
+    const levels = [...prose.matchAll(/<h([2-6])\b/gi)].map((match) => Number(match[1]));
+    let previous = 1;
+    for (const level of levels) {
+      assert.ok(level <= previous + 1, `${route} skips from H${previous} to H${level}`);
+      previous = level;
+    }
+  }
+});
+
+test('rendered images reserve their intrinsic layout space', async () => {
+  const files = await collectHtmlFiles(distDir);
+  for (const [route, file] of files) {
+    const html = await fs.readFile(file, 'utf8');
+    if (isRedirectHtml(html)) continue;
+    for (const match of html.matchAll(/<img\b[^>]*>/gi)) {
+      assert.match(match[0], /\bwidth="\d+"/, `${route} image missing width: ${match[0]}`);
+      assert.match(match[0], /\bheight="\d+"/, `${route} image missing height: ${match[0]}`);
+    }
+  }
 });
