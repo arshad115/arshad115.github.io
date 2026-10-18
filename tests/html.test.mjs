@@ -120,7 +120,9 @@ test('RSS and XML sitemap list the live site', async () => {
   assert.match(sitemap, /the-most-fulfilling-2-i-made-and-my-android-developer-journey/);
   assert.match(sitemap, /what-i-learnt-from-my-failed-incubator/);
   assert.match(sitemap, /<lastmod>/);
-  assert.match(sitemap, /\/llms\.txt/);
+  assert.doesNotMatch(sitemap, /\/llms(?:-full)?\.txt/);
+  assert.doesNotMatch(sitemap, /\/search\//);
+  assert.doesNotMatch(sitemap, /\/feed\.xml/);
   assert.doesNotMatch(sitemap, /the-most-fulfilling-\$2/);
   assert.doesNotMatch(sitemap, /Two-Factor-Authentication-\(2FA\)/);
 });
@@ -224,7 +226,7 @@ test('llms.txt is a root Markdown map for agents', async () => {
   const llms = await readDist('/llms.txt');
   assert.match(llms, /^# Arshad Mehmood\n/);
   assert.match(llms, /^> /m);
-  assert.match(llms, /^## Essays\n/m);
+  assert.match(llms, /^## Posts\n/m);
   assert.match(llms, /index\.md/);
   const full = await readDist('/llms-full.txt');
   assert.match(full, /delete-local-branch\/index\.md/);
@@ -241,8 +243,8 @@ test('404 is noindex; robots allow AI crawlers', async () => {
 
 test('About and Resources headings are plain text, not emoji', async () => {
   const about = await readDist('/about/');
-  assert.match(about, /id="hello-im-arshad-mehmood"/);
-  assert.match(about, /Hello, I.m Arshad Mehmood/);
+  assert.match(about, /id="i-build-software-and-document-what-survives-contact-with-production"/);
+  assert.match(about, /I build software and document what survives contact with production/);
   assert.doesNotMatch(about, /<h[1-6][^>]*>\s*[\u{1F300}-\u{1FAFF}]/u);
   const resources = await readDist('/resources/');
   assert.match(resources, /id="development-tools"/);
@@ -251,13 +253,17 @@ test('About and Resources headings are plain text, not emoji', async () => {
 
 test('header figures expose alt, dimensions, and a caption association', async () => {
   const html = await readDist('/personal/whats-your-developer-identity/');
+  assert.match(html, /<figure class="post-hero"/);
   assert.match(html, /<img[^>]+alt="Ariana Grande in the Side to Side music video"/);
   assert.match(html, /<img[^>]+width="\d+"[^>]+height="\d+"/);
   assert.match(html, /aria-describedby="header-caption"/);
 });
 
-test('SSH essay related list prefers markdown TIL links', async () => {
+test('SSH article related list prefers markdown TIL links', async () => {
   const html = await readDist('/devops/complete-guide-to-ssh-from-basics-to-advanced/');
+  assert.match(html, />DevOps<\/p>/);
+  assert.doesNotMatch(html, />Essay<\/p>/);
+  assert.match(html, /class="post-content-grid has-sidebar"/);
   assert.match(html, /<h2>Related<\/h2>/);
   assert.match(html, /href="\/today-i-learned\/ssh\/ssh-connection-basics\/"/);
 });
@@ -267,7 +273,10 @@ test('mobile nav can close from the keyboard; theme toggle exposes pressed state
   assert.match(html, /class="nav-toggle"[^>]*aria-controls="site-nav"/);
   assert.match(html, /aria-expanded="false"/);
   assert.match(html, /data-theme-toggle[^>]*aria-pressed=/);
-  assert.match(html, /Escape/);
+  assert.match(html, /class="theme-icon theme-icon-moon"/);
+  assert.match(html, /class="theme-icon theme-icon-sun"/);
+  assert.doesNotMatch(html, />Dark<\/button>/);
+  assert.match(html, /<kbd class="search-key"[^>]*>Esc<\/kbd>/);
 });
 
 test('collection pages expose practical browsing controls', async () => {
@@ -275,10 +284,13 @@ test('collection pages expose practical browsing controls', async () => {
   assert.match(posts, /class="collection-links"/);
   assert.match(posts, /href="\/categories\/"/);
   assert.match(posts, /href="\/tags\/"/);
+  assert.match(posts, /class="featured-post-grid"/);
+  assert.match(posts, />Archive<\/h2>/);
   assert.match(posts, /class="year-group"/);
 
   const til = await readDist('/today-i-learned/');
   assert.match(til, /id="til-filter"[^>]*type="search"/);
+  assert.match(til, /class="til-browser"/);
   assert.match(til, /class="category-jump"/);
   assert.match(til, /data-til-item/);
   assert.match(til, />JavaScript <span>9<\/span>/);
@@ -288,14 +300,29 @@ test('article navigation and theme controls adapt to the reader', async () => {
   const post = await readDist('/devops/complete-guide-to-ssh-from-basics-to-advanced/');
   assert.match(post, /<details class="toc" open/);
   assert.match(post, /12 sections/);
+  assert.match(post, /data-reading-progress/);
+  assert.match(post, /className=.?copy-code/);
 
   const search = await readDist('/search/');
-  assert.match(search, /href="\/search\/" aria-current="page"/);
   assert.doesNotMatch(search, /Best after a production build/);
+  assert.match(search, /<meta name="robots" content="noindex, follow"/);
 
   const home = await readDist('/');
+  assert.match(home, /data-search-open[^>]+aria-haspopup="dialog"/);
+  assert.match(home, /aria-keyshortcuts="Meta\+K Control\+K"/);
+  assert.match(home, /<dialog class="search-dialog"/);
+  assert.match(home, /role="combobox"[^>]+aria-controls="site-search-results"/);
+  assert.match(home, /data-search-query="DevOps"/);
+  assert.match(home, /property="og:image" content="https:\/\/arshadmehmood\.com\/assets\/images\/social-default\.png"/);
   assert.match(home, /prefers-color-scheme: dark/);
   assert.match(home, /meta name="theme-color" content="#ffffff"/);
+});
+
+test('interactive search index includes posts and TIL notes', async () => {
+  const index = JSON.parse(await fs.readFile(path.join(root, 'dist/search-index.json'), 'utf8'));
+  assert.ok(index.some((entry) => entry.kind === 'post' && entry.permalink.includes('complete-guide-to-ssh')));
+  assert.ok(index.some((entry) => entry.kind === 'til' && entry.permalink.includes('/today-i-learned/')));
+  assert.ok(index.every((entry) => entry.title && entry.permalink && entry.searchText));
 });
 
 test('contact form uses native validation and labels optional fields', async () => {
@@ -318,8 +345,18 @@ test('portfolio uses HTTPS Play URLs, not bit.ly, and lists Langur once', async 
   assert.doesNotMatch(html, /http:\/\/play\.google/);
   assert.match(html, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.kookydroidapps\.mosquesnearme/);
   assert.match(html, /https:\/\/www\.kentech\.ie\//);
+  assert.match(html, /Creator and maintainer/);
+  assert.match(html, /Python · TypeScript · Obsidian/);
   const langur = [...html.matchAll(/href="\/portfolio\/langur-language-translation-bot\/"/g)];
   assert.equal(langur.length, 2, 'one project row plus the write-ups index');
+});
+
+test('older posts show a visible archive warning', async () => {
+  const oldPost = await readDist('/tutorial/deploy-angular-app-to-firebase-hosting/');
+  const currentPost = await readDist('/devops/complete-guide-to-ssh-from-basics-to-advanced/');
+  assert.match(oldPost, /class="archive-note"/);
+  assert.match(oldPost, /may reference outdated software or practices/);
+  assert.doesNotMatch(currentPost, /class="archive-note"/);
 });
 
 test('migrated cross-links use published routes and valid fragments', async () => {
@@ -361,5 +398,26 @@ test('rendered images reserve their intrinsic layout space', async () => {
       assert.match(match[0], /\bwidth="\d+"/, `${route} image missing width: ${match[0]}`);
       assert.match(match[0], /\bheight="\d+"/, `${route} image missing height: ${match[0]}`);
     }
+  }
+});
+
+test('indexable pages have unique metadata and locally controlled social images', async () => {
+  const files = await collectHtmlFiles(distDir);
+  const titles = new Map();
+  for (const [route, file] of files) {
+    const html = await fs.readFile(file, 'utf8');
+    if (isRedirectHtml(html) || /<meta name="robots" content="[^"]*noindex/i.test(html)) continue;
+
+    const title = html.match(/<title>([^<]+)<\/title>/i)?.[1]?.trim();
+    const description = html.match(/<meta name="description" content="([^"]+)"/i)?.[1]?.trim();
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];
+    const socialImage = html.match(/<meta property="og:image" content="([^"]+)"/i)?.[1];
+
+    assert.ok(title, `${route} missing title`);
+    assert.ok(description, `${route} missing meta description`);
+    assert.ok(canonical, `${route} missing canonical URL`);
+    assert.match(socialImage || '', /^https:\/\/arshadmehmood\.com\//, `${route} uses an external social image`);
+    assert.equal(titles.has(title), false, `${route} duplicates the title from ${titles.get(title)}`);
+    titles.set(title, route);
   }
 });

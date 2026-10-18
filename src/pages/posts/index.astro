@@ -2,10 +2,21 @@
 import Base from '../../layouts/Base.astro';
 import EntryList from '../../components/EntryList.astro';
 import { getPosts } from '../../lib/content';
+import { imageSize } from '../../lib/image-size.mjs';
 
 const posts = await getPosts();
+const featured = posts.slice(0, 3).map((post) => ({
+  ...post,
+  image: post.header?.teaser || post.header?.image,
+  imageDimensions: post.header?.teaser
+    ? imageSize(post.header.teaser)
+    : post.header?.image
+      ? imageSize(post.header.image)
+      : undefined,
+}));
+const archivedPosts = posts.slice(3);
 const years = Object.entries(
-  posts.reduce<Record<string, typeof posts>>((groups, post) => {
+  archivedPosts.reduce<Record<string, typeof posts>>((groups, post) => {
     const year = String(post.date?.getUTCFullYear() ?? 'Earlier');
     (groups[year] ??= []).push(post);
     return groups;
@@ -15,7 +26,7 @@ const years = Object.entries(
 
 <Base
   title="All posts"
-  description="Every essay and tutorial, newest first."
+  description="Every article and tutorial, newest first."
   permalink="/posts/"
   pageType="CollectionPage"
 >
@@ -23,13 +34,47 @@ const years = Object.entries(
     <header class="collection-intro">
     <p class="kicker">Index</p>
     <h1>All posts</h1>
-    <p class="lede">Essays, tutorials, and field notes, newest first.</p>
+    <p class="lede">Technical articles, tutorials, and field notes, newest first.</p>
     <nav class="collection-links" aria-label="Browse posts">
       <a href="/categories/">Browse categories</a>
       <a href="/tags/">Browse tags</a>
-      <a href="/search/">Search everything</a>
+      <button type="button" data-search-open>Search everything</button>
     </nav>
     </header>
+    <section class="featured-posts" aria-labelledby="featured-posts-title">
+      <h2 id="featured-posts-title">Latest</h2>
+      <div class="featured-post-grid">
+        {featured.map((post, index) => (
+          <article class:list={['featured-post', { 'featured-post-primary': index === 0 }]}>
+            {post.image && (
+              <a class="featured-post-image" href={post.permalink} tabindex="-1" aria-hidden="true">
+                <img
+                  src={post.image}
+                  alt=""
+                  width={post.imageDimensions?.width}
+                  height={post.imageDimensions?.height}
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </a>
+            )}
+            <div class="featured-post-copy">
+              <p class="featured-post-category">{post.categoryLabel}</p>
+              <h3><a href={post.permalink}>{post.title}</a></h3>
+              <p>{post.excerpt}</p>
+              <p class="featured-post-details">
+                <time datetime={post.date?.toISOString()}>{post.date?.getUTCFullYear()}</time>
+                <span>{post.minutes} min read</span>
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+    <div class="archive-heading">
+      <h2>Archive</h2>
+      <p>Every earlier post, newest first.</p>
+    </div>
     {years.map(([year, entries]) => (
       <section class="year-group" aria-labelledby={`year-${year}`}>
         <h2 id={`year-${year}`}>{year}</h2>

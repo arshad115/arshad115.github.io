@@ -1,5 +1,4 @@
 ---
-import '@fontsource-variable/source-serif-4/wght.css';
 import '@fontsource-variable/source-sans-3/wght.css';
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
@@ -8,6 +7,7 @@ import { SITE } from '../lib/site';
 import {
   absoluteUrl,
   buildJsonLd,
+  documentTitle,
   isoDateTime,
   jsonLdScript,
   markdownPath,
@@ -53,7 +53,7 @@ const {
   markdown = false,
 } = Astro.props;
 
-const pageTitle = title && title !== SITE.title ? `${title} · ${SITE.title}` : SITE.title;
+const pageTitle = documentTitle(title);
 const canonical = absoluteUrl(permalink);
 const ogImage = image.startsWith('http') ? image : absoluteUrl(image);
 const markdownHref =
@@ -136,7 +136,7 @@ const jsonLd = buildJsonLd({
         document.documentElement.setAttribute('data-theme', theme);
         document.querySelector('meta[name="theme-color"]')?.setAttribute(
           'content',
-          theme === 'dark' ? '#131517' : '#ffffff',
+          theme === 'dark' ? '#15181b' : '#ffffff',
         );
       })();
     </script>

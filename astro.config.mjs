@@ -21,7 +21,7 @@ function tilSubmodule() {
 tilSubmodule();
 
 export default defineConfig({
-  site: 'https://arshadmehmood.com',
+  site: process.env.SITE_URL || 'https://arshadmehmood.com',
   output: 'static',
   trailingSlash: 'always',
   redirects: astroRedirects,

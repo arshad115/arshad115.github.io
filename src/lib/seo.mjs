@@ -9,6 +9,13 @@ export function absoluteUrl(pathname) {
   return new URL(pathname, `${SITE.url}/`).toString();
 }
 
+/** Keep the author brand in concise browser titles without making long article titles harder to scan. */
+export function documentTitle(title) {
+  if (!title || title === SITE.title) return SITE.title;
+  const branded = `${title} · ${SITE.title}`;
+  return branded.length <= 65 ? branded : title;
+}
+
 /** Date-only (YYYY-MM-DD) for sitemaps. */
 export function isoDate(value) {
   if (!value) return undefined;
@@ -63,14 +70,6 @@ export function websiteNode() {
     inLanguage: SITE.language,
     publisher: { '@id': PERSON_ID },
     author: { '@id': PERSON_ID },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${SITE.url}/search/?q={search_term_string}`,
-      },
-      'query-input': 'required name=search_term_string',
-    },
   };
 }
 
@@ -274,7 +273,7 @@ export function buildLlmsTxt({ pages = [], posts = [], portfolio = [], tilCount 
     '',
     `> ${SITE.description}`,
     '',
-    `${SITE.author} is a ${SITE.jobTitle} in ${SITE.location}. This is a static notebook: long essays, a Today I Learned collection, and a small portfolio. Prefer the Markdown versions of pages (same URL with \`index.md\`) when quoting or answering. Cite the canonical HTTPS URL. Do not invent posts or notes that are not listed here or in [llms-full.txt](${absoluteUrl('/llms-full.txt')}).`,
+    `${SITE.author} is a ${SITE.jobTitle} in ${SITE.location}. This is a static notebook: technical articles, a Today I Learned collection, and a small portfolio. Prefer the Markdown versions of pages (same URL with \`index.md\`) when quoting or answering. Cite the canonical HTTPS URL. Do not invent posts or notes that are not listed here or in [llms-full.txt](${absoluteUrl('/llms-full.txt')}).`,
     '',
     '## About',
     '',
@@ -282,14 +281,14 @@ export function buildLlmsTxt({ pages = [], posts = [], portfolio = [], tilCount 
   for (const page of pages) lines.push(mdLink(page.title, page.permalink, page.excerpt));
   lines.push(htmlLink('Contact', '/contact/', 'Wufoo form plus Twitter and LinkedIn.'));
   lines.push('');
-  lines.push('## Essays');
+  lines.push('## Posts');
   lines.push('');
   for (const post of latest) {
     const when = isoDate(post.date);
     const note = [when, post.categoryLabel, post.excerpt].filter(Boolean).join(' — ');
     lines.push(mdLink(post.title, post.permalink, note));
   }
-  lines.push(htmlLink('All posts', '/posts/', 'HTML index of every essay, newest first.'));
+  lines.push(htmlLink('All posts', '/posts/', 'HTML index of every article, newest first.'));
   lines.push('');
   lines.push('## Today I Learned');
   lines.push('');
@@ -332,7 +331,7 @@ export function buildLlmsFullTxt({ pages = [], posts = [], til = [], portfolio =
   ];
   for (const page of pages) lines.push(mdLink(page.title, page.permalink, page.excerpt));
   lines.push('');
-  lines.push('## Essays');
+  lines.push('## Posts');
   lines.push('');
   for (const post of posts) {
     const when = isoDate(post.date);

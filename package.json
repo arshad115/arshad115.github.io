@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Personal site of Arshad Mehmood — plain Astro static site.",
   "engines": {
-    "node": ">=20"
+    "node": ">=22.19.0"
   },
   "scripts": {
     "predev": "node scripts/ensure-til.mjs",

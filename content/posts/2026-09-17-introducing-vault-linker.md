@@ -11,6 +11,7 @@ tags:
   - productivity
 header:
   image: /assets/images/posts/vault-linker/before.png
+  teaser: /assets/images/posts/vault-linker/after.png
   alt: Vault Linker before-and-after screenshot
 ---
 

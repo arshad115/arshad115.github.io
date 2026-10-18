@@ -35,11 +35,7 @@ const groups = projectGroups.map((group) => ({
     <header class="collection-intro">
     <p class="kicker">Work</p>
     <h1>Portfolio</h1>
-    <p class="lede">
-      Android apps I published, a translation chatbot, and a few client sites. The longer write-ups live
-      with the{' '}
-      <a href="/posts/">posts</a>.
-    </p>
+    <p class="lede">Selected open-source, product, and client work—from current tools to earlier applications.</p>
     <ul class="project-index">
       {groups.map((group) => (
         <li>
@@ -48,9 +44,9 @@ const groups = projectGroups.map((group) => ({
       ))}
     </ul>
     <p>
-      <a href={SITE.playStore}>Android apps on Google Play</a>
+      <a href={SITE.github}>GitHub profile</a>
       {' · '}
-      <a href={SITE.github}>All repositories</a>
+      <a href={SITE.playStore}>Google Play developer page</a>
     </p>
     </header>
 
@@ -59,23 +55,30 @@ const groups = projectGroups.map((group) => ({
       <h2>{group.name}</h2>
       {group.items.map((item) => (
         <article class="project-row">
-          <div>
+          {item.image && (
+            <div class="project-image" aria-hidden="true">
+              <img
+                src={item.image}
+                alt=""
+                width={item.imageDimensions?.width}
+                height={item.imageDimensions?.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          )}
+          <div class="project-copy">
+            <p class="project-status">{item.status}</p>
             <h3>{item.displayName}</h3>
             <p>{item.description}</p>
+            <dl class="project-facts">
+              <div><dt>Role</dt><dd>{item.role}</dd></div>
+              <div><dt>Stack</dt><dd>{item.stack.join(' · ')}</dd></div>
+            </dl>
             <a class="project-link" href={item.href}>
               {item.href.startsWith('/') ? 'Read project' : 'View project'} <span aria-hidden="true">→</span>
             </a>
           </div>
-          {item.image && (
-            <img
-              src={item.image}
-              alt={item.imageAlt}
-              width={item.imageDimensions?.width}
-              height={item.imageDimensions?.height}
-              loading="lazy"
-              decoding="async"
-            />
-          )}
         </article>
       ))}
     </section>

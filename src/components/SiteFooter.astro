@@ -1,21 +1,31 @@
 ---
-import { FOOTER_NAV, SITE } from '../lib/site';
+import { SITE } from '../lib/site';
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <ul class="footer-links">
-      {FOOTER_NAV.map((item) => (
-        <li><a href={item.href}>{item.label}</a></li>
-      ))}
-      <li><a href={SITE.github}>GitHub</a></li>
-      <li><a href={SITE.linkedin}>LinkedIn</a></li>
-      <li><a href={SITE.twitter}>Twitter</a></li>
-    </ul>
-    <p>
-      © {year} {SITE.author}. {SITE.location}. Writing from a notebook, not a dashboard.
-    </p>
+    <div class="footer-summary">
+      <a class="footer-name" href="/">{SITE.author}</a>
+      <p>Practical notes on software, infrastructure, and the problems found in production.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      <div>
+        <p>Explore</p>
+        <a href="/posts/">Posts</a>
+        <a href="/today-i-learned/">Today I Learned</a>
+        <button type="button" data-search-open>Search</button>
+        <a href="/feed.xml">RSS</a>
+      </div>
+      <div>
+        <p>Connect</p>
+        <a href="/contact/">Contact</a>
+        <a href={SITE.github}>GitHub</a>
+        <a href={SITE.linkedin}>LinkedIn</a>
+        <a href="/resume/">Resume</a>
+      </div>
+    </nav>
+    <p class="footer-legal">© {year} {SITE.author}. {SITE.location}. <a href="/terms/">Terms</a></p>
   </div>
 </footer>

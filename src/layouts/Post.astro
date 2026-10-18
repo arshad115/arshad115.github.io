@@ -20,9 +20,20 @@ const { Content, headings } = await render(entry.collection);
 const showToc = entry.showToc && headings.filter((heading) => heading.depth >= 2).length > 2;
 const image = entry.header?.image;
 const imageAlt = entry.header?.alt || entry.title;
+const localImage = image && !/^https?:\/\//i.test(image) ? image : undefined;
+const localTeaser = entry.header?.teaser && !/^https?:\/\//i.test(entry.header.teaser) ? entry.header.teaser : undefined;
+const socialImage = localImage || localTeaser;
+const socialImageAlt = socialImage ? imageAlt : undefined;
 const imageDimensions = image ? imageSize(image) : undefined;
 const captionId = entry.header?.caption ? 'header-caption' : undefined;
 const relatedTitle = relatedHeading(entry, related);
+const isAbout = entry.kind === 'page' && entry.permalink === '/about/';
+const archiveCutoff = new Date();
+archiveCutoff.setUTCFullYear(archiveCutoff.getUTCFullYear() - 5);
+const isArchivedPost =
+  entry.kind === 'post' &&
+  Boolean(entry.date && entry.date < archiveCutoff) &&
+  !(entry.updated && entry.updated >= archiveCutoff);
 const ogType = entry.kind === 'page' ? 'website' : 'article';
 const pageType =
   entry.kind === 'page' && entry.permalink === '/about/'
@@ -36,8 +47,8 @@ const pageType =
   title={entry.title}
   description={entry.excerpt}
   permalink={entry.permalink}
-  image={image || entry.header?.teaser}
-  imageAlt={imageAlt}
+  image={socialImage}
+  imageAlt={socialImageAlt}
   type={ogType}
   kind={entry.kind}
   pageType={pageType}
@@ -50,17 +61,10 @@ const pageType =
   wordCount={entry.wordCount}
   markdown
 >
-  <article class="reading" data-pagefind-body>
-    <p class="kicker" data-pagefind-ignore>
-      {entry.kind === 'til' && 'Today I Learned'}
-      {entry.kind === 'post' && 'Essay'}
-      {entry.kind === 'portfolio' && 'Portfolio'}
-      {entry.kind === 'page' && 'Page'}
-    </p>
-    <h1>{entry.title}</h1>
-    {entry.kind !== 'page' && <PostMeta entry={entry} />}
+  {entry.kind === 'post' && <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>}
+  <article class:list={['post-page', { 'post-page-wide': entry.kind === 'post', 'about-page': isAbout }]} data-pagefind-body>
     {image && (
-      <figure class="figure-plain" data-pagefind-ignore>
+      <figure class={entry.kind === 'post' ? 'post-hero' : 'figure-plain reading'} data-pagefind-ignore>
         <img
           src={image}
           alt={imageAlt}
@@ -81,26 +85,102 @@ const pageType =
         )}
       </figure>
     )}
-    {showToc && <TableOfContents headings={headings} />}
-    <div class="prose">
-      <Content />
-    </div>
-    {related.length > 0 && (
-      <aside class="related" data-pagefind-ignore>
-        <h2>{relatedTitle}</h2>
-        <ul>
-          {related.map((item) => (
-            <li>
-              <a href={item.permalink}>{item.title}</a>
-            </li>
-          ))}
-        </ul>
-      </aside>
-    )}
-    {entry.kind === 'post' && entry.comments && (
-      <div data-pagefind-ignore>
-        <GiscusComments />
+    <header class="post-heading reading">
+      <p class="kicker" data-pagefind-ignore>
+        {entry.kind === 'til' && 'Today I Learned'}
+        {entry.kind === 'post' && (entry.categoryLabel || 'Article')}
+        {entry.kind === 'portfolio' && 'Portfolio'}
+        {entry.kind === 'page' && !isAbout && 'Page'}
+        {isAbout && 'About me'}
+      </p>
+      <h1>{entry.title}</h1>
+      {entry.kind !== 'page' && <PostMeta entry={entry} maxTags={3} />}
+      {isArchivedPost && (
+        <aside class="archive-note" data-pagefind-ignore>
+          <strong>Archive note</strong>
+          <span>This article is more than five years old and may reference outdated software or practices.</span>
+        </aside>
+      )}
+    </header>
+    <div class:list={['post-content-grid', { 'has-sidebar': showToc && entry.kind === 'post' }]}>
+      {showToc && entry.kind === 'post' && (
+        <aside class="post-sidebar" data-pagefind-ignore>
+          <TableOfContents headings={headings} />
+        </aside>
+      )}
+      <div class="post-main reading">
+        {showToc && entry.kind !== 'post' && <TableOfContents headings={headings} />}
+        <div class="prose">
+          <Content />
+        </div>
+        {related.length > 0 && (
+          <aside class="related" data-pagefind-ignore>
+            <h2>{relatedTitle}</h2>
+            <ul>
+              {related.map((item) => (
+                <li>
+                  <a href={item.permalink}>{item.title}</a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+        {entry.kind === 'post' && entry.comments && (
+          <div data-pagefind-ignore>
+            <GiscusComments />
+          </div>
+        )}
       </div>
-    )}
+    </div>
   </article>
+  {entry.kind === 'post' && (
+    <script>
+      const article = document.querySelector<HTMLElement>('.post-page');
+      const progress = document.querySelector<HTMLElement>('[data-reading-progress]');
+
+      const updateProgress = () => {
+        if (!article || !progress) return;
+        const start = article.offsetTop;
+        const distance = Math.max(1, article.offsetHeight - window.innerHeight);
+        const value = Math.min(1, Math.max(0, (window.scrollY - start) / distance));
+        progress.style.transform = `scaleX(${value})`;
+      };
+
+      for (const pre of document.querySelectorAll<HTMLElement>('.prose pre')) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode?.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'copy-code';
+        button.textContent = 'Copy';
+        button.setAttribute('aria-label', 'Copy code to clipboard');
+        button.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(pre.innerText);
+            button.textContent = 'Copied';
+            window.setTimeout(() => { button.textContent = 'Copy'; }, 1600);
+          } catch {
+            button.textContent = 'Select code';
+          }
+        });
+        wrapper.appendChild(button);
+      }
+
+      for (const heading of document.querySelectorAll<HTMLElement>('.prose h2[id], .prose h3[id]')) {
+        const anchor = document.createElement('a');
+        anchor.className = 'heading-anchor';
+        anchor.href = `#${heading.id}`;
+        anchor.textContent = '#';
+        anchor.setAttribute('aria-label', `Link to ${heading.textContent?.trim() || 'section'}`);
+        heading.appendChild(anchor);
+      }
+
+      updateProgress();
+      window.addEventListener('scroll', updateProgress, { passive: true });
+      window.addEventListener('resize', updateProgress);
+    </script>
+  )}
 </Base>

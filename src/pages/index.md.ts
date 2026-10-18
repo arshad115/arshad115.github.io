@@ -12,7 +12,7 @@ export async function GET() {
     '',
     `${SITE.author} is a ${SITE.jobTitle} in ${SITE.location}. Canonical HTML: ${absoluteUrl('/')}.`,
     '',
-    '## Latest essays',
+    '## Latest posts',
     '',
     ...latest.map((post) => {
       const when = isoDate(post.date);

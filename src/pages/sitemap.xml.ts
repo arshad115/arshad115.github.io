@@ -5,11 +5,8 @@ export async function GET() {
   const [entries, posts] = await Promise.all([getRenderableEntries(), getPosts()]);
   const latestPostDate = posts[0]?.date;
   const urls = [
-    ...listingRoutes.map((route) => route.path),
+    ...listingRoutes.filter((route) => route.path !== '/search/').map((route) => route.path),
     ...entries.map((entry) => entry.permalink),
-    '/feed.xml',
-    '/llms.txt',
-    '/llms-full.txt',
   ];
   const unique = [...new Set(urls)];
   const body = `<?xml version="1.0" encoding="UTF-8"?>

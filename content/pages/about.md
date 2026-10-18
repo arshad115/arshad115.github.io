@@ -4,82 +4,33 @@ permalink: /about/
 header:
   image: /assets/images/about_header.jpeg
   alt: Mannheim Palace courtyard under a blue sky
-  caption: "Building the future, one line of code at a time"
+  caption: Mannheim, Germany — where I live and work.
 ---
 
-## Hello, I'm Arshad Mehmood
+## I build software and document what survives contact with production
 
-I'm a **Software Engineer** passionate about building scalable solutions and sharing knowledge with the developer community. With expertise spanning **Android development**, **DevOps practices**, and **modern web technologies**, I enjoy solving complex problems and helping others learn.
+I'm a software engineer based in Mannheim, Germany. My work has moved from Android applications and web systems into DevOps, infrastructure, automation, and the less glamorous operational problems that appear after software ships.
 
-### Education & Background
+This site is my working notebook. I write about incidents I have debugged, tools I have built, and technical details worth finding again. Longer investigations become [posts](/posts/); focused commands and discoveries go into [Today I Learned](/today-i-learned/).
 
-- **M.Sc. Business Informatics** - University of Mannheim, Germany
-- **Focus Areas**: Software Engineering, Mobile Development, DevOps
-- **Current Role**: Software Engineer specializing in full-stack development
+### What I work with
 
-### Technical Expertise
+- **Infrastructure and operations:** Linux, Docker, Kubernetes, CI/CD, monitoring, and production troubleshooting
+- **Software development:** Python, Go, TypeScript, Node.js, Android, APIs, and data-backed applications
+- **Technical communication:** practical documentation, incident write-ups, and concise reference notes
 
-**Mobile Development:**
-- Android (Kotlin, Java)
-- Cross-platform solutions
-- Mobile app architecture
+I hold an M.Sc. in Business Informatics from the University of Mannheim. Earlier in my career, I published several Android applications and built web and integration projects for clients. That history is collected in the [portfolio](/portfolio/).
 
-**DevOps & Infrastructure:**
-- Kubernetes & Docker
-- Jenkins CI/CD
-- Prometheus & Grafana
-- Infrastructure as Code
+### Current work
 
-**Web Technologies:**
-- Angular, Node.js
-- RESTful APIs
-- Database design
-- Cloud platforms
+- [Vault Linker](https://github.com/arshad115/vault-linker) — an open-source CLI and Obsidian plugin that creates safe links between related notes
+- [Today I Learned](https://github.com/arshad115/today-i-learned) — a searchable collection of focused technical notes
+- This blog — longer guides, incident reports, and honest accounts of what worked and what did not
 
-### What I'm Working On
+### Why I write
 
-- **DevOps Journey Series**: Comprehensive tutorials on modern DevOps practices
-- **Open Source Projects**: Contributing to the developer community
-- **Today I Learned**: Daily knowledge sharing and continuous learning
-- **Technical Writing**: Sharing insights through blog posts and tutorials
+Writing forces vague understanding into something testable. Publishing it makes that work useful to someone facing the same error message months or years later. I prefer concrete examples, commands, trade-offs, and failure modes over generic advice.
 
-### My Projects
+### Get in touch
 
-**[Obsidian Notes Linker](https://github.com/arshad115/obsidian-linker)**  
-Python tool for automatically linking markdown files in Obsidian
-
-**[Android Apps](https://play.google.com/store/apps/dev?id=7044232667654327190)**  
-Various Android applications available on Google Play Store
-
-**[Today I Learned](https://github.com/arshad115/today-i-learned)**  
-Daily collection of development tips, tricks, and learnings
-
-### Why I Blog
-
-I believe in **learning in public** and **sharing knowledge** with the community. Through this blog, I:
-
-- Document my learning journey in DevOps and software engineering
-- Share practical tutorials and real-world solutions
-- Connect with fellow developers and learn from their experiences
-- Contribute to the collective knowledge of the tech community
-
-### Let's Connect
-
-I'm always interested in connecting with fellow developers, discussing technology, and exploring collaboration opportunities.
-
-- **Professional**: [LinkedIn](https://www.linkedin.com/in/arshadmehmood115/)
-- **Code**: [GitHub](https://github.com/arshad115)
-- **Social**: [Twitter](https://twitter.com/arshad115) | [Instagram](https://instagram.com/arshad115)
-- **Contact**: [Get in touch](/contact/)
-
-### Fun Facts
-
-- Based in Mannheim, Germany
-- Published multiple Android apps
-- Love building automation tools
-- Continuous learner and knowledge sharer
-- Powered by coffee and curiosity
-
----
-
-*"The best way to learn is to teach, and the best way to grow is to share your journey."*
+You can find my code on [GitHub](https://github.com/arshad115), connect with me on [LinkedIn](https://www.linkedin.com/in/arshadmehmood115/), or [send me a message](/contact/).

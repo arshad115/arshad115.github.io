@@ -23,6 +23,12 @@ test('imageSize reads a real public asset', () => {
   assert.ok(size?.height && size.height > 0);
 });
 
+test('default social image has a large landscape sharing ratio', () => {
+  const file = path.join(root, 'public/assets/images/social-default.png');
+  assert.equal(fs.existsSync(file), true);
+  assert.deepEqual(imageSize('/assets/images/social-default.png'), { width: 1200, height: 630 });
+});
+
 test('imageSize returns recorded dimensions for legacy remote images', () => {
   assert.deepEqual(imageSize('https://i.imgur.com/bTS1Rri.png'), { width: 795, height: 601 });
 });

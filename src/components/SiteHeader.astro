@@ -26,7 +26,20 @@ const current = Astro.url.pathname;
           </a>
         ))
       }
-      <a href="/search/" aria-current={current.startsWith('/search/') ? 'page' : undefined}>Search</a>
+      <button
+        class="search-trigger"
+        type="button"
+        data-search-open
+        aria-haspopup="dialog"
+        aria-keyshortcuts="Meta+K Control+K"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path d="m15.5 15.5 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+        <span>Search</span>
+        <kbd class="search-shortcut" data-search-shortcut aria-hidden="true">⌘K</kbd>
+      </button>
     </nav>
     <div class="nav-tools">
       <button
@@ -35,19 +48,130 @@ const current = Astro.url.pathname;
         data-theme-toggle
         aria-pressed="false"
         aria-label="Switch to dark theme"
+        title="Switch to dark theme"
       >
-        Dark
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M20.1 15.4A8.5 8.5 0 0 1 8.6 3.9 8.5 8.5 0 1 0 20.1 15.4Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.75" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <path
+            d="M12 2.25v2M12 19.75v2M4.25 12h-2M21.75 12h-2M5.1 5.1 3.7 3.7M20.3 20.3l-1.4-1.4M18.9 5.1l1.4-1.4M3.7 20.3l1.4-1.4"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        </svg>
       </button>
     </div>
   </div>
 </header>
+
+<dialog class="search-dialog" data-site-search aria-labelledby="site-search-title">
+  <div class="search-dialog-panel">
+    <h2 class="visually-hidden" id="site-search-title">Search the blog</h2>
+    <div class="search-commandbar">
+      <svg class="search-commandbar-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.8" />
+        <path d="m15.5 15.5 4.2 4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </svg>
+      <label class="visually-hidden" for="site-search-input">Search posts, notes, and pages</label>
+      <input
+        id="site-search-input"
+        type="search"
+        placeholder="Search posts, notes, and pages…"
+        autocomplete="off"
+        enterkeyhint="go"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-controls="site-search-results"
+        aria-expanded="false"
+      />
+      <kbd class="search-key" aria-hidden="true">Esc</kbd>
+      <button class="search-close" type="button" data-search-close aria-label="Close search" title="Close search">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="m6.5 6.5 11 11m0-11-11 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+    <div class="search-dialog-body">
+      <div class="search-empty" data-search-empty>
+        <p class="search-section-label">Popular topics</p>
+        <div class="search-suggestions" aria-label="Suggested searches">
+          <button type="button" data-search-query="DevOps">DevOps</button>
+          <button type="button" data-search-query="SSH">SSH</button>
+          <button type="button" data-search-query="Android">Android</button>
+          <button type="button" data-search-query="Self-hosting">Self-hosting</button>
+        </div>
+        <p class="search-section-label">Explore</p>
+        <div class="search-quicklinks">
+          <a href="/posts/">
+            <span><strong>All posts</strong><small>Long-form technical writing</small></span>
+            <span aria-hidden="true">→</span>
+          </a>
+          <a href="/today-i-learned/">
+            <span><strong>Today I Learned</strong><small>Short notes and useful commands</small></span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite" hidden></p>
+      <ol id="site-search-results" class="search-results" data-search-results role="listbox"></ol>
+      <div class="search-no-results" data-search-no-results hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.6" />
+          <path d="m15.5 15.5 4.2 4.2M8.8 10.8h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+        <strong>No matches found</strong>
+        <p>Try a shorter phrase or browse the suggested topics.</p>
+      </div>
+    </div>
+    <div class="search-dialog-footer" aria-hidden="true">
+      <span data-search-result-hint hidden><kbd>↑</kbd><kbd>↓</kbd> Navigate</span>
+      <span data-search-result-hint hidden><kbd>↵</kbd> Open</span>
+      <span><kbd>Esc</kbd> Close</span>
+    </div>
+  </div>
+</dialog>
 
 <script>
   const header = document.querySelector('.masthead');
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('#site-nav');
   const themeButton = document.querySelector('[data-theme-toggle]');
+  const searchButtons = [...document.querySelectorAll<HTMLElement>('[data-search-open]')];
+  const searchDialog = document.querySelector<HTMLDialogElement>('[data-site-search]');
+  const searchClose = searchDialog?.querySelector<HTMLElement>('[data-search-close]');
+  const searchInput = searchDialog?.querySelector<HTMLInputElement>('#site-search-input');
+  const searchStatus = searchDialog?.querySelector<HTMLElement>('[data-search-status]');
+  const searchResults = searchDialog?.querySelector<HTMLOListElement>('[data-search-results]');
+  const searchEmpty = searchDialog?.querySelector<HTMLElement>('[data-search-empty]');
+  const searchNoResults = searchDialog?.querySelector<HTMLElement>('[data-search-no-results]');
+  const searchSuggestions = [...(searchDialog?.querySelectorAll<HTMLButtonElement>('[data-search-query]') ?? [])];
+  const searchResultHints = [...(searchDialog?.querySelectorAll<HTMLElement>('[data-search-result-hint]') ?? [])];
+  const searchShortcut = document.querySelector<HTMLElement>('[data-search-shortcut]');
   const mobileNav = window.matchMedia('(max-width: 780px)');
+
+  type SearchEntry = {
+    title: string;
+    permalink: string;
+    excerpt: string;
+    kind: string;
+    searchText: string;
+  };
+
+  let searchIndex: SearchEntry[] | null = null;
+  let searchRequest: Promise<SearchEntry[]> | null = null;
+  let activeSearchTrigger: HTMLElement | null = null;
+  let activeResult = -1;
 
   const isMobile = () => mobileNav.matches;
   const isOpen = () => header?.classList.contains('is-open') === true;
@@ -56,7 +180,7 @@ const current = Astro.url.pathname;
     const nodes: HTMLElement[] = [];
     if (toggle instanceof HTMLElement) nodes.push(toggle);
     if (nav) {
-      for (const link of nav.querySelectorAll('a')) {
+      for (const link of nav.querySelectorAll('a, button')) {
         if (link instanceof HTMLElement) nodes.push(link);
       }
     }
@@ -81,7 +205,214 @@ const current = Astro.url.pathname;
     window.setTimeout(() => setOpen(false, { restoreFocus: false }), 0);
   });
 
+  const loadSearchIndex = () => {
+    if (searchIndex) return Promise.resolve(searchIndex);
+    searchRequest ??= fetch('/search-index.json')
+      .then((response) => {
+        if (!response.ok) throw new Error(`Search index returned ${response.status}`);
+        return response.json();
+      })
+      .then((entries: SearchEntry[]) => (searchIndex = entries));
+    return searchRequest;
+  };
+
+  const resultLabel = (kind: string) => ({
+    post: 'Post',
+    til: 'Today I Learned',
+    portfolio: 'Portfolio',
+    page: 'Page',
+    listing: 'Page',
+  })[kind] ?? 'Page';
+
+  const resultItems = () => [...(searchResults?.querySelectorAll<HTMLElement>('[role="option"]') ?? [])];
+
+  const setActiveResult = (index: number) => {
+    const items = resultItems();
+    if (!searchInput || items.length === 0) {
+      activeResult = -1;
+      searchInput?.removeAttribute('aria-activedescendant');
+      return;
+    }
+    activeResult = (index + items.length) % items.length;
+    items.forEach((item, itemIndex) => item.setAttribute('aria-selected', itemIndex === activeResult ? 'true' : 'false'));
+    const active = items[activeResult];
+    searchInput.setAttribute('aria-activedescendant', active.id);
+    active.scrollIntoView({ block: 'nearest' });
+  };
+
+  const appendHighlightedText = (node: HTMLElement, value: string, terms: string[]) => {
+    const escaped = terms.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).filter(Boolean);
+    if (escaped.length === 0) {
+      node.textContent = value;
+      return;
+    }
+    const expression = new RegExp(`(${escaped.join('|')})`, 'gi');
+    for (const part of value.split(expression)) {
+      if (!part) continue;
+      if (terms.some((term) => part.toLocaleLowerCase() === term)) {
+        const mark = document.createElement('mark');
+        mark.textContent = part;
+        node.append(mark);
+      } else {
+        node.append(document.createTextNode(part));
+      }
+    }
+  };
+
+  const renderSearch = (entries: SearchEntry[], query: string) => {
+    if (!searchResults || !searchStatus) return;
+    searchResults.replaceChildren();
+    activeResult = -1;
+    searchInput?.removeAttribute('aria-activedescendant');
+    const terms = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    if (terms.length === 0) {
+      searchStatus.hidden = true;
+      searchStatus.classList.remove('visually-hidden');
+      if (searchEmpty) searchEmpty.hidden = false;
+      if (searchNoResults) searchNoResults.hidden = true;
+      searchResultHints.forEach((hint) => (hint.hidden = true));
+      searchInput?.setAttribute('aria-expanded', 'false');
+      return;
+    }
+
+    searchStatus.hidden = false;
+    if (searchEmpty) searchEmpty.hidden = true;
+
+    const matches = entries
+      .filter((entry) => terms.every((term) => entry.searchText.includes(term)))
+      .map((entry) => {
+        const title = entry.title.toLocaleLowerCase();
+        let score = terms.reduce((total, term) => total + (title.includes(term) ? 12 : 0), 0);
+        if (title.startsWith(query.toLocaleLowerCase())) score += 20;
+        return { entry, score };
+      })
+      .sort((a, b) => b.score - a.score || a.entry.title.localeCompare(b.entry.title))
+      .slice(0, 8);
+
+    searchStatus.textContent = matches.length
+      ? `${matches.length}${matches.length === 8 ? '+' : ''} ${matches.length === 1 ? 'result' : 'results'}`
+      : `No results for “${query}”.`;
+    searchStatus.classList.toggle('visually-hidden', matches.length === 0);
+    if (searchNoResults) searchNoResults.hidden = matches.length > 0;
+    searchResultHints.forEach((hint) => (hint.hidden = matches.length === 0));
+    searchInput?.setAttribute('aria-expanded', matches.length > 0 ? 'true' : 'false');
+
+    matches.forEach(({ entry }, index) => {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      const copy = document.createElement('span');
+      const meta = document.createElement('span');
+      const title = document.createElement('strong');
+      const arrow = document.createElement('span');
+      item.id = `site-search-result-${index}`;
+      item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+      link.href = entry.permalink;
+      link.tabIndex = -1;
+      copy.className = 'search-result-copy';
+      meta.className = 'search-result-kind';
+      meta.textContent = resultLabel(entry.kind);
+      appendHighlightedText(title, entry.title, terms);
+      arrow.className = 'search-result-arrow';
+      arrow.setAttribute('aria-hidden', 'true');
+      arrow.textContent = '↗';
+      copy.append(meta, title);
+      if (entry.excerpt) {
+        const excerpt = document.createElement('p');
+        excerpt.textContent = entry.excerpt;
+        copy.append(excerpt);
+      }
+      link.append(copy, arrow);
+      item.append(link);
+      searchResults.append(item);
+      item.addEventListener('pointermove', () => setActiveResult(index));
+    });
+    if (matches.length > 0) setActiveResult(0);
+  };
+
+  const openSearch = (trigger?: HTMLElement | null) => {
+    if (!searchDialog || searchDialog.open) return;
+    activeSearchTrigger = trigger ?? (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+    setOpen(false, { restoreFocus: false });
+    searchDialog.showModal();
+    searchInput?.focus();
+    void loadSearchIndex()
+      .then((entries) => renderSearch(entries, searchInput?.value.trim() ?? ''))
+      .catch(() => {
+        if (searchStatus) {
+          searchStatus.hidden = false;
+          searchStatus.textContent = 'Search could not be loaded. Please try again.';
+        }
+      });
+  };
+
+  for (const button of searchButtons) {
+    button.addEventListener('click', () => openSearch(button));
+  }
+
+  if (searchShortcut && !/Mac|iPhone|iPad/.test(navigator.platform)) searchShortcut.textContent = 'Ctrl K';
+
+  for (const suggestion of searchSuggestions) {
+    suggestion.addEventListener('click', () => {
+      if (!searchInput) return;
+      searchInput.value = suggestion.dataset.searchQuery ?? '';
+      searchInput.dispatchEvent(new Event('input'));
+      searchInput.focus();
+    });
+  }
+
+  searchClose?.addEventListener('click', () => searchDialog?.close());
+  searchDialog?.addEventListener('click', (event) => {
+    if (event.target === searchDialog) searchDialog.close();
+  });
+  searchDialog?.addEventListener('close', () => activeSearchTrigger?.focus());
+  searchResults?.addEventListener('click', (event) => {
+    if (event.target instanceof Element && event.target.closest('a')) searchDialog?.close();
+  });
+
+  let searchTimer = 0;
+  searchInput?.addEventListener('input', () => {
+    window.clearTimeout(searchTimer);
+    const query = searchInput.value.trim();
+    searchTimer = window.setTimeout(() => {
+      void loadSearchIndex()
+        .then((entries) => renderSearch(entries, query))
+        .catch(() => {
+          if (searchStatus) searchStatus.textContent = 'Search could not be loaded. Please try again.';
+        });
+    }, 80);
+  });
+
+  searchInput?.addEventListener('keydown', (event) => {
+    const items = resultItems();
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      searchDialog?.close();
+    } else if (event.key === 'ArrowDown' && items.length > 0) {
+      event.preventDefault();
+      setActiveResult(activeResult + 1);
+    } else if (event.key === 'ArrowUp' && items.length > 0) {
+      event.preventDefault();
+      setActiveResult(activeResult - 1);
+    } else if (event.key === 'Enter' && activeResult >= 0) {
+      event.preventDefault();
+      items[activeResult]?.querySelector<HTMLAnchorElement>('a')?.click();
+    }
+  });
+
   document.addEventListener('keydown', (event) => {
+    const target = event.target;
+    const isTyping = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || (target instanceof HTMLElement && target.isContentEditable);
+    if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === 'k') {
+      event.preventDefault();
+      openSearch(searchButtons[0]);
+      return;
+    }
+    if (event.key === '/' && !isTyping && !searchDialog?.open) {
+      event.preventDefault();
+      openSearch(searchButtons[0]);
+      return;
+    }
     if (!isOpen() || !isMobile()) return;
     if (event.key === 'Escape') {
       event.preventDefault();
@@ -110,11 +441,12 @@ const current = Astro.url.pathname;
   const syncThemeButton = () => {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     if (!(themeButton instanceof HTMLElement)) return;
-    themeButton.textContent = dark ? 'Light' : 'Dark';
     themeButton.setAttribute('aria-pressed', dark ? 'true' : 'false');
-    themeButton.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    const label = dark ? 'Switch to light theme' : 'Switch to dark theme';
+    themeButton.setAttribute('aria-label', label);
+    themeButton.setAttribute('title', label);
     const themeColour = document.querySelector('meta[name="theme-color"]');
-    themeColour?.setAttribute('content', dark ? '#131517' : '#ffffff');
+    themeColour?.setAttribute('content', dark ? '#15181b' : '#ffffff');
   };
   syncThemeButton();
   themeButton?.addEventListener('click', () => {

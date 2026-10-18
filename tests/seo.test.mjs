@@ -4,11 +4,21 @@ import {
   buildJsonLd,
   buildLlmsFullTxt,
   buildLlmsTxt,
+  documentTitle,
   entryToMarkdown,
   humanSitemapGroups,
   markdownPath,
   markdownUrl,
 } from '../src/lib/seo.mjs';
+
+test('documentTitle keeps branding concise', () => {
+  assert.equal(documentTitle(), 'Arshad Mehmood');
+  assert.equal(documentTitle('About'), 'About · Arshad Mehmood');
+  assert.equal(
+    documentTitle('Install and Configure MySQL database on Ubuntu for remote connection over SSH with MySQL Workbench'),
+    'Install and Configure MySQL database on Ubuntu for remote connection over SSH with MySQL Workbench',
+  );
+});
 
 test('markdownPath colocates index.md with trailing-slash HTML', () => {
   assert.equal(markdownPath('/'), '/index.md');
@@ -42,6 +52,8 @@ test('JSON-LD graph has Person, WebSite, Blog, and BlogPosting', () => {
     ['Person', 'WebSite', 'Blog', 'BlogPosting'],
   );
   const article = data['@graph'].find((node) => node['@type'] === 'BlogPosting');
+  const website = data['@graph'].find((node) => node['@type'] === 'WebSite');
+  assert.equal('potentialAction' in website, false);
   assert.equal(article.articleSection, 'DevOps');
   assert.match(article.datePublished, /^2024-09-23/);
   assert.equal(article.timeRequired, 'PT8M');
