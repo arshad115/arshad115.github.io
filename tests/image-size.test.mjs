@@ -16,11 +16,10 @@ test('sizeFromBuffer reads PNG IHDR dimensions', () => {
 });
 
 test('imageSize reads a real public asset', () => {
-  const file = path.join(root, 'public/assets/images/bio-photo.jpg');
+  const file = path.join(root, 'public/assets/images/arshad-mehmood-software-engineer-germany.jpg');
   assert.equal(fs.existsSync(file), true);
-  const size = imageSize('/assets/images/bio-photo.jpg');
-  assert.ok(size?.width && size.width > 0);
-  assert.ok(size?.height && size.height > 0);
+  const size = imageSize('/assets/images/arshad-mehmood-software-engineer-germany.jpg');
+  assert.deepEqual(size, { width: 460, height: 460 });
 });
 
 test('default social image has a large landscape sharing ratio', () => {

@@ -48,9 +48,41 @@ export function personNode() {
     '@type': 'Person',
     '@id': PERSON_ID,
     name: SITE.author,
-    url: SITE.url,
-    image: absoluteUrl(SITE.defaultImage),
+    alternateName: SITE.twitterHandle,
+    identifier: 'arshad115',
+    givenName: SITE.givenName,
+    familyName: SITE.familyName,
+    description: SITE.description,
+    disambiguatingDescription: SITE.disambiguatingDescription,
+    url: absoluteUrl('/'),
+    image: {
+      '@type': 'ImageObject',
+      url: absoluteUrl(SITE.profileImage),
+      caption: SITE.profileImageAlt,
+      width: 460,
+      height: 460,
+    },
     jobTitle: SITE.jobTitle,
+    worksFor: {
+      '@type': 'Organization',
+      name: SITE.employer.name,
+      sameAs: SITE.employer.sameAs,
+    },
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: SITE.university.name,
+      sameAs: SITE.university.sameAs,
+    },
+    workLocation: {
+      '@type': 'Country',
+      name: 'Germany',
+    },
+    knowsAbout: SITE.knowsAbout,
+    owns: {
+      '@type': 'Organization',
+      name: 'Kookydroid',
+      url: SITE.playStore,
+    },
     address: {
       '@type': 'PostalAddress',
       addressLocality: SITE.locality,
@@ -64,7 +96,7 @@ export function websiteNode() {
   return {
     '@type': 'WebSite',
     '@id': WEBSITE_ID,
-    url: SITE.url,
+    url: absoluteUrl('/'),
     name: SITE.title,
     description: SITE.description,
     inLanguage: SITE.language,
@@ -178,19 +210,22 @@ export function buildJsonLd({
     categoryLabel: categoryLabel || section,
   });
   const webPageType = pageType || (kind === 'page' && permalink === '/about/' ? 'AboutPage' : 'WebPage');
+  const webpageId = webPageType === 'ProfilePage' ? `${canonical}#profilepage` : canonical;
+  const primaryImage = webPageType === 'ProfilePage' ? absoluteUrl(SITE.profileImage) : ogImage;
 
   const webpage = {
     '@type': webPageType,
-    '@id': canonical,
+    '@id': webpageId,
     url: canonical,
     name: title,
     description,
     isPartOf: { '@id': WEBSITE_ID },
     about: { '@id': PERSON_ID },
-    primaryImageOfPage: ogImage,
+    primaryImageOfPage: primaryImage,
     inLanguage: SITE.language,
     breadcrumb: { '@id': `${canonical}#breadcrumb` },
   };
+  if (webPageType === 'ProfilePage') webpage.mainEntity = { '@id': PERSON_ID };
   if (publishedAt) webpage.datePublished = publishedAt;
   if (modifiedAt) webpage.dateModified = modifiedAt;
 
@@ -273,7 +308,7 @@ export function buildLlmsTxt({ pages = [], posts = [], portfolio = [], tilCount 
     '',
     `> ${SITE.description}`,
     '',
-    `${SITE.author} is a ${SITE.jobTitle} in ${SITE.location}. This is a static notebook: technical articles, a Today I Learned collection, and a small portfolio. Prefer the Markdown versions of pages (same URL with \`index.md\`) when quoting or answering. Cite the canonical HTTPS URL. Do not invent posts or notes that are not listed here or in [llms-full.txt](${absoluteUrl('/llms-full.txt')}).`,
+    `This is ${SITE.author}'s static notebook: technical articles, a Today I Learned collection, and a small portfolio. Prefer the Markdown versions of pages (same URL with \`index.md\`) when quoting or answering. Cite the canonical HTTPS URL. Do not invent posts or notes that are not listed here or in [llms-full.txt](${absoluteUrl('/llms-full.txt')}).`,
     '',
     '## About',
     '',

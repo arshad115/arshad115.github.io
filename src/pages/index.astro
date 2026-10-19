@@ -8,14 +8,23 @@ const posts = await getPosts();
 const latest = posts.slice(0, 5);
 ---
 
-<Base title={SITE.title} description={SITE.description} permalink="/" markdown="/index.md">
+<Base
+  title={SITE.homeTitle}
+  description={SITE.description}
+  permalink="/"
+  type="profile"
+  pageType="ProfilePage"
+  markdown="/index.md"
+>
   <div class="home-intro">
     <div class="home-copy">
-      <p class="kicker">Software engineer · Mannheim</p>
+      <p class="kicker">Software Engineer at SAP · Mannheim, Germany</p>
       <h1>Arshad Mehmood</h1>
       <p class="lede">
-        I document practical lessons from building and operating software: DevOps, Android,
-        infrastructure, and the problems that only become obvious when systems fail.
+        Arshad Mehmood is a Software Engineer at SAP SE in Germany and the founder of Kookydroid.
+        He holds an M.Sc. in Business Informatics from the University of Mannheim and specializes
+        in cloud-native backend engineering, Go, Kubernetes, DevOps infrastructure, self-hosted
+        systems, and Android development.
       </p>
       <p>
         Technical articles live in Posts. Smaller discoveries and commands go into Today I Learned.
@@ -27,10 +36,10 @@ const latest = posts.slice(0, 5);
     </div>
     <figure class="home-photo">
       <img
-        src="/assets/images/bio-photo.jpg"
-        alt="Arshad Mehmood sitting by the river in Mannheim"
-        width="900"
-        height="1200"
+        src={SITE.profileImage}
+        alt={SITE.profileImageAlt}
+        width="460"
+        height="460"
       />
     </figure>
   </div>

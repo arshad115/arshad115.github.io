@@ -52,13 +52,36 @@ test('JSON-LD graph has Person, WebSite, Blog, and BlogPosting', () => {
     ['Person', 'WebSite', 'Blog', 'BlogPosting'],
   );
   const article = data['@graph'].find((node) => node['@type'] === 'BlogPosting');
+  const person = data['@graph'].find((node) => node['@type'] === 'Person');
   const website = data['@graph'].find((node) => node['@type'] === 'WebSite');
   assert.equal('potentialAction' in website, false);
+  assert.equal(person.alternateName, '@arshad115');
+  assert.equal(person.identifier, 'arshad115');
+  assert.equal(person.givenName, 'Arshad');
+  assert.equal(person.familyName, 'Mehmood');
+  assert.equal(person.worksFor.name, 'SAP SE');
+  assert.equal(person.worksFor.sameAs, 'https://www.wikidata.org/wiki/Q552581');
+  assert.equal(person.alumniOf.name, 'University of Mannheim');
+  assert.match(person.disambiguatingDescription, /SAP SE/);
+  assert.match(person.image.url, /arshad-mehmood-software-engineer-germany\.jpg$/);
   assert.equal(article.articleSection, 'DevOps');
   assert.match(article.datePublished, /^2024-09-23/);
   assert.equal(article.timeRequired, 'PT8M');
   const crumbs = data['@graph'].find((node) => node['@type'] === 'BreadcrumbList');
   assert.equal(crumbs.itemListElement.at(-1).name, 'DevOps Journey');
+});
+
+test('homepage and About schema use distinct ProfilePage nodes for one Person', () => {
+  const home = buildJsonLd({ permalink: '/', title: 'Arshad Mehmood', pageType: 'ProfilePage' });
+  const about = buildJsonLd({ permalink: '/about/', title: 'About', kind: 'page', pageType: 'ProfilePage' });
+  const homeProfile = home['@graph'].find((node) => node['@type'] === 'ProfilePage');
+  const aboutProfile = about['@graph'].find((node) => node['@type'] === 'ProfilePage');
+  assert.equal(homeProfile['@id'], 'https://arshadmehmood.com/#profilepage');
+  assert.equal(aboutProfile['@id'], 'https://arshadmehmood.com/about/#profilepage');
+  assert.equal(homeProfile.mainEntity['@id'], 'https://arshadmehmood.com/#person');
+  assert.equal(aboutProfile.mainEntity['@id'], 'https://arshadmehmood.com/#person');
+  assert.match(homeProfile.primaryImageOfPage, /arshad-mehmood-software-engineer-germany\.jpg$/);
+  assert.match(aboutProfile.primaryImageOfPage, /arshad-mehmood-software-engineer-germany\.jpg$/);
 });
 
 test('TIL JSON-LD uses TechArticle', () => {
@@ -87,7 +110,7 @@ test('llms.txt is the v2 file-list format', () => {
     tilCount: 140,
   });
   assert.match(text, /^# Arshad Mehmood\n/);
-  assert.match(text, /^> Personal blog/m);
+  assert.match(text, /^> Arshad Mehmood is a Software Engineer at SAP SE/m);
   assert.match(text, /^## About\n/m);
   assert.match(text, /\[About\]\(https:\/\/arshadmehmood\.com\/about\/index\.md\): Bio\./);
   assert.match(text, /\[Hello World\]\(https:\/\/arshadmehmood\.com\/personal\/hello-world\/index\.md\)/);
