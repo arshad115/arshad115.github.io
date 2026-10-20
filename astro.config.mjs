@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import expressiveCode from 'astro-expressive-code';
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import {
@@ -37,13 +38,24 @@ export default defineConfig({
       remarkPlugins: [remarkRewriteJekyll, remarkStripJekyllRaw, remarkNormalizeHeadingDepth],
       rehypePlugins: [rehypeLocalImageDimensions],
     }),
-    shikiConfig: {
-      themes: {
-        light: 'github-light',
-        dark: 'github-dark',
-      },
-      defaultColor: false,
-      wrap: true,
-    },
   },
+  integrations: [
+    expressiveCode({
+      themes: ['github-light', 'github-dark'],
+      useDarkModeMediaQuery: false,
+      themeCssSelector: (theme) => `[data-theme='${theme.type}']`,
+      defaultProps: {
+        wrap: true,
+        overridesByLang: {
+          'bash,console,powershell,sh,shell,terminal,zsh': { wrap: false },
+        },
+      },
+      styleOverrides: {
+        borderRadius: '0.625rem',
+        codeFontFamily: 'var(--font-mono)',
+        codeFontSize: '0.9rem',
+        codeLineHeight: '1.55',
+      },
+    }),
+  ],
 });

@@ -158,29 +158,6 @@ const pageType =
         progress.style.transform = `scaleX(${value})`;
       };
 
-      for (const pre of document.querySelectorAll<HTMLElement>('.prose pre')) {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'code-block';
-        pre.parentNode?.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'copy-code';
-        button.textContent = 'Copy';
-        button.setAttribute('aria-label', 'Copy code to clipboard');
-        button.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(pre.innerText);
-            button.textContent = 'Copied';
-            window.setTimeout(() => { button.textContent = 'Copy'; }, 1600);
-          } catch {
-            button.textContent = 'Select code';
-          }
-        });
-        wrapper.appendChild(button);
-      }
-
       for (const heading of document.querySelectorAll<HTMLElement>('.prose h2[id], .prose h3[id]')) {
         const anchor = document.createElement('a');
         anchor.className = 'heading-anchor';

@@ -333,7 +333,9 @@ test('article navigation and theme controls adapt to the reader', async () => {
   assert.match(post, /<details class="toc" open/);
   assert.match(post, /12 sections/);
   assert.match(post, /data-reading-progress/);
-  assert.match(post, /className=.?copy-code/);
+  assert.match(post, /class="expressive-code/);
+  assert.match(post, /title="Copy to clipboard"/);
+  assert.doesNotMatch(post, /className=.?copy-code/);
 
   const search = await readDist('/search/');
   assert.doesNotMatch(search, /Best after a production build/);

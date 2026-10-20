@@ -897,35 +897,8 @@ h3 {
   line-height: 1.55;
 }
 
-.code-block {
-  position: relative;
-  margin-block: 1rem;
-}
-
-.code-block pre {
-  margin: 0;
-  padding-top: 2.65rem;
-}
-
-.copy-code {
-  position: absolute;
-  z-index: 1;
-  top: 0.55rem;
-  right: 0.55rem;
-  min-height: 1.8rem;
-  padding: 0.15rem 0.55rem;
-  border: 1px solid var(--rule-strong);
-  border-radius: 7px;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  color: var(--ink-muted);
-  font: 600 0.76rem var(--font-ui);
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-}
-
-.copy-code:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+.prose > .expressive-code {
+  margin-block: 1.35rem;
 }
 
 .prose h2[id],
@@ -1925,22 +1898,6 @@ html[data-theme='dark'] .contact-status.is-error {
 #search .pagefind-ui__result-excerpt {
   color: var(--ink-muted);
   line-height: 1.5;
-}
-
-.astro-code {
-  background-color: var(--shiki-light-bg, var(--code-bg)) !important;
-}
-
-.astro-code span {
-  color: var(--shiki-light, inherit);
-}
-
-html[data-theme='dark'] .astro-code {
-  background-color: var(--shiki-dark-bg, var(--code-bg)) !important;
-}
-
-html[data-theme='dark'] .astro-code span {
-  color: var(--shiki-dark, inherit);
 }
 
 @media (max-width: 780px) {
