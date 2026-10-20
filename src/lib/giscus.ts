@@ -1,10 +1,11 @@
-import { commentsDisabled } from './giscus-config.mjs';
+import { commentsDisabled, GISCUS_DEFAULTS } from './giscus-config.mjs';
 
 export const giscus = {
-  repo: import.meta.env.PUBLIC_GISCUS_REPO,
-  repoId: import.meta.env.PUBLIC_GISCUS_REPO_ID,
-  category: import.meta.env.PUBLIC_GISCUS_CATEGORY,
-  categoryId: import.meta.env.PUBLIC_GISCUS_CATEGORY_ID,
+  repo: import.meta.env.PUBLIC_GISCUS_REPO || GISCUS_DEFAULTS.PUBLIC_GISCUS_REPO,
+  repoId: import.meta.env.PUBLIC_GISCUS_REPO_ID || GISCUS_DEFAULTS.PUBLIC_GISCUS_REPO_ID,
+  category: import.meta.env.PUBLIC_GISCUS_CATEGORY || GISCUS_DEFAULTS.PUBLIC_GISCUS_CATEGORY,
+  categoryId:
+    import.meta.env.PUBLIC_GISCUS_CATEGORY_ID || GISCUS_DEFAULTS.PUBLIC_GISCUS_CATEGORY_ID,
   mapping: import.meta.env.PUBLIC_GISCUS_MAPPING ?? 'pathname',
   strict: import.meta.env.PUBLIC_GISCUS_STRICT ?? '0',
   reactionsEnabled: import.meta.env.PUBLIC_GISCUS_REACTIONS_ENABLED ?? '1',

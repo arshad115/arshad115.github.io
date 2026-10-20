@@ -27,6 +27,10 @@ export default defineConfig({
   redirects: astroRedirects,
   build: {
     format: 'directory',
+    // The complete shared stylesheet is small enough to ship with the document.
+    // Inlining removes a render-blocking request and lets the browser discover
+    // the preloaded body font without waiting for a CSS round trip.
+    inlineStylesheets: 'always',
   },
   markdown: {
     processor: unified({

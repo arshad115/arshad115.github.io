@@ -24,24 +24,23 @@ import Base from '../../layouts/Base.astro';
     </div>
     <form
       class="contact-form"
-      id="form1"
-      name="form1"
+      id="contact-form"
       accept-charset="UTF-8"
       autocomplete="on"
-      enctype="multipart/form-data"
       method="post"
-      action="https://arshadmehmood.wufoo.com/forms/z1hz7vco0ex212o/#public"
+      action="/api/contact"
     >
       <label>
         Name
-        <input id="Field9" name="Field9" type="text" spellcheck="false" maxlength="255" required placeholder="Your name" />
+        <input id="contact-name" name="name" type="text" autocomplete="name" spellcheck="false" maxlength="100" required placeholder="Your name" />
       </label>
       <label>
         Email address
         <input
-          id="Field10"
-          name="Field10"
+          id="contact-email"
+          name="email"
           type="email"
+          autocomplete="email"
           spellcheck="false"
           maxlength="255"
           required
@@ -50,20 +49,60 @@ import Base from '../../layouts/Base.astro';
       </label>
       <label>
         <span>Website <small>(optional)</small></span>
-        <input id="Field12" name="Field12" type="url" spellcheck="false" maxlength="255" />
+        <input id="contact-website" name="website" type="url" autocomplete="url" spellcheck="false" maxlength="255" placeholder="https://example.com" />
       </label>
       <label>
         Message
-        <textarea id="Field13" name="Field13" spellcheck="true" rows="10" required></textarea>
+        <textarea id="contact-message" name="message" spellcheck="true" rows="8" maxlength="5000" required></textarea>
       </label>
-      <button id="saveForm" name="saveForm" type="submit">Send message</button>
-      <div class="hidden-field">
-        <label for="comment">
-          Do not fill this out
-          <textarea name="comment" id="comment" rows="1" cols="1"></textarea>
-          <input type="hidden" id="idstamp" name="idstamp" value="6CVd19E85y35pIbKDiRJVe24x4Rv6kjzw3Zyhk6w7jQ=" />
-        </label>
+      <input class="hidden-field" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" />
+      <div class="contact-actions">
+        <button type="submit">Send message</button>
+        <p class="contact-status" role="status" aria-live="polite"></p>
       </div>
+      <p class="contact-privacy">
+        Your details are used only to reply to your message. Read the{' '}
+        <a href="/terms/#contact-form">contact-form privacy notice</a>.
+      </p>
     </form>
   </article>
+  <script>
+    const form = document.querySelector<HTMLFormElement>('#contact-form');
+    const status = form?.querySelector<HTMLElement>('.contact-status');
+    const submit = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity() || !status || !submit) return;
+
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+      status.className = 'contact-status';
+      status.textContent = 'Sending your message…';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || result.success === false) {
+          throw new Error(typeof result.message === 'string' ? result.message : 'Your message could not be sent.');
+        }
+
+        form.reset();
+        status.classList.add('is-success');
+        status.textContent = 'Thanks — your message has been sent.';
+      } catch (error) {
+        status.classList.add('is-error');
+        status.textContent = error instanceof Error
+          ? `${error.message} Please try again.`
+          : 'Your message could not be sent. Please try again.';
+      } finally {
+        submit.disabled = false;
+        submit.textContent = 'Send message';
+      }
+    });
+  </script>
 </Base>

@@ -15,9 +15,12 @@
     "build": "ASTRO_TELEMETRY_DISABLED=1 astro build && pagefind --site dist && node scripts/write-case-alias-redirects.mjs",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
-    "test": "node --test tests/scaffold.test.mjs tests/paths.test.mjs tests/jekyll.test.mjs tests/cli.test.mjs tests/taxonomy.test.mjs tests/headers.test.mjs tests/til-notes.test.mjs tests/seo.test.mjs tests/permalinks.test.mjs tests/giscus.test.mjs tests/image-size.test.mjs tests/related.test.mjs tests/excerpt.test.mjs",
+    "test": "node --test tests/scaffold.test.mjs tests/paths.test.mjs tests/jekyll.test.mjs tests/cli.test.mjs tests/taxonomy.test.mjs tests/headers.test.mjs tests/til-notes.test.mjs tests/seo.test.mjs tests/permalinks.test.mjs tests/giscus.test.mjs tests/image-size.test.mjs tests/related.test.mjs tests/excerpt.test.mjs tests/contact-function.test.mjs",
     "test:urls": "node --test tests/url-parity.test.mjs",
     "test:site": "node --test tests/url-parity.test.mjs tests/html.test.mjs",
+    "lighthouse:ci": "lhci autorun",
+    "preview:worker": "npm run build && wrangler dev",
+    "deploy:worker": "npm run build && wrangler deploy",
     "verify": "npm test && npm run check && npm run build && npm run test:site",
     "new:post": "bash scripts/new-post.sh",
     "new:til": "bash scripts/new-til.sh",
@@ -34,6 +37,8 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2"
+    "@lhci/cli": "^0.15.1",
+    "pagefind": "^1.5.2",
+    "wrangler": "^4.151.2"
   }
 }

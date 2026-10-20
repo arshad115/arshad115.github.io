@@ -1,5 +1,6 @@
 ---
 import '@fontsource-variable/source-sans-3/wght.css';
+import sourceSansLatin from '@fontsource-variable/source-sans-3/files/source-sans-3-latin-wght-normal.woff2?url';
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -120,10 +121,10 @@ const jsonLd = buildJsonLd({
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={imageAlt} />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="icon" href="/assets/images/favicon.ico" />
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg" />
     <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href={sourceSansLatin} as="font" type="font/woff2" crossorigin />
     <link rel="alternate" type="application/rss+xml" title={SITE.title} href={absoluteUrl('/feed.xml')} />
     <script type="application/ld+json" is:inline set:html={jsonLdScript(jsonLd)} />
     <slot name="head" />

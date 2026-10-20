@@ -25,7 +25,7 @@ const hiddenTagCount = tags.length - visibleTags.length;
     <a href={entry.categoryPath || `/categories/#${entry.category}`}>{entry.categoryLabel || entry.category}</a>
   )}
   {visibleTags.map((tag) => (
-      <a href={`/tags/#${tagSlug(tag)}`}>{tag}</a>
+      <a href={`/tags/#${tagSlug(tag)}`}><span class="visually-hidden">Posts tagged </span>{tag}</a>
     ))}
   {hiddenTagCount > 0 && <span aria-label={`${hiddenTagCount} more topics`}>+{hiddenTagCount}</span>}
 </p>

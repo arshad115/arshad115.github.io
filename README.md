@@ -6,7 +6,7 @@ Plain [Astro](https://astro.build) static site for [arshadmehmood.com](https://a
 
 ## Develop
 
-Node 20 (see `.nvmrc`).
+Node 22 (see `.nvmrc`).
 
 ```sh
 git submodule update --init --recursive
@@ -18,6 +18,7 @@ Search is indexed during `npm run build`.
 
 ```sh
 npm run verify   # unit tests + build + Pagefind + site tests
+npm run lighthouse:ci # Lighthouse CI against the production build
 ```
 
 ## Content
@@ -52,6 +53,13 @@ Giscus is on **posts only**. Copy `.env.example` to `.env` and fill the Giscus I
 
 ## Deploy
 
-`.github/workflows/ci.yml` runs unit tests, `astro check`, build, URL parity, and HTML contract tests on this branch and on `master`.
+GitHub Actions runs unit tests, `astro check`, the production build, URL/HTML contract tests, and the official Lighthouse CI CLI on this branch and on `master`. Lighthouse reports are retained as workflow artifacts.
 
-`.github/workflows/deploy-pages.yml` is **workflow_dispatch only** and will not publish unless the ref is `master`.
+Cloudflare Workers Builds owns preview and production deployments. The Astro build stays static; `worker/index.js` runs first only for `/api/*`, while Cloudflare serves everything else from `dist/` as static assets. In Cloudflare, set the production branch to `master`, enable preview builds, and configure:
+
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Preview command: `npx wrangler preview`
+- Encrypted Worker secret: `W3FORMS_ACCESS_KEY`
+
+For local Worker testing, copy `.dev.vars.example` to `.dev.vars`, insert a development Web3Forms key, and run `npm run preview:worker`. Never commit `.dev.vars`.

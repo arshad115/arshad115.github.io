@@ -51,3 +51,15 @@ jobs:
 
       - name: Site tests
         run: npm run test:site
+
+      - name: Lighthouse CI
+        run: npm run lighthouse:ci
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-${{ github.run_id }}
+          path: lhci-reports/
+          if-no-files-found: warn
+          retention-days: 14

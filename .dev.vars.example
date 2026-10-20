@@ -1,0 +1,2 @@
+# Copy to .dev.vars for `npm run preview:worker`; never commit the real value.
+W3FORMS_ACCESS_KEY=replace-with-your-web3forms-access-key

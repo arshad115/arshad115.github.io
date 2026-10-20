@@ -7,6 +7,7 @@ import GiscusComments from '../components/GiscusComments.astro';
 import type { SiteEntry } from '../lib/content';
 import { imageSize } from '../lib/image-size.mjs';
 import { relatedHeading } from '../lib/related.mjs';
+import { formatDate } from '../lib/site';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/400-italic.css';
 
@@ -114,12 +115,23 @@ const pageType =
           <Content />
         </div>
         {related.length > 0 && (
-          <aside class="related" data-pagefind-ignore>
-            <h2>{relatedTitle}</h2>
+          <aside class="related" aria-labelledby="related-heading" data-pagefind-ignore>
+            <div class="related-heading">
+              <p class="kicker">Keep reading</p>
+              <h2 id="related-heading">{relatedTitle}</h2>
+            </div>
             <ul>
               {related.map((item) => (
                 <li>
-                  <a href={item.permalink}>{item.title}</a>
+                  <a href={item.permalink}>
+                    <span class="related-meta">
+                      <span>{item.kind === 'til' ? 'Today I Learned' : item.categoryLabel || item.category || 'Article'}</span>
+                      {item.date && <time datetime={item.date.toISOString()}>{formatDate(item.date)}</time>}
+                    </span>
+                    <strong>{item.title}</strong>
+                    {item.excerpt && <span class="related-excerpt">{item.excerpt}</span>}
+                    <span class="related-link" aria-hidden="true">Read article <span>→</span></span>
+                  </a>
                 </li>
               ))}
             </ul>

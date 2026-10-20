@@ -105,12 +105,12 @@ const current = Astro.url.pathname;
     <div class="search-dialog-body">
       <div class="search-empty" data-search-empty>
         <p class="search-section-label">Popular topics</p>
-        <div class="search-suggestions" aria-label="Suggested searches">
-          <button type="button" data-search-query="DevOps">DevOps</button>
-          <button type="button" data-search-query="SSH">SSH</button>
-          <button type="button" data-search-query="Android">Android</button>
-          <button type="button" data-search-query="Self-hosting">Self-hosting</button>
-        </div>
+        <nav class="search-suggestions" aria-label="Suggested searches">
+          <a href="/search/?q=DevOps" data-search-query="DevOps">DevOps</a>
+          <a href="/search/?q=SSH" data-search-query="SSH">SSH</a>
+          <a href="/search/?q=Android" data-search-query="Android">Android</a>
+          <a href="/search/?q=Self-hosting" data-search-query="Self-hosting">Self-hosting</a>
+        </nav>
         <p class="search-section-label">Explore</p>
         <div class="search-quicklinks">
           <a href="/posts/">
@@ -155,7 +155,7 @@ const current = Astro.url.pathname;
   const searchResults = searchDialog?.querySelector<HTMLOListElement>('[data-search-results]');
   const searchEmpty = searchDialog?.querySelector<HTMLElement>('[data-search-empty]');
   const searchNoResults = searchDialog?.querySelector<HTMLElement>('[data-search-no-results]');
-  const searchSuggestions = [...(searchDialog?.querySelectorAll<HTMLButtonElement>('[data-search-query]') ?? [])];
+  const searchSuggestions = [...(searchDialog?.querySelectorAll<HTMLAnchorElement>('[data-search-query]') ?? [])];
   const searchResultHints = [...(searchDialog?.querySelectorAll<HTMLElement>('[data-search-result-hint]') ?? [])];
   const searchShortcut = document.querySelector<HTMLElement>('[data-search-shortcut]');
   const mobileNav = window.matchMedia('(max-width: 780px)');
@@ -353,8 +353,9 @@ const current = Astro.url.pathname;
   if (searchShortcut && !/Mac|iPhone|iPad/.test(navigator.platform)) searchShortcut.textContent = 'Ctrl K';
 
   for (const suggestion of searchSuggestions) {
-    suggestion.addEventListener('click', () => {
+    suggestion.addEventListener('click', (event) => {
       if (!searchInput) return;
+      event.preventDefault();
       searchInput.value = suggestion.dataset.searchQuery ?? '';
       searchInput.dispatchEvent(new Event('input'));
       searchInput.focus();

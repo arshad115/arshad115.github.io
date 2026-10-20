@@ -427,19 +427,21 @@ html[data-theme='dark'] .theme-icon-sun {
   gap: 0.45rem;
 }
 
-.search-suggestions button {
+.search-suggestions a {
+  display: inline-flex;
+  align-items: center;
   min-height: 2.2rem;
   padding: 0.42rem 0.72rem;
   border: 1px solid var(--rule);
   border-radius: 999px;
   background: var(--bg-raised);
-  color: var(--ink-soft);
+  color: var(--ink-muted);
   font: 0.86rem var(--font-ui);
-  cursor: pointer;
+  text-decoration: none;
   transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease;
 }
 
-.search-suggestions button:hover {
+.search-suggestions a:hover {
   border-color: color-mix(in srgb, var(--accent) 35%, var(--rule));
   background: var(--accent-soft);
   color: var(--accent);
@@ -1094,9 +1096,13 @@ h3 {
   justify-self: end;
 }
 
+.home-photo picture,
 .home-photo img {
   display: block;
   width: 100%;
+}
+
+.home-photo img {
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 38%;
@@ -1624,9 +1630,45 @@ h3 {
   transform: translateY(-1px);
 }
 
+.contact-form button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+  transform: none;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.contact-status,
+.contact-privacy {
+  margin: 0;
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+
+.contact-status.is-success {
+  color: var(--accent);
+  font-weight: 650;
+}
+
+.contact-status.is-error {
+  color: #b42318;
+  font-weight: 650;
+}
+
+html[data-theme='dark'] .contact-status.is-error {
+  color: #ff9b91;
+}
+
 .hidden-field {
   position: absolute;
-  left: -8000px;
+  left: -10000px;
 }
 
 .site-footer {
@@ -1761,9 +1803,108 @@ h3 {
 }
 
 .related {
-  margin-top: 2.4rem;
-  padding-top: 0.4rem;
+  margin-top: 3.5rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--rule);
+}
+
+.related-heading {
+  margin-bottom: 1.15rem;
+}
+
+.related-heading .kicker {
+  margin: 0 0 0.25rem;
+}
+
+.related-heading h2 {
+  margin: 0;
+  font-size: clamp(1.45rem, 3vw, 1.9rem);
+}
+
+.related ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related li {
+  min-width: 0;
+}
+
+.related li > a {
+  display: flex;
+  height: 100%;
+  min-height: 14rem;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1.15rem;
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  background: var(--bg-raised);
+  color: var(--ink);
+  text-decoration: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.related li > a:hover {
+  border-color: var(--rule-strong);
+  color: var(--ink);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--ink) 8%, transparent);
+  transform: translateY(-2px);
+}
+
+.related li > a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--focus) 35%, transparent);
+  outline-offset: 3px;
+}
+
+.related-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.4rem 0.75rem;
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.related strong {
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.related-excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.related-link {
+  margin-top: auto;
+  color: var(--accent);
+  font-family: var(--font-ui);
+  font-size: 0.84rem;
+  font-weight: 700;
+}
+
+.related-link span {
+  display: inline-block;
+  transition: transform 160ms ease;
+}
+
+.related a:hover .related-link span {
+  transform: translateX(0.2rem);
 }
 
 #search .pagefind-ui {
@@ -1803,6 +1944,14 @@ html[data-theme='dark'] .astro-code span {
 }
 
 @media (max-width: 780px) {
+  .related ul {
+    grid-template-columns: 1fr;
+  }
+
+  .related li > a {
+    min-height: 0;
+  }
+
   .home-intro {
     grid-template-columns: 1fr;
     gap: 2rem;

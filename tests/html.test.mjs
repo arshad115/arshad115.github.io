@@ -81,6 +81,25 @@ test('home is the notebook, not a theme landing page', async () => {
   assert.doesNotMatch(html, /starlight|pelagornis/i);
 });
 
+test('homepage critical assets are optimized for first paint', async () => {
+  const html = await readDist('/');
+  assert.match(
+    html,
+    /<source[^>]+arshad-mehmood-software-engineer-germany\.webp[^>]+type="image\/webp"/,
+  );
+  assert.match(html, /<img[^>]+loading="eager"[^>]+fetchpriority="high"/);
+  assert.match(html, /<link rel="preload"[^>]+source-sans-3-latin-wght-normal[^>]+as="font"/);
+  assert.doesNotMatch(html, /<link[^>]+rel="stylesheet"[^>]+Base\.[^>]+\.css/);
+  assert.doesNotMatch(html, /<link rel="icon"[^>]+favicon\.ico/);
+
+  const [profile, favicon] = await Promise.all([
+    fs.stat(path.join(root, 'dist/assets/images/arshad-mehmood-software-engineer-germany.webp')),
+    fs.stat(path.join(root, 'dist/assets/images/favicon.svg')),
+  ]);
+  assert.ok(profile.size < 32 * 1024, `optimized profile image is ${profile.size} bytes`);
+  assert.ok(favicon.size < 1024, `favicon is ${favicon.size} bytes`);
+});
+
 test('cleaned post slugs are the canonical pages', async () => {
   const dollar = await readDist(CLEAN_POST);
   assert.equal(isRedirectHtml(dollar), false);
@@ -132,9 +151,11 @@ test('RSS and XML sitemap list the live site', async () => {
   assert.doesNotMatch(sitemap, /Two-Factor-Authentication-\(2FA\)/);
 });
 
-test('contact uses Wufoo; newsletter is RSS-only', async () => {
+test('contact uses Web3Forms; newsletter is RSS-only', async () => {
   const contact = await readDist('/contact/');
-  assert.match(contact, /arshadmehmood\.wufoo\.com/);
+  assert.match(contact, /action="\/api\/contact"/);
+  assert.doesNotMatch(contact, /name="access_key"|w3f_/);
+  assert.doesNotMatch(contact, /wufoo/i);
 
   const newsletter = await readDist('/newsletter/');
   assert.match(newsletter, /\/feed\.xml/);
@@ -195,6 +216,7 @@ test('no leftover Universal Analytics default', async () => {
 test('post pages render category labels, not YAML slugs', async () => {
   const html = await readDist('/devops/devops-journey/');
   assert.match(html, /href="\/categories\/#devops">DevOps</);
+  assert.match(html, /href="\/tags\/#devops"><span class="visually-hidden">Posts tagged <\/span>devops/);
 });
 
 test('categories page uses one Title Case bucket per slug', async () => {
@@ -271,8 +293,11 @@ test('SSH article related list prefers markdown TIL links', async () => {
   assert.match(html, />DevOps<\/p>/);
   assert.doesNotMatch(html, />Essay<\/p>/);
   assert.match(html, /class="post-content-grid has-sidebar"/);
-  assert.match(html, /<h2>Related<\/h2>/);
+  assert.match(html, /<aside class="related" aria-labelledby="related-heading"/);
+  assert.match(html, /<h2 id="related-heading">Related<\/h2>/);
   assert.match(html, /href="\/today-i-learned\/ssh\/ssh-connection-basics\/"/);
+  assert.match(html, /class="related-excerpt"/);
+  assert.match(html, /Read article/);
 });
 
 test('mobile nav can close from the keyboard; theme toggle exposes pressed state', async () => {
@@ -332,11 +357,30 @@ test('interactive search index includes posts and TIL notes', async () => {
   assert.ok(index.every((entry) => entry.title && entry.permalink && entry.searchText));
 });
 
+test('search dialog suggestions are useful before JavaScript runs', async () => {
+  const html = await readDist('/');
+  assert.match(html, /<nav class="search-suggestions" aria-label="Suggested searches">/);
+  for (const [query, label] of [
+    ['DevOps', 'DevOps'],
+    ['SSH', 'SSH'],
+    ['Android', 'Android'],
+    ['Self-hosting', 'Self-hosting'],
+  ]) {
+    assert.match(
+      html,
+      new RegExp(`<a href="/search/\\?q=${query}" data-search-query="${query}">${label}</a>`),
+    );
+  }
+});
+
 test('contact form uses native validation and labels optional fields', async () => {
   const contact = await readDist('/contact/');
   assert.doesNotMatch(contact, /<form[^>]+novalidate/);
   assert.match(contact, /Website <small>\(optional\)<\/small>/);
   assert.match(contact, /type="email"[^>]+required/);
+  assert.match(contact, /name="botcheck"/);
+  assert.match(contact, /role="status" aria-live="polite"/);
+  assert.match(contact, /href="\/terms\/#contact-form"/);
 });
 
 test('home does not load IBM Plex Mono; posts do', async () => {

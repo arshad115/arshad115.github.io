@@ -3,6 +3,7 @@ import { test } from 'node:test';
 import {
   assertGiscusForProduction,
   commentsDisabled,
+  GISCUS_DEFAULTS,
   giscusConfigured,
   isGiscusEnabled,
 } from '../src/lib/giscus-config.mjs';
@@ -14,9 +15,10 @@ const secrets = {
   PUBLIC_GISCUS_CATEGORY_ID: 'DIC_cat',
 };
 
-test('Giscus is off without secrets and on when all four are set', () => {
-  assert.equal(giscusConfigured({}), false);
-  assert.equal(isGiscusEnabled({}), false);
+test('Giscus uses public defaults and accepts complete overrides', () => {
+  assert.equal(giscusConfigured({}), true);
+  assert.equal(isGiscusEnabled({}), true);
+  assert.equal(GISCUS_DEFAULTS.PUBLIC_GISCUS_REPO, 'arshad115/arshad115.github.io');
   assert.equal(giscusConfigured(secrets), true);
   assert.equal(isGiscusEnabled(secrets), true);
 });
@@ -27,8 +29,8 @@ test('COMMENTS_DISABLED wins even when secrets are present', () => {
   assert.equal(isGiscusEnabled({ ...secrets, COMMENTS_DISABLED: '1' }), false);
 });
 
-test('production assert requires secrets or an explicit off flag', () => {
-  assert.throws(() => assertGiscusForProduction({}), /COMMENTS_DISABLED/);
+test('production assert accepts public defaults or an explicit off flag', () => {
+  assert.doesNotThrow(() => assertGiscusForProduction({}));
   assert.doesNotThrow(() => assertGiscusForProduction({ COMMENTS_DISABLED: 'true' }));
   assert.doesNotThrow(() => assertGiscusForProduction(secrets));
 });

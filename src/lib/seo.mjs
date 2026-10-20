@@ -314,7 +314,7 @@ export function buildLlmsTxt({ pages = [], posts = [], portfolio = [], tilCount 
     '',
   ];
   for (const page of pages) lines.push(mdLink(page.title, page.permalink, page.excerpt));
-  lines.push(htmlLink('Contact', '/contact/', 'Wufoo form plus Twitter and LinkedIn.'));
+  lines.push(htmlLink('Contact', '/contact/', 'Contact form plus Twitter and LinkedIn.'));
   lines.push('');
   lines.push('## Posts');
   lines.push('');

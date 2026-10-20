@@ -35,12 +35,21 @@ const latest = posts.slice(0, 5);
       </div>
     </div>
     <figure class="home-photo">
-      <img
-        src={SITE.profileImage}
-        alt={SITE.profileImageAlt}
-        width="460"
-        height="460"
-      />
+      <picture>
+        <source
+          srcset="/assets/images/arshad-mehmood-software-engineer-germany.webp"
+          type="image/webp"
+        />
+        <img
+          src={SITE.profileImage}
+          alt={SITE.profileImageAlt}
+          width="460"
+          height="460"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </picture>
     </figure>
   </div>
 
