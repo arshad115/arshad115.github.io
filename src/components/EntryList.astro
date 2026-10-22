@@ -14,26 +14,28 @@ const Heading = headingLevel;
 <ol class="entry-list">
   {entries.map((entry) => (
     <li>
-      <p class="entry-meta" data-pagefind-ignore>
-        {entry.category && (
-          <a class="entry-category" href={entry.categoryPath || `/categories/#${entry.category}`}>
-            {entry.categoryLabel || entry.category}
-          </a>
-        )}
-        {entry.date && <time datetime={entry.date.toISOString()}>{formatDate(entry.date)}</time>}
-        {entry.kind === 'post' && <span>{entry.minutes} min read</span>}
-      </p>
       <Heading>
         <a href={entry.permalink}>{entry.title}</a>
       </Heading>
       {entry.excerpt && <p class="entry-excerpt">{entry.excerpt}</p>}
-      {entry.tags.length > 0 && (
-        <ul class="entry-tags" aria-label={`Tags for ${entry.title}`} data-pagefind-ignore>
-          {entry.tags.slice(0, 3).map((tag) => (
-            <li><a href={`/tags/#${tagSlug(tag)}`}>#{tag}</a></li>
-          ))}
-        </ul>
-      )}
+      <div class="entry-footer">
+        <p class="entry-meta" data-pagefind-ignore>
+          {entry.category && (
+            <a class="entry-category" href={entry.categoryPath || `/categories/#${entry.category}`}>
+              {entry.categoryLabel || entry.category}
+            </a>
+          )}
+          {entry.date && <time datetime={entry.date.toISOString()}>{formatDate(entry.date)}</time>}
+          {entry.kind === 'post' && <span>{entry.minutes} min read</span>}
+        </p>
+        {entry.tags.length > 0 && (
+          <ul class="entry-tags" aria-label={`Tags for ${entry.title}`} data-pagefind-ignore>
+            {entry.tags.slice(0, 3).map((tag) => (
+              <li><a href={`/tags/#${tagSlug(tag)}`}>#{tag}</a></li>
+            ))}
+          </ul>
+        )}
+      </div>
     </li>
   ))}
 </ol>

@@ -30,7 +30,7 @@ const years = Object.entries(
   permalink="/posts/"
   pageType="CollectionPage"
 >
-  <div class="collection-shell">
+  <div class="collection-shell posts-shell">
     <header class="collection-intro">
     <p class="kicker">Index</p>
     <h1>All posts</h1>
@@ -63,11 +63,6 @@ const years = Object.entries(
               <h3><a href={post.permalink}>{post.title}</a></h3>
               <p>{post.excerpt}</p>
               <p class="featured-post-details">
-                {post.category && (
-                  <a class="entry-category" href={post.categoryPath || `/categories/#${post.category}`}>
-                    {post.categoryLabel || post.category}
-                  </a>
-                )}
                 <time datetime={post.date?.toISOString()}>{formatDate(post.date)}</time>
                 <span>{post.minutes} min read</span>
               </p>
