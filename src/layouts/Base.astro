@@ -32,6 +32,7 @@ interface Props {
   wordCount?: number;
   robots?: string;
   markdown?: boolean | string;
+  wide?: boolean;
 }
 
 const {
@@ -52,6 +53,7 @@ const {
   wordCount,
   robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
   markdown = false,
+  wide = false,
 } = Astro.props;
 
 const pageTitle = documentTitle(title);
@@ -145,7 +147,7 @@ const jsonLd = buildJsonLd({
   <body>
     <a class="skip-link" href="#content">Skip to content</a>
     <SiteHeader />
-    <main id="content" class="page wrap">
+    <main id="content" class:list={['page', 'wrap', { 'page-wide': wide }]}>
       <slot />
     </main>
     <SiteFooter />

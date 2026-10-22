@@ -67,6 +67,7 @@ const pageType =
   minutes={entry.minutes}
   wordCount={entry.wordCount}
   markdown
+  wide={entry.kind === 'post'}
 >
   {entry.kind === 'post' && <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>}
   <article class:list={['post-page', { 'post-page-wide': entry.kind === 'post', 'about-page': isAbout }]} data-pagefind-body>

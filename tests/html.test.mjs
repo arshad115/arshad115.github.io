@@ -221,12 +221,13 @@ test('post pages render category labels, not YAML slugs', async () => {
   assert.match(html, /href="\/tags\/#devops"><span class="visually-hidden">Posts tagged <\/span>devops/);
 });
 
-test('post lists show the category line without every tag', async () => {
+test('post lists expose concise metadata and a limited set of tag links', async () => {
   for (const route of ['/', '/posts/']) {
     const html = await readDist(route);
-    assert.doesNotMatch(html, /Posts tagged/, `${route} lists individual tags`);
     assert.match(html, /min read/);
-    assert.match(html, /href="\/categories\/#devops">DevOps</);
+    assert.match(html, /class="entry-category" href="\/categories\/#devops">DevOps</);
+    assert.match(html, /class="entry-tags"/);
+    assert.match(html, /href="\/tags\/#/);
   }
 });
 
@@ -342,6 +343,7 @@ test('collection pages expose practical browsing controls', async () => {
 
 test('article navigation and theme controls adapt to the reader', async () => {
   const post = await readDist('/devops/complete-guide-to-ssh-from-basics-to-advanced/');
+  assert.match(post, /<main id="content" class="page wrap page-wide">/);
   assert.match(post, /<details class="toc" open/);
   assert.match(post, /12 sections/);
   assert.match(post, /data-reading-progress/);

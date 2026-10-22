@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import EntryList from '../../components/EntryList.astro';
 import { getPosts } from '../../lib/content';
 import { imageSize } from '../../lib/image-size.mjs';
+import { formatDate, tagSlug } from '../../lib/site';
 
 const posts = await getPosts();
 const featured = posts.slice(0, 3).map((post) => ({
@@ -62,9 +63,21 @@ const years = Object.entries(
               <h3><a href={post.permalink}>{post.title}</a></h3>
               <p>{post.excerpt}</p>
               <p class="featured-post-details">
-                <time datetime={post.date?.toISOString()}>{post.date?.getUTCFullYear()}</time>
+                {post.category && (
+                  <a class="entry-category" href={post.categoryPath || `/categories/#${post.category}`}>
+                    {post.categoryLabel || post.category}
+                  </a>
+                )}
+                <time datetime={post.date?.toISOString()}>{formatDate(post.date)}</time>
                 <span>{post.minutes} min read</span>
               </p>
+              {post.tags.length > 0 && (
+                <ul class="featured-post-tags" aria-label={`Tags for ${post.title}`} data-pagefind-ignore>
+                  {post.tags.slice(0, 3).map((tag) => (
+                    <li><a href={`/tags/#${tagSlug(tag)}`}>#{tag}</a></li>
+                  ))}
+                </ul>
+              )}
             </div>
           </article>
         ))}
