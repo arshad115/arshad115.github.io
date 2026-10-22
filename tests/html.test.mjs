@@ -72,9 +72,11 @@ test('core pages are real HTML with the site wordmark', async () => {
 test('home is the notebook, not a theme landing page', async () => {
   const html = await readDist('/');
   assert.match(html, /<title>Arshad Mehmood – Software Engineer at SAP \(Germany\) \| Tech Blog<\/title>/);
-  assert.match(html, /<h1>Arshad Mehmood<\/h1>/);
+  assert.match(html, /<h1>A working notebook on cloud-native backends\.<\/h1>/);
   assert.match(html, /\/assets\/images\/arshad-mehmood-software-engineer-germany\.jpg/);
   assert.match(html, /alt="Arshad Mehmood - Software Engineer at SAP in Germany"/);
+  assert.match(html, /width="640"/);
+  assert.match(html, /height="640"/);
   assert.match(html, /Arshad Mehmood is a Software Engineer at SAP SE in Germany/);
   assert.match(html, /"@type":"ProfilePage"/);
   assert.match(html, /"disambiguatingDescription":"Software Engineer at SAP SE/);
@@ -219,6 +221,15 @@ test('post pages render category labels, not YAML slugs', async () => {
   assert.match(html, /href="\/tags\/#devops"><span class="visually-hidden">Posts tagged <\/span>devops/);
 });
 
+test('post lists show the category line without every tag', async () => {
+  for (const route of ['/', '/posts/']) {
+    const html = await readDist(route);
+    assert.doesNotMatch(html, /Posts tagged/, `${route} lists individual tags`);
+    assert.match(html, /min read/);
+    assert.match(html, /href="\/categories\/#devops">DevOps</);
+  }
+});
+
 test('categories page uses one Title Case bucket per slug', async () => {
   const html = await readDist('/categories/');
   const ids = [...html.matchAll(/<section class="taxonomy" id="([^"]+)"/g)].map((match) => match[1]);
@@ -262,6 +273,7 @@ test('llms.txt is a root Markdown map for agents', async () => {
 test('404 is noindex; robots allow AI crawlers', async () => {
   const notFound = await readDist('/404.html');
   assert.match(notFound, /content="noindex, follow"/);
+  assert.match(notFound, /<a class="text-button" href="\/search\/" data-search-open>search<\/a>/);
   const robots = await fs.readFile(path.join(root, 'dist/robots.txt'), 'utf8');
   assert.match(robots, /GPTBot/);
   assert.match(robots, /ClaudeBot/);

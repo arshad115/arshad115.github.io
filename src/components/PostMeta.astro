@@ -4,13 +4,11 @@ import type { SiteEntry } from '../lib/content';
 
 interface Props {
   entry: SiteEntry;
-  maxTags?: number;
+  showTags?: boolean;
 }
 
-const { entry, maxTags } = Astro.props;
+const { entry, showTags = true } = Astro.props;
 const tags = entry.tags ?? [];
-const visibleTags = typeof maxTags === 'number' ? tags.slice(0, maxTags) : tags;
-const hiddenTagCount = tags.length - visibleTags.length;
 ---
 
 <p class="meta" data-pagefind-ignore>
@@ -24,8 +22,11 @@ const hiddenTagCount = tags.length - visibleTags.length;
   {entry.category && (
     <a href={entry.categoryPath || `/categories/#${entry.category}`}>{entry.categoryLabel || entry.category}</a>
   )}
-  {visibleTags.map((tag) => (
+</p>
+{showTags && tags.length > 0 && (
+  <p class="meta meta-tags" data-pagefind-ignore>
+    {tags.map((tag) => (
       <a href={`/tags/#${tagSlug(tag)}`}><span class="visually-hidden">Posts tagged </span>{tag}</a>
     ))}
-  {hiddenTagCount > 0 && <span aria-label={`${hiddenTagCount} more topics`}>+{hiddenTagCount}</span>}
-</p>
+  </p>
+)}

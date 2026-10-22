@@ -32,7 +32,9 @@ export function linkedPermalinks(markdown, origin = SITE_ORIGIN) {
 }
 
 /**
- * Real markdown links first, then same-category posts. Never tag-overlap.
+ * Prefer real markdown links from the post, then fill any remaining slots with
+ * posts from the same category. The catalog is already ordered newest-first,
+ * which keeps the fallback deterministic without manufacturing tag matches.
  *
  * @param {{ permalink: string, category?: string, body?: string }} post
  * @param {Array<{ permalink: string, category?: string, kind?: string }>} catalog
@@ -54,10 +56,11 @@ export function relatedPosts(post, catalog, limit = 3) {
     take(byPermalink.get(href));
   }
 
-  for (const item of catalog) {
-    if (picked.length >= limit) break;
-    if (!item.category || !sameCategory(item.category, post.category)) continue;
-    take(item);
+  if (post.category) {
+    for (const item of catalog) {
+      if (picked.length >= limit) return picked;
+      if (item.kind === post.kind && sameCategory(item.category, post.category)) take(item);
+    }
   }
 
   return picked;

@@ -28,6 +28,12 @@ const socialImageAlt = socialImage ? imageAlt : undefined;
 const imageDimensions = image ? imageSize(image) : undefined;
 const captionId = entry.header?.caption ? 'header-caption' : undefined;
 const relatedTitle = relatedHeading(entry, related);
+
+function relatedExcerpt(value: string) {
+  const sentence = value.split(/(?<=[.!?])\s/)[0] || value;
+  if (sentence.length <= 160) return sentence;
+  return `${sentence.slice(0, 160).replace(/\s+\S*$/, '')}…`;
+}
 const isAbout = entry.kind === 'page' && entry.permalink === '/about/';
 const archiveCutoff = new Date();
 archiveCutoff.setUTCFullYear(archiveCutoff.getUTCFullYear() - 5);
@@ -64,8 +70,8 @@ const pageType =
 >
   {entry.kind === 'post' && <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>}
   <article class:list={['post-page', { 'post-page-wide': entry.kind === 'post', 'about-page': isAbout }]} data-pagefind-body>
-    {image && (
-      <figure class={entry.kind === 'post' ? 'post-hero' : 'figure-plain reading'} data-pagefind-ignore>
+    {image && entry.kind === 'post' && (
+      <figure class="post-hero" data-pagefind-ignore>
         <img
           src={image}
           alt={imageAlt}
@@ -86,7 +92,8 @@ const pageType =
         )}
       </figure>
     )}
-    <header class="post-heading reading">
+    <div class:list={['post-content-grid', { 'has-sidebar': showToc && entry.kind === 'post' }]}>
+    <header class="post-heading">
       <p class="kicker" data-pagefind-ignore>
         {entry.kind === 'til' && 'Today I Learned'}
         {entry.kind === 'post' && (entry.categoryLabel || 'Article')}
@@ -95,7 +102,7 @@ const pageType =
         {isAbout && 'About me'}
       </p>
       <h1>{entry.title}</h1>
-      {entry.kind !== 'page' && <PostMeta entry={entry} maxTags={3} />}
+      {entry.kind !== 'page' && <PostMeta entry={entry} />}
       {isArchivedPost && (
         <aside class="archive-note" data-pagefind-ignore>
           <strong>Archive note</strong>
@@ -103,7 +110,28 @@ const pageType =
         </aside>
       )}
     </header>
-    <div class:list={['post-content-grid', { 'has-sidebar': showToc && entry.kind === 'post' }]}>
+    {image && entry.kind !== 'post' && (
+      <figure class="figure-plain reading" data-pagefind-ignore>
+        <img
+          src={image}
+          alt={imageAlt}
+          width={imageDimensions?.width}
+          height={imageDimensions?.height}
+          decoding="async"
+          fetchpriority="high"
+          aria-describedby={captionId}
+        />
+        {entry.header?.caption && (
+          <figcaption id={captionId}>
+            {entry.header.captionHref ? (
+              <a href={entry.header.captionHref}>{entry.header.caption}</a>
+            ) : (
+              entry.header.caption
+            )}
+          </figcaption>
+        )}
+      </figure>
+    )}
       {showToc && entry.kind === 'post' && (
         <aside class="post-sidebar" data-pagefind-ignore>
           <TableOfContents headings={headings} />
@@ -129,7 +157,7 @@ const pageType =
                       {item.date && <time datetime={item.date.toISOString()}>{formatDate(item.date)}</time>}
                     </span>
                     <strong>{item.title}</strong>
-                    {item.excerpt && <span class="related-excerpt">{item.excerpt}</span>}
+                    {item.excerpt && <span class="related-excerpt">{relatedExcerpt(item.excerpt)}</span>}
                     <span class="related-link" aria-hidden="true">Read article <span>→</span></span>
                   </a>
                 </li>

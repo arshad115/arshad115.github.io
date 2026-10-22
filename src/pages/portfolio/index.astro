@@ -6,11 +6,15 @@ import { imageSize } from '../../lib/image-size.mjs';
 import { SITE } from '../../lib/site';
 
 const entries = await getPortfolio();
+const SMALL_WORDS = new Set(['a', 'an', 'and', 'the', 'in', 'of', 'for', 'to', 'with', 'on']);
+const ACRONYMS = new Set(['UAE', 'C#', 'MS', 'DB', 'API', 'CSS', 'SQL', 'CLI']);
 const projectLabel = (name: string) => name
   .split('-')
-  .map((part) => {
+  .map((part, index) => {
     const upper = part.toUpperCase();
-    if (['UAE', 'C#', 'MS'].includes(upper)) return upper;
+    if (ACRONYMS.has(upper)) return upper;
+    if (part.length === 1) return upper;
+    if (index > 0 && SMALL_WORDS.has(part.toLowerCase())) return part.toLowerCase();
     return part.charAt(0).toUpperCase() + part.slice(1);
   })
   .join(' ');
@@ -18,8 +22,8 @@ const groups = projectGroups.map((group) => ({
   ...group,
   items: group.items.map((item) => ({
     ...item,
-    displayName: projectLabel(item.name),
-    imageAlt: item.image ? `Screenshot of ${projectLabel(item.name)}` : undefined,
+    displayName: item.title ?? projectLabel(item.name),
+    imageAlt: item.image ? `Screenshot of ${item.title ?? projectLabel(item.name)}` : undefined,
     imageDimensions: item.image ? imageSize(item.image) : undefined,
   })),
 }));
@@ -56,10 +60,10 @@ const groups = projectGroups.map((group) => ({
       {group.items.map((item) => (
         <article class="project-row">
           {item.image && (
-            <div class="project-image" aria-hidden="true">
+            <div class="project-image">
               <img
                 src={item.image}
-                alt=""
+                alt={item.imageAlt}
                 width={item.imageDimensions?.width}
                 height={item.imageDimensions?.height}
                 loading="lazy"
@@ -76,7 +80,7 @@ const groups = projectGroups.map((group) => ({
               <div><dt>Stack</dt><dd>{item.stack.join(' · ')}</dd></div>
             </dl>
             <a class="project-link" href={item.href}>
-              {item.href.startsWith('/') ? 'Read project' : 'View project'} <span aria-hidden="true">→</span>
+              {item.href.startsWith('/') ? `Read ${item.displayName}` : `View ${item.displayName}`} <span aria-hidden="true">→</span>
             </a>
           </div>
         </article>

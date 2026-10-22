@@ -83,6 +83,7 @@ const groups = groupByCategory(notes).map((group) => ({
     const index = document.querySelector<HTMLElement>('[data-til-index]');
     const input = index?.querySelector<HTMLInputElement>('#til-filter');
     const groups = [...(index?.querySelectorAll<HTMLElement>('[data-til-group]') ?? [])];
+    const topicLinks = [...(index?.querySelectorAll<HTMLAnchorElement>('.til-topics a') ?? [])];
     const status = index?.querySelector<HTMLElement>('[data-til-status]');
     const empty = index?.querySelector<HTMLElement>('[data-til-empty]');
 
@@ -98,6 +99,16 @@ const groups = groupByCategory(notes).map((group) => ({
         }
         group.hidden = groupVisible === 0;
         visible += groupVisible;
+      }
+      for (const link of topicLinks) {
+        const id = decodeURIComponent(link.hash.slice(1));
+        const group = groups.find((candidate) => candidate.id === id);
+        const count = group
+          ? [...group.querySelectorAll<HTMLElement>('[data-til-item]')].filter((item) => !item.hidden).length
+          : 0;
+        link.hidden = count === 0;
+        const badge = link.querySelector('span');
+        if (badge) badge.textContent = String(count);
       }
       if (status) status.textContent = `${visible} ${visible === 1 ? 'note' : 'notes'}`;
       if (empty) empty.hidden = visible !== 0;

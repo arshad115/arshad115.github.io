@@ -15,10 +15,10 @@ External [Medium](https://medium.com/x) stays out.
   ]);
 });
 
-test('relatedPosts prefers markdown links, then same category, never tags', () => {
+test('relatedPosts prefers markdown links and fills remaining slots from the same category', () => {
   const catalog = [
+    { permalink: '/tutorial/sibling/', category: 'tutorial', kind: 'post', tags: ['ssh'] },
     { permalink: '/personal/a/', category: 'personal', kind: 'post', tags: ['ssh'] },
-    { permalink: '/personal/b/', category: 'personal', kind: 'post', tags: ['ssh'] },
     { permalink: '/today-i-learned/ssh/ssh-connection-basics/', category: 'ssh', kind: 'til', tags: ['ssh'] },
     { permalink: '/devops/unrelated/', category: 'devops', kind: 'post', tags: ['ssh'] },
   ];
@@ -29,10 +29,30 @@ test('relatedPosts prefers markdown links, then same category, never tags', () =
     body: 'See [basics](/today-i-learned/ssh/ssh-connection-basics/).',
   };
   const related = relatedPosts(post, catalog, 3);
-  assert.equal(related[0].permalink, '/today-i-learned/ssh/ssh-connection-basics/');
-  assert.equal(
-    related.some((item) => item.permalink === '/devops/unrelated/'),
-    false,
+  assert.deepEqual(related.map((item) => item.permalink), [
+    '/today-i-learned/ssh/ssh-connection-basics/',
+    '/tutorial/sibling/',
+  ]);
+});
+
+test('relatedPosts provides deterministic same-category fallback without tag matching', () => {
+  const catalog = [
+    { permalink: '/devops/newer/', category: 'devops', kind: 'post', tags: [] },
+    { permalink: '/devops/current/', category: 'devops', kind: 'post', tags: [] },
+    { permalink: '/devops/older/', category: 'devops', kind: 'post', tags: [] },
+    { permalink: '/personal/tag-match/', category: 'personal', kind: 'post', tags: ['ssh'] },
+  ];
+  const post = {
+    permalink: '/devops/current/',
+    category: 'devops',
+    kind: 'post',
+    tags: ['ssh'],
+    body: '',
+  };
+
+  assert.deepEqual(
+    relatedPosts(post, catalog, 2).map((item) => item.permalink),
+    ['/devops/newer/', '/devops/older/'],
   );
 });
 

@@ -6,20 +6,58 @@ const groups = groupByTag(await getPosts());
 ---
 
 <Base title="Tags" description="Blog posts grouped by tag." permalink="/tags/" pageType="CollectionPage">
-  <div class="reading">
+  <div class="reading tag-browser" data-tag-index>
     <p class="kicker">Index</p>
     <h1>Tags</h1>
+    <label class="filter-control" for="tag-filter">
+      <span>Filter tags</span>
+      <input id="tag-filter" type="search" placeholder="Try security, Android, Git…" autocomplete="off" />
+    </label>
+    <p class="filter-status" aria-live="polite" data-tag-status>{groups.length} tags</p>
+    {groups.map((group) => (
+      <section class="taxonomy" id={group.slug} data-tag-group data-tag={group.name.toLowerCase()}>
+        <h2>{group.name} <span class="meta">({group.items.length})</span></h2>
+        <ul>
+          {group.items.map((item) => (
+            <li data-tag-item data-search={item.title.toLowerCase()}>
+              <a href={item.permalink}>{item.title}</a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+    <p class="empty-state" hidden data-tag-empty>No tags match that filter.</p>
   </div>
-  {groups.map((group) => (
-    <section class="taxonomy" id={group.slug}>
-      <h2>{group.name} <span class="meta">({group.items.length})</span></h2>
-      <ul>
-        {group.items.map((item) => (
-          <li>
-            <a href={item.permalink}>{item.title}</a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  ))}
+  <script>
+    const index = document.querySelector<HTMLElement>('[data-tag-index]');
+    const input = index?.querySelector<HTMLInputElement>('#tag-filter');
+    const groups = [...(index?.querySelectorAll<HTMLElement>('[data-tag-group]') ?? [])];
+    const status = index?.querySelector<HTMLElement>('[data-tag-status]');
+    const empty = index?.querySelector<HTMLElement>('[data-tag-empty]');
+
+    input?.addEventListener('input', () => {
+      const query = input.value.trim().toLowerCase();
+      const named = groups.filter((group) => query && group.dataset.tag?.includes(query));
+      let visibleGroups = 0;
+      for (const group of groups) {
+        const items = [...group.querySelectorAll<HTMLElement>('[data-tag-item]')];
+        const nameHit = !query || group.dataset.tag?.includes(query) === true;
+        if (!query || named.length > 0) {
+          for (const item of items) item.hidden = false;
+          group.hidden = query ? !nameHit : false;
+        } else {
+          let groupVisible = 0;
+          for (const item of items) {
+            const matches = item.dataset.search?.includes(query) === true;
+            item.hidden = !matches;
+            if (matches) groupVisible += 1;
+          }
+          group.hidden = groupVisible === 0;
+        }
+        if (!group.hidden) visibleGroups += 1;
+      }
+      if (status) status.textContent = `${visibleGroups} ${visibleGroups === 1 ? 'tag' : 'tags'}`;
+      if (empty) empty.hidden = visibleGroups !== 0;
+    });
+  </script>
 </Base>

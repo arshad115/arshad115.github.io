@@ -59,6 +59,16 @@ export function groupByCategoryName(entries) {
   return [...map.values()].sort((a, b) => a.name.localeCompare(b.name));
 }
 
+function preferredTagName(names) {
+  return [...names.entries()].sort((a, b) => {
+    if (b[1] !== a[1]) return b[1] - a[1];
+    const aLower = a[0] === a[0].toLowerCase();
+    const bLower = b[0] === b[0].toLowerCase();
+    if (aLower !== bLower) return aLower ? -1 : 1;
+    return a[0].localeCompare(b[0]);
+  })[0][0];
+}
+
 export function groupByTagName(entries) {
   const map = new Map();
   for (const entry of entries) {
@@ -69,10 +79,17 @@ export function groupByTagName(entries) {
       const current = map.get(slug);
       if (current) {
         current.items.push(entry);
+        current.names.set(raw, (current.names.get(raw) || 0) + 1);
       } else {
-        map.set(slug, { name: raw, slug, items: [entry] });
+        map.set(slug, { slug, items: [entry], names: new Map([[raw, 1]]) });
       }
     }
   }
-  return [...map.values()].sort((a, b) => a.name.localeCompare(b.name));
+  return [...map.values()]
+    .map((group) => ({
+      name: preferredTagName(group.names),
+      slug: group.slug,
+      items: group.items,
+    }))
+    .sort((a, b) => a.name.localeCompare(b.name));
 }

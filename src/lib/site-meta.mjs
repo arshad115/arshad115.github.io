@@ -11,8 +11,7 @@ export const SITE = {
   jobTitle: 'Software Engineer',
   disambiguatingDescription:
     'Software Engineer at SAP SE in Germany and M.Sc. Business Informatics graduate from the University of Mannheim, specializing in Go, Kubernetes, DevOps, self-hosted systems, and Android development.',
-  location: 'Mannheim, Germany',
-  locality: 'Mannheim',
+  location: 'Germany',
   country: 'DE',
   locale: 'en_GB',
   language: 'en-GB',

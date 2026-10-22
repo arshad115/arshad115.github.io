@@ -39,9 +39,33 @@ const items = headings.filter(
 
   syncToc();
   narrow.addEventListener('change', syncToc);
-  toc?.querySelectorAll('a').forEach((link) => {
+
+  const links = [...(toc?.querySelectorAll<HTMLAnchorElement>('a') ?? [])];
+  const sections = links
+    .map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1))))
+    .filter((heading): heading is HTMLElement => heading instanceof HTMLElement);
+
+  const markCurrent = () => {
+    if (sections.length === 0) return;
+    const line = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop) || 96;
+    let current = sections[0];
+    for (const section of sections) {
+      if (section.getBoundingClientRect().top <= line + 8) current = section;
+    }
+    for (const link of links) {
+      const active = current?.id && decodeURIComponent(link.hash.slice(1)) === current.id;
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    }
+  };
+
+  markCurrent();
+  window.addEventListener('scroll', markCurrent, { passive: true });
+  window.addEventListener('resize', markCurrent);
+
+  links.forEach((link) => {
     link.addEventListener('click', () => {
-      if (narrow.matches) toc.open = false;
+      if (narrow.matches && toc) toc.open = false;
     });
   });
 </script>

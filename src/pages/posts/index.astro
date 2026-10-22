@@ -14,9 +14,8 @@ const featured = posts.slice(0, 3).map((post) => ({
       ? imageSize(post.header.image)
       : undefined,
 }));
-const archivedPosts = posts.slice(3);
 const years = Object.entries(
-  archivedPosts.reduce<Record<string, typeof posts>>((groups, post) => {
+  posts.reduce<Record<string, typeof posts>>((groups, post) => {
     const year = String(post.date?.getUTCFullYear() ?? 'Earlier');
     (groups[year] ??= []).push(post);
     return groups;
@@ -73,7 +72,7 @@ const years = Object.entries(
     </section>
     <div class="archive-heading">
       <h2>Archive</h2>
-      <p>Every earlier post, newest first.</p>
+      <p>Every post by year, including the three above.</p>
     </div>
     {years.map(([year, entries]) => (
       <section class="year-group" aria-labelledby={`year-${year}`}>

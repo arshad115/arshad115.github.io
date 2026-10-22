@@ -1,3 +1,4 @@
+import { imageSize } from './image-size.mjs';
 import { BLOG_ID, PERSON_ID, SITE, WEBSITE_ID } from './site-meta.mjs';
 import { stripSlashes, withTrailingSlash } from './paths.mjs';
 
@@ -59,8 +60,7 @@ export function personNode() {
       '@type': 'ImageObject',
       url: absoluteUrl(SITE.profileImage),
       caption: SITE.profileImageAlt,
-      width: 460,
-      height: 460,
+      ...imageSize(SITE.profileImage),
     },
     jobTitle: SITE.jobTitle,
     worksFor: {
@@ -85,7 +85,6 @@ export function personNode() {
     },
     address: {
       '@type': 'PostalAddress',
-      addressLocality: SITE.locality,
       addressCountry: SITE.country,
     },
     sameAs: [SITE.github, SITE.linkedin, SITE.twitter, SITE.instagram],

@@ -3,6 +3,7 @@ export type Project = {
   description: string;
   href: string;
   image?: string;
+  title?: string;
   role: string;
   stack: string[];
   status?: string;
@@ -113,6 +114,7 @@ export const projectGroups: ProjectGroup[] = [
     items: [
       {
         name: 'orenhold-website',
+        title: 'Orenhold',
         description: 'Single page website.',
         href: 'https://orenhold.no/',
         role: 'Frontend development',

@@ -55,18 +55,18 @@ const current = Astro.url.pathname;
             d="M20.1 15.4A8.5 8.5 0 0 1 8.6 3.9 8.5 8.5 0 1 0 20.1 15.4Z"
             fill="none"
             stroke="currentColor"
-            stroke-width="1.8"
+            stroke-width="1.6"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
         </svg>
         <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true">
-          <circle cx="12" cy="12" r="3.75" fill="none" stroke="currentColor" stroke-width="1.8" />
+          <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.6" />
           <path
-            d="M12 2.25v2M12 19.75v2M4.25 12h-2M21.75 12h-2M5.1 5.1 3.7 3.7M20.3 20.3l-1.4-1.4M18.9 5.1l1.4-1.4M3.7 20.3l1.4-1.4"
+            d="M12 2.75v2.1M12 19.15v2.1M4.85 12H2.75M21.25 12h-2.1"
             fill="none"
             stroke="currentColor"
-            stroke-width="1.8"
+            stroke-width="1.6"
             stroke-linecap="round"
           />
         </svg>
@@ -125,13 +125,16 @@ const current = Astro.url.pathname;
       </div>
       <p class="search-status" data-search-status aria-live="polite" hidden></p>
       <ol id="site-search-results" class="search-results" data-search-results role="listbox"></ol>
+      <p class="search-more" data-search-more hidden>
+        <a data-search-more-link href="/search/">See all results</a>
+      </p>
       <div class="search-no-results" data-search-no-results hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="10.8" cy="10.8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.6" />
           <path d="m15.5 15.5 4.2 4.2M8.8 10.8h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
         </svg>
         <strong>No matches found</strong>
-        <p>Try a shorter phrase or browse the suggested topics.</p>
+        <p>Try a different phrase, or pick a topic below.</p>
       </div>
     </div>
     <div class="search-dialog-footer" aria-hidden="true">
@@ -155,10 +158,12 @@ const current = Astro.url.pathname;
   const searchResults = searchDialog?.querySelector<HTMLOListElement>('[data-search-results]');
   const searchEmpty = searchDialog?.querySelector<HTMLElement>('[data-search-empty]');
   const searchNoResults = searchDialog?.querySelector<HTMLElement>('[data-search-no-results]');
+  const searchMore = searchDialog?.querySelector<HTMLElement>('[data-search-more]');
+  const searchMoreLink = searchDialog?.querySelector<HTMLAnchorElement>('[data-search-more-link]');
   const searchSuggestions = [...(searchDialog?.querySelectorAll<HTMLAnchorElement>('[data-search-query]') ?? [])];
   const searchResultHints = [...(searchDialog?.querySelectorAll<HTMLElement>('[data-search-result-hint]') ?? [])];
   const searchShortcut = document.querySelector<HTMLElement>('[data-search-shortcut]');
-  const mobileNav = window.matchMedia('(max-width: 780px)');
+    const mobileNav = window.matchMedia('(max-width: 960px)');
 
   type SearchEntry = {
     title: string;
@@ -270,15 +275,15 @@ const current = Astro.url.pathname;
       searchStatus.classList.remove('visually-hidden');
       if (searchEmpty) searchEmpty.hidden = false;
       if (searchNoResults) searchNoResults.hidden = true;
+      if (searchMore) searchMore.hidden = true;
       searchResultHints.forEach((hint) => (hint.hidden = true));
       searchInput?.setAttribute('aria-expanded', 'false');
       return;
     }
 
     searchStatus.hidden = false;
-    if (searchEmpty) searchEmpty.hidden = true;
 
-    const matches = entries
+    const ranked = entries
       .filter((entry) => terms.every((term) => entry.searchText.includes(term)))
       .map((entry) => {
         const title = entry.title.toLocaleLowerCase();
@@ -286,14 +291,24 @@ const current = Astro.url.pathname;
         if (title.startsWith(query.toLocaleLowerCase())) score += 20;
         return { entry, score };
       })
-      .sort((a, b) => b.score - a.score || a.entry.title.localeCompare(b.entry.title))
-      .slice(0, 8);
+      .sort((a, b) => b.score - a.score || a.entry.title.localeCompare(b.entry.title));
+    const matches = ranked.slice(0, 8);
+    const total = ranked.length;
 
-    searchStatus.textContent = matches.length
-      ? `${matches.length}${matches.length === 8 ? '+' : ''} ${matches.length === 1 ? 'result' : 'results'}`
+    searchStatus.textContent = total
+      ? `${total} ${total === 1 ? 'result' : 'results'}`
       : `No results for “${query}”.`;
-    searchStatus.classList.toggle('visually-hidden', matches.length === 0);
-    if (searchNoResults) searchNoResults.hidden = matches.length > 0;
+    searchStatus.classList.toggle('visually-hidden', total === 0);
+    if (searchEmpty) searchEmpty.hidden = total > 0;
+    if (searchNoResults) searchNoResults.hidden = total > 0;
+    if (searchMore && searchMoreLink) {
+      const truncated = total > matches.length;
+      searchMore.hidden = !truncated;
+      if (truncated) {
+        searchMoreLink.href = `/search/?q=${encodeURIComponent(query)}`;
+        searchMoreLink.textContent = `See all ${total} results`;
+      }
+    }
     searchResultHints.forEach((hint) => (hint.hidden = matches.length === 0));
     searchInput?.setAttribute('aria-expanded', matches.length > 0 ? 'true' : 'false');
 
@@ -347,7 +362,10 @@ const current = Astro.url.pathname;
   };
 
   for (const button of searchButtons) {
-    button.addEventListener('click', () => openSearch(button));
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      openSearch(button);
+    });
   }
 
   if (searchShortcut && !/Mac|iPhone|iPad/.test(navigator.platform)) searchShortcut.textContent = 'Ctrl K';

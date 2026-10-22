@@ -5,10 +5,9 @@ import PostMeta from './PostMeta.astro';
 interface Props {
   entries: SiteEntry[];
   headingLevel?: 'h2' | 'h3';
-  maxTags?: number;
 }
 
-const { entries, headingLevel = 'h2', maxTags = 3 } = Astro.props;
+const { entries, headingLevel = 'h2' } = Astro.props;
 const Heading = headingLevel;
 ---
 
@@ -18,7 +17,7 @@ const Heading = headingLevel;
       <Heading>
         <a href={entry.permalink}>{entry.title}</a>
       </Heading>
-      <PostMeta entry={entry} maxTags={maxTags} />
+      <PostMeta entry={entry} showTags={false} />
       {entry.excerpt && <p>{entry.excerpt}</p>}
     </li>
   ))}

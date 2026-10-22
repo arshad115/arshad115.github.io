@@ -5,7 +5,7 @@ excerpt: Arshad Mehmood is a Software Engineer at SAP SE in Germany and founder 
 header:
   image: /assets/images/about_header.jpeg
   alt: Mannheim Palace courtyard under a blue sky
-  caption: Mannheim, Germany — where I live and work.
+  caption: Germany — where I live and work.
 ---
 
 ## Software engineering, infrastructure, and practical documentation

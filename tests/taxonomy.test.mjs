@@ -8,6 +8,7 @@ import {
   CATEGORY_SLUGS,
   categoryLabel,
   groupByCategoryName,
+  groupByTagName,
   isKnownCategory,
   sameCategory,
 } from '../src/lib/taxonomy.mjs';
@@ -45,6 +46,16 @@ test('groupByCategoryName uses one slug and a display label', () => {
 test('TIL folders keep their directory names as labels', () => {
   const groups = groupByCategoryName([{ kind: 'til', category: 'git', permalink: '/t/', tags: [] }]);
   assert.equal(groups[0].name, 'git');
+});
+
+test('groupByTagName merges case variants and prefers the lowercase label', () => {
+  const groups = groupByTagName([
+    { tags: ['Privacy', 'Gaming'] },
+    { tags: ['privacy', 'gaming'] },
+  ]);
+  assert.equal(groups.find((group) => group.slug === 'privacy').name, 'privacy');
+  assert.equal(groups.find((group) => group.slug === 'gaming').name, 'gaming');
+  assert.equal(groups.find((group) => group.slug === 'privacy').items.length, 2);
 });
 
 test('sameCategory compares slugs; only irregular labels are special-cased', () => {

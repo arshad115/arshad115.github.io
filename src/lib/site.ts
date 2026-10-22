@@ -6,6 +6,7 @@ export const NAV = [
   { href: '/today-i-learned/', label: 'Today I Learned' },
   { href: '/portfolio/', label: 'Portfolio' },
   { href: '/about/', label: 'About' },
+  { href: '/contact/', label: 'Contact' },
 ];
 
 export const FOOTER_NAV = [

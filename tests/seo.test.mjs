@@ -64,6 +64,8 @@ test('JSON-LD graph has Person, WebSite, Blog, and BlogPosting', () => {
   assert.equal(person.alumniOf.name, 'University of Mannheim');
   assert.match(person.disambiguatingDescription, /SAP SE/);
   assert.match(person.image.url, /arshad-mehmood-software-engineer-germany\.jpg$/);
+  assert.equal(person.image.width, 640);
+  assert.equal(person.image.height, 640);
   assert.equal(article.articleSection, 'DevOps');
   assert.match(article.datePublished, /^2024-09-23/);
   assert.equal(article.timeRequired, 'PT8M');

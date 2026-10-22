@@ -16,4 +16,4 @@ The posts and Today I Learned notes are written so I do not have to solve the sa
 - [RSS](/feed.xml)
 - [GitHub](https://github.com/arshad115)
 - [LinkedIn](https://www.linkedin.com/in/arshadmehmood115/)
-- [Twitter](https://twitter.com/arshad115)
+- [X](https://x.com/arshad115)

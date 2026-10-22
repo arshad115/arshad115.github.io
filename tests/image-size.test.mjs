@@ -19,7 +19,7 @@ test('imageSize reads a real public asset', () => {
   const file = path.join(root, 'public/assets/images/arshad-mehmood-software-engineer-germany.jpg');
   assert.equal(fs.existsSync(file), true);
   const size = imageSize('/assets/images/arshad-mehmood-software-engineer-germany.jpg');
-  assert.deepEqual(size, { width: 460, height: 460 });
+  assert.deepEqual(size, { width: 640, height: 640 });
 });
 
 test('default social image has a large landscape sharing ratio', () => {
