@@ -124,7 +124,8 @@ const current = Astro.url.pathname;
         </div>
       </div>
       <p class="search-status" data-search-status aria-live="polite" hidden></p>
-      <ol id="site-search-results" class="search-results" data-search-results role="listbox"></ol>
+      <button class="text-button search-retry" type="button" data-search-retry hidden>Try again</button>
+      <ol id="site-search-results" class="search-results" data-search-results role="listbox" aria-label="Search results"></ol>
       <p class="search-more" data-search-more hidden>
         <a data-search-more-link href="/search/">See all results</a>
       </p>
@@ -146,6 +147,9 @@ const current = Astro.url.pathname;
 </dialog>
 
 <script>
+  import { loadSearchIndex, searchEntries, type SearchEntry } from '../lib/search';
+  import { createSearchResult } from '../lib/search-view';
+
   const header = document.querySelector('.masthead');
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('#site-nav');
@@ -155,6 +159,7 @@ const current = Astro.url.pathname;
   const searchClose = searchDialog?.querySelector<HTMLElement>('[data-search-close]');
   const searchInput = searchDialog?.querySelector<HTMLInputElement>('#site-search-input');
   const searchStatus = searchDialog?.querySelector<HTMLElement>('[data-search-status]');
+  const searchRetry = searchDialog?.querySelector<HTMLButtonElement>('[data-search-retry]');
   const searchResults = searchDialog?.querySelector<HTMLOListElement>('[data-search-results]');
   const searchEmpty = searchDialog?.querySelector<HTMLElement>('[data-search-empty]');
   const searchNoResults = searchDialog?.querySelector<HTMLElement>('[data-search-no-results]');
@@ -163,18 +168,8 @@ const current = Astro.url.pathname;
   const searchSuggestions = [...(searchDialog?.querySelectorAll<HTMLAnchorElement>('[data-search-query]') ?? [])];
   const searchResultHints = [...(searchDialog?.querySelectorAll<HTMLElement>('[data-search-result-hint]') ?? [])];
   const searchShortcut = document.querySelector<HTMLElement>('[data-search-shortcut]');
-    const mobileNav = window.matchMedia('(max-width: 960px)');
+  const mobileNav = window.matchMedia('(max-width: 960px)');
 
-  type SearchEntry = {
-    title: string;
-    permalink: string;
-    excerpt: string;
-    kind: string;
-    searchText: string;
-  };
-
-  let searchIndex: SearchEntry[] | null = null;
-  let searchRequest: Promise<SearchEntry[]> | null = null;
   let activeSearchTrigger: HTMLElement | null = null;
   let activeResult = -1;
 
@@ -197,6 +192,7 @@ const current = Astro.url.pathname;
     if (!header || !(toggle instanceof HTMLElement)) return;
     header.classList.toggle('is-open', open);
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.textContent = open ? 'Close' : 'Menu';
     if (!open && restoreFocus && isMobile()) toggle.focus();
   }
 
@@ -209,25 +205,6 @@ const current = Astro.url.pathname;
     // Hide after the click so display:none does not cancel navigation.
     window.setTimeout(() => setOpen(false, { restoreFocus: false }), 0);
   });
-
-  const loadSearchIndex = () => {
-    if (searchIndex) return Promise.resolve(searchIndex);
-    searchRequest ??= fetch('/search-index.json')
-      .then((response) => {
-        if (!response.ok) throw new Error(`Search index returned ${response.status}`);
-        return response.json();
-      })
-      .then((entries: SearchEntry[]) => (searchIndex = entries));
-    return searchRequest;
-  };
-
-  const resultLabel = (kind: string) => ({
-    post: 'Post',
-    til: 'Today I Learned',
-    portfolio: 'Portfolio',
-    page: 'Page',
-    listing: 'Page',
-  })[kind] ?? 'Page';
 
   const resultItems = () => [...(searchResults?.querySelectorAll<HTMLElement>('[role="option"]') ?? [])];
 
@@ -243,25 +220,6 @@ const current = Astro.url.pathname;
     const active = items[activeResult];
     searchInput.setAttribute('aria-activedescendant', active.id);
     active.scrollIntoView({ block: 'nearest' });
-  };
-
-  const appendHighlightedText = (node: HTMLElement, value: string, terms: string[]) => {
-    const escaped = terms.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).filter(Boolean);
-    if (escaped.length === 0) {
-      node.textContent = value;
-      return;
-    }
-    const expression = new RegExp(`(${escaped.join('|')})`, 'gi');
-    for (const part of value.split(expression)) {
-      if (!part) continue;
-      if (terms.some((term) => part.toLocaleLowerCase() === term)) {
-        const mark = document.createElement('mark');
-        mark.textContent = part;
-        node.append(mark);
-      } else {
-        node.append(document.createTextNode(part));
-      }
-    }
   };
 
   const renderSearch = (entries: SearchEntry[], query: string) => {
@@ -283,15 +241,7 @@ const current = Astro.url.pathname;
 
     searchStatus.hidden = false;
 
-    const ranked = entries
-      .filter((entry) => terms.every((term) => entry.searchText.includes(term)))
-      .map((entry) => {
-        const title = entry.title.toLocaleLowerCase();
-        let score = terms.reduce((total, term) => total + (title.includes(term) ? 12 : 0), 0);
-        if (title.startsWith(query.toLocaleLowerCase())) score += 20;
-        return { entry, score };
-      })
-      .sort((a, b) => b.score - a.score || a.entry.title.localeCompare(b.entry.title));
+    const ranked = searchEntries(entries, query);
     const matches = ranked.slice(0, 8);
     const total = ranked.length;
 
@@ -312,37 +262,38 @@ const current = Astro.url.pathname;
     searchResultHints.forEach((hint) => (hint.hidden = matches.length === 0));
     searchInput?.setAttribute('aria-expanded', matches.length > 0 ? 'true' : 'false');
 
-    matches.forEach(({ entry }, index) => {
-      const item = document.createElement('li');
-      const link = document.createElement('a');
-      const copy = document.createElement('span');
-      const meta = document.createElement('span');
-      const title = document.createElement('strong');
-      const arrow = document.createElement('span');
-      item.id = `site-search-result-${index}`;
-      item.setAttribute('role', 'option');
-      item.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-      link.href = entry.permalink;
-      link.tabIndex = -1;
-      copy.className = 'search-result-copy';
-      meta.className = 'search-result-kind';
-      meta.textContent = resultLabel(entry.kind);
-      appendHighlightedText(title, entry.title, terms);
-      arrow.className = 'search-result-arrow';
-      arrow.setAttribute('aria-hidden', 'true');
-      arrow.textContent = '↗';
-      copy.append(meta, title);
-      if (entry.excerpt) {
-        const excerpt = document.createElement('p');
-        excerpt.textContent = entry.excerpt;
-        copy.append(excerpt);
-      }
-      link.append(copy, arrow);
-      item.append(link);
+    matches.forEach((entry, index) => {
+      const item = createSearchResult(entry, query, `site-search-result-${index}`);
       searchResults.append(item);
       item.addEventListener('pointermove', () => setActiveResult(index));
     });
     if (matches.length > 0) setActiveResult(0);
+  };
+
+  let searchVersion = 0;
+  let searchTimer = 0;
+
+  const runSearch = async () => {
+    const version = ++searchVersion;
+    const query = searchInput?.value.trim() ?? '';
+    if (searchRetry) searchRetry.hidden = true;
+    if (searchStatus && query) {
+      searchStatus.hidden = false;
+      searchStatus.classList.remove('visually-hidden');
+      searchStatus.textContent = 'Searching…';
+    }
+    try {
+      const entries = await loadSearchIndex();
+      if (version === searchVersion && searchDialog?.open) renderSearch(entries, query);
+    } catch {
+      if (version !== searchVersion || !searchDialog?.open) return;
+      renderSearch([], '');
+      if (searchStatus) {
+        searchStatus.hidden = false;
+        searchStatus.textContent = 'Search could not be loaded. Please try again.';
+      }
+      if (searchRetry) searchRetry.hidden = false;
+    }
   };
 
   const openSearch = (trigger?: HTMLElement | null) => {
@@ -351,15 +302,13 @@ const current = Astro.url.pathname;
     setOpen(false, { restoreFocus: false });
     searchDialog.showModal();
     searchInput?.focus();
-    void loadSearchIndex()
-      .then((entries) => renderSearch(entries, searchInput?.value.trim() ?? ''))
-      .catch(() => {
-        if (searchStatus) {
-          searchStatus.hidden = false;
-          searchStatus.textContent = 'Search could not be loaded. Please try again.';
-        }
-      });
+    void runSearch();
   };
+
+  searchRetry?.addEventListener('click', () => {
+    searchInput?.focus();
+    void runSearch();
+  });
 
   for (const button of searchButtons) {
     button.addEventListener('click', (event) => {
@@ -384,22 +333,24 @@ const current = Astro.url.pathname;
   searchDialog?.addEventListener('click', (event) => {
     if (event.target === searchDialog) searchDialog.close();
   });
-  searchDialog?.addEventListener('close', () => activeSearchTrigger?.focus());
+  searchDialog?.addEventListener('close', () => {
+    ++searchVersion;
+    window.clearTimeout(searchTimer);
+    const triggerVisible = activeSearchTrigger && activeSearchTrigger.getClientRects().length > 0;
+    if (triggerVisible) activeSearchTrigger?.focus();
+    else if (isMobile() && toggle instanceof HTMLElement) toggle.focus();
+  });
   searchResults?.addEventListener('click', (event) => {
     if (event.target instanceof Element && event.target.closest('a')) searchDialog?.close();
   });
 
-  let searchTimer = 0;
   searchInput?.addEventListener('input', () => {
     window.clearTimeout(searchTimer);
-    const query = searchInput.value.trim();
-    searchTimer = window.setTimeout(() => {
-      void loadSearchIndex()
-        .then((entries) => renderSearch(entries, query))
-        .catch(() => {
-          if (searchStatus) searchStatus.textContent = 'Search could not be loaded. Please try again.';
-        });
-    }, 80);
+    ++searchVersion;
+    // Invalidate old options immediately; Enter must never open a stale result.
+    renderSearch([], '');
+    if (searchRetry) searchRetry.hidden = true;
+    searchTimer = window.setTimeout(() => void runSearch(), 80);
   });
 
   searchInput?.addEventListener('keydown', (event) => {
@@ -415,7 +366,7 @@ const current = Astro.url.pathname;
       setActiveResult(activeResult - 1);
     } else if (event.key === 'Enter' && activeResult >= 0) {
       event.preventDefault();
-      items[activeResult]?.querySelector<HTMLAnchorElement>('a')?.click();
+      items[activeResult]?.click();
     }
   });
 

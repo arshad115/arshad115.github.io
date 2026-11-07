@@ -55,12 +55,14 @@ const groups = groupByCategory(notes).map((group) => ({
     </header>
     <div class="til-browser">
       <aside class="til-topics">
-        <h2>Topics</h2>
+        <details open data-til-topics>
+        <summary>Browse topics</summary>
         <nav class="category-jump" aria-label="TIL topics">
           {groups.map((group) => (
             <a href={`#${group.slug}`}>{group.displayName} <span>{group.items.length}</span></a>
           ))}
         </nav>
+        </details>
       </aside>
       <div class="taxonomy-list til-results">
         {groups.map((group) => (
@@ -86,6 +88,20 @@ const groups = groupByCategory(notes).map((group) => ({
     const topicLinks = [...(index?.querySelectorAll<HTMLAnchorElement>('.til-topics a') ?? [])];
     const status = index?.querySelector<HTMLElement>('[data-til-status]');
     const empty = index?.querySelector<HTMLElement>('[data-til-empty]');
+    const topics = index?.querySelector<HTMLDetailsElement>('[data-til-topics]');
+    const narrow = window.matchMedia('(max-width: 780px)');
+    const syncTopics = () => {
+      if (topics) topics.open = !narrow.matches;
+    };
+    syncTopics();
+    narrow.addEventListener('change', syncTopics);
+    for (const link of topicLinks) {
+      link.addEventListener('click', () => {
+        if (!narrow.matches || !topics) return;
+        topics.open = false;
+        topics.querySelector('summary')?.focus({ preventScroll: true });
+      });
+    }
 
     input?.addEventListener('input', () => {
       const query = input.value.trim().toLowerCase();
@@ -98,6 +114,8 @@ const groups = groupByCategory(notes).map((group) => ({
           if (matches) groupVisible += 1;
         }
         group.hidden = groupVisible === 0;
+        const count = group.querySelector('.taxonomy-count');
+        if (count) count.textContent = String(groupVisible);
         visible += groupVisible;
       }
       for (const link of topicLinks) {

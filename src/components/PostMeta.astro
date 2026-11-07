@@ -5,9 +5,10 @@ import type { SiteEntry } from '../lib/content';
 interface Props {
   entry: SiteEntry;
   showTags?: boolean;
+  showCategory?: boolean;
 }
 
-const { entry, showTags = true } = Astro.props;
+const { entry, showTags = true, showCategory = true } = Astro.props;
 const tags = entry.tags ?? [];
 ---
 
@@ -19,14 +20,14 @@ const tags = entry.tags ?? [];
     </span>
   )}
   {entry.kind === 'post' && <span>{entry.minutes} min read</span>}
-  {entry.category && (
+  {showCategory && entry.category && (
     <a href={entry.categoryPath || `/categories/#${entry.category}`}>{entry.categoryLabel || entry.category}</a>
   )}
 </p>
 {showTags && tags.length > 0 && (
   <p class="meta meta-tags" data-pagefind-ignore>
     {tags.map((tag) => (
-      <a href={`/tags/#${tagSlug(tag)}`}><span class="visually-hidden">Posts tagged </span>{tag}</a>
+      <a href={`/tags/#${tagSlug(tag)}`}><span class="visually-hidden">Posts tagged </span>{tag.toLocaleLowerCase('en')}</a>
     ))}
   </p>
 )}

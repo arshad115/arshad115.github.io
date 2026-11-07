@@ -10,8 +10,8 @@ tags:
   - terminal
   - remote-access
 header:
-  image: /assets/images/posts/ssh-guide-header.webp
-  alt: SSH connection diagram
+  image: /assets/images/posts/ssh-connection.png
+  alt: An SSH client on your computer connects to an SSH service on a remote server over an encrypted connection
 ---
 
 SSH (Secure Shell) is the foundation of secure remote access to servers and systems. This guide covers everything from basics to advanced usage, with practical examples you can use immediately.

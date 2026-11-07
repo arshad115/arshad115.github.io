@@ -1,4 +1,5 @@
 ---
+excerpt: "Expose Jenkins metrics for Prometheus and verify that your monitoring system can collect them."
 title: Setup Prometheus Exporter in Jenkins
 date: 2024-10-11
 category: devops

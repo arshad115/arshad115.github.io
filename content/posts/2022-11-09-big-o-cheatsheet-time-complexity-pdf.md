@@ -1,4 +1,5 @@
 ---
+excerpt: "A landscape Big O reference sheet for comparing algorithm time and space complexity."
 title: Big O Notation Cheatsheet in Landscape PDF
 date: 2022-11-09
 category: development

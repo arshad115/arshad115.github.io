@@ -1,4 +1,5 @@
 ---
+excerpt: "Connect SonarQube to Jenkins for automated code quality checks in your build pipeline."
 title: Setup SonarQube with Jenkins
 date: 2024-10-11
 category: devops

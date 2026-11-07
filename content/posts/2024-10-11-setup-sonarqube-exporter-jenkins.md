@@ -1,4 +1,5 @@
 ---
+excerpt: "Collect SonarQube metrics with a Prometheus exporter or the built-in web API."
 title: Setup SonarQube Prometheus Exporter
 date: 2024-10-11
 category: devops

@@ -11,6 +11,7 @@ import {
   isRedirectHtml,
   readDist,
   distPathFor,
+  redirectTargetFromHtml,
   root,
 } from './helpers/dist.mjs';
 
@@ -226,8 +227,11 @@ test('post lists expose concise metadata and a limited set of tag links', async 
     const html = await readDist(route);
     assert.match(html, /min read/);
     assert.match(html, /class="entry-category" href="\/categories\/#devops">DevOps</);
-    assert.match(html, /class="entry-tags"/);
-    assert.match(html, /href="\/tags\/#/);
+    if (route === "/") assert.doesNotMatch(html, /class="entry-tags"/);
+    else {
+      assert.match(html, /class="entry-tags"/);
+      assert.match(html, /href="\/tags\/#/);
+    }
   }
 });
 
@@ -303,7 +307,7 @@ test('header figures expose alt, dimensions, and a caption association', async (
 
 test('SSH article related list prefers markdown TIL links', async () => {
   const html = await readDist('/devops/complete-guide-to-ssh-from-basics-to-advanced/');
-  assert.match(html, />DevOps<\/p>/);
+  assert.match(html, /href="\/categories\/#devops">DevOps<\/a>/);
   assert.doesNotMatch(html, />Essay<\/p>/);
   assert.match(html, /class="post-content-grid has-sidebar"/);
   assert.match(html, /<aside class="related" aria-labelledby="related-heading"/);
@@ -329,8 +333,8 @@ test('collection pages expose practical browsing controls', async () => {
   assert.match(posts, /class="collection-links"/);
   assert.match(posts, /href="\/categories\/"/);
   assert.match(posts, /href="\/tags\/"/);
-  assert.match(posts, /class="featured-post-grid"/);
-  assert.match(posts, />Archive<\/h2>/);
+  assert.match(posts, /class="year-nav" aria-label="Jump to year"/);
+  assert.doesNotMatch(posts, /class="featured-post-grid"/);
   assert.match(posts, /class="year-group"/);
 
   const til = await readDist('/today-i-learned/');
@@ -438,6 +442,36 @@ test('migrated cross-links use published routes and valid fragments', async () =
 
   const rsync = await readDist('/today-i-learned/ssh/using-rsync-for-file-transfers/');
   assert.match(rsync, /href="\/today-i-learned\/ssh\/using-scp-for-file-transfers\/"/);
+});
+
+test('every same-site content link lands on an existing page or asset', async () => {
+  const files = await collectHtmlFiles(distDir);
+  for (const [route, file] of files) {
+    const html = await fs.readFile(file, 'utf8');
+    if (isRedirectHtml(html)) continue;
+    for (const [, href] of html.matchAll(/<a\b[^>]*\bhref="([^"]+)"/g)) {
+      const url = new URL(href.replaceAll('&amp;', '&'), `https://arshadmehmood.com${route}`);
+      if (!['arshadmehmood.com', 'www.arshadmehmood.com'].includes(url.hostname)) continue;
+      if (!['http:', 'https:'].includes(url.protocol)) continue;
+      let target = decodeURIComponent(url.pathname);
+      for (let hops = 0; hops < 8; hops += 1) {
+        const targetFile = distPathFor(target);
+        await assert.doesNotReject(fs.access(targetFile), `${route} links to missing ${href}`);
+        if (!targetFile.endsWith('.html')) break;
+        const destination = await fs.readFile(targetFile, 'utf8');
+        if (isRedirectHtml(destination)) {
+          target = redirectTargetFromHtml(destination);
+          assert.ok(target, `Invalid redirect at ${targetFile}`);
+          continue;
+        }
+        if (url.hash) {
+          const id = decodeURIComponent(url.hash.slice(1));
+          assert.ok(destination.includes(`id="${id}"`), `${route} links to missing fragment ${href}`);
+        }
+        break;
+      }
+    }
+  }
 });
 
 test('article headings do not skip levels below the layout H1', async () => {

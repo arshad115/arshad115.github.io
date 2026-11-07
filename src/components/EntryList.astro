@@ -5,9 +5,10 @@ import { formatDate, tagSlug } from '../lib/site';
 interface Props {
   entries: SiteEntry[];
   headingLevel?: 'h2' | 'h3';
+  showTags?: boolean;
 }
 
-const { entries, headingLevel = 'h2' } = Astro.props;
+const { entries, headingLevel = 'h2', showTags = true } = Astro.props;
 const Heading = headingLevel;
 ---
 
@@ -28,10 +29,10 @@ const Heading = headingLevel;
           {entry.date && <time datetime={entry.date.toISOString()}>{formatDate(entry.date)}</time>}
           {entry.kind === 'post' && <span>{entry.minutes} min read</span>}
         </p>
-        {entry.tags.length > 0 && (
+        {showTags && entry.tags.length > 0 && (
           <ul class="entry-tags" aria-label={`Tags for ${entry.title}`} data-pagefind-ignore>
             {entry.tags.slice(0, 3).map((tag) => (
-              <li><a href={`/tags/#${tagSlug(tag)}`}>#{tag}</a></li>
+              <li><a href={`/tags/#${tagSlug(tag)}`}>#{tag.toLocaleLowerCase('en')}</a></li>
             ))}
           </ul>
         )}

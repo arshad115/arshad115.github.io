@@ -45,13 +45,15 @@ export default defineConfig({
       useDarkModeMediaQuery: false,
       themeCssSelector: (theme) => `[data-theme='${theme.type}']`,
       defaultProps: {
-        wrap: true,
+        wrap: false,
+        frame: 'none',
         overridesByLang: {
           'bash,console,powershell,sh,shell,terminal,zsh': { wrap: false },
         },
       },
       styleOverrides: {
-        borderRadius: '0.625rem',
+        borderRadius: '0.5rem',
+        frames: { shadowColor: 'transparent' },
         codeFontFamily: 'var(--font-mono)',
         codeFontSize: '0.9rem',
         codeLineHeight: '1.55',

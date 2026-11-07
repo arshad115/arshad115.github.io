@@ -9,44 +9,103 @@ import Base from '../../layouts/Base.astro';
   pageType="SearchResultsPage"
   robots="noindex, follow"
 >
-  <link slot="head" rel="stylesheet" href="/pagefind/pagefind-ui.css" />
-  <article class="reading">
+  <article class="reading search-page">
     <p class="kicker">Find</p>
     <h1>Search</h1>
     <p class="lede">Search posts, Today I Learned notes, and pages.</p>
-    <div id="search"></div>
+    <form class="search-page-form" role="search" action="/search/" method="get">
+      <label class="filter-control" for="page-search-input">
+        <span>Search the blog</span>
+        <input id="page-search-input" name="q" type="search" placeholder="Try SSH, Python, Git…" autocomplete="off" />
+      </label>
+      <button class="text-button" type="submit">Search</button>
+    </form>
+    <p class="filter-status" data-page-search-status role="status">Enter a topic, command, or phrase.</p>
+    <button class="text-button search-retry" type="button" data-page-search-retry hidden>Try again</button>
+    <ol class="search-results search-page-results" data-page-search-results aria-label="Search results"></ol>
+    <button class="text-button search-load-more" type="button" data-page-search-more hidden>Load more results</button>
+    <noscript><p>Search needs JavaScript. You can also browse <a href="/posts/">posts</a> or <a href="/today-i-learned/">Today I Learned</a>.</p></noscript>
   </article>
-  <script is:inline src="/pagefind/pagefind-ui.js"></script>
-  <script is:inline>
-    const mount = document.querySelector('#search');
-    if (mount && window.PagefindUI) {
-      new window.PagefindUI({
-        element: '#search',
-        showImages: false,
-        showSubResults: false,
-        excerptLength: 24,
-        resetStyles: false,
-      });
-      const q = new URLSearchParams(window.location.search).get('q');
-      if (q) {
-        const fill = () => {
-          const input = document.querySelector('#search input');
-          if (!input) return false;
-          const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')?.set;
-          setter ? setter.call(input, q) : (input.value = q);
-          input.dispatchEvent(new Event('input', { bubbles: true }));
-          return true;
-        };
-        if (!fill()) {
-          const observer = new MutationObserver(() => {
-            if (fill()) observer.disconnect();
-          });
-          observer.observe(mount, { childList: true, subtree: true });
-        }
+  <script>
+    import { loadSearchIndex, searchEntries, type SearchEntry } from '../../lib/search';
+    import { createSearchResult } from '../../lib/search-view';
+
+    const input = document.querySelector<HTMLInputElement>('#page-search-input');
+    const form = document.querySelector<HTMLFormElement>('.search-page-form');
+    const results = document.querySelector<HTMLOListElement>('[data-page-search-results]');
+    const status = document.querySelector<HTMLElement>('[data-page-search-status]');
+    const retry = document.querySelector<HTMLButtonElement>('[data-page-search-retry]');
+    const more = document.querySelector<HTMLButtonElement>('[data-page-search-more]');
+    let matches: SearchEntry[] = [];
+    let shown = 0;
+    let version = 0;
+    let timer = 0;
+    let currentQuery = '';
+
+    const appendResults = () => {
+      for (const entry of matches.slice(shown, shown + 10)) {
+        results?.append(createSearchResult(entry, currentQuery));
       }
-    } else if (mount) {
-      mount.innerHTML =
-        '<p>Search is indexed during <code>npm run build</code>. Run a build, or use the listings in the meantime.</p>';
-    }
+      shown = Math.min(shown + 10, matches.length);
+      if (more) more.hidden = shown >= matches.length;
+    };
+
+    const search = async () => {
+      const requestVersion = ++version;
+      const query = input?.value.trim() ?? '';
+      const url = new URL(window.location.href);
+      if (query) url.searchParams.set('q', query);
+      else url.searchParams.delete('q');
+      history.replaceState(null, '', url);
+      results?.replaceChildren();
+      if (retry) retry.hidden = true;
+      if (more) more.hidden = true;
+      if (!status) return;
+      if (!query) {
+        status.textContent = 'Enter a topic, command, or phrase.';
+        return;
+      }
+      status.textContent = 'Searching…';
+      try {
+        const entries = await loadSearchIndex();
+        if (requestVersion !== version) return;
+        matches = searchEntries(entries, query);
+        currentQuery = query;
+        shown = 0;
+        status.textContent = matches.length
+          ? `${matches.length} ${matches.length === 1 ? 'result' : 'results'} for “${query}”`
+          : `No results for “${query}”. Try another topic or command.`;
+        appendResults();
+      } catch {
+        if (requestVersion !== version) return;
+        status.textContent = 'Search could not be loaded. Please try again.';
+        if (retry) retry.hidden = false;
+      }
+    };
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      window.clearTimeout(timer);
+      void search();
+    });
+    input?.addEventListener('input', () => {
+      window.clearTimeout(timer);
+      ++version;
+      results?.replaceChildren();
+      if (more) more.hidden = true;
+      timer = window.setTimeout(() => void search(), 80);
+    });
+    retry?.addEventListener('click', () => void search());
+    more?.addEventListener('click', () => {
+      const firstNewResult = shown;
+      appendResults();
+      results?.children[firstNewResult]?.querySelector('a')?.focus();
+    });
+    const restoreQuery = () => {
+      if (input) input.value = new URLSearchParams(window.location.search).get('q') ?? '';
+      void search();
+    };
+    restoreQuery();
+    window.addEventListener('popstate', restoreQuery);
   </script>
 </Base>

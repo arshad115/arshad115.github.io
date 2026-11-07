@@ -71,39 +71,23 @@ const pageType =
 >
   {entry.kind === 'post' && <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>}
   <article class:list={['post-page', { 'post-page-wide': entry.kind === 'post', 'about-page': isAbout }]} data-pagefind-body>
-    {image && entry.kind === 'post' && (
-      <figure class="post-hero" data-pagefind-ignore>
-        <img
-          src={image}
-          alt={imageAlt}
-          width={imageDimensions?.width}
-          height={imageDimensions?.height}
-          decoding="async"
-          fetchpriority="high"
-          aria-describedby={captionId}
-        />
-        {entry.header?.caption && (
-          <figcaption id={captionId}>
-            {entry.header.captionHref ? (
-              <a href={entry.header.captionHref}>{entry.header.caption}</a>
-            ) : (
-              entry.header.caption
-            )}
-          </figcaption>
-        )}
-      </figure>
-    )}
     <div class:list={['post-content-grid', { 'has-sidebar': showToc && entry.kind === 'post' }]}>
     <header class="post-heading">
+      {isAbout && image && (
+        <figure class="about-portrait" data-pagefind-ignore>
+          <img src={image} alt={imageAlt} width={imageDimensions?.width} height={imageDimensions?.height} decoding="async" fetchpriority="high" />
+        </figure>
+      )}
       <p class="kicker" data-pagefind-ignore>
         {entry.kind === 'til' && 'Today I Learned'}
-        {entry.kind === 'post' && (entry.categoryLabel || 'Article')}
+        {entry.kind === 'post' && (entry.category ? <a href={entry.categoryPath || `/categories/#${entry.category}`}>{entry.categoryLabel || entry.category}</a> : 'Article')}
         {entry.kind === 'portfolio' && 'Portfolio'}
         {entry.kind === 'page' && !isAbout && 'Page'}
         {isAbout && 'About me'}
       </p>
       <h1>{entry.title}</h1>
-      {entry.kind !== 'page' && <PostMeta entry={entry} />}
+      {entry.kind === 'post' && entry.excerpt && <p class="post-deck">{entry.excerpt}</p>}
+      {entry.kind !== 'page' && <PostMeta entry={entry} showCategory={entry.kind !== 'post'} />}
       {isArchivedPost && (
         <aside class="archive-note" data-pagefind-ignore>
           <strong>Archive note</strong>
@@ -111,7 +95,7 @@ const pageType =
         </aside>
       )}
     </header>
-    {image && entry.kind !== 'post' && (
+    {image && entry.kind !== 'post' && !isAbout && (
       <figure class="figure-plain reading" data-pagefind-ignore>
         <img
           src={image}
@@ -140,9 +124,35 @@ const pageType =
       )}
       <div class="post-main reading">
         {showToc && entry.kind !== 'post' && <TableOfContents headings={headings} />}
+    {image && entry.kind === 'post' && (
+      <figure class="post-hero" data-pagefind-ignore>
+        <img
+          src={image}
+          alt={imageAlt}
+          width={imageDimensions?.width}
+          height={imageDimensions?.height}
+          decoding="async"
+          fetchpriority="high"
+          aria-describedby={captionId}
+        />
+        {entry.header?.caption && (
+          <figcaption id={captionId}>
+            {entry.header.captionHref ? (
+              <a href={entry.header.captionHref}>{entry.header.caption}</a>
+            ) : (
+              entry.header.caption
+            )}
+          </figcaption>
+        )}
+      </figure>
+    )}
         <div class="prose">
           <Content />
         </div>
+      </div>
+    </div>
+    {(related.length > 0 || (entry.kind === 'post' && entry.comments)) && (
+    <div class="post-ending reading">
         {related.length > 0 && (
           <aside class="related" aria-labelledby="related-heading" data-pagefind-ignore>
             <div class="related-heading">
@@ -171,12 +181,12 @@ const pageType =
             <GiscusComments />
           </div>
         )}
-      </div>
     </div>
+    )}
   </article>
   {entry.kind === 'post' && (
     <script>
-      const article = document.querySelector<HTMLElement>('.post-page');
+      const article = document.querySelector<HTMLElement>('.post-content-grid');
       const progress = document.querySelector<HTMLElement>('[data-reading-progress]');
 
       const updateProgress = () => {

@@ -22,6 +22,7 @@ const {
   giscusEnabled ? (
     <section class="comments" data-comments="giscus">
       <h2>Discussion</h2>
+      <p class="comments-fallback">Join the conversation on <a href={`https://github.com/${repo}/discussions`}>GitHub Discussions</a>.</p>
       <script
         is:inline
         src="https://giscus.app/client.js"
@@ -41,6 +42,12 @@ const {
       ></script>
       <script is:inline define:vars={{ theme, lightTheme, darkTheme }}>
         (() => {
+          const section = document.querySelector('[data-comments="giscus"]');
+          window.addEventListener('message', (event) => {
+            const frame = section?.querySelector('iframe.giscus-frame');
+            if (event.origin !== 'https://giscus.app' || event.source !== frame?.contentWindow) return;
+            if (Number(event.data?.giscus?.resizeHeight) > 0) section?.classList.add('comments-ready');
+          });
           const siteTheme = () =>
             document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
           const resolveTheme = () => {
@@ -67,8 +74,7 @@ const {
     <section class="comments" data-comments="off">
       <h2>Discussion</h2>
       <p>
-        Comments are not enabled on this build. Production uses Giscus (GitHub Discussions) when the
-        repository secrets are set.
+        Have a question or something to add? <a href="/contact/">Get in touch</a>.
       </p>
     </section>
   )

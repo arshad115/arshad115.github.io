@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="480" viewBox="0 0 1200 480">
+<rect width="1200" height="480" fill="#f3f7f6"/>
+<g font-family="Arial, sans-serif" fill="#293038">
+<text x="64" y="70" font-size="18" letter-spacing="3" fill="#0b756b">SSH / SECURE REMOTE ACCESS</text>
+<g fill="none" stroke="#0b756b" stroke-width="4" stroke-linejoin="round">
+<rect x="100" y="147" width="210" height="135" rx="8"/><path d="M75 310h260l-25 18H100z"/>
+<rect x="890" y="137" width="210" height="190" rx="8"/><path d="M890 200h210M890 263h210"/>
+<path d="M360 235h470m-16-12 16 12-16 12"/>
+<rect x="578" y="168" width="44" height="37" rx="5" fill="#f3f7f6"/><path d="M588 168v-12a12 12 0 0 1 24 0v12"/>
+</g>
+<text x="205" y="229" text-anchor="middle" font-family="monospace" font-size="30">&gt;_</text>
+<g fill="#0b756b"><circle cx="916" cy="169" r="5"/><circle cx="916" cy="232" r="5"/><circle cx="916" cy="295" r="5"/></g>
+<text x="600" y="278" text-anchor="middle" font-size="21">Encrypted connection</text>
+<text x="205" y="382" text-anchor="middle" font-size="27" font-weight="bold">Your computer</text>
+<text x="995" y="382" text-anchor="middle" font-size="27" font-weight="bold">Remote server</text>
+<text x="205" y="416" text-anchor="middle" font-size="19" fill="#66717c">SSH client</text>
+<text x="995" y="416" text-anchor="middle" font-size="19" fill="#66717c">SSH service</text>
+</g></svg>

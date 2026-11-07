@@ -3,14 +3,13 @@ title: About
 permalink: /about/
 excerpt: Arshad Mehmood is a Software Engineer at SAP SE in Germany and founder of Kookydroid, specializing in Go, Kubernetes, DevOps, self-hosted systems, and Android development.
 header:
-  image: /assets/images/about_header.jpeg
-  alt: Mannheim Palace courtyard under a blue sky
-  caption: Germany — where I live and work.
+  image: /assets/images/arshad-mehmood-software-engineer-germany.webp
+  alt: Arshad Mehmood, software engineer in Germany
 ---
 
 ## Software engineering, infrastructure, and practical documentation
 
-Arshad Mehmood is a Software Engineer at SAP SE in Germany and the founder of [Kookydroid](https://play.google.com/store/apps/dev?id=7044232667654327190). He holds an M.Sc. in Business Informatics from the University of Mannheim and specializes in cloud-native backend engineering with Go and Kubernetes, DevOps infrastructure, self-hosted systems, and Android development.
+I’m Arshad, a software engineer at SAP SE in Germany and the founder of [Kookydroid](https://play.google.com/store/apps/dev?id=7044232667654327190). I hold an M.Sc. in Business Informatics from the University of Mannheim and specialize in cloud-native backend engineering with Go and Kubernetes, DevOps infrastructure, self-hosted systems, and Android development.
 
 This site is my working notebook. I write about incidents I have debugged, tools I have built, and technical details worth finding again. Longer investigations become [posts](/posts/); focused commands and discoveries go into [Today I Learned](/today-i-learned/).
 

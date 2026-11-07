@@ -2,19 +2,8 @@
 import Base from '../../layouts/Base.astro';
 import EntryList from '../../components/EntryList.astro';
 import { getPosts } from '../../lib/content';
-import { imageSize } from '../../lib/image-size.mjs';
-import { formatDate, tagSlug } from '../../lib/site';
 
 const posts = await getPosts();
-const featured = posts.slice(0, 3).map((post) => ({
-  ...post,
-  image: post.header?.teaser || post.header?.image,
-  imageDimensions: post.header?.teaser
-    ? imageSize(post.header.teaser)
-    : post.header?.image
-      ? imageSize(post.header.image)
-      : undefined,
-}));
 const years = Object.entries(
   posts.reduce<Record<string, typeof posts>>((groups, post) => {
     const year = String(post.date?.getUTCFullYear() ?? 'Earlier');
@@ -41,47 +30,9 @@ const years = Object.entries(
       <button type="button" data-search-open>Search everything</button>
     </nav>
     </header>
-    <section class="featured-posts" aria-labelledby="featured-posts-title">
-      <h2 id="featured-posts-title">Latest</h2>
-      <div class="featured-post-grid">
-        {featured.map((post, index) => (
-          <article class:list={['featured-post', { 'featured-post-primary': index === 0 }]}>
-            {post.image && (
-              <a class="featured-post-image" href={post.permalink} tabindex="-1" aria-hidden="true">
-                <img
-                  src={post.image}
-                  alt=""
-                  width={post.imageDimensions?.width}
-                  height={post.imageDimensions?.height}
-                  loading={index === 0 ? 'eager' : 'lazy'}
-                  decoding="async"
-                />
-              </a>
-            )}
-            <div class="featured-post-copy">
-              <p class="featured-post-category">{post.categoryLabel}</p>
-              <h3><a href={post.permalink}>{post.title}</a></h3>
-              <p>{post.excerpt}</p>
-              <p class="featured-post-details">
-                <time datetime={post.date?.toISOString()}>{formatDate(post.date)}</time>
-                <span>{post.minutes} min read</span>
-              </p>
-              {post.tags.length > 0 && (
-                <ul class="featured-post-tags" aria-label={`Tags for ${post.title}`} data-pagefind-ignore>
-                  {post.tags.slice(0, 3).map((tag) => (
-                    <li><a href={`/tags/#${tagSlug(tag)}`}>#{tag}</a></li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-    <div class="archive-heading">
-      <h2>Archive</h2>
-      <p>Every post by year, including the three above.</p>
-    </div>
+    <nav class="year-nav" aria-label="Jump to year">
+      {years.map(([year]) => <a href={`#year-${year}`}>{year}</a>)}
+    </nav>
     {years.map(([year, entries]) => (
       <section class="year-group" aria-labelledby={`year-${year}`}>
         <h2 id={`year-${year}`}>{year}</h2>

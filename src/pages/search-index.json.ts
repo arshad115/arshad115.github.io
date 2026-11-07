@@ -1,28 +1,21 @@
 import type { APIRoute } from 'astro';
 import { getRenderableEntries, listingRoutes } from '../lib/content';
+import { searchableText, searchSummary } from '../lib/search-content.mjs';
 
 export const prerender = true;
-
-const plainText = (value = '') => value
-  .replace(/```[\s\S]*?```/g, ' ')
-  .replace(/`([^`]+)`/g, '$1')
-  .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
-  .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-  .replace(/<[^>]+>/g, ' ')
-  .replace(/[#>*_~|{}[\]]/g, ' ')
-  .replace(/\s+/g, ' ')
-  .trim();
 
 export const GET: APIRoute = async () => {
   const entries = await getRenderableEntries();
   const content = entries.map((entry) => {
-    const excerpt = plainText(entry.excerpt).slice(0, 220);
+    const excerpt = entry.collection.data.excerpt
+      ? searchableText(entry.collection.data.excerpt)
+      : searchSummary(entry.body, entry.excerpt);
     return {
       title: entry.title,
       permalink: entry.permalink,
       excerpt,
       kind: entry.kind,
-      searchText: plainText([
+      searchText: searchableText([
         entry.title,
         entry.excerpt,
         entry.categoryLabel,

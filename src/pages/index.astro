@@ -24,13 +24,12 @@ if (!profileSize) throw new Error(`Missing profile image ${SITE.profileImage}`);
       <p class="kicker">Software Engineer at SAP · Germany</p>
       <h1>A working notebook on cloud-native backends.</h1>
       <p class="lede">
-        Arshad Mehmood is a Software Engineer at SAP SE in Germany and founder of Kookydroid. He
-        holds an M.Sc. in Business Informatics from the University of Mannheim and specializes in
-        cloud-native backend engineering with Go and Kubernetes, DevOps, self-hosted systems, and
-        Android development.
+        I’m Arshad, a software engineer at SAP in Germany. I write about Go, Kubernetes,
+        self-hosting, and lessons from building and running software.
       </p>
       <p class="home-note">
-        Longer investigations are posts. Short commands and discoveries go in Today I Learned.
+        <a href="/posts/">Read the posts <span aria-hidden="true">→</span></a>
+        <a href="/today-i-learned/">Explore my notebook <span aria-hidden="true">→</span></a>
       </p>
     </div>
     <figure class="home-photo">
@@ -57,6 +56,6 @@ if (!profileSize) throw new Error(`Missing profile image ${SITE.profileImage}`);
       <h2>Latest posts</h2>
       <a href="/posts/">All posts</a>
     </div>
-    <EntryList entries={latest} headingLevel="h3" />
+    <EntryList entries={latest} headingLevel="h3" showTags={false} />
   </section>
 </Base>
