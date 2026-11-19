@@ -15,7 +15,7 @@ function makeBlogRoot() {
   fs.mkdirSync(path.join(dir, 'content/posts'), { recursive: true });
   fs.mkdirSync(path.join(dir, 'content/drafts'), { recursive: true });
   fs.mkdirSync(path.join(dir, 'today-i-learned/git'), { recursive: true });
-  fs.writeFileSync(path.join(dir, 'today-i-learned/git/.keep'), '');
+  fs.writeFileSync(path.join(dir, 'today-i-learned/git/example.md'), '---\ntitle: Example\n---\n');
   return dir;
 }
 

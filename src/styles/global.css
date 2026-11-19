@@ -377,7 +377,7 @@ html[data-theme='dark'] .theme-icon-sun {
 
 .search-commandbar input::placeholder {
   color: var(--ink-muted);
-  opacity: 0.85;
+  opacity: 1;
 }
 
 .search-commandbar input::-webkit-search-cancel-button {
@@ -2008,7 +2008,7 @@ html[data-theme='dark'] .contact-status.is-error {
 }
 
 .related li > a:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--focus) 35%, transparent);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
 

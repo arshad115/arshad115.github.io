@@ -16,6 +16,7 @@ import {
   assertSafeSegment,
   buildTilMarkdown,
   existingTilCategories,
+  ensureTil,
   parseArgs,
   repoRoot,
   slugify,
@@ -38,18 +39,8 @@ Options:
   --open            Open the file after creating it
   -h, --help        Show this help
 
-With no title/category and a TTY, prompts interactively. Commit inside the
-submodule, then bump the pointer with npm run update:til.`;
-
-function ensureTil(tilRoot) {
-  const populated =
-    fs.existsSync(path.join(tilRoot, 'git')) || fs.existsSync(path.join(tilRoot, 'python'));
-  if (!fs.existsSync(tilRoot) || !populated) {
-    throw new Error(
-      'today-i-learned submodule is missing or empty.\nRun: git submodule update --init --recursive',
-    );
-  }
-}
+With no title/category and a TTY, prompts interactively. Push the note to the TIL default branch,
+then run npm run update:til -- --remote and commit the blog pointer.`;
 
 function openFile(filepath) {
   const bin = process.platform === 'darwin' ? 'open' : process.platform === 'win32' ? 'start' : 'xdg-open';
@@ -137,7 +128,7 @@ async function main() {
   const rel = path.relative(root, filepath);
   stdoutStream.write(`Created ${rel}\n`);
   stdoutStream.write(`URL: /today-i-learned/${category}/${slug}/\n`);
-  stdoutStream.write('Commit the note in the submodule, then npm run update:til.\n');
+  stdoutStream.write('Commit and push the note to the TIL default branch. In the blog, run npm run update:til -- --remote and commit the pointer.\n');
 
   if (flags.readme) updateReadme(tilRoot);
   if (flags.open) openFile(filepath);

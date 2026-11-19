@@ -2,7 +2,7 @@
 
 Plain [Astro](https://astro.build) static site for [arshadmehmood.com](https://arshadmehmood.com).
 
-**Production is still Jekyll** on `master`. This branch (`astro-plain-migration`) is the rebuild. Do not point GitHub Pages at it until cutover is intentional.
+**Production is still Jekyll** on `master`. This branch (`astro-plain-migration`) is the rebuild. Cloudflare Workers Builds is the deployment target for the Astro cutover.
 
 ## Develop
 
@@ -25,7 +25,7 @@ npm run lighthouse:ci # Lighthouse CI against the production build
 
 Posts are `content/posts/YYYY-MM-DD-slug.md`. The slug after the date **is** the public URL (`/{category}/{slug}/`). Use lowercase kebab-case. YAML `category:` is a lowercase slug (`development`, `devops`); the UI shows Title Case (`DevOps`). Old Jekyll URLs with `$` or parentheses redirect to the cleaned slug.
 
-TIL notes live in the `today-i-learned` submodule as `category/note.md` with YAML `title:`. The site layout prints the H1; the note body should not repeat it. Bump the submodule with `npm run update:til`, then commit the pointer.
+TIL notes live in the `today-i-learned` submodule as `category/note.md` with YAML `title:`. The site layout prints the H1; the note body should not repeat it. To publish a note, commit it on a branch in the TIL repository and push it to its default branch. In the blog, run `npm run update:til -- --remote`, review the new revision, and commit the `today-i-learned` pointer. Plain `npm run update:til` restores the revision the blog already pins.
 
 ```sh
 ./scripts/new-post.sh "Post title" --category development --tags "go,cli"
@@ -49,7 +49,7 @@ Live Jekyll URLs are frozen in `tests/fixtures/jekyll-sitemap.xml`. After follow
 
 ## Comments
 
-Giscus is on **posts only**. Copy `.env.example` to `.env` and fill the Giscus IDs. Empty IDs hide the widget.
+Giscus is on **posts only**. The build includes the public repository and category IDs. Override them through the environment if needed, or set `COMMENTS_DISABLED=true` to disable comments.
 
 ## Deploy
 

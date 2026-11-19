@@ -92,7 +92,7 @@ export function createContactHandler(fetchImpl = fetch) {
     }
 
     const result = await upstream.json().catch(() => ({}));
-    if (!upstream.ok || result.success === false) {
+    if (!upstream.ok || result?.success !== true) {
       return json({ success: false, message: 'Your message could not be sent.' }, 502);
     }
 

@@ -65,4 +65,4 @@ npm run preview:worker # build + local Cloudflare Worker/static assets
 ./scripts/update-submodule.sh  # pin; add --remote to fetch upstream HEAD
 ```
 
-Node 20. Site URL: `https://arshadmehmood.com`. `trailingSlash: 'always'`.
+Node 22.23.4 (see `.nvmrc`). Site URL: `https://arshadmehmood.com`. `trailingSlash: 'always'`.

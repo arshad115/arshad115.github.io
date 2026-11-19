@@ -88,6 +88,14 @@ export function assertSafeSegment(name, label) {
   }
 }
 
+export function ensureTil(tilRoot) {
+  if (existingTilCategories(tilRoot).length === 0) {
+    throw new Error(
+      'today-i-learned submodule is missing or empty.\nRun: git submodule update --init --recursive',
+    );
+  }
+}
+
 export function existingTilCategories(tilRoot) {
   if (!fs.existsSync(tilRoot)) return [];
   return fs

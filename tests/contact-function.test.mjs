@@ -51,3 +51,12 @@ test('contact Worker silently accepts a filled honeypot without forwarding', asy
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { success: true, message: 'Message received.' });
 });
+
+test('contact Worker requires delivery confirmation from the provider', async () => {
+  for (const body of ['<html>Unavailable</html>', 'null', '{}', '{"success":false}']) {
+    const handler = createContactHandler(async () => new Response(body));
+    const response = await handler(contactRequest(), { W3FORMS_ACCESS_KEY: 'key' });
+    assert.equal(response.status, 502);
+    assert.equal((await response.json()).success, false);
+  }
+});

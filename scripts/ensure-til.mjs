@@ -1,12 +1,9 @@
-import fs from 'node:fs';
 import path from 'node:path';
+import { ensureTil } from './lib/scaffold.mjs';
 
-const tilRoot = path.resolve('today-i-learned');
-const populated = fs.existsSync(path.join(tilRoot, 'git')) || fs.existsSync(path.join(tilRoot, 'python'));
-
-if (!fs.existsSync(tilRoot) || !populated) {
-  console.error(
-    'today-i-learned submodule is missing or empty.\nRun: git submodule update --init --recursive',
-  );
-  process.exit(1);
+try {
+  ensureTil(path.resolve('today-i-learned'));
+} catch (error) {
+  console.error(error.message);
+  process.exitCode = 1;
 }

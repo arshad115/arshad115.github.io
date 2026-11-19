@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import { ensureTil } from './scripts/lib/scaffold.mjs';
 import path from 'node:path';
 import expressiveCode from 'astro-expressive-code';
 import { defineConfig } from 'astro/config';
@@ -11,15 +11,7 @@ import {
 } from './src/lib/jekyll.ts';
 import { astroRedirects } from './scripts/legacy-url-redirects.mjs';
 
-function tilSubmodule() {
-  const root = path.resolve('today-i-learned');
-  const populated = fs.existsSync(path.join(root, 'git')) || fs.existsSync(path.join(root, 'python'));
-  if (!fs.existsSync(root) || !populated) {
-    throw new Error('today-i-learned submodule is missing. Run: git submodule update --init --recursive');
-  }
-}
-
-tilSubmodule();
+ensureTil(path.resolve('today-i-learned'));
 
 export default defineConfig({
   site: process.env.SITE_URL || 'https://arshadmehmood.com',
