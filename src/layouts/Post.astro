@@ -1,6 +1,7 @@
 ---
 import { render } from 'astro:content';
 import Base from './Base.astro';
+import PostTags from '../components/PostTags.astro';
 import PostMeta from '../components/PostMeta.astro';
 import TableOfContents from '../components/TableOfContents.astro';
 import GiscusComments from '../components/GiscusComments.astro';
@@ -78,16 +79,14 @@ const pageType =
           <img src={image} alt={imageAlt} width={imageDimensions?.width} height={imageDimensions?.height} decoding="async" fetchpriority="high" />
         </figure>
       )}
-      <p class="kicker" data-pagefind-ignore>
-        {entry.kind === 'til' && 'Today I Learned'}
-        {entry.kind === 'post' && (entry.category ? <a href={entry.categoryPath || `/categories/#${entry.category}`}>{entry.categoryLabel || entry.category}</a> : 'Article')}
-        {entry.kind === 'portfolio' && 'Portfolio'}
-        {entry.kind === 'page' && !isAbout && 'Page'}
-        {isAbout && 'About me'}
-      </p>
+      {entry.kind !== 'post' && (
+        <p class="kicker" data-pagefind-ignore>
+          {entry.kind === 'til' ? 'Today I Learned' : entry.kind === 'portfolio' ? 'Portfolio' : isAbout ? 'About me' : 'Page'}
+        </p>
+      )}
       <h1>{entry.title}</h1>
-      {entry.kind === 'post' && entry.excerpt && <p class="post-deck">{entry.excerpt}</p>}
-      {entry.kind !== 'page' && <PostMeta entry={entry} showCategory={entry.kind !== 'post'} />}
+      {entry.kind !== 'page' && <PostMeta entry={entry} showTags={entry.kind !== 'post'} />}
+      {entry.kind === 'post' && entry.collection.data.excerpt && <p class="post-deck">{entry.collection.data.excerpt}</p>}
       {isArchivedPost && (
         <aside class="archive-note" data-pagefind-ignore>
           <strong>Archive note</strong>
@@ -149,6 +148,11 @@ const pageType =
         <div class="prose">
           <Content />
         </div>
+        {entry.kind === 'post' && entry.tags.length > 0 && (
+          <nav class="post-topics" aria-label="Post tags">
+            <PostTags tags={entry.tags} />
+          </nav>
+        )}
       </div>
     </div>
     {(related.length > 0 || (entry.kind === 'post' && entry.comments)) && (

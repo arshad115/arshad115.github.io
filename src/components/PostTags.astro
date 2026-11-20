@@ -1,0 +1,17 @@
+---
+import { tagSlug } from '../lib/site';
+
+interface Props {
+  tags: string[];
+}
+
+const { tags } = Astro.props;
+---
+
+{tags.length > 0 && (
+  <p class="meta meta-tags" data-pagefind-ignore>
+    {tags.map((tag) => (
+      <a href={`/tags/#${tagSlug(tag)}`}><span class="visually-hidden">Posts tagged </span>{tag.toLocaleLowerCase('en')}</a>
+    ))}
+  </p>
+)}
