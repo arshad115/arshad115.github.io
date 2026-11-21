@@ -6,7 +6,7 @@ export async function GET() {
   const posts = await getPosts();
   const latest = posts.slice(0, 12);
   const lines = [
-    `# ${SITE.title}`,
+    `# ${SITE.homeTitle}`,
     '',
     `> ${SITE.description}`,
     '',

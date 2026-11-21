@@ -14,6 +14,6 @@ export async function GET() {
       link: post.permalink,
       pubDate: post.date ?? new Date(),
     })),
-    customData: `<language>en-us</language>`,
+    customData: `<language>${SITE.language}</language>`,
   });
 }

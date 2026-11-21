@@ -72,7 +72,7 @@ test('core pages are real HTML with the site wordmark', async () => {
 
 test('home is the notebook, not a theme landing page', async () => {
   const html = await readDist('/');
-  assert.match(html, /<title>Arshad Mehmood – Software Engineer at SAP \(Germany\) \| Tech Blog<\/title>/);
+  assert.match(html, /<title>Arshad Mehmood – Software Engineer at SAP · Personal Tech Blog<\/title>/);
   assert.match(html, /<h1>Hi, I’m Arshad\.<\/h1>/);
   assert.match(html, /\/assets\/images\/arshad-mehmood-software-engineer-germany\.jpg/);
   assert.match(html, /alt="Arshad Mehmood - Software Engineer at SAP in Germany"/);

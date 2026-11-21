@@ -1,9 +1,9 @@
 /** Site identity used by layouts, JSON-LD, and llms.txt. */
 export const SITE = {
   title: 'Arshad Mehmood',
-  homeTitle: 'Arshad Mehmood – Software Engineer at SAP (Germany) | Tech Blog',
+  homeTitle: 'Arshad Mehmood – Software Engineer at SAP · Personal Tech Blog',
   description:
-    'Arshad Mehmood is a Software Engineer at SAP SE in Germany. His personal blog covers Go, Kubernetes, self-hosting, and the Android apps he built at Kookydroid.',
+    'Arshad Mehmood is a Software Engineer at SAP SE in Germany. He writes about Go, Kubernetes and self-hosting, and shares short notes from his work on backend systems.',
   url: process.env.SITE_URL || 'https://arshadmehmood.com',
   author: 'Arshad Mehmood',
   givenName: 'Arshad',

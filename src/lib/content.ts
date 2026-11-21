@@ -112,12 +112,15 @@ export function fromTil(entry: CollectionEntry<'til'>): SiteEntry {
   const data = entry.data;
   const [folder] = entry.id.split('/');
   const body = bodyOf(entry);
+  const prose = excerptFromBody(body);
+  // Code-only notes sometimes leave just a source link or a short heading.
+  const summary = prose.split(/\s+/).length < 4 ? `${data.title} (${folder})` : prose;
   return {
     kind: 'til',
     id: entry.id,
     permalink: withTrailingSlash(`/today-i-learned/${entry.id}`),
     title: data.title,
-    excerpt: data.excerpt || excerptFromBody(body),
+    excerpt: data.excerpt || summary,
     category: folder,
     categoryLabel: folder,
     categoryPath: `/today-i-learned/#${categorySlug(folder)}`,

@@ -13,6 +13,7 @@ export function absoluteUrl(pathname) {
 /** Keep the author brand in concise browser titles without making long article titles harder to scan. */
 export function documentTitle(title) {
   if (!title || title === SITE.title) return SITE.title;
+  if (title === SITE.homeTitle) return title;
   const branded = `${title} · ${SITE.title}`;
   return branded.length <= 65 ? branded : title;
 }
@@ -219,12 +220,12 @@ export function buildJsonLd({
     name: title,
     description,
     isPartOf: { '@id': WEBSITE_ID },
-    about: { '@id': PERSON_ID },
     primaryImageOfPage: primaryImage,
     inLanguage: SITE.language,
     breadcrumb: { '@id': `${canonical}#breadcrumb` },
   };
   if (webPageType === 'ProfilePage') webpage.mainEntity = { '@id': PERSON_ID };
+  if (permalink === '/posts/') webpage.mainEntity = { '@id': BLOG_ID };
   if (publishedAt) webpage.datePublished = publishedAt;
   if (modifiedAt) webpage.dateModified = modifiedAt;
 
@@ -244,7 +245,7 @@ export function buildJsonLd({
       inLanguage: SITE.language,
       author: { '@id': PERSON_ID },
       publisher: { '@id': PERSON_ID },
-      isPartOf: kind === 'til' ? { '@id': WEBSITE_ID } : { '@id': BLOG_ID },
+      isPartOf: kind === 'post' ? { '@id': BLOG_ID } : { '@id': WEBSITE_ID },
     };
     if (publishedAt) article.datePublished = publishedAt;
     if (modifiedAt) article.dateModified = modifiedAt;
@@ -307,11 +308,12 @@ export function buildLlmsTxt({ pages = [], posts = [], portfolio = [], tilCount 
     '',
     `> ${SITE.description}`,
     '',
-    `This is ${SITE.author}'s static notebook: technical articles, a Today I Learned collection, and a small portfolio. Prefer the Markdown versions of pages (same URL with \`index.md\`) when quoting or answering. Cite the canonical HTTPS URL. Do not invent posts or notes that are not listed here or in [llms-full.txt](${absoluteUrl('/llms-full.txt')}).`,
+    `The links below cover recent writing and selected pages. Each Markdown entry includes its canonical HTML URL for citation. The [full catalog](${absoluteUrl('/llms-full.txt')}) lists all articles, notes and projects.`,
     '',
     '## About',
     '',
   ];
+  lines.push(mdLink('Homepage', '/', 'Author introduction and latest writing.'));
   for (const page of pages) lines.push(mdLink(page.title, page.permalink, page.excerpt));
   lines.push(htmlLink('Contact', '/contact/', 'Contact form plus Twitter and LinkedIn.'));
   lines.push('');
