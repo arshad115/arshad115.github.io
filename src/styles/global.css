@@ -210,41 +210,40 @@ mark {
   background: var(--accent-soft);
 }
 
-.theme-toggle {
-  display: inline-grid;
+.theme-picker {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
   place-items: center;
   width: 2.75rem;
   height: 2.75rem;
-  padding: 0;
-  border: 0;
-  border-radius: 999px;
-  background: transparent;
+  border-radius: 50%;
   color: var(--ink-muted);
-  cursor: pointer;
 }
 
-.theme-toggle:hover {
+.theme-picker:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.theme-picker:hover {
   color: var(--accent);
   background: var(--accent-soft);
 }
 
 .theme-icon {
-  grid-area: 1 / 1;
-  width: 1.15rem;
-  height: 1.15rem;
-  transition: opacity 160ms ease;
+  display: none;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
 }
 
-.theme-icon-sun {
-  opacity: 0;
-}
-
-html[data-theme='dark'] .theme-icon-moon {
-  opacity: 0;
-}
-
-html[data-theme='dark'] .theme-icon-sun {
-  opacity: 1;
+html[data-theme-mode='system'] .theme-icon-system,
+html[data-theme-mode='dark'] .theme-icon-moon,
+html[data-theme-mode='light'] .theme-icon-sun {
+  display: block;
 }
 
 .site-nav {
@@ -1247,6 +1246,7 @@ h3 {
 
 .home-photo {
   width: 100%;
+  max-width: 13.75rem;
   margin: 0;
   justify-self: end;
 }
@@ -1275,12 +1275,6 @@ h3 {
 
 .home-intro:has(+ .home-latest) .home-note {
   margin-top: 0.75rem;
-}
-
-@media (min-width: 781px) {
-  .home-intro:has(+ .home-latest) .home-photo {
-    max-width: 13.75rem;
-  }
 }
 
 .home-latest {

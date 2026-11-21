@@ -37,14 +37,11 @@ const current = Astro.url.pathname;
       </button>
     </nav>
     <div class="nav-tools">
-      <button
-        class="theme-toggle"
-        type="button"
-        data-theme-toggle
-        aria-pressed="false"
-        aria-label="Switch to dark theme"
-        title="Switch to dark theme"
-      >
+      <button type="button" class="theme-picker" data-theme-picker aria-label="Theme: System. Switch to Light." title="Theme: System. Switch to Light.">
+        <svg class="theme-icon theme-icon-system" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <rect x="3" y="4" width="18" height="13" rx="2" />
+          <path d="M12 17v3m-4 0h8" />
+        </svg>
         <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M20.1 15.4A8.5 8.5 0 0 1 8.6 3.9 8.5 8.5 0 1 0 20.1 15.4Z"
@@ -148,7 +145,7 @@ const current = Astro.url.pathname;
   const header = document.querySelector('.masthead');
   const toggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('#site-nav');
-  const themeButton = document.querySelector('[data-theme-toggle]');
+  const themePicker = document.querySelector<HTMLButtonElement>('[data-theme-picker]');
   const searchButtons = [...document.querySelectorAll<HTMLElement>('[data-search-open]')];
   const searchDialog = document.querySelector<HTMLDialogElement>('[data-site-search]');
   const searchClose = searchDialog?.querySelector<HTMLElement>('[data-search-close]');
@@ -179,7 +176,7 @@ const current = Astro.url.pathname;
         if (link instanceof HTMLElement) nodes.push(link);
       }
     }
-    if (themeButton instanceof HTMLElement) nodes.push(themeButton);
+    if (themePicker) nodes.push(themePicker);
     return nodes;
   }
 
@@ -367,7 +364,7 @@ const current = Astro.url.pathname;
 
   document.addEventListener('keydown', (event) => {
     const target = event.target;
-    const isTyping = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || (target instanceof HTMLElement && target.isContentEditable);
+    const isTyping = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target instanceof HTMLSelectElement || (target instanceof HTMLElement && target.isContentEditable);
     if ((event.metaKey || event.ctrlKey) && event.key.toLocaleLowerCase() === 'k') {
       event.preventDefault();
       openSearch(searchButtons[0]);
@@ -403,22 +400,4 @@ const current = Astro.url.pathname;
     if (!isMobile()) setOpen(false, { restoreFocus: false });
   });
 
-  const syncThemeButton = () => {
-    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    if (!(themeButton instanceof HTMLElement)) return;
-    themeButton.setAttribute('aria-pressed', dark ? 'true' : 'false');
-    const label = dark ? 'Switch to light theme' : 'Switch to dark theme';
-    themeButton.setAttribute('aria-label', label);
-    themeButton.setAttribute('title', label);
-    const themeColour = document.querySelector('meta[name="theme-color"]');
-    themeColour?.setAttribute('content', dark ? '#15181b' : '#ffffff');
-  };
-  syncThemeButton();
-  themeButton?.addEventListener('click', () => {
-    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    document.dispatchEvent(new Event('themechange'));
-    syncThemeButton();
-  });
 </script>

@@ -132,15 +132,50 @@ const jsonLd = buildJsonLd({
     <slot name="head" />
     <script is:inline>
       (() => {
-        const stored = localStorage.getItem('theme');
-        const theme = stored === 'dark' || stored === 'light'
-          ? stored
-          : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', theme);
-        document.querySelector('meta[name="theme-color"]')?.setAttribute(
-          'content',
-          theme === 'dark' ? '#15181b' : '#ffffff',
-        );
+        const device = window.matchMedia('(prefers-color-scheme: dark)');
+        const preference = value => value === 'light' || value === 'dark' ? value : 'system';
+        let mode = 'system';
+        try { mode = preference(localStorage.getItem('theme')); } catch {}
+        let picker;
+        const nextMode = { system: 'light', light: 'dark', dark: 'system' };
+        const names = { system: 'System', light: 'Light', dark: 'Dark' };
+
+        function applyTheme() {
+          const root = document.documentElement;
+          const theme = mode === 'system' ? (device.matches ? 'dark' : 'light') : mode;
+          const changed = root.dataset.theme !== theme;
+          root.dataset.themeMode = mode;
+          root.dataset.theme = theme;
+          document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#15181b' : '#ffffff';
+          if (picker) {
+            picker.title = `Theme: ${names[mode]}. Switch to ${names[nextMode[mode]]}.`;
+            picker.setAttribute('aria-label', picker.title);
+          }
+          if (changed) window.dispatchEvent(new Event('themechange'));
+        }
+
+        applyTheme();
+        device.addEventListener('change', () => {
+          if (mode === 'system') applyTheme();
+        });
+        window.addEventListener('storage', event => {
+          if (event.key !== 'theme' && event.key !== null) return;
+          mode = preference(event.newValue);
+          applyTheme();
+        });
+        document.addEventListener('DOMContentLoaded', () => {
+          picker = document.querySelector('[data-theme-picker]');
+          if (!picker) return;
+          applyTheme();
+          picker.addEventListener('click', () => {
+            mode = nextMode[mode];
+            applyTheme();
+            try {
+              if (mode === 'system') localStorage.removeItem('theme');
+              else localStorage.setItem('theme', mode);
+            } catch {}
+          });
+        });
       })();
     </script>
   </head>

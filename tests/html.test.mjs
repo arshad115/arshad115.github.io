@@ -321,11 +321,12 @@ test('SSH article related list prefers markdown TIL links', async () => {
   assert.match(html, /Read article/);
 });
 
-test('mobile nav can close from the keyboard; theme toggle exposes pressed state', async () => {
+test('mobile nav can close from the keyboard; theme button has an accessible label and three mode icons', async () => {
   const html = await readDist('/');
   assert.match(html, /class="nav-toggle"[^>]*aria-controls="site-nav"/);
   assert.match(html, /aria-expanded="false"/);
-  assert.match(html, /data-theme-toggle[^>]*aria-pressed=/);
+  assert.match(html, /<button[^>]*data-theme-picker[^>]*aria-label="Theme: System. Switch to Light."/);
+  assert.match(html, /class="theme-icon theme-icon-system"/);
   assert.match(html, /class="theme-icon theme-icon-moon"/);
   assert.match(html, /class="theme-icon theme-icon-sun"/);
   assert.doesNotMatch(html, />Dark<\/button>/);

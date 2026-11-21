@@ -28,7 +28,7 @@ Your browser searches an index of the public pages on this site. It does not sen
 
 ### Cookies
 
-The theme preference (`light` / `dark`) is stored in `localStorage` on your device. There is no login cookie for the site itself.
+The default System theme follows your device. Choosing Light or Dark saves that preference in local storage on your device. Choosing System clears it. There is no login cookie for the site itself.
 
 ## Disclosure
 
