@@ -115,3 +115,21 @@ export function rehypeLocalImageDimensions() {
     visit(tree);
   };
 }
+
+/** Give each generated Markdown task checkbox its adjacent task text as a label. */
+export function rehypeTaskLabels() {
+  return (tree: HastNode) => {
+    const visit = (node: HastNode) => {
+      const children = node.children ?? [];
+      const first = children[0];
+      if (first?.tagName === 'input' && first.properties?.type === 'checkbox') {
+        const labelEnd = children.findIndex((child) => ['ul', 'ol', 'p'].includes(child.tagName ?? ''));
+        const inline = children.splice(0, labelEnd < 0 ? children.length : labelEnd);
+        children.unshift({ type: 'element', tagName: 'label', children: inline });
+        return;
+      }
+      children.forEach(visit);
+    };
+    visit(tree);
+  };
+}

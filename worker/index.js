@@ -1,3 +1,5 @@
+import { legacyUrlRedirects } from '../scripts/legacy-url-redirects.mjs';
+
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
 const MAX_REQUEST_BYTES = 32_000;
 
@@ -104,8 +106,26 @@ const handleContact = createContactHandler();
 
 export default {
   async fetch(request, env) {
-    const pathname = new URL(request.url).pathname.replace(/\/$/, '');
-    if (pathname === '/api/contact') return handleContact(request, env);
-    return env.ASSETS.fetch(request);
+    const url = new URL(request.url);
+    const production = url.hostname === 'arshadmehmood.com';
+    const www = url.hostname === 'www.arshadmehmood.com';
+    const local = ['localhost', '127.0.0.1', '[::1]'].includes(url.hostname);
+    const path = url.pathname.replace(/%24/gi, '$').replace(/\/?$/, '/');
+    const alias = Object.hasOwn(legacyUrlRedirects, path) && legacyUrlRedirects[path];
+    if (www || (!local && url.protocol === 'http:') || alias) {
+      if (www) url.hostname = 'arshadmehmood.com';
+      if (!local) url.protocol = 'https:';
+      if (alias) url.pathname = alias;
+      return Response.redirect(url.href, 308);
+    }
+    const response = path === '/api/contact/'
+      ? await handleContact(request, env)
+      : await env.ASSETS.fetch(request);
+    const result = new Response(response.body, response);
+    if (!production) result.headers.set('X-Robots-Tag', 'noindex');
+    if (!local) result.headers.set('Strict-Transport-Security', 'max-age=31536000');
+    result.headers.set('Content-Security-Policy', "frame-ancestors 'self'; object-src 'none'; base-uri 'self'");
+    result.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    return result;
   },
 };

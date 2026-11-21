@@ -21,5 +21,4 @@ I was learning programming at my University at that time and I always had a pass
 Every year muslims have a holy month of Ramadan, in which they fast. It it sometimes difficult to know the time, when to break  the fast and when to close it. So, I made a simple app, just for this basic necessity at that time and I also gave Google admobs a try with it. The app also notified me with an alarm sound, so I didn't have to look at my phone(Pretty cool huh? :P). After uploading my first app, I made $2.07 in a whole month. Which was a pretty big deal for me.
 $2 is nothing, you cannot do much with it, but, it's not about the money. It never was about the money, money was just a byproduct of my effort. It was the most fulfilling amount of money I had made ever. It set the foundation stone for me to build more apps, make my own startup and become a professional Andoroid developer. 
 
-You can view my apps here: 
-https://play.google.com/store/apps/dev?id=7044232667654327190
+You can find my [Android apps in my portfolio](/portfolio/#android).

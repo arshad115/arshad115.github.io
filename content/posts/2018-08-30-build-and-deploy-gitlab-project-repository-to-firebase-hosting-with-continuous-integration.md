@@ -13,11 +13,11 @@ header:
   image: /assets/images/cicd_pipeline_infograph.png
   alt: CI/CD pipeline infographic
   caption: "Photo credit: Gitlab"
-  captionHref: https://docs.gitlab.com/ee/ci/README.html
+  captionHref: https://docs.gitlab.com/ci/
   teaser: /assets/images/ci_teaser.png
 ---
 
-Previously, I wrote a blog post on how to [Deploy Angular App To Firebase Hosting](/tutorial/deploy-angular-app-to-firebase-hosting/) and [Deploy Gitlab Project/Repository to Heroku app with Continuous Integration in 5 minutes!](/tutorial/deploy-gitlab-project-repository-to-heroku-app-with-continuous-integration-in-five-minutes/). Now we will use [Gitlab's Continuous Integration (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html) to build and deploy an [Angular 6](https://angular.io/) app to [Firebase Hosting](https://firebase.google.com/docs/hosting/) . It's really cool!
+Previously, I wrote a blog post on how to [Deploy Angular App To Firebase Hosting](/tutorial/deploy-angular-app-to-firebase-hosting/) and [Deploy Gitlab Project/Repository to Heroku app with Continuous Integration in 5 minutes!](/tutorial/deploy-gitlab-project-repository-to-heroku-app-with-continuous-integration-in-five-minutes/). Now we will use [Gitlab's Continuous Integration (GitLab CI/CD)](https://docs.gitlab.com/ci/) to build and deploy an [Angular 6](https://angular.io/) app to [Firebase Hosting](https://firebase.google.com/docs/hosting/) . It's really cool!
 
 Create a new angular app or use an existing project. 
 

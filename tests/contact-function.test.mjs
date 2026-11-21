@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { createContactHandler } from '../worker/index.js';
+import worker, { createContactHandler } from '../worker/index.js';
 
 function contactRequest(fields = {}, origin = 'https://arshadmehmood.com') {
   const form = new FormData();
@@ -59,4 +59,19 @@ test('contact Worker requires delivery confirmation from the provider', async ()
     assert.equal(response.status, 502);
     assert.equal((await response.json()).success, false);
   }
+});
+
+test('Worker canonicalizes legacy URLs in one permanent hop and isolates preview indexing', async () => {
+  const { legacyUrlRedirects } = await import('../scripts/legacy-url-redirects.mjs');
+  const env = { ASSETS: { fetch: () => new Response('page', { status: 200 }) } };
+  for (const [from, to] of Object.entries(legacyUrlRedirects)) {
+    const response = await worker.fetch(new Request('http://www.arshadmehmood.com' + from.replace('$', '%24') + '?source=feed'), env);
+    assert.equal(response.status, 308);
+    assert.equal(response.headers.get('location'), 'https://arshadmehmood.com' + to + '?source=feed');
+  }
+  const preview = await worker.fetch(new Request('https://preview.arshadmehmood.com/posts/'), env);
+  assert.equal(preview.headers.get('x-robots-tag'), 'noindex');
+  const prod = await worker.fetch(new Request('https://arshadmehmood.com/posts/'), env);
+  assert.equal(prod.headers.get('x-robots-tag'), null);
+  assert.equal(await prod.text(), 'page');
 });

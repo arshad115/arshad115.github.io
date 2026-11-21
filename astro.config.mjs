@@ -1,10 +1,12 @@
 import { ensureTil } from './scripts/lib/scaffold.mjs';
 import path from 'node:path';
+import { SITE } from './src/lib/site-meta.mjs';
 import expressiveCode from 'astro-expressive-code';
 import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import {
   rehypeLocalImageDimensions,
+  rehypeTaskLabels,
   remarkNormalizeHeadingDepth,
   remarkRewriteJekyll,
   remarkStripJekyllRaw,
@@ -14,7 +16,7 @@ import { astroRedirects } from './scripts/legacy-url-redirects.mjs';
 ensureTil(path.resolve('today-i-learned'));
 
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://arshadmehmood.com',
+  site: SITE.url,
   output: 'static',
   trailingSlash: 'always',
   redirects: astroRedirects,
@@ -28,7 +30,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkRewriteJekyll, remarkStripJekyllRaw, remarkNormalizeHeadingDepth],
-      rehypePlugins: [rehypeLocalImageDimensions],
+      rehypePlugins: [rehypeLocalImageDimensions, rehypeTaskLabels],
     }),
   },
   integrations: [

@@ -24,7 +24,7 @@ U2F is an open authentication standard that enables Internet users to securely a
 
 ### Which sites support it?
 
-A plenty of sites already support it. You can check the updated list [here](https://www.yubico.com/works-with/catalog/#FIDO-U2F) or [here](https://www.dongleauth.info/). Some popular sites where I use U2F are [Google](https://www.google.com/intl/en-US/landing/2step/features.html), [Facebook](https://www.facebook.com/help/148233965247823), [Twitter](https://help.twitter.com/en/managing-your-account/two-factor-authentication),  [Github](https://help.github.com/articles/about-two-factor-authentication/) and [Gitlab](https://docs.gitlab.com/ee/user/profile/account/two_factor_authentication.html). I would love to use it many other sites, but the support is really slow.
+A plenty of sites already support it. You can check the updated list in the [Yubico compatibility catalog](https://www.yubico.com/works-with/catalog/#FIDO-U2F). Some popular sites where I use U2F are [Google](https://www.google.com/intl/en-US/landing/2step/features.html), [Facebook](https://www.facebook.com/help/148233965247823), [Twitter](https://help.twitter.com/en/managing-your-account/two-factor-authentication),  [Github](https://help.github.com/articles/about-two-factor-authentication/) and [Gitlab](https://docs.gitlab.com/ee/user/profile/account/two_factor_authentication.html). I would love to use it many other sites, but the support is really slow.
 
 ### How does it work?
 

@@ -418,12 +418,11 @@ test('home does not load IBM Plex Mono; posts do', async () => {
   assert.match(post, /ibm-plex-mono/i);
 });
 
-test('portfolio uses HTTPS Play URLs, not bit.ly, and lists Langur once', async () => {
+test('portfolio keeps archived projects visible without dead download links', async () => {
   const html = await readDist('/portfolio/');
   assert.doesNotMatch(html, /bit\.ly/i);
-  assert.doesNotMatch(html, /http:\/\/play\.google/);
-  assert.match(html, /https:\/\/play\.google\.com\/store\/apps\/details\?id=com\.kookydroidapps\.mosquesnearme/);
-  assert.match(html, /https:\/\/www\.kentech\.ie\//);
+  assert.doesNotMatch(html, /play\.google|www\.kentech\.ie|orenhold\.no/);
+  assert.match(html, /Mosques Nearby/);
   assert.match(html, /Creator and maintainer/);
   assert.match(html, /Python · TypeScript · Obsidian/);
   const langur = [...html.matchAll(/href="\/portfolio\/langur-language-translation-bot\/"/g)];
@@ -528,5 +527,18 @@ test('indexable pages have unique metadata and locally controlled social images'
     assert.match(socialImage || '', /^https:\/\/arshadmehmood\.com\//, `${route} uses an external social image`);
     assert.equal(titles.has(title), false, `${route} duplicates the title from ${titles.get(title)}`);
     titles.set(title, route);
+  }
+});
+
+test('RSS retains Jekyll identifiers and includes full articles', async () => {
+  const feed = await fs.readFile(path.join(root, 'dist/feed.xml'), 'utf8');
+  const items = [...feed.matchAll(/<item>([\s\S]*?)<\/item>/g)];
+  assert.ok(items.length > 0);
+  for (const [, item] of items) {
+    const link = item.match(/<link>([^<]+)<\/link>/)?.[1];
+    const guid = item.match(/<guid[^>]*>([^<]+)<\/guid>/)?.[1];
+    assert.ok(link?.startsWith('https://arshadmehmood.com/'));
+    assert.equal(guid, link.replace(/\/$/, ''));
+    assert.match(item, /<content:encoded>.+?<\/content:encoded>/s);
   }
 });

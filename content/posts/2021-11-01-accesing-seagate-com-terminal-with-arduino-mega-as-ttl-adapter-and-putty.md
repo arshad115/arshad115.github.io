@@ -27,11 +27,11 @@ The ports are shown here:
 
 <img src="https://habrastorage.org/storage2/471/e3b/097/471e3b097546725b54e9ef7e6c0d5dd7.png" width="550" height="160" loading="lazy" decoding="async" alt="Seagate hard drive recovery and diagnostics ports" />
 
-![ ](/assets/images/posts/hdd2.jpeg)
+![Diagnostic pins on the Seagate hard drive](/assets/images/posts/hdd2.jpeg)
 
 These ports need to be connected to a *USB to TTL* Adapter. In my previous post [How to use Arduino mega as a USB TTL Adapter](https://arshadmehmood.com/hardware/use-arduino-mega-as-ttl-adapter/), I wrote about using **Arduino** as  a **TTL** Adapter. We are going to connect these ports to **Arduino** as below:
 
-![ ](/assets/images/posts/hdd1.jpeg)
+![Wiring between the Seagate drive and the Arduino Mega serial adapter](/assets/images/posts/hdd1.jpeg)
 
 ### Accessing the terminal with PUTTY
 
@@ -39,9 +39,9 @@ After turning on the **Arduino**, find out the **COM** port from the device mana
 
 Enter the following settings in [**PuTTY**](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html):
 
-![ ](/assets/images/posts/putty_com1.PNG)
+![PuTTY serial session configuration](/assets/images/posts/putty_com1.PNG)
 
-![ ](/assets/images/posts/putty_com2.PNG)
+![PuTTY serial line settings for the drive terminal](/assets/images/posts/putty_com2.PNG)
 
 In my case the port was *COM3*. Click on open and you should be good to go!
 

@@ -11,11 +11,11 @@ header:
   image: /assets/images/cicd_pipeline_infograph.png
   alt: CI/CD pipeline infographic
   caption: "Photo credit: Gitlab"
-  captionHref: https://docs.gitlab.com/ee/ci/README.html
+  captionHref: https://docs.gitlab.com/ci/
   teaser: /assets/images/ci_teaser.png
 ---
 
-I love [Heroku](https://www.heroku.com/) and I love [Gitlab](https://gitlab.com/). Both of them offer so much for free, which comes in handy when you're just testing applications. What I love even more is the [Gitlab's Continuous Integration (GitLab CI/CD)](https://docs.gitlab.com/ee/ci/README.html). Its just amazing, what you can do with it!
+I love [Heroku](https://www.heroku.com/) and I love [Gitlab](https://gitlab.com/). Both of them offer so much for free, which comes in handy when you're just testing applications. What I love even more is the [Gitlab's Continuous Integration (GitLab CI/CD)](https://docs.gitlab.com/ci/). Its just amazing, what you can do with it!
 
 For the sake of simplicity, we will use a simple application made with PHP, which is hosted on Gitlab. We need to perform some steps on both sides to deploy on Heroku using Gitlab's Continuous Integration. First of all we will setup the Heroku app and then Gitlab.
 

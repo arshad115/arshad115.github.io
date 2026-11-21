@@ -82,7 +82,7 @@ export function personNode() {
     owns: {
       '@type': 'Organization',
       name: 'Kookydroid',
-      url: SITE.playStore,
+      url: absoluteUrl('/portfolio/#android'),
     },
     address: {
       '@type': 'PostalAddress',
@@ -348,7 +348,7 @@ export function buildLlmsTxt({ pages = [], posts = [], portfolio = [], tilCount 
   lines.push(htmlLink('Full catalog', '/llms-full.txt', 'Every post, TIL note, page, and project as Markdown links.'));
   lines.push(htmlLink('RSS', '/feed.xml', 'Post feed.'));
   lines.push(htmlLink('XML sitemap', '/sitemap.xml', 'Every indexable HTML URL.'));
-  lines.push(htmlLink('Search', '/search/', 'Pagefind over the built site. Supports ?q=.'));
+  lines.push(htmlLink('Search', '/search/', 'Search posts, notes and pages. Supports ?q=.'));
   lines.push('');
   return `${lines.join('\n')}\n`;
 }

@@ -49,8 +49,6 @@ const groups = projectGroups.map((group) => ({
     </ul>
     <p>
       <a href={SITE.github}>GitHub profile</a>
-      {' · '}
-      <a href={SITE.playStore}>Google Play developer page</a>
     </p>
     </header>
 
@@ -79,9 +77,9 @@ const groups = projectGroups.map((group) => ({
               <div><dt>Role</dt><dd>{item.role}</dd></div>
               <div><dt>Stack</dt><dd>{item.stack.join(' · ')}</dd></div>
             </dl>
-            <a class="project-link" href={item.href}>
+            {item.href && <a class="project-link" href={item.href}>
               {item.href.startsWith('/') ? `Read ${item.displayName}` : `View ${item.displayName}`} <span aria-hidden="true">→</span>
-            </a>
+            </a>}
           </div>
         </article>
       ))}

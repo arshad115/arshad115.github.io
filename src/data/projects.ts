@@ -1,7 +1,7 @@
 export type Project = {
   name: string;
   description: string;
-  href: string;
+  href?: string;
   image?: string;
   title?: string;
   role: string;
@@ -48,7 +48,6 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'mosques-nearby',
         description: 'Find nearby mosques on a map.',
-        href: 'https://play.google.com/store/apps/details?id=com.kookydroidapps.mosquesnearme',
         image: '/assets/images/repo_images/mosques-nearby.jpg',
         role: 'Product design and Android development',
         stack: ['Android', 'Java', 'Maps'],
@@ -57,7 +56,6 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'pakistani-recipes-in-urdu',
         description: 'Encrypted recipes in Urdu which also work offline. Recipes also deeplinked with Facebook.',
-        href: 'https://play.google.com/store/apps/details?id=com.kookydroidapps.pakistanifoodrecipes.urdu',
         image: '/assets/images/repo_images/pakistani-recipes-in-urdu.jpg',
         role: 'Product design and Android development',
         stack: ['Android', 'Java', 'Offline data'],
@@ -66,7 +64,6 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'qibla-compass',
         description: 'Find the direction of Makkah based on your location.',
-        href: 'https://play.google.com/store/apps/details?id=com.kookydroidapps.qiblacompass',
         image: '/assets/images/repo_images/qibla-compass.jpg',
         role: 'Product design and Android development',
         stack: ['Android', 'Java', 'Location'],
@@ -75,7 +72,6 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'surah-yaseen-urdu-recitation',
         description: 'Line by line recitation of Surah Yasin with multiple reciters.',
-        href: 'https://play.google.com/store/apps/details?id=com.kookydroidapps.audiomp3.surahyaseenfree',
         image: '/assets/images/repo_images/surah-yaseen-urdu-recitation.jpg',
         role: 'Product design and Android development',
         stack: ['Android', 'Java', 'Audio'],
@@ -85,7 +81,6 @@ export const projectGroups: ProjectGroup[] = [
         name: 'uae-prayer-times',
         description:
           'Accurate prayer times in 12 hour/24 hour format. Find nearest mosques, maps, and Qibla direction.',
-        href: 'https://play.google.com/store/apps/details?id=com.kookydroidapps.uae.unitedarabemiratesprayertimings',
         image: '/assets/images/repo_images/uae-prayer-times.jpg',
         role: 'Product design and Android development',
         stack: ['Android', 'Java', 'Location'],
@@ -101,7 +96,6 @@ export const projectGroups: ProjectGroup[] = [
         name: 'ms-access-db-sync',
         description:
           'I built C# web services to sync an Android app with a Microsoft Access database, then designed the database migration to SQL Server.',
-        href: 'https://www.kentech.ie/',
         role: 'Software development and database architecture',
         stack: ['C#', 'SQL Server', 'Android'],
         status: 'Client work',
@@ -116,7 +110,6 @@ export const projectGroups: ProjectGroup[] = [
         name: 'orenhold-website',
         title: 'Orenhold',
         description: 'A single-page site I built for Orenhold.',
-        href: 'https://orenhold.no/',
         role: 'Frontend development',
         stack: ['JavaScript', 'HTML', 'CSS'],
         status: 'Client work',

@@ -4,7 +4,7 @@ export const SITE = {
   homeTitle: 'Arshad Mehmood – Software Engineer at SAP · Personal Tech Blog',
   description:
     'Arshad Mehmood is a Software Engineer at SAP SE in Germany. He writes about Go, Kubernetes and self-hosting, and shares short notes from his work on backend systems.',
-  url: process.env.SITE_URL || 'https://arshadmehmood.com',
+  url: 'https://arshadmehmood.com',
   author: 'Arshad Mehmood',
   givenName: 'Arshad',
   familyName: 'Mehmood',
@@ -40,7 +40,6 @@ export const SITE = {
   twitter: 'https://x.com/arshad115',
   twitterHandle: '@arshad115',
   instagram: 'https://instagram.com/arshad115',
-  playStore: 'https://play.google.com/store/apps/dev?id=7044232667654327190',
 };
 
 export const PERSON_ID = `${SITE.url}/#person`;

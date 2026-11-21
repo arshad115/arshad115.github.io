@@ -55,7 +55,7 @@ Giscus is on **posts only**. The build includes the public repository and catego
 
 GitHub Actions runs unit tests, `astro check`, the production build, URL/HTML contract tests, and the official Lighthouse CI CLI on this branch and on `master`. Lighthouse reports are retained as workflow artifacts.
 
-Cloudflare Workers Builds owns preview and production deployments. The Astro build stays static; `worker/index.js` runs first only for `/api/*`, while Cloudflare serves everything else from `dist/` as static assets. In Cloudflare, set the production branch to `master`, enable preview builds, and configure:
+Cloudflare Workers Builds owns preview and production deployments. The Astro build stays static; `worker/index.js` handles HTTPS and legacy redirects, preview indexing headers, and the contact API, then serves files through the static asset binding. All builds use the production origin for canonical URLs and feed identifiers. In Cloudflare, set the production branch to `master`, enable preview builds, and configure:
 
 - Build command: `npm run build`
 - Deploy command: `npx wrangler deploy`

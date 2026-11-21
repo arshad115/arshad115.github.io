@@ -12,7 +12,6 @@ header:
   image: /assets/images/aura.jpg
   alt: Illustrated aura around a seated figure
   caption: "Photo credit: WHOLESOME AYURVEDA"
-  captionHref: http://www.wholesomeayurveda.com/2016/10/24/aura-part-1/
   teaser: /assets/images/chakra.jpg
 ---
 

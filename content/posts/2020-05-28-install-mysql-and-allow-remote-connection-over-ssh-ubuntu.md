@@ -112,6 +112,6 @@ Under the Parameters Tab, enter the following information:
 
 **Password:** your database password
 
-![ ](/assets/images/posts/mysqlwork.PNG)
+![MySQL Workbench connection settings for an SSH tunnel](/assets/images/posts/mysqlwork.PNG)
 
 Click Test Connection and everything should work fine.

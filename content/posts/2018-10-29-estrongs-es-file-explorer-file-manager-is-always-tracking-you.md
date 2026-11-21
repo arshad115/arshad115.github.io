@@ -16,7 +16,7 @@ header:
   teaser: /assets/images/es_teaser.png
 ---
 
-[Es File Explorer File Manager](https://play.google.com/store/apps/details?id=com.estrongs.android.pop) was one the best File managers for Android for the past few years. But they have definitely *killed the goose that layed the golden eggs*, by [adding ads to users lockscreens, without their consent](https://www.androidpit.com/this-is-why-you-should-not-use-es-file-explorer) and by tracking users, with their indirect consent(as mentioned in their privacy policy). 
+ES File Explorer File Manager was one the best File managers for Android for the past few years. But they have definitely *killed the goose that layed the golden eggs*, by [adding ads to users lockscreens, without their consent](https://www.androidpit.com/this-is-why-you-should-not-use-es-file-explorer) and by tracking users, with their indirect consent(as mentioned in their privacy policy).
 
 I am an Android developer and while developing one of my apps, I noticed that Android device got slow recently and I was getting lots of error messages on the logcat console in Android studio. At first, I thought the errors are from my app, but later I found out that they are from Es File Explorer, I decided to investigate further. I saw that Es File Explorer is constantly tracking and sending data to their servers in the background.
 

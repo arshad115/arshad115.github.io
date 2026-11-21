@@ -13,7 +13,7 @@ I have an M.Sc. in Business Informatics from the University of Mannheim. Long be
 
 My first app converted temperatures and showed the result in a little Android pop-up. The first one I published solved a problem I had during Ramadan. I wanted my phone to tell me when to start and break my fast. It earned $2.07 in its first month. I still remember the amount.
 
-I wrote [the longer story](/personal/the-most-fulfilling-2-i-made-and-my-android-developer-journey/) years later. I went on to found [Kookydroid](https://play.google.com/store/apps/dev?id=7044232667654327190) and publish more Android apps. You can find those and some of my client work in my [portfolio](/portfolio/).
+I wrote [the longer story](/personal/the-most-fulfilling-2-i-made-and-my-android-developer-journey/) years later. I went on to found [Kookydroid](/portfolio/#android) and publish more Android apps. You can find those and some of my client work in my [portfolio](/portfolio/).
 
 ## What I’m working on
 
