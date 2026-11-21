@@ -21,6 +21,6 @@ const { entry, showTags = true } = Astro.props;
       Updated <time datetime={entry.updated.toISOString()}>{formatDate(entry.updated)}</time>
     </span>
   )}
-  {entry.kind === 'post' && <span>{entry.minutes} min read</span>}
+  {(entry.kind === 'post' || entry.kind === 'til') && <span>{entry.minutes} min read</span>}
 </p>
 {showTags && <PostTags tags={entry.tags} />}

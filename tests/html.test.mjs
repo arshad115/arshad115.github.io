@@ -176,6 +176,9 @@ test('Giscus is on posts when configured, explained when not, and never on TIL',
     assert.doesNotMatch(post, /giscus\.app/);
   }
   assert.match(til, /Today I Learned/);
+  assert.match(til, /<main id="content" class="page wrap page-wide">/);
+  assert.match(til, /class="post-page post-page-wide"/);
+  assert.match(til, /data-reading-progress/);
   assert.doesNotMatch(til, /giscus\.app/);
   assert.doesNotMatch(til, /data-comments=/);
   assert.equal([...til.matchAll(/<h1[\s>]/g)].length, 1);

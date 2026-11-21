@@ -19,6 +19,7 @@ interface Props {
 }
 
 const { entry, related = [] } = Astro.props;
+const usesArticleLayout = entry.kind === 'post' || entry.kind === 'til';
 const { Content, headings } = await render(entry.collection);
 const showToc = entry.showToc && headings.filter((heading) => heading.depth >= 2).length > 2;
 const image = entry.header?.image;
@@ -37,6 +38,8 @@ function relatedExcerpt(value: string) {
   return `${sentence.slice(0, 160).replace(/\s+\S*$/, '')}…`;
 }
 const isAbout = entry.kind === 'page' && entry.permalink === '/about/';
+const isResume = entry.kind === 'page' && entry.permalink === '/resume/';
+const hasProfileIntro = isAbout || isResume;
 const archiveCutoff = new Date();
 archiveCutoff.setUTCFullYear(archiveCutoff.getUTCFullYear() - 5);
 const isArchivedPost =
@@ -69,12 +72,16 @@ const pageType =
   minutes={entry.minutes}
   wordCount={entry.wordCount}
   markdown
-  wide={entry.kind === 'post'}
+  wide={usesArticleLayout}
 >
-  {entry.kind === 'post' && <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>}
-  <article class:list={['post-page', { 'post-page-wide': entry.kind === 'post', 'about-page': isAbout }]} data-pagefind-body>
-    <div class:list={['post-content-grid', { 'has-sidebar': showToc && entry.kind === 'post' }]}>
-    {isAbout ? (
+  {usesArticleLayout && <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>}
+  <article class:list={['post-page', { 'post-page-wide': usesArticleLayout, 'about-page': isAbout }]} data-pagefind-body>
+    <div class:list={['post-content-grid', { 'has-sidebar': showToc && usesArticleLayout }]}>
+    {isResume ? (
+      <ProfileIntro kicker="Software Engineer at SAP · Germany" title={entry.title}>
+        {entry.excerpt}
+      </ProfileIntro>
+    ) : isAbout ? (
       <ProfileIntro kicker="About me" title={entry.title}>
         {entry.excerpt}
         <Fragment slot="links">
@@ -85,14 +92,14 @@ const pageType =
       </ProfileIntro>
     ) : (
     <header class="post-heading">
-      {entry.kind !== 'post' && (
+      {!usesArticleLayout && (
         <p class="kicker" data-pagefind-ignore>
-          {entry.kind === 'til' ? 'Today I Learned' : entry.kind === 'portfolio' ? 'Portfolio' : 'Page'}
+          {entry.kind === 'portfolio' ? 'Portfolio' : 'Page'}
         </p>
       )}
       <h1>{entry.title}</h1>
-      {entry.kind !== 'page' && <PostMeta entry={entry} showTags={entry.kind !== 'post'} />}
-      {entry.kind === 'post' && entry.collection.data.excerpt && <p class="post-deck">{entry.collection.data.excerpt}</p>}
+      {entry.kind !== 'page' && <PostMeta entry={entry} showTags={!usesArticleLayout} />}
+      {usesArticleLayout && entry.collection.data.excerpt && <p class="post-deck">{entry.collection.data.excerpt}</p>}
       {isArchivedPost && (
         <aside class="archive-note" data-pagefind-ignore>
           <strong>Archive note</strong>
@@ -101,7 +108,7 @@ const pageType =
       )}
     </header>
     )}
-    {image && entry.kind !== 'post' && !isAbout && (
+    {image && !usesArticleLayout && !isAbout && (
       <figure class="figure-plain reading" data-pagefind-ignore>
         <img
           src={image}
@@ -123,14 +130,14 @@ const pageType =
         )}
       </figure>
     )}
-      {showToc && entry.kind === 'post' && (
+      {showToc && usesArticleLayout && (
         <aside class="post-sidebar" data-pagefind-ignore>
           <TableOfContents headings={headings} />
         </aside>
       )}
-      <div class:list={['post-main reading', { 'page-intro-column': isAbout }]}>
-        {showToc && entry.kind !== 'post' && <TableOfContents headings={headings} />}
-    {image && entry.kind === 'post' && (
+      <div class:list={['post-main reading', { 'page-intro-column': hasProfileIntro }]}>
+        {showToc && !usesArticleLayout && <TableOfContents headings={headings} />}
+    {image && usesArticleLayout && (
       <figure class="post-hero" data-pagefind-ignore>
         <img
           src={image}
@@ -155,8 +162,8 @@ const pageType =
         <div class="prose">
           <Content />
         </div>
-        {entry.kind === 'post' && entry.tags.length > 0 && (
-          <nav class="post-topics" aria-label="Post tags">
+        {usesArticleLayout && entry.tags.length > 0 && (
+          <nav class="post-topics" aria-label="Article tags">
             <PostTags tags={entry.tags} />
           </nav>
         )}
@@ -195,7 +202,7 @@ const pageType =
     </div>
     )}
   </article>
-  {entry.kind === 'post' && (
+  {usesArticleLayout && (
     <script>
       const article = document.querySelector<HTMLElement>('.post-content-grid');
       const progress = document.querySelector<HTMLElement>('[data-reading-progress]');
