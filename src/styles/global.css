@@ -152,16 +152,15 @@ mark {
 .masthead-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: 0.5rem;
   min-height: var(--header);
   padding-block: 0.85rem;
 }
 
 .wordmark {
   display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
+  align-items: baseline;
+  gap: 0.55rem;
   color: var(--ink);
   text-decoration: none;
   min-width: 0;
@@ -173,8 +172,8 @@ mark {
 
 .wordmark-mark {
   flex: none;
-  width: 1.55rem;
-  height: 1.55rem;
+  width: 1rem;
+  height: auto;
   color: var(--accent);
 }
 
@@ -1214,8 +1213,8 @@ h3 {
   gap: clamp(2.5rem, 6vw, 5.5rem);
   align-items: center;
   width: min(var(--site), 100%);
-  margin: 0 auto 2.6rem;
-  padding: 1.15rem 0 3rem;
+  margin: 0 auto 1.5rem;
+  padding: 0 0 1.5rem;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -1292,6 +1291,14 @@ h3 {
 .stack > li {
   padding: 1.8rem 0;
   border-bottom: 1px solid var(--rule);
+}
+
+.entry-list > li {
+  padding-block: 1.1rem;
+}
+
+.home-latest .entry-list > li:first-child {
+  padding-top: 0.65rem;
 }
 
 .entry-list h2,
@@ -2074,7 +2081,7 @@ html[data-theme='dark'] .contact-status.is-error {
     gap: 0 1rem;
     align-items: center;
     width: 100%;
-    padding: 0.25rem 0 2.4rem;
+    padding-top: 0.25rem;
   }
 
   .home-copy {
@@ -2320,6 +2327,10 @@ html[data-theme='dark'] .contact-status.is-error {
 }
 
 @media (min-width: 961px) {
+  .site-nav {
+    margin-inline-start: auto;
+  }
+
   .nav-toggle {
     display: none;
   }
@@ -2346,7 +2357,7 @@ html[data-theme='dark'] .contact-status.is-error {
   .has-sidebar + .post-ending { margin-left: max(0px, calc((100% - 42rem - 15rem - clamp(2.5rem, 5vw, 4.5rem)) / 2)); }
 }
 @media (max-width: 780px) {
-  .home-intro { grid-template-columns: 4.5rem minmax(0, 1fr); padding-bottom: 2rem; margin-bottom: 2rem; }
+  .home-intro { grid-template-columns: 4.5rem minmax(0, 1fr); }
   .home-photo { width: 4.5rem; }
   .home-copy h1 { font-size: clamp(1.9rem, 8.3vw, 2.65rem); }
   .home-copy .lede { font-size: 1.1rem; }
@@ -2358,7 +2369,7 @@ html[data-theme='dark'] .contact-status.is-error {
   .masthead-inner { gap: 0.4rem; }
   .wordmark { gap: 0.3rem; }
   .wordmark-name { font-size: 1rem; }
-  .wordmark-mark { width: 1.2rem; }
+  .wordmark-mark { width: 0.9rem; }
   .nav-toggle { padding-inline: 0.65rem; }
   .footer-nav { gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
