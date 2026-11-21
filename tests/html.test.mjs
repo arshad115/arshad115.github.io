@@ -288,7 +288,11 @@ test('404 is noindex; robots allow AI crawlers', async () => {
 test('About and Resources headings are plain text, not emoji', async () => {
   const about = await readDist('/about/');
   assert.match(about, /id="my-first-android-apps"/);
-  assert.match(about, /I work on backend software at SAP SE in Germany/);
+  const intro = about.match(/<header class="home-intro">([\s\S]*?)<\/header>/)?.[1] || '';
+  assert.match(intro, /<p class="lede">[^<]*I work on backend software at SAP SE in Germany/);
+  assert.match(intro, /GitHub @arshad115/);
+  assert.match(intro, /LinkedIn \/arshadmehmood115/);
+  assert.match(intro, /X @arshad115/);
   assert.match(about, /"@type":"ProfilePage"/);
   assert.match(about, /"@id":"https:\/\/arshadmehmood\.com\/about\/#profilepage"/);
   assert.doesNotMatch(about, /<h[1-6][^>]*>\s*[\u{1F300}-\u{1FAFF}]/u);

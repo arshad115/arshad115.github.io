@@ -1,15 +1,15 @@
 ---
 title: About
 permalink: /about/
-excerpt: How I got started building Android apps in Islamabad, what I work on at SAP in Germany, and why I keep this blog.
+excerpt: I’m Arshad Mehmood. I work on backend software at SAP SE in Germany, mostly with Go and Kubernetes. I also build tools for my Obsidian notes and run my own servers.
 header:
   image: /assets/images/arshad-mehmood-software-engineer-germany.webp
   alt: Arshad Mehmood, software engineer in Germany
 ---
 
-I’m Arshad Mehmood. I work on backend software at SAP SE in Germany, mostly with Go and Kubernetes. I have an M.Sc. in Business Informatics from the University of Mannheim. Long before that, I was a computer science student in Islamabad trying to figure out how to write an app for my HTC Google G1.
-
 ## My first Android apps
+
+I have an M.Sc. in Business Informatics from the University of Mannheim. Long before that, I was a computer science student in Islamabad trying to figure out how to write an app for my HTC Google G1.
 
 My first app converted temperatures and showed the result in a little Android pop-up. The first one I published solved a problem I had during Ramadan. I wanted my phone to tell me when to start and break my fast. It earned $2.07 in its first month. I still remember the amount.
 

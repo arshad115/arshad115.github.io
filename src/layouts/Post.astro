@@ -1,5 +1,6 @@
 ---
 import { render } from 'astro:content';
+import ProfileIntro from '../components/ProfileIntro.astro';
 import Base from './Base.astro';
 import PostTags from '../components/PostTags.astro';
 import PostMeta from '../components/PostMeta.astro';
@@ -8,7 +9,7 @@ import GiscusComments from '../components/GiscusComments.astro';
 import type { SiteEntry } from '../lib/content';
 import { imageSize } from '../lib/image-size.mjs';
 import { relatedHeading } from '../lib/related.mjs';
-import { formatDate } from '../lib/site';
+import { formatDate, SITE } from '../lib/site';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/400-italic.css';
 
@@ -73,15 +74,20 @@ const pageType =
   {entry.kind === 'post' && <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>}
   <article class:list={['post-page', { 'post-page-wide': entry.kind === 'post', 'about-page': isAbout }]} data-pagefind-body>
     <div class:list={['post-content-grid', { 'has-sidebar': showToc && entry.kind === 'post' }]}>
+    {isAbout ? (
+      <ProfileIntro kicker="About me" title={entry.title}>
+        {entry.excerpt}
+        <Fragment slot="links">
+          <a href={SITE.github}>GitHub @arshad115</a>
+          <a href={SITE.linkedin}>LinkedIn /arshadmehmood115</a>
+          <a href={SITE.twitter}>X {SITE.twitterHandle}</a>
+        </Fragment>
+      </ProfileIntro>
+    ) : (
     <header class="post-heading">
-      {isAbout && image && (
-        <figure class="about-portrait" data-pagefind-ignore>
-          <img src={image} alt={imageAlt} width={imageDimensions?.width} height={imageDimensions?.height} decoding="async" fetchpriority="high" />
-        </figure>
-      )}
       {entry.kind !== 'post' && (
         <p class="kicker" data-pagefind-ignore>
-          {entry.kind === 'til' ? 'Today I Learned' : entry.kind === 'portfolio' ? 'Portfolio' : isAbout ? 'About me' : 'Page'}
+          {entry.kind === 'til' ? 'Today I Learned' : entry.kind === 'portfolio' ? 'Portfolio' : 'Page'}
         </p>
       )}
       <h1>{entry.title}</h1>
@@ -94,6 +100,7 @@ const pageType =
         </aside>
       )}
     </header>
+    )}
     {image && entry.kind !== 'post' && !isAbout && (
       <figure class="figure-plain reading" data-pagefind-ignore>
         <img
@@ -121,7 +128,7 @@ const pageType =
           <TableOfContents headings={headings} />
         </aside>
       )}
-      <div class="post-main reading">
+      <div class:list={['post-main reading', { 'page-intro-column': isAbout }]}>
         {showToc && entry.kind !== 'post' && <TableOfContents headings={headings} />}
     {image && entry.kind === 'post' && (
       <figure class="post-hero" data-pagefind-ignore>
