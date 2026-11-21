@@ -1,3 +1,7 @@
+# Legacy blog repository
+
+Development has moved to [arshad115/arshadmehmood.com](https://github.com/arshad115/arshadmehmood.com). Read the blog at [arshadmehmood.com](https://arshadmehmood.com/). This repository preserves the original Jekyll source.
+
 # 👋 Welcome to **Arshad Mehmood's Blog**
 
 This repository powers my corner of the internet: a personal blog where I write about building software that is practical, scalable, and occasionally stubborn. 🚀
