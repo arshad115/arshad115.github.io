@@ -3,7 +3,7 @@ export const SITE = {
   title: 'Arshad Mehmood',
   homeTitle: 'Arshad Mehmood – Software Engineer at SAP (Germany) | Tech Blog',
   description:
-    'Arshad Mehmood is a Software Engineer at SAP SE in Germany and founder of Kookydroid, specializing in Go, Kubernetes, DevOps, self-hosted systems, and Android development.',
+    'Arshad Mehmood is a Software Engineer at SAP SE in Germany. His personal blog covers Go, Kubernetes, self-hosting, and the Android apps he built at Kookydroid.',
   url: process.env.SITE_URL || 'https://arshadmehmood.com',
   author: 'Arshad Mehmood',
   givenName: 'Arshad',

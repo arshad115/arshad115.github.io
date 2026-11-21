@@ -23,7 +23,7 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'vault-linker',
         description:
-          'A CLI and Obsidian community plugin that safely turns note-title mentions into wikilinks, with dry-run, audit, and unlink workflows.',
+          'Finds mentions of other notes in an Obsidian vault and turns them into links. You can preview the changes in Obsidian or from the command line.',
         href: '/development/introducing-vault-linker/',
         image: '/assets/images/posts/vault-linker/after.png',
         role: 'Creator and maintainer',
@@ -33,7 +33,7 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'today-i-learned',
         description:
-          'A maintained, searchable notebook of concise programming, infrastructure, and command-line references.',
+          'My collection of short notes on programming and running servers, organised by topic.',
         href: '/today-i-learned/',
         role: 'Author and maintainer',
         stack: ['Markdown', 'Git', 'Astro'],
@@ -47,7 +47,7 @@ export const projectGroups: ProjectGroup[] = [
     items: [
       {
         name: 'mosques-nearby',
-        description: 'Find the Mosques/Masjids nearest to your location.',
+        description: 'Find nearby mosques on a map.',
         href: 'https://play.google.com/store/apps/details?id=com.kookydroidapps.mosquesnearme',
         image: '/assets/images/repo_images/mosques-nearby.jpg',
         role: 'Product design and Android development',
@@ -100,7 +100,7 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'ms-access-db-sync',
         description:
-          'Two-way sync between an Android app and a Microsoft Access desktop database using C# web services. Also the database architect for moving the database from Access to SQL Server.',
+          'I built C# web services to sync an Android app with a Microsoft Access database, then designed the database migration to SQL Server.',
         href: 'https://www.kentech.ie/',
         role: 'Software development and database architecture',
         stack: ['C#', 'SQL Server', 'Android'],
@@ -115,7 +115,7 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'orenhold-website',
         title: 'Orenhold',
-        description: 'Single page website.',
+        description: 'A single-page site I built for Orenhold.',
         href: 'https://orenhold.no/',
         role: 'Frontend development',
         stack: ['JavaScript', 'HTML', 'CSS'],
@@ -130,7 +130,7 @@ export const projectGroups: ProjectGroup[] = [
       {
         name: 'langur',
         description:
-          'Langur is a translation chatbot I made for translating from one language to another in chat apps.',
+          'A chatbot that translated messages inside Messenger and Kik.',
         href: '/portfolio/langur-language-translation-bot/',
         image: '/assets/images/repo_images/langur.jpg',
         role: 'Creator and developer',

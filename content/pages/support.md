@@ -1,15 +1,13 @@
 ---
 title: Show your support
 permalink: /support/
-excerpt: If something here helped you, the useful follow-up is to share it, star a repo, or write back.
+excerpt: A few ways to support my writing and open-source projects.
 toc: true
 ---
 
-The posts and Today I Learned notes are written so I do not have to solve the same problem twice. If they helped you, that is enough. If you want to do more:
+If a post helped you get something working, I’d love to hear what you used it for. You can [write to me](/contact/) or pass the link to someone who’s stuck on the same problem.
 
-- Share a link. That is the highest-leverage thanks.
-- Star or use the [open source](https://github.com/arshad115) when it fits your work.
-- [Write to me](/contact/) if you found a mistake or have a question.
+If you use one of [my projects](https://github.com/arshad115), a star or a bug report on the repository helps too.
 
 ## Follow
 

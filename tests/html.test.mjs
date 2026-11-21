@@ -73,7 +73,7 @@ test('core pages are real HTML with the site wordmark', async () => {
 test('home is the notebook, not a theme landing page', async () => {
   const html = await readDist('/');
   assert.match(html, /<title>Arshad Mehmood – Software Engineer at SAP \(Germany\) \| Tech Blog<\/title>/);
-  assert.match(html, /<h1>A working notebook on cloud-native backends\.<\/h1>/);
+  assert.match(html, /<h1>Hi, I’m Arshad\.<\/h1>/);
   assert.match(html, /\/assets\/images\/arshad-mehmood-software-engineer-germany\.jpg/);
   assert.match(html, /alt="Arshad Mehmood - Software Engineer at SAP in Germany"/);
   assert.match(html, /width="640"/);
@@ -287,8 +287,8 @@ test('404 is noindex; robots allow AI crawlers', async () => {
 
 test('About and Resources headings are plain text, not emoji', async () => {
   const about = await readDist('/about/');
-  assert.match(about, /id="software-engineering-infrastructure-and-practical-documentation"/);
-  assert.match(about, /Arshad Mehmood is a Software Engineer at SAP SE in Germany/);
+  assert.match(about, /id="my-first-android-apps"/);
+  assert.match(about, /I work on backend software at SAP SE in Germany/);
   assert.match(about, /"@type":"ProfilePage"/);
   assert.match(about, /"@id":"https:\/\/arshadmehmood\.com\/about\/#profilepage"/);
   assert.doesNotMatch(about, /<h[1-6][^>]*>\s*[\u{1F300}-\u{1FAFF}]/u);

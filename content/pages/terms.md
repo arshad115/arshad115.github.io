@@ -10,7 +10,7 @@ I do not sell visitor data and I do not run ads on this site.
 
 ### Hosting
 
-The site is static files on GitHub Pages. GitHub’s servers see the usual request metadata (IP address, user agent, referrer) in access logs. I do not run Universal Analytics or a marketing pixel.
+Cloudflare serves this site and receives request information such as your IP address and browser type when you visit. I do not run Universal Analytics or a marketing pixel.
 
 ### Comments
 
@@ -24,7 +24,7 @@ Submitting the form is voluntary. The information is processed only to handle an
 
 ### Search
 
-Search runs in your browser against a Pagefind index of the public HTML. Queries do not go to a third-party search SaaS.
+Your browser searches an index of the public pages on this site. It does not send your query to a third-party search provider.
 
 ### Cookies
 
